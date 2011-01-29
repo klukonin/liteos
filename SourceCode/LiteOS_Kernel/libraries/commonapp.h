@@ -20,8 +20,8 @@
  // void tracemain();
 
 
- extern uint8_t filecreatorbuffer[400]; 
- void filecreator();
+ extern uint8_t hellobuffer[250]; 
+ void hello();
     
     
  //extern uint8_t loggerbuffer[200];
