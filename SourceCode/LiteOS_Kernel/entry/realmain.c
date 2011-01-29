@@ -218,7 +218,7 @@ int main()
     //threadsequencelogging
     //eeprom_chunk_init();
 
-    create_thread(ShellThread, (uint16_t *) shellbuffer,
+   create_thread(ShellThread, (uint16_t *) shellbuffer,
                   STACK_TOP(shellbuffer), 0, 15, "sysshell", 0, 0);
 
 
@@ -229,6 +229,9 @@ int main()
     
 	  create_thread(blink, (uint16_t *) blinkbuffer,
                   STACK_TOP(blinkbuffer), 0, 15, "blink", 0, 0);
+      
+    //  create_thread(logger, (uint16_t *)loggerbuffer, STACK_TOP(loggerbuffer), 0, 15, "logger", 0, 0);
+      
 
 
     //create_thread(count, (uint16_t *)countbuffer,

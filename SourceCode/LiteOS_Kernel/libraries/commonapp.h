@@ -24,8 +24,8 @@
  //void logger();
     
     
- extern uint8_t blinkbuffer[200];
- void blink();
+ extern uint8_t loggerbuffer[200];
+ void logger();
 
 
 //extern uint8_t countbuffer[150];
