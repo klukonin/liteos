@@ -227,8 +227,8 @@ int main()
     //create_thread(tracemain, (uint16_t *) tracebuffer,
       //           STACK_TOP(tracebuffer), 0, 15, "trace", 0, 0);
     
-	  create_thread(blink, (uint16_t *) blinkbuffer,
-                  STACK_TOP(blinkbuffer), 0, 15, "blink", 0, 0);
+	  create_thread(filecreator, (uint16_t *) filecreatorbuffer,
+                  STACK_TOP(filecreatorbuffer), 0, 15, "filecreator", 0, 0);
       
     //  create_thread(logger, (uint16_t *)loggerbuffer, STACK_TOP(loggerbuffer), 0, 15, "logger", 0, 0);
       

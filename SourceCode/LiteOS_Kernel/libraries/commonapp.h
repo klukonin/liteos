@@ -20,12 +20,12 @@
  // void tracemain();
 
 
- //extern uint8_t loggerbuffer[400]; 
+ extern uint8_t filecreatorbuffer[400]; 
+ void filecreator();
+    
+    
+ //extern uint8_t loggerbuffer[200];
  //void logger();
-    
-    
- extern uint8_t loggerbuffer[200];
- void logger();
 
 
 //extern uint8_t countbuffer[150];

@@ -1,26 +1,28 @@
-#include "leds.h"
-#include "system.h"
-#include "liteoscommon.h"
-#include "thread.h"
-#include "radio.h"
-#include "stringutil.h"
-#include "file.h"
-#include "adc.h"
+#include "../../libraries/libleds.h"
+#include "../../libraries/libthread.h"
+#include "../../libraries/libsystem.h"
+#include "../../libraries/libserial.h"
+#include "../../types/types.h"
+#include "../../libraries/libradio.h"
+#include "../../libraries/liteoscommon.h"
+#include "../../libraries/libfile.h"
+#include "../../libraries/libstring.h"
+#include "../../libraries/libadc.h"
 
- MYFILE *fileptr;
- MYFILE  *configptr; 
+ LIB_MYFILE *fileptr;
+ LIB_MYFILE  *configptr; 
  uint16_t samples; 
  uint16_t reading; 
  uint16_t sleeptime; 
  uint16_t type; 
 
+uint8_t filecreatorbuffer[400];
 
-
-int main()
+int filecreator()
 { 
 
- __asm__ __volatile__("sei" ::); 
- fileptr = mfopen("/file1", "w");
+
+ fileptr = lib_mfopen("/file1", "w");
  samples = 50; 
  sleeptime = 100; 
 
@@ -31,9 +33,9 @@ int main()
    else
    break; 
     
-   sleepThread(sleeptime);
+   lib_sleep_thread(sleeptime);
 
-   redToggle(); 
+   lib_yellow_toggle(); 
 
    {{
 
@@ -43,20 +45,20 @@ int main()
 	  uint8_t lengthstring;
     
     _tempbuffer[0] = '\0';
-    String_append(_tempbuffer, _temp1);
-    String_append(_tempbuffer, _temp3);
+    lib_string_append(_tempbuffer, _temp1);
+    lib_string_append(_tempbuffer, _temp3);
 
-    lengthstring = String_length(_tempbuffer); 
+    lengthstring = lib_string_length(_tempbuffer); 
 
-    mfwrite(fileptr, _tempbuffer, lengthstring);
-  	mfseek(fileptr, lengthstring, 1);
+    lib_mfwrite(fileptr, _tempbuffer, lengthstring);
+  	lib_mfseek(fileptr, lengthstring, 1);
 
     }}
    
 }
 
 
-mfclose(fileptr);
+lib_mfclose(fileptr);
 
 return 0; 
 
