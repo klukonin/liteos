@@ -1,31 +1,33 @@
-#include "leds.h"
-#include "system.h"
-#include "liteoscommon.h"
-#include "thread.h"
-#include "radio.h"
-#include "stringutil.h"
-#include "file.h"
-#include "adc.h"
+#include "../../libraries/libleds.h"
+#include "../../libraries/libthread.h"
+#include "../../libraries/libsystem.h"
+#include "../../libraries/libserial.h"
+#include "../../types/types.h"
+#include "../../libraries/libradio.h"
+#include "../../libraries/liteoscommon.h"
+#include "../../libraries/libfile.h"
+#include "../../libraries/libstring.h"
+#include "../../libraries/libadc.h"
 
 
+uint8_t channelhopbuffer[300]; 
 
-
-int main()
+int channelhop()
 { 
 
  uint8_t channel;
  
  for (channel = 11;channel <25;channel++)
- { setRadioChannel(channel); 
+ { lib_radio_set_channel(channel); 
   
- radioSend_string("Hello, world!\n"); 
- greenToggle();
- sleepThread(1000);
+ lib_radio_send_string("Hello, world!\n"); 
+ lib_yellow_toggle();
+ lib_sleep_thread(1000);
 
  }
  
  channel = 15; 
- setRadioChannel(channel); 
+ lib_radio_set_channel(channel); 
  return 0; 
 
 }

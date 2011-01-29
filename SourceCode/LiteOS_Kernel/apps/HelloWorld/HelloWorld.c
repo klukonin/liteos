@@ -1,37 +1,26 @@
-#include "leds.h"
-#include "thread.h"
-#include "radio.h"
-#include "stringutil.h"
-#include "serialprint.h"
-#include "rollback.h"
+#include "../../libraries/libleds.h"
+#include "../../libraries/libthread.h"
+#include "../../libraries/libsystem.h"
+#include "../../libraries/libserial.h"
+#include "../../types/types.h"
+#include "../../libraries/libradio.h"
+#include "../../libraries/liteoscommon.h"
+#include "../../libraries/libfile.h"
+#include "../../libraries/libstring.h"
+#include "../../libraries/libadc.h"
 
+uint8_t hellobuffer[250]; 
 
-
-
-int main()
+int hello()
 {
-    int i;
-	//or (i=0;i<100;i++)
-
- /*	
-   sbi(MCUCR, SM0);
-   sbi(MCUCR, SM1);
-   cbi(MCUCR, SM2); 
-   sbi(MCUCR, SE);
-   
- */ 
-      
+         
 	while (1)
 	{
-  greenToggle();
-  radioSend_string("Hello, world!\n"); 
-  //i = thread_create_snapshot();
-  
- // serialSend_string("hello\n");
- // serialSend_uint16(32323); 
-  printfstring("hello, world\n"); 
-  //thread_rollback_snapshot(i);
-  sleepThread(1000);
+   
+
+  lib_yellow_toggle(); 
+  lib_radio_send_string("Hello, world!\n"); 
+  lib_sleep_thread(1000);
 	}
 	return 0; 
 }
