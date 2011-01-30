@@ -10,6 +10,7 @@
 #include "../../libraries/libadc.h"
 
 uint8_t hellobuffer[250]; 
+char *string = "hello, world"; 
 
 int hello()
 {
@@ -19,7 +20,7 @@ int hello()
    
 
   lib_yellow_toggle(); 
-  lib_radio_send_string("Hello, world!\n"); 
+  lib_radio_send_string(string); 
   lib_sleep_thread(1000);
 	}
 	return 0; 
