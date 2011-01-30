@@ -327,9 +327,19 @@ typedef struct lib_thread
     }
 
     filedata;
-    #ifdef ENERGY_INSTRUMENTATION
-    ecb_block *ecbptr;  
-    #endif
+
+    volatile struct {
+    	
+    	//used to track the total energy cost of a thread
+    	int32_t energycost;
+  
+         	
+    	//used to track the energ remain of the current thread 
+    	//int32_t energyremain;   
+  
+    }
+    
+    energycontrolblock;     
 }
 
 //-------------------------------------------------------------------------
@@ -380,6 +390,11 @@ typedef struct thread_create_block
 
 
  
- 
+  #define CPU_PER_THOUSAND 326
+  #define RADIO_SEND 167
+  #define RADIO_RECEIVE 180
+  #define FILE_READ 0
+  #define FILE_WRITE 1181
+  #define SERIAL_SEND 531 
 
 #endif 

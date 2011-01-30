@@ -23,7 +23,7 @@ along with LiteOS.  If not, see <http://www.gnu.org/licenses/>.
 #include "liteoscommon.h"
 
 
-static uint8_t buffer[32];
+static uint8_t buffer[MAX_MSG_LENGTH];
 
 uint8_t radioReceiveDataReady;
 
@@ -174,31 +174,6 @@ radioinfotype *lib_get_current_radio_send_addr()
 
 
  
-void lib_radio_send_energy_wrapper(uint16_t port, uint16_t address, uint8_t length, uint8_t *msg){
-	 
-	  
-	    lib_thread** current_thread;
-	  
-      current_thread = lib_get_current_thread();      
-      
-     // if ((*current_thread)->ecbptr->remainenergy > (uint16_t)RADIO_ENERGY_CONSUMPTION_PER_BIT * (uint16_t)length)
-      	//{
-      	//	 (*current_thread)->ecbptr->remainenergy -= (uint16_t)RADIO_SEND * (uint16_t)length;           
-      		 
-      	//	 lib_radio_send_msg(port, address, length, msg);       		 
-       // }
-      
-     // else
-     // {	
-      //  (*current_thread)->ecbptr->remainenergy = 0;  
-     // 	(*current_thread)->state = STATE_SUSPEND;   	
-     // }
-      
-    
-    
-    // radioSend(port, address, length, msg); 
-}
-
  
 
 
@@ -215,7 +190,12 @@ void lib_radio_send_msg(uint16_t port, uint16_t address, uint8_t length, uint8_t
 
    current_thread = lib_get_current_thread();
    radioinfoaddr = lib_get_current_radio_send_addr();
-
+ 
+     
+   (*current_thread)->energycontrolblock.energycost += (uint16_t)RADIO_SEND * (uint16_t)length;           
+      		 
+            
+      
 
    radioinfoaddr-> socket_port = port;
    radioinfoaddr->socket_addr = address;
@@ -254,7 +234,7 @@ int lib_radio_receive_timed(uint16_t port, uint8_t maxlength, uint8_t *msg, uint
    //set up the radiohandleaddr data structures
 
    radiohandleaddr->port = port;
-   radiohandleaddr->maxLength = 32;
+   radiohandleaddr->maxLength = MAX_MSG_LENGTH;
    radiohandleaddr->dataReady = &radioReceiveDataReady;
    radiohandleaddr->data = buffer;
    radiohandleaddr->packetinfo = radioReceivePacketInfo;
@@ -281,8 +261,11 @@ int lib_radio_receive_timed(uint16_t port, uint8_t maxlength, uint8_t *msg, uint
 		lib_sleep_thread(time);
 	
 	uint8_t i;
-	for (i = 0; i < maxlength && i < 32; i++)
+	for (i = 0; i < maxlength && i < MAX_MSG_LENGTH; i++)
 		msg[i] = buffer[i];
-
+		
+ (*current_thread)->energycontrolblock.energycost += (uint16_t)RADIO_RECEIVE * (uint16_t)radioReceiveDataReady;           
+	
+  
 	return radioReceiveDataReady;
 }

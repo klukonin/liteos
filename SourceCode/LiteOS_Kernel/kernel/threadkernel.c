@@ -6,6 +6,8 @@
 #include "../types/string.h"
 #include "../timer/generictimer.h"
 #include "../hardware/avrhardware.h"
+#include "../timer/globaltiming.h"
+#include "../utilities/energyprofiling.h"
  
 
 
@@ -33,6 +35,13 @@ volatile uint8_t thread_task_active;
 
  
  
+ uint32_t timediff;
+ 
+ //resolution
+ uint32_t switchFromThreadTime , switchToThreadTime; 
+ 
+ //time 
+ uint16_t counterFrom, counterTo; 
 
 
 //-------------------------------------------------------------------------
@@ -157,12 +166,17 @@ int create_thread(void(*fcn)(), uint16_t *ram_start, uint16_t *stack_ptr,
   
   
   current_thread = 0;
+  
+  current_thread->energycontrolblock.energycost = 0;
+  //current_thread->energycontrolblock.energyremain = 0; 
+  
   if (!thread_task_active)
   {
     postTask(thread_task, 2);
     thread_task_active = 1;
   }
   _atomic_end(currentatomic);
+  
   #ifdef TRACE_ENABLE
     #ifdef TRACE_ENABLE_THREADCREATE
       addTrace(TRACE_THREADCREATE, 100);
@@ -229,6 +243,11 @@ void __attribute__((noinline))lite_switch_to_user_thread() /* __attribute__(
       addTrace(TRACE_CONTEXTSWITCHTOUSERTHREAD, 100);
     #endif 
   #endif 
+  
+  //these are the current times for the switch to user thread
+  
+  counterTo = getCurrentCounterHigh();
+  switchToThreadTime = getCurrentResolution();
   
    //printfstr("Now switching to user.  \n"); 
   #ifdef PLATFORM_AVR
@@ -429,10 +448,32 @@ void thread_task()
  
   //printfstr("now switching out\n");
  
-  current_thread = 0;
+
   
   
-  return ;
+  counterFrom = getCurrentCounterHigh(); 
+  switchFromThreadTime = getCurrentResolution(); 
+  
+  if (counterFrom == counterTo)
+	  timediff = switchFromThreadTime - switchToThreadTime;
+	  else
+	  timediff = ((uint32_t)(counterTo-counterFrom))*50000*50000 + switchFromThreadTime - switchToThreadTime; 
+     
+	 /*
+   if (current_thread != &thread_table[0])
+     {
+
+     for (threadindex =1;threadindex <LITE_MAX_THREADS; threadindex++)
+     
+      { if (current_thread == &thread_table[threadindex])
+     	     break;
+     	}
+     	
+     } */
+
+   current_thread->energycontrolblock.energycost += (timediff * (uint32_t)CPU_PER_THOUSAND) /1000; 
+   current_thread = 0;
+   return ;
 }
 
 
