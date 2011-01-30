@@ -227,10 +227,10 @@ int main()
     //create_thread(tracemain, (uint16_t *) tracebuffer,
       //           STACK_TOP(tracebuffer), 0, 15, "trace", 0, 0);
     
-	  create_thread(hello, (uint16_t *) hellobuffer,
-                  STACK_TOP(hellobuffer), 0, 15, "hello", 0, 0);
+	//  create_thread(sounder, (uint16_t *) sounderbuffer,
+      //            STACK_TOP(sounderbuffer), 0, 15, "sounder", 0, 0);
       
-    //  create_thread(logger, (uint16_t *)loggerbuffer, STACK_TOP(loggerbuffer), 0, 15, "logger", 0, 0);
+     create_thread(hello, (uint16_t *)hellobuffer, STACK_TOP(hellobuffer), 0, 15, "hello", 0, 0);
       
 
 

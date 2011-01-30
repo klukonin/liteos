@@ -1258,7 +1258,7 @@ void sounderonfunction()
     sounderOn_Logger();         //defined in avr\syscall.c
 #endif
 #else
-    sounder_init();
+    //sounder_init();
     sounderOn();          //defined in micaz\sounder.c
 #endif
     asm volatile ("nop"::);
@@ -1289,7 +1289,7 @@ void sounderofffunction()
     sounderOff_Logger();        //defined in avr\syscall.c
 #endif
 #else
-    sounder_init();
+    //sounder_init();
     sounderOff();         //defined in micaz\sounder.c
 #endif
     asm volatile ("nop"::);

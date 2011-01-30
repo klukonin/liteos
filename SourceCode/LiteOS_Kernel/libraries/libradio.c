@@ -45,7 +45,7 @@ void lib_radio_send_string(uint8_t *msg)
  #ifdef ENERGY_INSTRUMENTATION
  return lib_radio_send_energy_wrapper(1, 0xffff, temp, msg);
  #else
-	return lib_radio_send_msg(1, 0xffff, temp, msg);
+	return lib_radio_send_msg(10, 0xffff, temp, msg);
  #endif
 }
 

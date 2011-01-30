@@ -299,7 +299,8 @@ inline result_t cc2420radiom_Send_send(Radio_MsgPtr pMsg)
         currentstate = cc2420radiom_stateRadio;
         _atomic_end(_atomic);
     }
-    if (currentstate == cc2420radiom_IDLE_STATE)
+
+     if (currentstate == cc2420radiom_IDLE_STATE)
     {
         pMsg->fcflo = 0x08;
         if (cc2420radiom_bAckEnable)

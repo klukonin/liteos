@@ -864,6 +864,7 @@ void ShellThread()
         }
         else
         {
+            
             current_thread->state = STATE_SLEEP;
             thisthread = current_thread;
             thread_yield();
