@@ -102,7 +102,7 @@ volatile uint16_t roundofenergy;
  
 volatile energy_control_struct ecb[LITE_MAX_THREADS]; 
 
-volatile int16_t div;
+volatile int16_t divresult;
 volatile int16_t credits;
 volatile int currentcandidate;
 volatile int index; 
@@ -158,12 +158,12 @@ void energy_manager_increase_round()
 		 thread_table[index].state = STATE_ACTIVE;
 		 }    
 		 
-	  div = (thread_table[index].energycontrolblock.energycost)/1000 +1; 
-      div = ecb[index].quota*roundofenergy/div;
+	  divresult = (thread_table[index].energycontrolblock.energycost)/1000 +1; 
+      divresult = ecb[index].quota*roundofenergy/divresult;
       
-      if (credits < div)
+      if (credits < divresult)
       {
-        credits = div; 
+        credits = divresult; 
         currentcandidate = index;
       }
     }
