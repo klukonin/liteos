@@ -1,6 +1,7 @@
 #include "clockraw.h"
 #include "timerraw.h"
-
+#include "../kernel/scheduling.h"
+#include "../kernel/threadkernel.h"
 
 //used for blink only. 
 #include "../sensors/leds.h"
@@ -11,6 +12,8 @@
 #include "../io/radio/amcommon.h"
 #include "../io/radio/amradio.h"
 #include "../io/cc2420/cc2420controlm.h"
+
+#include "../kernel/threadmodel.h"
 
 Radio_Msg datamsg; 
 
@@ -144,15 +147,17 @@ inline result_t GenericTimerFired(uint8_t id)
         break;
 #endif
    case 12:
-	   #ifdef ENERGY_INSTRUMENTATION
-	   //postTask(rechargetask, 10); 
-	   #endif
+        #ifdef ENERGY_SHARE_SCHEDULING
+        
+         {energy_manager_increase_round();   
+		  postTask(thread_task, 9);  
+           
+         }  
+        #endif 
 	   break;  
        
    case 15:
-      // #ifdef ENERGY_INSTRUMENTATION
-       //showstatus();
-	    //  #endif
+      
 	      
 	      {
 	      	

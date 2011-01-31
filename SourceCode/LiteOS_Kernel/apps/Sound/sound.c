@@ -14,7 +14,7 @@ int sounderbuffer[200];
 int sounder()
 {
 
- uint8_t index;  
+ 
  
  
    while (1)

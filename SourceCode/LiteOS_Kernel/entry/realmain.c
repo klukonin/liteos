@@ -19,6 +19,7 @@
 #include "../timer/generictimer.h"
 #include "../timer/globaltiming.h"
 #include "../io/avrserial/serialprint.h"
+#include "../kernel/threadmodel.h"
 #include <stdlib.h>
 #include "../io/radio/packethandler.h"
 #include "../storage/filesys/storageconstants.h"
@@ -176,9 +177,8 @@ int main()
     //initTrace();
     
 
-    #ifdef ENERGY_INSTRUMENTATION
-     ecb_block_init(); 
-    #endif
+ 
+ 
     
     
     
@@ -256,6 +256,13 @@ int main()
    
     //GenericTimerStart(15, TIMER_REPEAT, 100); 
 
+
+  #ifdef ENERGY_SHARE_SCHEDULING
+
+      ecb_init();     
+      GenericTimerStart(12, TIMER_REPEAT, 1000); 
+     
+  #endif 
 
     _avr_enable_interrupt();
 

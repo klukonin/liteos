@@ -139,9 +139,5 @@ radioinfotype *lib_get_current_radio_send_addr();
 void lib_radio_send_msg_syscall();
 
 
-
-#ifdef ENERGY_INSTRUMENTATION
-void lib_radio_send_energy_wrapper(uint16_t port, uint16_t address, uint8_t length, uint8_t *msg); 
-#endif
-
+ 
 #endif

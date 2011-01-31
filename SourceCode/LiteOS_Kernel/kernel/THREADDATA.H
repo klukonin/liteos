@@ -3,7 +3,7 @@
 
  
 #include "../types/types.h"
- 
+ #
 
 
 typedef struct thread
@@ -106,11 +106,7 @@ enum
     STATE_PRESLEEP = 4,         //This thread is about to sleep
     STATE_SLEEP = 5, STATE_IO = 6,      //This thread is blocked until I/O Completion
     STATE_FILE = 7, STATE_BREAK = 8, STATE_MEM_ERROR = 9,
-    
-    #ifdef ENERGY_INSTRUMENTATION
-    STATE_SUSPEND = 10,
-    #endif
-    
+    STATE_SUSPEND = 10,     
     STATE_WAITROLLBACK = 11
 };
 

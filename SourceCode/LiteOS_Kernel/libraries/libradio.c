@@ -42,11 +42,9 @@ void lib_radio_send_msg_syscall()
 void lib_radio_send_string(uint8_t *msg)
 {
     uint8_t temp = (uint8_t)lib_string_length((char *)msg);
- #ifdef ENERGY_INSTRUMENTATION
- return lib_radio_send_energy_wrapper(1, 0xffff, temp, msg);
- #else
+ 
 	return lib_radio_send_msg(10, 0xffff, temp, msg);
- #endif
+ 
 }
 
 void lib_radio_send_integer_u16(uint16_t value)

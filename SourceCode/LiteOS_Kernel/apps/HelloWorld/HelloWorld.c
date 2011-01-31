@@ -21,7 +21,7 @@ int hello()
 
   lib_yellow_toggle(); 
   lib_radio_send_string(string); 
-  lib_sleep_thread(1000);
+  lib_sleep_thread(100);
 	}
 	return 0; 
 }
