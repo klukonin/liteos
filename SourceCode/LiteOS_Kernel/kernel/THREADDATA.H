@@ -3,10 +3,7 @@
 
  
 #include "../types/types.h"
-
-#ifdef ENERGY_INSTRUMENTATION
-  #include "../system/energycontrol.h"
-#endif
+ 
 
 
 typedef struct thread

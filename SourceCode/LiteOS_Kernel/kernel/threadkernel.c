@@ -2,6 +2,7 @@
 #include "threadtools.h"
 #include "threaddata.h"
 #include "scheduling.h"
+#include "threadmodel.h"
 #include "../io/radio/packethandler.h"
 #include "../types/string.h"
 #include "../timer/generictimer.h"
@@ -318,61 +319,6 @@ void thread_func_dispatcher()
 }
 
 
-
-//This function uses the remaining credits to find out the appropriate next thread and returns it 
-inline int thread_get_next()
-{
-  int i;
-  int credits;
-  int currentcandidate;
-  _atomic_t currentatomic;
-
-  currentcandidate =  - 1;
-  credits =  - 1;
-  currentatomic = _atomic_start();
-  for (i = 0; i < LITE_MAX_THREADS; i++)
-  {
-    if (thread_table[i].state == STATE_ACTIVE)
-    {
-      if (credits < thread_table[i].remaincredits)
-      {
-        credits = thread_table[i].remaincredits;
-        currentcandidate = i;
-      }
-    }
-  }
-  if (credits < 0)
-  {
-    thread_task_active = 0;
-  }
-  _atomic_end(currentatomic);
-  if (credits > 0)
-  {
-    currentatomic = _atomic_start();
-    thread_table[currentcandidate].remaincredits--;
-    _atomic_end(currentatomic);
-    return currentcandidate;
-  }
-  else if (credits == 0)
-  {
-    currentatomic = _atomic_start();
-    for (i = 0; i < LITE_MAX_THREADS; i++)
-    {
-      if (thread_table[i].state == STATE_ACTIVE)
-      {
-        thread_table[i].remaincredits = thread_table[i].priority;
-      }
-    }
-    thread_table[currentcandidate].remaincredits--;
-    _atomic_end(currentatomic);
-    return currentcandidate;
-  }
-  else if (credits < 0)
-  {
-    return  - 1;
-  }
-  return 0;
-}
 
 
 
