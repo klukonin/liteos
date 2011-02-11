@@ -20,8 +20,8 @@
  // void tracemain();
 
 
- extern uint8_t hellobuffer[250]; 
- void hello();
+ //extern uint8_t countertorfm[350]; 
+ //void countermain();
     
     
  //extern uint8_t loggerbuffer[200];
@@ -31,4 +31,6 @@
 //extern uint8_t countbuffer[150];
 //void count(); 
 
+  extern uint8_t hellobuffer[250]; 
+  void hello();
 #endif

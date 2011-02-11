@@ -88,9 +88,9 @@ void logger()
     {
         if (iswakenup == 1)
         {
-
+            lib_mfwrite(fp, (char *)incomingMsg, 2);
             lib_mfwrite(fp, (char *)incomingPacketInfo, 2);
-			lib_mfseek(fp, 2, 1);
+			lib_mfseek(fp,4, 1);
             iswakenup = 0; 
 			lib_green_toggle();
         }
