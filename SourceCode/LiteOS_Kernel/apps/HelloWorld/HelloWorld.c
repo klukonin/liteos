@@ -29,10 +29,10 @@ int hello()
   p = (uint16_t *)&buffersum[0];
    *p = countersum;   
   lib_yellow_toggle(); 
-  lib_radio_send_msg(10, 0xffff, 6, buffersum); 
-  //lib_radio_send_integer_u16(countersum);
+  //lib_radio_send_msg(10, 0xffff, 6, buffersum); 
+  lib_radio_send_integer_u16(countersum);
   countersum++; 
-  lib_sleep_thread(100);
+  lib_sleep_thread(500);
 	}
 	return 0; 
 }

@@ -140,10 +140,10 @@ int main()
         Leds_greenToggle();
         Leds_yellowToggle();
         mystrncpy(networkid, "sn01\0", 5);
-        mystrncpy(filenameid, "nodeK\0", 6);
+        mystrncpy(filenameid, "nodeR\0", 6);
 
 
-        CURRENT_NODE_ID = 1;
+        CURRENT_NODE_ID = 2;
         nodeid = CURRENT_NODE_ID;
         srand(nodeid);
         formatSystem();
@@ -232,13 +232,13 @@ int main()
       
     // create_thread(countermain, (uint16_t *)countertorfm, STACK_TOP(countertorfm), 0, 15, "counter", 0, 0);
       
-    create_thread(hello, (uint16_t *)hellobuffer,
-                  STACK_TOP(hellobuffer), 0, 15, "hello", 0, 0);
+    //create_thread(hello, (uint16_t *)hellobuffer,
+      //            STACK_TOP(hellobuffer), 0, 15, "hello", 0, 0);
 
     //create_thread(count, (uint16_t *)countbuffer,
       //            STACK_TOP(countbuffer), 0, 15, "count", 0, 0);
-     //create_thread(logger, (uint16_t *)loggerbuffer,     
-       //         STACK_TOP(loggerbuffer), 0, 15, "logger", 0, 0);
+    // create_thread(logger, (uint16_t *)loggerbuffer,     
+      //          STACK_TOP(loggerbuffer), 0, 15, "logger", 0, 0);
                   
     //create_thread(gfapp, (uint16_t *) gfbuffer,
       //            STACK_TOP(gfbuffer), 0, 15, "gfapp", 0, 0);

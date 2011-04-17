@@ -55,7 +55,7 @@ void registerDataPacket()
     radiohandleaddr = lib_get_current_radio_receive_handle_addr();
     incomingDataLength = 0;
     //set up the radiohandleaddr data structures
-    radiohandleaddr->port = 16;
+    radiohandleaddr->port = 12;
     radiohandleaddr->maxLength = 32;
     radiohandleaddr->dataReady = &incomingDataLength;
     radiohandleaddr->data = incomingMsg;
@@ -88,9 +88,10 @@ void logger()
     {
         if (iswakenup == 1)
         {
-            lib_mfwrite(fp, (char *)incomingMsg, 2);
+            lib_mfwrite(fp, (char *)incomingMsg, 4);
+            lib_mfseek(fp,4, 1);
             lib_mfwrite(fp, (char *)incomingPacketInfo, 2);
-			lib_mfseek(fp,4, 1);
+			      lib_mfseek(fp,2, 1);
             iswakenup = 0; 
 			lib_green_toggle();
         }
