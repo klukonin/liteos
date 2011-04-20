@@ -24,13 +24,13 @@
  //void countermain();
     
     
- extern uint8_t loggerbuffer[400];
- void logger();
+ //extern uint8_t loggerbuffer[400];
+ //void logger();
 
 
 //extern uint8_t countbuffer[150];
 //void count(); 
 
-  //extern uint8_t hellobuffer[250]; 
-  //void hello();
+  extern uint8_t hellobuffer[250]; 
+  void hello();
 #endif
