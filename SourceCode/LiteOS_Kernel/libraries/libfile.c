@@ -191,7 +191,7 @@ void lib_mfwrite(LIB_MYFILE *fp, void *buffer, int nBytes)
   
      
         
-   (*current_thread)->energycontrolblock.energycost += (uint16_t)FILE_WRITE * (uint16_t)nBytes;         
+   //(*current_thread)->energycontrolblock.energycost += (uint16_t)FILE_WRITE * (uint16_t)nBytes;         
   
 
 

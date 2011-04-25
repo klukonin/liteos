@@ -34,34 +34,7 @@
 
 #include "../libraries/commonapp.h"
 
-#define MICAZCONFIGMESSAGERECEIVED 10
-#define MICAZ_INIT_READY           11
 static uint16_t nodeid;
-
-
-
-
-//This function receives init command in MicaZ installation task, and sets up the node status for reboot, so that the fiel system will
-//be reformatted 
-
-void initCommandReceived(uint8_t * receivebuffer)
-{
-    uint8_t i;
-
-    genericwriteBytes(NETWORKNAMEOFFSET, 16, &receivebuffer[0]);
-    genericwriteBytes(NODEFILENAMEOFFSET, 15, &receivebuffer[16]);
-    node_setradiochannel(receivebuffer[31]);
-    node_writenodeid(receivebuffer[32]);
-    node_setinitstatus(MICAZCONFIGMESSAGERECEIVED);
-    for (i = 0; i < 32; i++)
-    {
-        printfstr('\0');
-    }
-    avr_resetNode();
-}
-
-//The platform specific entry point. This is the place where the program gets executed. 
-//Every time the system gets compiled, there should be at most one such entry point. 
 
 
 int main()
@@ -82,89 +55,31 @@ int main()
     initUSART();
     
     
- // printfstr("System booted!\n");
-
-    //for the following, read from else section, which defaults to the 0xff as the MicaZ is first initied by reprogramming
-    if (node_readinitstatus() == MICAZCONFIGMESSAGERECEIVED)
-    {
-        //current_node_id is expected to be platform independent variable 
-        CURRENT_NODE_ID = node_readnodeid();
-        srand(CURRENT_NODE_ID);
-        genericreadBytes(NETWORKNAMEOFFSET, 16, networkid);
-        genericreadBytes(NODEFILENAMEOFFSET, 16, filenameid);
-        nodeid = CURRENT_NODE_ID;
-        networkid[16] = '\0';
-        filenameid[16] = '\0';
-        Leds_redToggle();
-        Leds_greenToggle();
-        Leds_yellowToggle();
-        formatSystem();
-        buildRootNode();
-        Leds_redToggle();
-        Leds_greenToggle();
-        Leds_yellowToggle();
-        // node_setinitstatus(MICAZ_INIT_READY); 
-        node_setinitstatus(MICAZCONFIGMESSAGERECEIVED);
-    }
-    else if (node_readinitstatus() == MICAZ_INIT_READY)
-    {
-        CURRENT_NODE_ID = node_readnodeid();
-        srand(CURRENT_NODE_ID);
-        genericreadBytes(NETWORKNAMEOFFSET, 16, networkid);
-        genericreadBytes(NODEFILENAMEOFFSET, 16, filenameid);
-        nodeid = CURRENT_NODE_ID;
-        networkid[16] = '\0';
-        filenameid[16] = '\0';
-        Leds_redToggle();
-        Leds_greenToggle();
-        Leds_yellowToggle();
-        //formatSystem();
-        //buildRootNode();
-        //buildDeviceDirectory();
-        readVectorFlashFromExternalStorage();
-        readVectorNodeFromExternalStorage();
-        Leds_redToggle();
-        Leds_greenToggle();
-        Leds_yellowToggle();
-        //node_setinitstatus(MICAZ_INIT_READY);  
-    }
-    //entry point. Every time the system is booted, start from here. 
-    else
-    {
-        /* The following is for debugging the kernel , where no reprogramming overboard is used 
-         */
-        
-		if (JTAG_TOGGLE == 1)
-		{
-        Leds_redToggle();
-        Leds_greenToggle();
-        Leds_yellowToggle();
-        mystrncpy(networkid, "sn01\0", 5);
-        mystrncpy(filenameid, "nodeR\0", 6);
+     Leds_redToggle();
+     Leds_greenToggle();
+     Leds_yellowToggle();
+     mystrncpy(networkid, "sn01\0", 5);
+     mystrncpy(filenameid, "nodeR\0", 6);
+     CURRENT_NODE_ID = 2;
 
 
-        CURRENT_NODE_ID = 2;
-        nodeid = CURRENT_NODE_ID;
-        srand(nodeid);
-        formatSystem();
-        buildRootNode();
-        genericwriteBytes(NETWORKNAMEOFFSET, 16, networkid);
-        genericwriteBytes(NODEFILENAMEOFFSET, 16, filenameid);
-        node_writenodeid(nodeid);
-        node_setinitstatus(MICAZCONFIGMESSAGERECEIVED);
-        node_setradiochannel(22);
-        Leds_redToggle();
-        Leds_greenToggle();
-        Leds_yellowToggle();
-       }
-        
-    }
-
+     nodeid = CURRENT_NODE_ID;
+     srand(nodeid);
+     formatSystem();
+     buildRootNode();
+     genericwriteBytes(NETWORKNAMEOFFSET, 16, networkid);
+     genericwriteBytes(NODEFILENAMEOFFSET, 16, filenameid);
+     node_writenodeid(nodeid);
+     node_setradiochannel(22);
+     Leds_redToggle();
+     Leds_greenToggle();
+     Leds_yellowToggle();
    
   
 
     //timer and radio 
     GenericTimerInit();
+	
     //for global timing purpose use
     GenericTimingStart(); 
      
@@ -198,17 +113,17 @@ int main()
 #endif
     }
     
-// 		{
+ 		
 // 	  uint32_t counter;    
 //
-//    printfintegeru32(234234223);
-//    printfstrln();
-//    printfinteger32(-5555555);
-//    printfstrln();
-//    printfinteger32(777777);
-//    printfstrln();
-//    printfstr("Showing the status!!! \n"); 
-
+    printfuinteger32(234234223);
+    printfstrln();
+    printfinteger32(-5555555);
+    printfstrln();
+    printfinteger32(777777);
+    printfstrln();
+    printfstr("Showing the status!!! \n"); 
+	printfstrln();
 //    counter = getCurrentResolution();
 //    printfintegeru32(counter); 
 //    printfstrln();
@@ -223,17 +138,17 @@ int main()
 
 
 
-    //trace program must be thread 1 to enable the tracing functionality. 
-    //create_thread(tracemain, (uint16_t *) tracebuffer,
-      //           STACK_TOP(tracebuffer), 0, 15, "trace", 0, 0);
+   //trace program must be thread 1 to enable the tracing functionality. 
+   // create_thread(tracemain, (uint16_t *) tracebuffer,
+     //            STACK_TOP(tracebuffer), 0, 15, "trace", 0, 0);
     
 	//  create_thread(sounder, (uint16_t *) sounderbuffer,
       //            STACK_TOP(sounderbuffer), 0, 15, "sounder", 0, 0);
       
     // create_thread(countermain, (uint16_t *)countertorfm, STACK_TOP(countertorfm), 0, 15, "counter", 0, 0);
       
-    create_thread(hello, (uint16_t *)hellobuffer,
-                 STACK_TOP(hellobuffer), 0, 15, "hello", 0, 0);
+    create_thread(printserialmain, (uint16_t *)printserialbuffer,
+                STACK_TOP(printserialbuffer), 0, 15, "print", 0, 0);
 
     //create_thread(count, (uint16_t *)countbuffer,
       //            STACK_TOP(countbuffer), 0, 15, "count", 0, 0);

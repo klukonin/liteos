@@ -8,6 +8,7 @@
 #include "libthread.h"
 #include "../types/types.h"
 
+//These are implementation functions that are defined specifically for this file. 
 
 static char cFlag;
 static uint8_t previous;
@@ -98,7 +99,7 @@ void lib_init_usart()
 }
 
 //-------------------------------------------------------------------------
-void lib_print_usart(uint8_t c)
+void lib_print_usart_char(uint8_t c)
 {
 
    flag = _atomic_start();
@@ -119,125 +120,73 @@ void lib_print_usart(uint8_t c)
 
 
 
-void lib_print_usart_8bit(uint8_t c)
+ 
+ 
+//-------------------------------------------------------------------------
+void lib_print_usart_long(uint32_t l)
 {
-  
-   flag = _atomic_start();
-   
-	
-   lib_print_usart(0xFA);
-   lib_print_usart(c);
-   lib_print_usart(0xFA);
-   
-    _atomic_end(flag);
-}
+    uint8_t *pcByte = ((uint8_t *) (&l)) + 3;
 
+   flag = _atomic_start();
+    
+    lib_print_usart_char(*pcByte);
+    pcByte--;
+    lib_print_usart_char(*pcByte);
+    pcByte--;
+    lib_print_usart_char(*pcByte);
+    pcByte--;
+    lib_print_usart_char(*pcByte);
+   _atomic_end(flag);
+	
+} 
 
 //-------------------------------------------------------------------------
-void lib_print_usart_string(char *p)
+void lib_printf_string_source_disabled(char *p)
 {
    
-   flag = _atomic_start();
    
-    lib_print_usart(0xFC);
+   flag = _atomic_start();
+      
+	lib_print_usart_char(0xFC);
     while ((*p) != '\0')
     {
-        lib_print_usart(*p);
+        lib_print_usart_char(*p);
         p++;
     }
-    lib_print_usart(0xFC);
+    lib_print_usart_char(0xFC);
   
     _atomic_end(flag);
 	
 }
 
 
-void lib_printf_string_with_id(char *p)
-{     
-      
-	  itoa(lib_get_node_id(), (char *)localbuffer, 10);
-    lib_print_usart_string((char *)localbuffer);
-	  lib_print_usart_string(": ");	
-	  lib_print_usart_string(p); 
-	
-}
-
-
-
-void lib_printf_string_energy_wrapper(char *p)
-{
-     lib_thread** current_thread;
-	   uint8_t length;
-	   
-	   length = lib_string_length(p);
-	   
-     current_thread = lib_get_current_thread();      
-
-  	 //(*current_thread)->ecbptr->remainenergy -= (uint16_t)SERIAL_SEND * (uint16_t)length;           
-      
-         		 
-     lib_printf_string_with_id(p);
-     
-}
-      
-
 //-------------------------------------------------------------------------
-void lib_print_string_lengthN(char *p, uint8_t n)
+void lib_printf_string(char *p)
 {
-    uint8_t i;
-    
+   
+   
    flag = _atomic_start();
+   
+   #ifdef PRINT_SOURCE_ENABLED
+
+      itoa(lib_get_node_id(), (char *)localbuffer, 10);
+      lib_printf_string_source_disabled((char *)localbuffer);
+	  lib_printf_string_source_disabled(": ");	
+	  
+   #endif
     
-    lib_print_usart(0xFA);
-    lib_print_usart(n); 
-    for (i = 0; i < n; i++)
+	lib_print_usart_char(0xFC);
+    while ((*p) != '\0')
     {
-        lib_print_usart(*p);
+        lib_print_usart_char(*p);
         p++;
     }
-  //  usartPrint(0xFA);
-	  lib_print_usart(0xFC);
-    lib_print_usart_string("\n"); 
-    lib_print_usart(0xFC);
-    
-	_atomic_end(flag);
-}
-
-
- 
- 
-
-//-------------------------------------------------------------------------
-void lib_usart_put_chip_hex(uint8_t cChip)
-{
+    lib_print_usart_char(0xFC);
   
-   flag = _atomic_start();
-   
-    if (cChip > 9)
-    {
-        lib_print_usart('a' + cChip - 10);
-    }
-    else
-    {
-        lib_print_usart('0' + cChip);
-    }
+    _atomic_end(flag);
 	
-	 _atomic_end(flag);
 }
 
- 
-
-//-------------------------------------------------------------------------
-void lib_usart_put_hex(uint8_t c)
-{ 
-   
-   flag = _atomic_start();
-   
-    lib_usart_put_chip_hex(c >> 4);
-    lib_usart_put_chip_hex(c & 0xf);
-	
-	 _atomic_end(flag);
-}
 
 //-------------------------------------------------------------------------
 void lib_printf_integer32(int32_t a)
@@ -245,13 +194,15 @@ void lib_printf_integer32(int32_t a)
    
    flag = _atomic_start();
   
-	   
+	#ifdef PRINT_SOURCE_ENABLED   
     itoa(lib_get_node_id(), (char *)localbuffer, 10);
-    lib_print_usart_string((char *)localbuffer);
-    lib_print_usart_string(": ");	
-    lib_print_usart(0xFD);
-    lib_usart_put_long(*(uint32_t *) (&a));
-    lib_print_usart(0xFD);
+	lib_printf_string_source_disabled((char *)localbuffer);
+    lib_printf_string_source_disabled(": ");	
+	#endif 
+	
+    lib_print_usart_char(0xFD);
+    lib_print_usart_long(*(uint32_t *) (&a));
+    lib_print_usart_char(0xFD);
 	
 	_atomic_end(flag);
 }
@@ -261,50 +212,18 @@ void lib_printf_uinteger32(uint32_t l)
 {
    flag = _atomic_start();
    
+    #ifdef PRINT_SOURCE_ENABLED
     itoa(lib_get_node_id(), (char *)localbuffer, 10);
-    lib_print_usart_string((char *)localbuffer);
-    lib_print_usart_string(": ");		
-    
-    lib_print_usart(0xFE);
-    lib_usart_put_long(l);
-    lib_print_usart(0xFE);
+    lib_printf_string_source_disabled((char *)localbuffer);
+    lib_printf_string_source_disabled(": ");		
+    #endif 
+	
+    lib_print_usart_char(0xFE);
+    lib_print_usart_long(l);
+    lib_print_usart_char(0xFE);
 	
 	_atomic_end(flag);
 }
-
-//-------------------------------------------------------------------------
-void lib_usart_put_long(uint32_t l)
-{
-    uint8_t *pcByte = ((uint8_t *) (&l)) + 3;
-
-   flag = _atomic_start();
-    
-    lib_print_usart(*pcByte);
-    pcByte--;
-    lib_print_usart(*pcByte);
-    pcByte--;
-    lib_print_usart(*pcByte);
-    pcByte--;
-    lib_print_usart(*pcByte);
-   _atomic_end(flag);
-	
-} 
-
-//-------------------------------------------------------------------------
-void lib_print_integer(int32_t a, int32_t b, int32_t c, int32_t d)
-{
- 
-   flag = _atomic_start();
-  
-    lib_print_usart(1);
-    lib_usart_put_long(*(uint32_t *) (&a));
-    lib_usart_put_long(*(uint32_t *) (&b));
-    lib_usart_put_long(*(uint32_t *) (&c));
-    lib_usart_put_long(*(uint32_t *) (&d));
-
-  _atomic_end(flag);	
-}
-
 
 
 //-------------------------------------------------------------------------
@@ -313,26 +232,13 @@ void lib_printf_ln()
 #ifdef PLATFORM_AVR
     _atomic_t currentatomic;
     currentatomic = _atomic_start();
-    lib_print_usart(0xFC);
-    lib_print_usart(0x6D);
-    lib_print_usart(0x6D);
-    lib_print_usart(0x6D);
-    lib_print_usart(0xFC);
+    lib_print_usart_char(0xFC);
+    lib_print_usart_char(0x6D);
+    lib_print_usart_char(0x6D);
+    lib_print_usart_char(0x6D);
+    lib_print_usart_char(0xFC);
 	_atomic_end(currentatomic);
     
-#endif
-}
-
-//-------------------------------------------------------------------------
-void lib_printf_integer_u32ln(uint32_t val)
-{
-#ifdef PLATFORM_AVR
-    _atomic_t currentatomic;
-    currentatomic = _atomic_start();
-     lib_printf_uinteger32(val);
-     lib_print_usart_string("\n"); 
-	_atomic_end(currentatomic);
-   
 #endif
 }
 

@@ -100,6 +100,35 @@ void lib_set_node_id(uint16_t nodeid)
 
 	}
 
+uint32_t get_current_timestamp()
+{
+	   uint32_t counter; 
+       void (*fp)(void) = (void (*)(void))GET_CPU_COUNT_FUNCTION;
+	   asm volatile("push r22" "\n\t"
+					"push r23" "\n\t"
+					"push r24" "\n\t"
+					"push r25" "\n\t"
+					::);
+	   fp();
+
+	   asm volatile("mov  %A0, r22" "\n\t"
+					  "mov %B0, r23" "\n\t"
+					  "mov  %C0, r24" "\n\t"
+					  "mov  %D0, r25" "\n\t"
+					 :
+					 :"r" (counter)
+					);
+	  
+	   asm volatile("pop r22" "\n\t"
+					 "pop r23" "\n\t"
+					 "pop r24" "\n\t"
+					 "pop r25" "\n\t"
+					  ::);
+	   return counter;
+
+    	
+}
+
 
  
 

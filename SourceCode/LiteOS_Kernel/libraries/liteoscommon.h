@@ -191,33 +191,31 @@ along with LiteOS.  If not, see <http://www.gnu.org/licenses/>.
 #define SEEK_FILE_SYSCALL 											0xEE18
 
 
-
+//Definition group 10 
  
+//get the cpu counter	
 
-//  
-////lib_set_timer_function()
-//#define SYSCALL_TIMER_FIRE_TASK	 								0xEE80
-//
-//
-// 
-//
-//	
-////get the cpu counter	
-//#define GET_CPU_COUNT_FUNCTION									0xEE84
+#define GET_CPU_COUNT_FUNCTION									0xEE80
 //
 // 
 //	
+
+//Definition group 11
+
 ////getInternalTracingBlockAddressSyscall() function is called
-//#define GET_LOGGER_BLOCK_ADDRESS  							0xEF00
+
+#ifdef TRACE_ENABLE_EVENT
+
+#define GET_LOGGER_BLOCK_ADDRESS  							    0xEF00
 //
 ////enableTracingSyscall
-//#define ENABLE_TRACING_SYSCALL									0xEF04
+#define ENABLE_TRACING_SYSCALL									0xEF04
 //
 ////disableTracingSyscall
-//#define DISABLE_TRACING_SYSCALL									0xEF08
+#define DISABLE_TRACING_SYSCALL									0xEF08
 // 
 
-
+#endif 
 
 
 
@@ -328,18 +326,18 @@ typedef struct lib_thread
 
     filedata;
 
-    volatile struct {
+ //   volatile struct {
     	
     	//used to track the total energy cost of a thread
-    	int32_t energycost;
-  
+    //	int32_t energycost;
+  //
          	
     	//used to track the energ remain of the current thread 
     	//int32_t energyremain;   
   
-    }
+  //  }
     
-    energycontrolblock;     
+    //energycontrolblock;     
 }
 
 //-------------------------------------------------------------------------

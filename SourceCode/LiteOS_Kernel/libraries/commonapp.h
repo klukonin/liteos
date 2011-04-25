@@ -1,6 +1,8 @@
 #ifndef COMMONAPPH
 #define COMMONAPPH
   
+#include "../types/types.h"
+  
   //extern uint8_t compbuffer[200];
   //void comp0();
   
@@ -8,7 +10,7 @@
 //  int snapshotmain();
 
   //extern uint8_t tracebuffer[300];
-  //int tracemain();
+  //void tracemain();
 
   //extern uint8_t gfbuffer[100];
   //void gfapp();
@@ -31,6 +33,6 @@
 //extern uint8_t countbuffer[150];
 //void count(); 
 
-  extern uint8_t hellobuffer[250]; 
-  void hello();
+  extern uint8_t printserialbuffer[250]; 
+  void printserialmain();
 #endif

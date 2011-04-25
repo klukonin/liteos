@@ -34,6 +34,6 @@ Print a 8-bit value to the serial port.
 */
 void printfval(uint8_t val);
 void printfinteger32(int32_t val);
-void printfintegeru32(uint32_t val);
+void printfuinteger32(uint32_t val);
 void printfstrln();
 #endif

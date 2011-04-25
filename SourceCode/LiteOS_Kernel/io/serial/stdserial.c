@@ -36,35 +36,9 @@ void printfstrln()
   _atomic_end(currentatomic);
   
  }
+ 
 
-//-------------------------------------------------------------------------
-void printfstrlen(char *str, uint8_t len)
-{
-#ifdef PLATFORM_AVR
-    #ifdef PRINT_SOURCE_ENABLED
-	  printString(node_readnodestring());
-	  printString(": ");
-	  #endif
-    printStringN(str, len);
-#endif
-}
-
-void printfstrlen_base(char *str, uint8_t len)
-{
-#ifdef PLATFORM_AVR
-    printStringN_base(str, len);
-#endif
-}
-
-
-//-------------------------------------------------------------------------
-void printfval(uint8_t val)
-{
-#ifdef PLATFORM_AVR
-    usartPrint(val);
-#endif
-}
-
+ 
 //-------------------------------------------------------------------------
 void printfinteger32(int32_t val)
 {
@@ -82,7 +56,7 @@ void printfinteger32(int32_t val)
 }
 
 //-------------------------------------------------------------------------
-void printfintegeru32(uint32_t val)
+void printfuinteger32(uint32_t val)
 {
 	_atomic_t currentatomic;
 

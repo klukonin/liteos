@@ -23,7 +23,6 @@
 #include "threadsyscall.h"
 #include "filesocket.h"
 #include "adcsocket.h"
-#include "../debugging/eventlogger.h"
 #include "eepromsocket.h"
 #include "radiocontrol.h"
 
@@ -49,6 +48,7 @@ void getNodeIdTask()
 
 //-------------------------------------------------------------------------
 
+#ifdef TRACE_ENABLE_EVENT
 void getNodeIdTask_Logger()
 {
     uint8_t currentindex;
@@ -60,15 +60,14 @@ void getNodeIdTask_Logger()
     getNodeIdTask();
 }
 
+#endif
 //-------------------------------------------------------------------------
 void getNodeID() __attribute__ ((section(".systemcall.1")))
     __attribute__ ((naked));
 void getNodeID()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_GETNODEID
+#ifdef TRACE_ENABLE_EVENT
     getNodeIdTask_Logger();
-#endif
 #else
     getNodeIdTask();
 #endif
@@ -86,6 +85,7 @@ void setNodeIdTask()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void setNodeIdTask_Logger()
 {
     uint8_t currentindex;
@@ -96,16 +96,15 @@ void setNodeIdTask_Logger()
     addTrace(TRACE_SYSCALL_SETNODEID, currentindex);
     setNodeIdTask();
 }
+#endif
 
 //-------------------------------------------------------------------------
 void setNodeID() __attribute__ ((section(".systemcall.1")))
     __attribute__ ((naked));
 void setNodeID()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_SETNODEID
+#ifdef TRACE_ENABLE_EVENT
     setNodeIdTask_Logger();
-#endif
 #else
     setNodeIdTask();
 #endif
@@ -125,7 +124,7 @@ void getRandomTask()
 }
 
 //-------------------------------------------------------------------------
-
+#ifdef TRACE_ENABLE_EVENT
 void getRandomTask_Logger()
 {
     uint8_t currentindex;
@@ -136,6 +135,7 @@ void getRandomTask_Logger()
     addTrace(TRACE_SYSCALL_GETRANDOMNUMBER, currentindex);
     getRandomTask();
 }
+#endif
 
 //-------------------------------------------------------------------------
 
@@ -146,10 +146,8 @@ void getRandomNumberSyscall() __attribute__ ((section(".systemcall.1")))
     __attribute__ ((naked));
 void getRandomNumberSyscall()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_GETRANDOMNUMBER
+#ifdef TRACE_ENABLE_EVENT
     getRandomTask_Logger();
-#endif
 #else
     getRandomTask();
 #endif
@@ -183,6 +181,7 @@ void getCurrentThreadAddress_avr()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void getCurrentThreadAddress_Logger()
 {
     uint8_t currentindex;
@@ -193,17 +192,15 @@ void getCurrentThreadAddress_Logger()
     addTrace(TRACE_SYSCALL_GETCURRENTTHREADADDRESS, currentindex);
     getCurrentThreadAddress_avr();
 }
-
+#endif
 
 
 void getCurrentThreadAddressSyscall() __attribute__ ((section(".systemcall.2")))
     __attribute__ ((naked));
 void getCurrentThreadAddressSyscall()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_GETCURRENTTHREADADDRESS
+#ifdef TRACE_ENABLE_EVENT
     getCurrentThreadAddress_Logger();
-#endif
 #else
     getCurrentThreadAddress_avr();
 #endif
@@ -216,6 +213,7 @@ void getCurrentThreadAddressSyscall()
 
 
 //-------------------------------------------------------------------------
+
 void getThreadIndexAddress_avr()
 {
     int index;
@@ -225,6 +223,7 @@ void getThreadIndexAddress_avr()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void getThreadIndexAddress_Logger()
 {
     uint8_t currentindex;
@@ -235,6 +234,7 @@ void getThreadIndexAddress_Logger()
     addTrace(TRACE_SYSCALL_GETCURRENTTHREADINDEX, currentindex);
     getThreadIndexAddress_avr();
 }
+#endif 
 
 /**\ingroup syscall
 Get the index number of the current thread in the thread table. 
@@ -244,10 +244,8 @@ void getCurrentThreadIndex() __attribute__ ((section(".systemcall.2")))
     __attribute__ ((naked));
 void getCurrentThreadIndex()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_GETCURRENTTHREADINDEX
+#ifdef TRACE_ENABLE_EVENT
     getThreadIndexAddress_Logger();
-#endif
 #else
     getThreadIndexAddress_avr();
 #endif
@@ -269,6 +267,7 @@ void getThreadTableStart_avr()
 
  
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void getThreadTableStart_Logger()
 {
     uint8_t currentindex;
@@ -278,6 +277,7 @@ void getThreadTableStart_Logger()
     addTrace(TRACE_SYSCALL_GETTHREADTABLESTART, currentindex);
     getThreadTableStart_avr();
 }
+#endif 
 
 /**\ingroup syscall 
 */
@@ -285,10 +285,8 @@ void getThreadTableStartSyscall() __attribute__ ((section(".systemcall.2")))
     __attribute__ ((naked));
 void getThreadTableStartSyscall()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_GETTHREADTABLESTART
+#ifdef TRACE_ENABLE_EVENT
     getThreadTableStart_Logger();
-#endif
 #else
     getThreadTableStart_avr();
 #endif
@@ -298,6 +296,8 @@ void getThreadTableStartSyscall()
 
 //////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
+
+#ifdef TRACE_ENABLE_EVENT
 void thread_yield_logger()
 {
     uint8_t currentindex;
@@ -308,6 +308,7 @@ void thread_yield_logger()
     addTrace(TRACE_SYSCALL_YIELDFUNCTION, currentindex);
     thread_yield();
 }
+#endif
 
 /**\ingroup syscall 
 Yield current thread.
@@ -316,10 +317,8 @@ void yieldfunction() __attribute__ ((section(".systemcall.2")))
     __attribute__ ((naked));
 void yieldfunction()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_YIELDFUNCTION
+#ifdef TRACE_ENABLE_EVENT
     thread_yield_logger();
-#endif
 #else
     thread_yield();
 #endif
@@ -329,6 +328,7 @@ void yieldfunction()
 
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void postNewThreadTask_Logger()
 {
     uint8_t currentindex;
@@ -339,6 +339,7 @@ void postNewThreadTask_Logger()
     addTrace(TRACE_SYSCALL_POSTTHREADTASK, currentindex);
     postNewThreadTask();
 }
+#endif 
 
 /**\ingroup syscall 
 Trigger the thread scheduling task. 
@@ -347,10 +348,8 @@ void postThreadTask() __attribute__ ((section(".systemcall.2")))
     __attribute__ ((naked));
 void postThreadTask()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_POSTTHREADTASK
+#ifdef TRACE_ENABLE_EVENT
     postNewThreadTask_Logger();
-#endif
 #else
     postNewThreadTask();
 #endif
@@ -359,11 +358,6 @@ void postThreadTask()
 }
 
 
-
-
-
-
- 
 
 /**\ingroup syscall 
 Trigger the thread scheduling task. 
@@ -380,7 +374,7 @@ void postThreadTaskNoLog()
 }
  
 
-
+/*
 
 
 void break_point_function_Logger()
@@ -399,7 +393,7 @@ void breakfunction() __attribute__ ((section(".systemcall.2")))
     __attribute__ ((naked));
 void breakfunction(){
 
-  #ifdef TRACE_ENABLE_SYSCALLEVENT
+  #ifdef TRACE_ENABLE_EVENT
   #ifdef TRACE_ENABLE_SYSCALL_BREAKPOINTYIELD
    break_point_function_Logger();
   #endif
@@ -411,6 +405,7 @@ void breakfunction(){
 }
 
 
+*/
 //-----------------------------------------------------------------------------
 //Boundary EB00: task
 //Task operations
@@ -429,6 +424,7 @@ void postNewTask_avr()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void postNewTask_Logger()
 {
     uint8_t currentindex;
@@ -439,6 +435,7 @@ void postNewTask_Logger()
     addTrace(TRACE_SYSCALL_POSTTASKSYSCALL, currentindex);
     postNewTask_avr();
 }
+#endif 
 
 /**\ingroup syscall 
 Posttask here for backward compatibility
@@ -448,10 +445,8 @@ void postTaskSysCall() __attribute__ ((section(".systemcall.3")))
     __attribute__ ((naked));
 void postTaskSysCall()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_POSTTASKSYSCALL
+#ifdef TRACE_ENABLE_EVENT
     postNewTask_Logger();
-#endif
 #else
     postNewTask_avr();
 #endif
@@ -472,6 +467,7 @@ void getStackPtrTask()
                   "\n\t"::"r" (returnthreadaddr));
 }
 
+#ifdef TRACE_ENABLE_EVENT
 void getStackPtrTask_Logger()
 {
     uint8_t currentindex;
@@ -482,6 +478,7 @@ void getStackPtrTask_Logger()
     addTrace(TRACE_SYSCALL_KERNELSTACK, currentindex);
     getStackPtrTask();
 }
+#endif 
 
 
 //Get the address of the kernel stack 
@@ -489,10 +486,8 @@ void getStackPtr() __attribute__ ((section(".systemcall.4")))
     __attribute__ ((naked));
 void getStackPtr()
 {
-	#ifdef TRACE_ENABLE_SYSCALL
-  #ifdef TRACE_ENABLE_SYSCALL_KERNELSTACK
-    getStackPtrTask_Logger();
-  #endif
+  #ifdef TRACE_ENABLE_EVENT
+      getStackPtrTask_Logger();
   #else 
     getStackPtrTask();
   #endif
@@ -510,6 +505,7 @@ void getStackPtr()
 
 
 //because this system call directly links into the radio module, therefore, we do not need to consider the problem of directly using registers. 
+#ifdef TRACE_ENABLE_EVENT
 void setRadioFrequencyTask_Logger()
 {
     uint8_t currentindex;
@@ -518,10 +514,9 @@ void setRadioFrequencyTask_Logger()
     currentindex = getThreadIndexAddress();
     _atomic_end(_atomic);
     addTrace(TRACE_SYSCALL_SETRADIOFREQUENCY, currentindex);
-#ifdef RADIO_CC2420
     setRadioFrequencyTask();
-#endif
 }
+#endif 
 
 /**\ingroup syscall 
 Set the radio frequency, stored in the registers. 
@@ -531,20 +526,17 @@ void setRadioFrequency() __attribute__ ((section(".systemcall.5"))) __attribute_
     ((naked));
 void setRadioFrequency()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_SETRADIOFREQUENCY
+#ifdef TRACE_ENABLE_EVENT
     setRadioFrequencyTask_Logger();
-#endif
 #else
-#ifdef RADIO_CC2420
     setRadioFrequencyTask();
-#endif
 #endif
     asm volatile ("nop"::);
     asm volatile ("ret"::);
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void setRadioChannelTask_Logger()
 {
     uint8_t currentindex;
@@ -553,11 +545,9 @@ void setRadioChannelTask_Logger()
     currentindex = getThreadIndexAddress();
     _atomic_end(_atomic);
     addTrace(TRACE_SYSCALL_SETRADIOCHANNEL, currentindex);
-#ifdef RADIO_CC2420
     setRadioChannelTask();
-#endif
 }
-
+#endif
 /**\ingroup syscall 
 Set the channel, stored in the registers. 
 */
@@ -566,20 +556,17 @@ void setRadioChannel() __attribute__ ((section(".systemcall.5")))
     __attribute__ ((naked));
 void setRadioChannel()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_SETRADIOCHANNEL
+#ifdef TRACE_ENABLE_EVENT
     setRadioChannelTask_Logger();
-#endif
 #else
-#ifdef RADIO_CC2420
     setRadioChannelTask();
-#endif
 #endif
     asm volatile ("nop"::);
     asm volatile ("ret"::);
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void setRadioPowerTask_Logger()
 {
     uint8_t currentindex;
@@ -588,10 +575,10 @@ void setRadioPowerTask_Logger()
     currentindex = getThreadIndexAddress();
     _atomic_end(_atomic);
     addTrace(TRACE_SYSCALL_SETRADIOPOWER, currentindex);
-#ifdef RADIO_CC2420
     setRadioPowerTask();
-#endif
+ 
 }
+#endif 
 
 /**\ingroup syscall 
 Set the radio power, stored in the registers. 
@@ -601,14 +588,10 @@ void setRadioPower() __attribute__ ((section(".systemcall.5")))
     __attribute__ ((naked));
 void setRadioPower()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_SETRADIOPOWER
+#ifdef TRACE_ENABLE_EVENT
     setRadioPowerTask_Logger();
-#endif
 #else
-#ifdef RADIO_CC2420
     setRadioPowerTask();
-#endif
 #endif
     asm volatile ("nop"::);
     asm volatile ("ret"::);
@@ -626,6 +609,7 @@ void getRadioSendingBuffer_avr()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void getRadioSendingBuffer_Logger()
 {
     uint8_t currentindex;
@@ -636,6 +620,7 @@ void getRadioSendingBuffer_Logger()
     addTrace(TRACE_SYSCALL_GETCURRENTRADIOINFOADDRESS, currentindex);
     getRadioSendingBuffer_avr();
 }
+#endif 
 
 /**\ingroup syscall 
 Get the Radio info address for populate it to send the radio packet info to the kernel. 
@@ -644,10 +629,8 @@ void getRadioSendingBuffer() __attribute__ ((section(".systemcall.5")))
     __attribute__ ((naked));
 void getRadioSendingBuffer()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_GETCURRENTRADIOINFOADDRESS
+#ifdef TRACE_ENABLE_EVENT
     getRadioSendingBuffer_Logger();
-#endif
 #else
     getRadioSendingBuffer_avr();
 #endif
@@ -658,6 +641,7 @@ void getRadioSendingBuffer()
 
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void SocketRadioSend_Logger()
 {
     uint8_t currentindex;
@@ -668,6 +652,7 @@ void SocketRadioSend_Logger()
     addTrace(TRACE_SYSCALL_GETRADIOSENDFUNCTION, currentindex);
     SocketRadioSend();
 }
+#endif 
 
 /**\ingroup syscall 
 Call the radio send function indirectly. 
@@ -676,10 +661,8 @@ void invokeSocketRadioSend() __attribute__ ((section(".systemcall.5")))
     __attribute__ ((naked));
 void invokeSocketRadioSend()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_GETRADIOSENDFUNCTION
+#ifdef TRACE_ENABLE_EVENT
     SocketRadioSend_Logger();
-#endif
 #else
     SocketRadioSend();
 #endif
@@ -692,6 +675,7 @@ void invokeSocketRadioSend()
 //following are receiving
 
 //-------------------------------------------------------------------------
+
 void getReceiverBuffer_avr()
 {
     void *addr;
@@ -699,8 +683,10 @@ void getReceiverBuffer_avr()
     addr = getRadioReceivingBufferAddr();
     asm volatile ("mov r20, %A0" "\n\t" "mov r21, %B0" "\n\t"::"r" (addr));
 }
+  
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void getReceiverBuffer_Logger()
 {
     uint8_t currentindex;
@@ -711,6 +697,7 @@ void getReceiverBuffer_Logger()
     addTrace(TRACE_SYSCALL_GETCURRENTRADIORECEIVERHANDLEADDRESS, currentindex);
     getReceiverBuffer_avr();
 }
+#endif 
 
 /**\ingroup syscall
 Get the radio handle for registering a receiving handle. 
@@ -722,10 +709,8 @@ void getRadioReceivingBuffer() __attribute__ ((section(".systemcall.5")))
 void getRadioReceivingBuffer()
 
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_GETCURRENTRADIORECEIVERHANDLEADDRESS
+#ifdef TRACE_ENABLE_EVENT
     getReceiverBuffer_Logger();
-#endif
 #else
     getReceiverBuffer_avr();
 #endif
@@ -734,6 +719,7 @@ void getRadioReceivingBuffer()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void syscall_registerEvent_Logger()
 {
     uint8_t currentindex;
@@ -744,18 +730,18 @@ void syscall_registerEvent_Logger()
     addTrace(TRACE_SYSCALL_SETCURRENTRADIOHANDLE, currentindex);
     registerReceiverHandle_syscall();
 }
+#endif 
 
 /**\ingroup syscall 
 Register a receiving handle for incoming packet. 
 */
+
 void setCurrentRadioHandle() __attribute__ ((section(".systemcall.5")))
     __attribute__ ((naked));
 void setCurrentRadioHandle()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_SETCURRENTRADIOHANDLE
+#ifdef TRACE_ENABLE_EVENT
     syscall_registerEvent_Logger();
-#endif
 #else 
     registerReceiverHandle_syscall();
 #endif
@@ -774,6 +760,7 @@ void setCurrentRadioHandle()
 //-------------------------------------------------------------------------
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
+#ifdef TRACE_ENABLE_EVENT
 void Leds_redToggle_Logger()
 {
     uint8_t currentindex;
@@ -785,6 +772,8 @@ void Leds_redToggle_Logger()
     Leds_redToggle();
 }
 
+#endif 
+
 /**\ingroup syscall 
 Toggle the red LED. 
 */
@@ -792,10 +781,8 @@ void redtogglefunction() __attribute__ ((section(".systemcall.6"))) __attribute_
     ((naked));
 void redtogglefunction()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_REDTOGGLEFUNCTION
+#ifdef TRACE_ENABLE_EVENT
     Leds_redToggle_Logger();
-#endif
 #else
     Leds_redToggle();
 #endif
@@ -804,6 +791,7 @@ void redtogglefunction()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void Leds_yellowToggle_Logger()
 {
     uint8_t currentindex;
@@ -814,6 +802,7 @@ void Leds_yellowToggle_Logger()
     addTrace(TRACE_SYSCALL_YELLOWTOGGLEFUNCTION, currentindex);
     Leds_yellowToggle();
 }
+#endif 
 
 /**\ingroup syscall 
 Toggle the yellow LED. 
@@ -822,10 +811,8 @@ void yellowtogglefunction() __attribute__ ((section(".systemcall.6")))
     __attribute__ ((naked));
 void yellowtogglefunction()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_YELLOWTOGGLEFUNCTION
+#ifdef TRACE_ENABLE_EVENT
     Leds_yellowToggle_Logger();
-#endif
 #else
     Leds_yellowToggle();
 #endif
@@ -836,6 +823,7 @@ void yellowtogglefunction()
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void Leds_greenToggle_Logger()
 {
     uint8_t currentindex;
@@ -846,6 +834,7 @@ void Leds_greenToggle_Logger()
     addTrace(TRACE_SYSCALL_GREENTOGGLEFUNCTION, currentindex);
     Leds_greenToggle();
 }
+#endif 
 
 /**\ingroup syscall 
 Toggle the green LED.
@@ -854,10 +843,8 @@ void greentogglefunction() __attribute__ ((section(".systemcall.6")))
     __attribute__ ((naked));
 void greentogglefunction()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_GREENTOGGLEFUNCTION
+#ifdef TRACE_ENABLE_EVENT
     Leds_greenToggle_Logger();
-#endif
 #else
     Leds_greenToggle();
 #endif
@@ -868,6 +855,7 @@ void greentogglefunction()
 
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void Leds_redOn_Logger()
 {
     uint8_t currentindex;
@@ -878,6 +866,7 @@ void Leds_redOn_Logger()
     addTrace(TRACE_SYSCALL_REDONFUNCTION, currentindex);
     Leds_redOn();
 }
+#endif 
 
 /**\ingroup syscall 
 Turn the red LED on. 
@@ -886,10 +875,8 @@ void redonfunction() __attribute__ ((section(".systemcall.6")))
     __attribute__ ((naked));
 void redonfunction()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_REDONFUNCTION
+#ifdef TRACE_ENABLE_EVENT
     Leds_redOn_Logger();
-#endif
 #else
     Leds_redOn();
 #endif
@@ -898,6 +885,7 @@ void redonfunction()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void Leds_redOff_Logger()
 {
     uint8_t currentindex;
@@ -908,6 +896,7 @@ void Leds_redOff_Logger()
     addTrace(TRACE_SYSCALL_REDOFFFUNCTION, currentindex);
     Leds_redOff();
 }
+#endif 
 
 /**\ingroup syscall 
 Turn the red LED off. 
@@ -916,10 +905,8 @@ void redofffunction() __attribute__ ((section(".systemcall.6")))
     __attribute__ ((naked));
 void redofffunction()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_REDOFFFUNCTION
+#ifdef TRACE_ENABLE_EVENT
     Leds_redOff_Logger();
-#endif
 #else
     Leds_redOff();
 #endif
@@ -928,6 +915,7 @@ void redofffunction()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void Leds_yellowOn_Logger()
 {
     uint8_t currentindex;
@@ -938,6 +926,7 @@ void Leds_yellowOn_Logger()
     addTrace(TRACE_SYSCALL_YELLOWONFUNCTION, currentindex);
     Leds_yellowOn();
 }
+#endif 
 
 /**\ingroup syscall 
 Turn the yellow LED on.
@@ -946,10 +935,8 @@ void yellowonfunction() __attribute__ ((section(".systemcall.6")))
     __attribute__ ((naked));
 void yellowonfunction()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_YELLOWONFUNCTION
+#ifdef TRACE_ENABLE_EVENT
     Leds_yellowOn_Logger();
-#endif
 #else
     Leds_yellowOn();
 #endif
@@ -958,6 +945,7 @@ void yellowonfunction()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void Leds_yellowOff_Logger()
 {
     uint8_t currentindex;
@@ -968,6 +956,7 @@ void Leds_yellowOff_Logger()
     addTrace(TRACE_SYSCALL_YELLOWOFFFUNCTION, currentindex);
     Leds_yellowOff();
 }
+#endif 
 
 /**\ingroup syscall 
 Turn the yellow LED off. 
@@ -976,10 +965,8 @@ void yellowofffunction() __attribute__ ((section(".systemcall.6"))) __attribute_
     ((naked));
 void yellowofffunction()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_YELLOWOFFFUNCTION
+#ifdef TRACE_ENABLE_EVENT
     Leds_yellowOff_Logger();
-#endif
 #else
     Leds_yellowOff();
 #endif
@@ -988,6 +975,7 @@ void yellowofffunction()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void Leds_greenOn_Logger()
 {
     uint8_t currentindex;
@@ -998,6 +986,7 @@ void Leds_greenOn_Logger()
     addTrace(TRACE_SYSCALL_GREENONFUNCTION, currentindex);
     Leds_greenOn();
 }
+#endif 
 
 /**\ingroup syscall 
 Turn the green LED on. 
@@ -1006,10 +995,8 @@ void greenonfunction() __attribute__ ((section(".systemcall.6")))
     __attribute__ ((naked));
 void greenonfunction()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_GREENONFUNCTION
+#ifdef TRACE_ENABLE_EVENT
     Leds_greenOn_Logger();
-#endif
 #else
     Leds_greenOn();
 #endif
@@ -1018,6 +1005,7 @@ void greenonfunction()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void Leds_greenOff_Logger()
 {
     uint8_t currentindex;
@@ -1028,6 +1016,7 @@ void Leds_greenOff_Logger()
     addTrace(TRACE_SYSCALL_GREENOFFFUNCTION, currentindex);
     Leds_greenOff();
 }
+#endif 
 
 /**\ingroup syscall 
 Turn the green LED off. 
@@ -1036,10 +1025,8 @@ void greenofffunction() __attribute__ ((section(".systemcall.6")))
     __attribute__ ((naked));
 void greenofffunction()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_GREENOFFFUNCTION
+#ifdef TRACE_ENABLE_EVENT
     Leds_greenOff_Logger();
-#endif
 #else
     Leds_greenOff();
 #endif
@@ -1054,6 +1041,7 @@ void greenofffunction()
 
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void ADCLight_Logger()
 {
     uint8_t currentindex;
@@ -1064,6 +1052,7 @@ void ADCLight_Logger()
     addTrace(TRACE_SYSCALL_ADCLIGHTSYSCALL, currentindex);
     ADCLight();
 }
+#endif 
 
 /**\ingroup syscall 
 Get the reading from light sensor and store the result in the thread table. 
@@ -1072,10 +1061,8 @@ void ADCLightSysCall() __attribute__ ((section(".systemcall.7")))
     __attribute__ ((naked));
 void ADCLightSysCall()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_ADCLIGHTSYSCALL
+#ifdef TRACE_ENABLE_EVENT
     ADCLight_Logger();
-#endif
 #else
     ADCLight();
 #endif
@@ -1084,6 +1071,7 @@ void ADCLightSysCall()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void ADCTemp_Logger()
 {
     uint8_t currentindex;
@@ -1094,6 +1082,7 @@ void ADCTemp_Logger()
     addTrace(TRACE_SYSCALL_ADCTEMPSYSCALL, currentindex);
     ADCTemp();
 }
+#endif 
 
 /**\ingroup syscall 
 Get the reading from temperature and store the result in the thread table. 
@@ -1102,10 +1091,8 @@ void ADCTempSysCall() __attribute__ ((section(".systemcall.7")))
     __attribute__ ((naked));
 void ADCTempSysCall()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_ADCTEMPSYSCALL
+#ifdef TRACE_ENABLE_EVENT
     ADCTemp_Logger();
-#endif
 #else
     ADCTemp();
 #endif
@@ -1114,6 +1101,7 @@ void ADCTempSysCall()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void ADCMagX_Logger()
 {
     uint8_t currentindex;
@@ -1124,6 +1112,7 @@ void ADCMagX_Logger()
     addTrace(TRACE_SYSCALL_ADCMAGXSYSCALL, currentindex);
     ADCMagX();
 }
+#endif 
 
 /**\ingroup syscall 
 Get the reading from the X axis for the magnetic sensor and store the result in the thread table.  
@@ -1132,10 +1121,8 @@ void ADCMagXSysCall() __attribute__ ((section(".systemcall.7")))
     __attribute__ ((naked));
 void ADCMagXSysCall()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_ADCMAGXSYSCALL
+#ifdef TRACE_ENABLE_EVENT
     ADCMagX_Logger();
-#endif
 #else
     ADCMagX();
 #endif
@@ -1144,6 +1131,7 @@ void ADCMagXSysCall()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void ADCMagY_Logger()
 {
     uint8_t currentindex;
@@ -1154,6 +1142,7 @@ void ADCMagY_Logger()
     addTrace(TRACE_SYSCALL_ADCMAGYSYSCALL, currentindex);
     ADCMagY();
 }
+#endif 
 
 /**\ingroup syscall 
 Get the reading from the Y axis for the magnetic sensor and store the result in the thread table. 
@@ -1162,10 +1151,8 @@ void ADCMagYSysCall() __attribute__ ((section(".systemcall.7")))
     __attribute__ ((naked));
 void ADCMagYSysCall()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_ADCMAGYSYSCALL
+#ifdef TRACE_ENABLE_EVENT
     ADCMagY_Logger();
-#endif
 #else
     ADCMagY();
 #endif
@@ -1174,6 +1161,7 @@ void ADCMagYSysCall()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void ADCAccX_Logger()
 {
     uint8_t currentindex;
@@ -1184,6 +1172,7 @@ void ADCAccX_Logger()
     addTrace(TRACE_SYSCALL_ADCACCXSYSCALL, currentindex);
     ADCAccX();
 }
+#endif 
 
 /**\ingroup syscall 
 Get the reading from the X axis for the accelerator and store the result in the thread table. 
@@ -1192,10 +1181,8 @@ void ADCAccXSysCall() __attribute__ ((section(".systemcall.7")))
     __attribute__ ((naked));
 void ADCAccXSysCall()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_ADCACCXSYSCALL
+#ifdef TRACE_ENABLE_EVENT
     ADCAccX_Logger();
-#endif
 #else
     ADCAccX();
 #endif
@@ -1204,6 +1191,8 @@ void ADCAccXSysCall()
 }
 
 //-------------------------------------------------------------------------
+
+#ifdef TRACE_ENABLE_EVENT
 void ADCAccY_Logger()
 {
     uint8_t currentindex;
@@ -1214,6 +1203,7 @@ void ADCAccY_Logger()
     addTrace(TRACE_SYSCALL_ADCACCYSYSCALL, currentindex);
     ADCAccY();
 }
+#endif 
 
 /**\ingroup syscall 
 Get the reading from the Y axis for the accelerator and store the result in the thread table. 
@@ -1222,10 +1212,8 @@ void ADCAccYSysCall() __attribute__ ((section(".systemcall.7")))
     __attribute__ ((naked));
 void ADCAccYSysCall()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_ADCACCYSYSCALL
+#ifdef TRACE_ENABLE_EVENT
     ADCAccY_Logger();
-#endif
 #else
     ADCAccY();
 #endif
@@ -1235,6 +1223,7 @@ void ADCAccYSysCall()
 
 
 /* added by Qi Mi (qm8e@virginia.edu) */
+#ifdef TRACE_ENABLE_EVENT
 void sounderOn_Logger()
 {
     uint8_t currentindex;
@@ -1245,6 +1234,7 @@ void sounderOn_Logger()
     addTrace(TRACE_SYSCALL_SOUNDERONFUNCTION, currentindex);
     sounderOn();
 }
+#endif 
 
 /**\ingroup syscall 
 Turn the sounder on. 
@@ -1253,10 +1243,8 @@ void sounderonfunction() __attribute__ ((section(".systemcall.7"))) __attribute_
     ((naked));
 void sounderonfunction()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_SOUNDERONFUNCTION
+#ifdef TRACE_ENABLE_EVENT
     sounderOn_Logger();         //defined in avr\syscall.c
-#endif
 #else
     //sounder_init();
     sounderOn();          //defined in micaz\sounder.c
@@ -1266,6 +1254,7 @@ void sounderonfunction()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void sounderOff_Logger()
 {
     uint8_t currentindex;
@@ -1276,6 +1265,7 @@ void sounderOff_Logger()
     addTrace(TRACE_SYSCALL_SOUNDEROFFFUNCTION, currentindex);
     sounderOff();
 }
+#endif
 
 /**\ingroup syscall 
 Turn the sounder off. 
@@ -1284,10 +1274,8 @@ void sounderofffunction() __attribute__ ((section(".systemcall.7")))
     __attribute__ ((naked));
 void sounderofffunction()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_SOUNDEROFFFUNCTION
+#ifdef TRACE_ENABLE_EVENT
     sounderOff_Logger();        //defined in avr\syscall.c
-#endif
 #else
     //sounder_init();
     sounderOff();         //defined in micaz\sounder.c
@@ -1318,6 +1306,7 @@ void getEEPROMHandleInfo()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void getEEPROMHandleInfo_Logger()
 {
     uint8_t currentindex;
@@ -1328,6 +1317,7 @@ void getEEPROMHandleInfo_Logger()
     addTrace(TRACE_SYSCALL_GETCURRENTEEPROMHANDLEADDRESS, currentindex);
     getEEPROMHandleInfo();
 }
+#endif 
 
 /**\ingroup syscall 
 Get the EEPROM handle address for read/write. 
@@ -1336,10 +1326,8 @@ void getCurrentEEPROMHandleAddress() __attribute__ ((section(".systemcall.8")))
     __attribute__ ((naked));
 void getCurrentEEPROMHandleAddress()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_GETCURRENTEEPROMHANDLEADDRESS
+#ifdef TRACE_ENABLE_EVENT
     getEEPROMHandleInfo_Logger();
-#endif
 #else
     getEEPROMHandleInfo();
 #endif
@@ -1354,6 +1342,7 @@ void readEEPROMTask()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void readEEPROMTask_Logger()
 {
     uint8_t currentindex;
@@ -1364,6 +1353,7 @@ void readEEPROMTask_Logger()
     addTrace(TRACE_SYSCALL_READFROMEEPROM, currentindex);
     readEEPROMTask();
 }
+#endif 
 
 /**\ingroup syscall 
 Read from EEPROM. 
@@ -1372,10 +1362,8 @@ void readFromEEPROM() __attribute__ ((section(".systemcall.8")))
     __attribute__ ((naked));
 void readFromEEPROM()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_READFROMEEPROM
+#ifdef TRACE_ENABLE_EVENT
     readEEPROMTask_Logger();
-#endif
 #else
     readEEPROMTask();
 #endif
@@ -1390,6 +1378,7 @@ void writeEEPROMTask()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void writeEEPROMTask_Logger()
 {
     uint8_t currentindex;
@@ -1400,6 +1389,7 @@ void writeEEPROMTask_Logger()
     addTrace(TRACE_SYSCALL_WRITETOEEPROM, currentindex);
     writeEEPROMTask();
 }
+#endif 
 
 /**\ingroup syscall 
 Write to EEPROM. 
@@ -1408,10 +1398,8 @@ void writeToEEPROM() __attribute__ ((section(".systemcall.8")))
     __attribute__ ((naked));
 void writeToEEPROM()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_WRITETOEEPROM
+#ifdef TRACE_ENABLE_EVENT
     writeEEPROMTask_Logger();
-#endif
 #else
     writeEEPROMTask();
 #endif
@@ -1422,9 +1410,6 @@ void writeToEEPROM()
 
 
 
-
-
- 
 
 //-----------------------------------------------------------------------------
 //Boundary EE00 File Operations 
@@ -1442,6 +1427,7 @@ void getFilePathAddress_avr()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void getFilePathAddress_Logger()
 {
     uint8_t currentindex;
@@ -1452,6 +1438,7 @@ void getFilePathAddress_Logger()
     addTrace(TRACE_SYSCALL_GETFILEPATHADDR, currentindex);
     getFilePathAddress_avr();
 }
+#endif 
 
 /**\ingroup syscall 
 Get the file path locator, such as /abc/efg, etc. 
@@ -1460,10 +1447,8 @@ void getFilePathAddr() __attribute__ ((section(".systemcall.9")))
     __attribute__ ((naked));
 void getFilePathAddr()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_GETFILEPATHADDR
+#ifdef TRACE_ENABLE_EVENT
     getFilePathAddress_Logger();
-#endif
 #else
     getFilePathAddress_avr();
 #endif
@@ -1484,6 +1469,7 @@ void getFileModeAddress_avr()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void getFileModeAddress_Logger()
 {
     uint8_t currentindex;
@@ -1494,6 +1480,7 @@ void getFileModeAddress_Logger()
     addTrace(TRACE_SYSCALL_GETFILEMODEADDR, currentindex);
     getFileModeAddress_avr();
 }
+#endif 
 
 /**\ingroup syscall 
 Get the file mode for read or write. 
@@ -1502,10 +1489,8 @@ void getFileModeAddr() __attribute__ ((section(".systemcall.9")))
     __attribute__ ((naked));
 void getFileModeAddr()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_GETFILEMODEADDR
+#ifdef TRACE_ENABLE_EVENT
     getFileModeAddress_Logger();
-#endif
 #else
     getFileModeAddress_avr();
 #endif
@@ -1517,6 +1502,7 @@ void getFileModeAddr()
 ///////////////////////////////////////////////////////////////////////////////
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void openFileTask_Logger()
 {
     uint8_t currentindex;
@@ -1527,6 +1513,7 @@ void openFileTask_Logger()
     addTrace(TRACE_SYSCALL_OPENFILESYSCALL, currentindex);
     openFileTask();
 }
+#endif 
 
 /**\ingroup syscall 
 Open a file. The file handle is stored in the current thread table as well as internally by the kernel. 
@@ -1535,10 +1522,8 @@ void openFileSysCall() __attribute__ ((section(".systemcall.9")))
     __attribute__ ((naked));
 void openFileSysCall()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_OPENFILESYSCALL
+#ifdef TRACE_ENABLE_EVENT
     openFileTask_Logger();
-#endif
 #else
     openFileTask();
 #endif
@@ -1549,6 +1534,7 @@ void openFileSysCall()
 
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void closeFileTask_Logger()
 {
     uint8_t currentindex;
@@ -1559,6 +1545,7 @@ void closeFileTask_Logger()
     addTrace(TRACE_SYSCALL_CLOSEFILESYSCALL, currentindex);
     closeFileTask();
 }
+#endif 
 
 /**\ingroup syscall 
 Close a file. 
@@ -1567,10 +1554,8 @@ void closeFileSysCall() __attribute__ ((section(".systemcall.9")))
     __attribute__ ((naked));
 void closeFileSysCall()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_CLOSEFILESYSCALL
+#ifdef TRACE_ENABLE_EVENT
     closeFileTask_Logger();
-#endif
 #else
     closeFileTask();
 #endif
@@ -1579,6 +1564,7 @@ void closeFileSysCall()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void readFileTask_Logger()
 {
     uint8_t currentindex;
@@ -1589,6 +1575,7 @@ void readFileTask_Logger()
     addTrace(TRACE_SYSCALL_READFILESYSCALL, currentindex);
     readFileTask();
 }
+#endif
 
 /**\ingroup syscall 
 Read from a file. 
@@ -1597,10 +1584,8 @@ void readFileSysCall() __attribute__ ((section(".systemcall.9")))
     __attribute__ ((naked));
 void readFileSysCall()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_READFILESYSCALL
+#ifdef TRACE_ENABLE_EVENT
     readFileTask_Logger();
-#endif
 #else
     readFileTask();
 #endif
@@ -1609,6 +1594,7 @@ void readFileSysCall()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void writeFileTask_Logger()
 {
     uint8_t currentindex;
@@ -1619,6 +1605,7 @@ void writeFileTask_Logger()
     addTrace(TRACE_SYSCALL_WRITEFILESYSCALL, currentindex);
     writeFileTask();
 }
+#endif 
 
 /**\ingroup syscall 
 Write to a file. 
@@ -1627,10 +1614,8 @@ void writeFileSysCall() __attribute__ ((section(".systemcall.9")))
     __attribute__ ((naked));
 void writeFileSysCall()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_WRITEFILESYSCALL
+#ifdef TRACE_ENABLE_EVENT
     writeFileTask_Logger();
-#endif
 #else
     writeFileTask();
 #endif
@@ -1639,6 +1624,7 @@ void writeFileSysCall()
 }
 
 //-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
 void seekFileTask_Logger()
 {
     uint8_t currentindex;
@@ -1649,6 +1635,7 @@ void seekFileTask_Logger()
     addTrace(TRACE_SYSCALL_SEEKFILESYSCALL, currentindex);
     seekFileTask();
 }
+#endif 
 
 /**\ingroup syscall 
 Change file opener handle address. 
@@ -1657,13 +1644,101 @@ void seekFileSysCall() __attribute__ ((section(".systemcall.9")))
     __attribute__ ((naked));
 void seekFileSysCall()
 {
-#ifdef TRACE_ENABLE_SYSCALLEVENT
-#ifdef TRACE_ENABLE_SYSCALL_SEEKFILESYSCALL
+#ifdef TRACE_ENABLE_EVENT
     seekFileTask_Logger();
-#endif
 #else
     seekFileTask();
 #endif
     asm volatile ("nop"::);
     asm volatile ("ret"::);
 }
+
+//Defintition group 10
+
+//-------------------------------------------------------------------------
+void getCPUCounterSyscall_avr()
+{
+    uint32_t counter;
+	uint16_t counter_h, counter_l; 
+
+    counter = getCurrentResolution();
+	
+    asm volatile ("mov r22, %A0" "\n\t" "mov r23, %B0" "\n\t" "mov r24, %C0" "\n\t" "mov r25, %D0" "\n\t" ::"r" (counter));
+}
+
+
+ 
+//-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
+void getCPUCounterSyscall_Logger()
+{
+    uint8_t currentindex;
+    _atomic_t _atomic = _atomic_start();
+    currentindex = getThreadIndexAddress();
+    _atomic_end(_atomic);
+    addTrace(TRACE_SYSCALL_GETTHREADTABLESTART, currentindex);
+    getCPUCounterSyscall_avr();
+}
+#endif 
+
+/**\ingroup syscall 
+*/
+void getCPUCounterSyscall() __attribute__ ((section(".systemcall.10")))
+    __attribute__ ((naked));
+void getCPUCounterSyscall()
+{
+#ifdef TRACE_ENABLE_EVENT
+    getCPUCounterSyscall_Logger();
+#else
+    getCPUCounterSyscall_avr();
+#endif
+    asm volatile ("nop"::);
+    asm volatile ("ret"::);
+}
+
+
+
+//Definition group 11
+#ifdef TRACE_ENABLE_EVENT
+void getLoggerAddress_avr()
+{
+    void *addr;
+
+    addr = getTracingBlockAddress();
+    asm volatile ("mov r20, %A0" "\n\t" "mov r21, %B0" "\n\t"::"r" (addr));
+}
+
+
+
+void getLoggerBlockAddress() __attribute__ ((section(".systemcall.11")))
+    __attribute__ ((naked));
+void getLoggerBlockAddress()
+{
+
+    getLoggerAddress_avr();
+    asm volatile ("nop"::);
+    asm volatile ("ret"::);
+}
+
+
+void enableLogger() __attribute__ ((section(".systemcall.11")))
+    __attribute__ ((naked));
+void enableLogger()
+{
+
+    enabletracingfunction();
+    asm volatile ("nop"::);
+    asm volatile ("ret"::);
+}
+
+
+void disableLogger() __attribute__ ((section(".systemcall.11")))
+    __attribute__ ((naked));
+void disableLogger()
+{
+    disabletracingfunction();
+    asm volatile ("nop"::);
+    asm volatile ("ret"::);
+}
+
+#endif

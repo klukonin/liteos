@@ -190,7 +190,7 @@ void lib_radio_send_msg(uint16_t port, uint16_t address, uint8_t length, uint8_t
    radioinfoaddr = lib_get_current_radio_send_addr();
  
      
-   (*current_thread)->energycontrolblock.energycost += (uint16_t)RADIO_SEND * (uint16_t)length;           
+  // (*current_thread)->energycontrolblock.energycost += (uint16_t)RADIO_SEND * (uint16_t)length;           
       		 
             
       
@@ -262,7 +262,7 @@ int lib_radio_receive_timed(uint16_t port, uint8_t maxlength, uint8_t *msg, uint
 	for (i = 0; i < maxlength && i < MAX_MSG_LENGTH; i++)
 		msg[i] = buffer[i];
 		
- (*current_thread)->energycontrolblock.energycost += (uint16_t)RADIO_RECEIVE * (uint16_t)radioReceiveDataReady;           
+   //(*current_thread)->energycontrolblock.energycost += (uint16_t)RADIO_RECEIVE * (uint16_t)radioReceiveDataReady;           
 	
   
 	return radioReceiveDataReady;

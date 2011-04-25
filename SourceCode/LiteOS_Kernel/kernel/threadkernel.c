@@ -8,7 +8,6 @@
 #include "../timer/generictimer.h"
 #include "../hardware/avrhardware.h"
 #include "../timer/globaltiming.h"
-#include "../utilities/energyprofiling.h"
  
 
 
@@ -168,7 +167,7 @@ int create_thread(void(*fcn)(), uint16_t *ram_start, uint16_t *stack_ptr,
   
   current_thread = 0;
   
-  current_thread->energycontrolblock.energycost = 0;
+  //current_thread->energycontrolblock.energycost = 0;
   //current_thread->energycontrolblock.energyremain = 0; 
   
   if (!thread_task_active)
@@ -417,7 +416,7 @@ void thread_task()
      	
      } */
 
-   current_thread->energycontrolblock.energycost += (timediff * (uint32_t)CPU_PER_THOUSAND) /1000; 
+   //current_thread->energycontrolblock.energycost += (timediff * (uint32_t)CPU_PER_THOUSAND) /1000; 
    current_thread = 0;
    return ;
 }
@@ -459,6 +458,8 @@ void postNewThreadTask()
 //----------------------------------------------------------------------------
 
 //-------------------------------------------------------------------------
+//breakpoint
+/*
 void break_point_function() {
    int i;
    uint16_t index;
@@ -471,5 +472,5 @@ void break_point_function() {
    }
    thread_table[ index ].state = STATE_BREAK;
    thread_yield();
-   //asm volatile("ret"::); 
 }
+*/

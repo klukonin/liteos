@@ -22,6 +22,7 @@
 #include "../../kernel/threadkernel.h"
 #include "../../hardware/avrhardware.h"
 #include "../../entry/realmain.h"
+#include "../../sensors/leds.h"
 
 extern volatile uint16_t *stackinterrupt_ptr;  
 extern volatile uint16_t *old_stack_ptr;  
@@ -214,6 +215,9 @@ SIGNAL(USART0_RX_vect)
 
     isthreadtrue = 0;
     _atomic = _atomic_start();
+	
+	Leds_greenOn();
+	Leds_yellowOn();
     if (is_thread())
     {
         isthreadtrue = 1;
@@ -256,7 +260,7 @@ SIGNAL(USART0_RX_vect)
             receivebuffer[currentindex++] = UDR0;
         }
         _atomic_end(_atomic);
-        initCommandReceived(receivebuffer);
+        //initCommandReceived(receivebuffer);
         currentindex = 0;
     }
     _atomic = _atomic_start();

@@ -71,18 +71,18 @@ typedef struct thread
 
     filedata;
     
-    volatile struct {
+  //  volatile struct {
     	
     	//used to track the total energy cost of a thread
-    	int32_t energycost;
+    //	int32_t energycost;
   
          	
     	//used to track the energ remain of the current thread 
     	//int32_t energyremain;   
   
-    }
+    //}
     
-    energycontrolblock; 
+   // energycontrolblock; 
     
 }
 
