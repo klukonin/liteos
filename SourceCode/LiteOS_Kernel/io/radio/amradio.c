@@ -55,7 +55,7 @@ inline bool AMStandard_Control_init(void)
 }
 
 //-------------------------------------------------------------------------
-inline result_t AMStandard_RadioControl_start(void)
+inline result_t AMStandard_socketradiocontrol_start(void)
 {
     unsigned char result;
 	result = 0; 
@@ -69,7 +69,7 @@ inline result_t AMStandard_RadioControl_start(void)
 //-------------------------------------------------------------------------
 inline bool AMStandard_Control_start(void)
 {
-    result_t ok2 = AMStandard_RadioControl_start();
+    result_t ok2 = AMStandard_socketradiocontrol_start();
 
     AMStandard_state = FALSE;
     return ok2;

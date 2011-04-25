@@ -22,7 +22,7 @@
 
 //Radio
 #include "../io/radio/packethandler.h"
-#include "../io/radio/socket.h"
+#include "../syscall/socketradiodata.h"
 #include "../io/radio/amradio.h"
 #include "../io/radio/amcommon.h"
 

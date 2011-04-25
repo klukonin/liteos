@@ -1,15 +1,15 @@
-#include "socket.h"
+#include "socketradiodata.h"
 
-#include "amradio.h"
-#include "amcommon.h"
+#include "../io/radio/amradio.h"
+#include "../io/radio/amcommon.h"
 
-#include "../../types/string.h"
-#include "../../types/byteorder.h"
+#include "../types/string.h"
+#include "../types/byteorder.h"
 
-#include "packethandler.h"
+#include "../io/radio/packethandler.h"
 
-#include "../../kernel/scheduling.h"
-#include "../../kernel/threadkernel.h"
+#include "../kernel/scheduling.h"
+#include "../kernel/threadkernel.h"
 
 //defined as global variables so that these variables are visible to the rest components 
 //These are for external usage, like system calls 

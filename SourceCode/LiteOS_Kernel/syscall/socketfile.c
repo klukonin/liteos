@@ -1,6 +1,6 @@
-#include "filesocket.h"
+#include "socketfile.h"
 #include "../kernel/threadkernel.h"
-#include "threadsyscall.h"
+#include "socketthread.h"
 #include "../kernel/threadtools.h"
 #include "../kernel/threaddata.h"
 

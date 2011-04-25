@@ -1,5 +1,5 @@
-#include "radiocontrol.h"
-#include "../io/radio/socket.h"
+#include "socketradiocontrol.h"
+#include "../syscall/socketradiodata.h"
 #include "../kernel/threadkernel.h"
 #include "../io/radio/amradio.h"
 

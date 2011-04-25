@@ -1,6 +1,6 @@
-#ifndef SOCKETH
-#define SOCKETH
-#include "../../types/types.h"
+#ifndef SOCKETRADIODATAH
+#define SOCKETRADIODATAH
+#include "../types/types.h"
 
 
 /** \addtogroup radio 

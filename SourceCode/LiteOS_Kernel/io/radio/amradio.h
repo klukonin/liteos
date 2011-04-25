@@ -5,7 +5,7 @@
 
 extern bool AMStandard_state;
 inline bool AMStandard_Control_init(void);
-inline result_t AMStandard_RadioControl_start(void);
+inline result_t AMStandard_socketradiocontrol_start(void);
 inline result_t AMStandard_TimerControl_start(void);
 inline bool AMStandard_Control_start(void);
 inline result_t AMStandard_RadioSend_send(Radio_MsgPtr arg_0xa3c31f8);

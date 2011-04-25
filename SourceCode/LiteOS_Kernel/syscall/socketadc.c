@@ -1,4 +1,4 @@
-#include "adcsocket.h"
+#include "socketadc.h"
 #include "../sensors/adcdriver.h"
 #include "../kernel/threaddata.h"
 #include "../kernel/threadkernel.h"

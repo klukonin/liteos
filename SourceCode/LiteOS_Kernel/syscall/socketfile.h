@@ -1,8 +1,7 @@
- 
-#ifndef filesocketH
-#define filesocketH
+ #ifndef SOCKETFILEH
+#define SOCKETFILEH
 #include "../kernel/threadkernel.h"
-#include "threadsyscall.h"
+#include "socketthread.h"
 #include "../kernel/threadtools.h"
 
 /**\defgroup filesystem LiteFS API

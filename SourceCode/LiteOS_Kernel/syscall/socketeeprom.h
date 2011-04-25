@@ -1,5 +1,5 @@
-#ifndef EEPROMSOCKETH
-#define EEPROMSOCKETH
+#ifndef SOCKETEEPROMH
+#define SOCKETEEPROMH
 
 #include "../types/types.h"
 /** \ingroup bytestorage 

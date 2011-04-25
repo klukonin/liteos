@@ -1,10 +1,10 @@
 #include "syscall.h"
 #include "../sensors/leds.h"
 #include "../kernel/threadkernel.h"
-#include "threadsyscall.h"
+#include "socketthread.h"
 #include "../kernel/threadtools.h"
-#include "../io/radio/socket.h"
-#include "filesocket.h"
+#include "../syscall/socketradiodata.h"
+#include "socketfile.h"
 #include "../storage/filesys/fsapi.h"
 #include "../storage/filesys/stdfsa.h"
 #include "../io/radio/packethandler.h"
@@ -20,11 +20,11 @@
 #include "../sensors/sounder.h"
 #include "../bootloader/bootloader.h"
 #include "../io/serial/stdserial.h"
-#include "threadsyscall.h"
-#include "filesocket.h"
-#include "adcsocket.h"
-#include "eepromsocket.h"
-#include "radiocontrol.h"
+#include "socketthread.h"
+#include "socketfile.h"
+#include "socketadc.h"
+#include "socketeeprom.h"
+#include "socketradiocontrol.h"
 
 
 
@@ -1659,7 +1659,7 @@ void seekFileSysCall()
 void getCPUCounterSyscall_avr()
 {
     uint32_t counter;
-	uint16_t counter_h, counter_l; 
+	 
 
     counter = getCurrentResolution();
 	

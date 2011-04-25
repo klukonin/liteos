@@ -1,5 +1,5 @@
-#ifndef ADCSOCKETH
-#define ADCSOCKETH
+#ifndef SOCKETADCH
+#define SOCKETADCH
 #include "../sensors/adcdriver.h"
 
 /** \deprecated  This part of definitions is used when the thread control structure applies ADC.  */

@@ -1,5 +1,5 @@
 #include "../kernel/threadkernel.h"
-#include "threadsyscall.h"
+#include "socketthread.h"
 #include "../kernel/threadtools.h"
 #include "../kernel/threaddata.h"
 #include "../kernel/scheduling.h"
@@ -8,7 +8,7 @@
 #include "../io/serial/stdserial.h"
 #include "../types/string.h"
 #include "../config/nodeconfig.h"
-#include "../io/radio/socket.h"
+#include "../syscall/socketradiodata.h"
 #include "../timer/globaltiming.h"
 #include "../hardware/avrhardware.h"
 

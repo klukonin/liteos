@@ -1,9 +1,9 @@
-#ifndef RADIOCONTROLH
-#define RADIOCONTROLH
+#ifndef SOCKETRADIOCONTROLH
+#define SOCKETRADIOCONTROLH
 
 #include "../io/cc2420/cc2420controlm.h"
 #include "../types/types.h"
-#include "../io/radio/socket.h"
+#include "../syscall/socketradiodata.h"
 #include "../io/radio/packethandler.h"
 #include "../kernel/scheduling.h"
 
