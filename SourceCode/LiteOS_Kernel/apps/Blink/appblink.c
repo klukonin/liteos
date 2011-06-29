@@ -1,3 +1,11 @@
+/** @file app.c
+	@brief The functional implementation of blink. 
+
+	@author Qing Cao (cao@utk.edu)
+*/
+
+
+
 #include "../../libraries/libleds.h"
 #include "../../libraries/libthread.h"
 #include "../../libraries/libsystem.h"
@@ -16,7 +24,7 @@ void blink()
 	{
    lib_sleep_thread(1000);  
    
-   lib_green_toggle();
+   lib_red_toggle();
    
    counter++; 
   }
