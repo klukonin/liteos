@@ -150,6 +150,8 @@ int main()
    create_thread(ShellThread, (uint16_t *) shellbuffer,
                   STACK_TOP(shellbuffer), 0, 15, "sysshell", 0, 0);
   
+   create_thread(blink, (uint16_t *) blinkbuffer,
+                  STACK_TOP(blinkbuffer), 0, 15, "blink", 0, 0);
    //sleeping configureation 
    #ifdef ENERGYSAVINGMODE
    sbi(MCUCR, SM0);

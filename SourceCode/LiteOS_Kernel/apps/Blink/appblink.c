@@ -1,4 +1,4 @@
-/** @file app.c
+/** @file appblink.c
 	@brief The functional implementation of blink. 
 
 	@author Qing Cao (cao@utk.edu)
@@ -22,7 +22,7 @@ void blink()
 {
 	while (1)
 	{
-   lib_sleep_thread(1000);  
+   lib_sleep_thread(500);  
    
    lib_red_toggle();
    

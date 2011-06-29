@@ -48,7 +48,7 @@ void *getFileModeAddress()
 //-------------------------------------------------------------------------
 void openfile_task()
 {
-    MYFILE *temp = fopen2(filepathaddr, filemodeaddr);
+    MYFILE *temp = fsopen(filepathaddr, filemodeaddr);
 
     openthread->filedata.filestate.fileptr = (uint8_t *) temp;
     
