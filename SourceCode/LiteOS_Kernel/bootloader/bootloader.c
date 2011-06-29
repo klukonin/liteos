@@ -1,3 +1,9 @@
+/** @file bootloader.c
+	@brief The implementation of the bootloader functionality, including self-programming and debugging/tracing. 
+
+	@author Qing Charles Cao (cao@utk.edu)
+*/
+
 #include "bootloader.h"
 #include "../types/types.h"
 
@@ -19,11 +25,13 @@ static uint16_t currentpageindex;
 static uint8_t breakpointstring[8] = {
     0xE8, 0xE9, 0xFA, 0xEE, 0x09, 0x95, 0xFC, 0xCF
 };
+
 static uint8_t tracepointstring[16] = {
     0xEF, 0x93, 0xFF, 0x93, 0xE4, 0xEF, 0xFA, 0xEE, 0x09, 0x95, 0xFF, 0x91,
         0xEF,
     0x91, 0xFF, 0xFF
 };
+
 void __attribute__ ((section(".bootloader"))) ProgramSetPage(uint16_t pageno)
 {
     int i;
@@ -160,7 +168,7 @@ void __attribute__ ((section(".bootloader"))) boot_insertBreakPoint(uint16_t
     }
     reprogram(pagebuffer, pagenum);
 }
-
+
 //insert a breakpoint by removing 8 bytes at the location specified by the pagenum and offset 
 //insert a breakpoint by removing 8 bytes at the location specified by the pagenum and offset 
 void __attribute__ ((section(".bootloader"))) boot_insertTracePoint(uint16_t
@@ -246,6 +254,7 @@ void __attribute__ ((section(".bootloader"))) boot_insertTracePoint(uint16_t
     }
     reprogram(pagebuffer, pagenum + 1);
 }
+
 
 //insert a breakpoint by removing 8 bytes at the location specified by the pagenum and offset 
 void __attribute__ ((section(".bootloader")))
@@ -328,6 +337,8 @@ boot_insertTracePointLong(uint16_t pagenum, uint8_t pageoffset)
     }
     reprogram(pagebuffer, pagenum + 1);
 }
+
+
 
 //-------------------------------------------------------------------------
 //remove a breakpoint by patching the 8 bytes at the location specified at the pagenum and offset
