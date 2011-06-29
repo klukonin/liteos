@@ -1,4 +1,9 @@
- 
+/** @file stdserial.c
+       @brief The functional implementation of printing over the serial port. 
+
+	This file implements the generic layer for serial port printing by calling avr specific code. 
+	@author Qing Charles Cao (cao@utk.edu)
+*/ 
  
 #include "stdserial.h"
 #include "../../types/types.h"

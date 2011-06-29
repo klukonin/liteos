@@ -1,3 +1,13 @@
+/**  @file scheduling.c
+        @brief The implementation for the scheduling module. 
+
+
+        @author Qing Charles Cao (cao@utk.edu)
+        
+        
+*/
+
+
 #include "scheduling.h"
 #include "../hardware/avrhardware.h"
 

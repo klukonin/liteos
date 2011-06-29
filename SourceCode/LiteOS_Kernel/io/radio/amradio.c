@@ -1,3 +1,11 @@
+/**
+   @file amradio.c
+   @brief Standard radio implementations. 
+   
+*  @author Qing Charles Cao (cao@utk.edu)
+*/
+
+
 #include "../../kernel/scheduling.h"
 #include "amcommon.h"
 #include "amradio.h"

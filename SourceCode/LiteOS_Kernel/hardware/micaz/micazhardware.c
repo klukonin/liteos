@@ -1,3 +1,10 @@
+/** @file micazhardware.c
+       @brief The functional implementation details of the micaz hardware definitions shared by MicaZ and IRIS. 
+
+       @author Qing Charles Cao (cao@utk.edu)
+*/
+
+
 #include "micazhardware.h"
 
 void inline CC2420_FIFOP_INT_MODE(bool LowToHigh)

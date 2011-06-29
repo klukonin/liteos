@@ -1,3 +1,10 @@
+/** @file avrhardware.c
+       @brief The functional definitions of the avr hardware definitions shared by MicaZ and IRIS. 
+
+       @author Qing Charles Cao (cao@utk.edu)
+*/
+
+
 #include "avrhardware.h"
 void wait_cycle()
 {

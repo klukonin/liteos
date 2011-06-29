@@ -1,10 +1,22 @@
+/**  @file threaddata.h
+        @brief The header for the scheduling data structures. 
+
+        @author Qing Charles Cao (cao@utk.edu)
+        
+        
+*/
+
+
 #ifndef THREADDATAH
 #define THREADDATAH
 
  
 #include "../types/types.h"
- #
+ 
+/** @addtogroup scheduling */
+/** @{ */
 
+/** @brief Thread data structure. */
 
 typedef struct thread
 {
@@ -88,15 +100,17 @@ typedef struct thread
 
 //-------------------------------------------------------------------------
 
+
+
 thread;
 
 //This must be a power of 2
  
       
-/**\ingroup thread*/
+/** @brief Maximum number of threads mask. */
 #define LITE_MAX_THREADS_MASK (LITE_MAX_THREADS - 1)
 
-/**\ingroup thread*/
+/** @brief Different states of threads. */
 enum
 {
     STATE_NULL = 0,             //There is no thread here
@@ -112,8 +126,12 @@ enum
 
 
 
-/**\ingroup thread*/
+/** @brief thread call.
+	@param tp The functional pointer.
+	@return Void. 
+*/
 void call_fcn_ptr(void (*tp) ());
 
+/** @} */
 
 #endif

@@ -1,39 +1,61 @@
-/* The LiteOS Operating System Kernel */
-/*
-   The following is the license of LiteOS.
-   This file is part of LiteOS.
-   Copyright Qing Cao, 2007-2008, University of Illinois , qcao2@uiuc.edu
-   LiteOS is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
-   LiteOS is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-   You should have received a copy of the GNU General Public License
-   along with LiteOS.  If not, see <http://www.gnu.org/licenses/>.
- */
+/** @file stdserial.h
+       @brief The functional prototypes of printing over the serial port. 
+
+	This file implements the generic layer for serial port printing. 
+	@author Qing Charles Cao (cao@utk.edu)
+*/
+
  
 #ifndef STDSERIALH
 #define STDSERIALH
 #include "../../types/types.h"
 
-/**\ingroup serial
-Print a string to the serial port. 
+/** @defgroup serial Serial port operations 
+\par Overview
+The serial port operations contain sending packets over the serial port. The receiving over serial port is no longer being supported. This is useful for debugging purposes. 
+\par Initilization
+There is no explicit initilization needed. The usart hardware is initilized the first time a byte is sent over it. 
+*/
+
+/** @{ */
+/** @brief Print a string to the serial port. 
+       @param str The string.
+       @return Void. 
 */
 void printfstr(char *str);
 
-/**\ingroup serial
-Print a string with a fixed  length through the serial port. 
+/** @brief Print a string with a fixed  length through the serial port. 
+	@param str The string.
+	@param len The length.
+	@return Void. 
 */
 void printfstrlen(char *str, uint8_t len);
 
-/**\ingroup serial
-Print a 8-bit value to the serial port. 
+/** @brief Print a 8-bit value to the serial port. 
+	@param val The 8-bit value.
+	@return Void. 
 */
 void printfval(uint8_t val);
+
+/** @brief Print a 32-bit value to the serial port. 
+	@param val The 32-bit value.
+	@return Void. 
+*/
+
 void printfinteger32(int32_t val);
+
+/** @brief Print a 32-bit value to the serial port. 
+	@param val The 32-bit value.
+	@return Void. 
+*/
 void printfuinteger32(uint32_t val);
+
+/** @brief Print a line break. 
+	@return Void. 
+*/
+
 void printfstrln();
+
+
+/** @} */
 #endif

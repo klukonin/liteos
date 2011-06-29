@@ -1,5 +1,12 @@
+/** @file avrhardware.h
+       @brief The functional prototypes of the avr hardware definitions shared by MicaZ and IRIS. 
+
+       @author Qing Charles Cao (cao@utk.edu)
+*/
+
 #ifndef AVRHARDWAREH
 #define AVRHARDWAREH
+
 #include "../types/types.h"
 #include <avr/io.h>
 #include <avr/interrupt.h>
@@ -10,8 +17,17 @@
 #include <avr/iom1281.h>
 #elif defined(AVR_PLATFORM)
 #include <avr/iom128.h>
+
 #endif
-//iom1281.h
+
+
+/** \defgroup avrhardware Hardware related definitions.
+
+These functions and definitions collectively form the avr hardware definitions. */
+
+/** @{ */
+
+
 #ifndef sbi
 #define sbi(port, bit) ((port) |= _BV(bit))
 #define cbi(port, bit) ((port) &= ~_BV(bit))
@@ -23,6 +39,7 @@
 #define outw(port, value) ((*(volatile uint16_t *)&(port)) = (value))
 #define PRG_RDB(addr) pgm_read_byte(addr)
 #endif
+
 #if ((__GNUC__ == 3) && (__GNUC_MINOR__ >= 3))
 #define __outw(val, port) outw(port, val);
 #endif
@@ -40,8 +57,10 @@ __t = inw(__sfrport);				\
 if (bStatus) sei();				\
 __t;						\
 })
-#endif /* __inw */
 
+#endif 
+
+/** @brief Assign PINs in hardware. */
 #define LITE_ASSIGN_PIN_H(name, port, bit) \
 inline void LITE_SET_##name##_PIN(void); \
 inline void LITE_CLR_##name##_PIN(void); \
@@ -49,15 +68,21 @@ inline int LITE_READ_##name##_PIN(void); \
 inline void LITE_MAKE_##name##_OUTPUT(void); \
 inline void LITE_MAKE_##name##_INPUT(void);
 
+/** @brief Assign output PINs in hardware. */
+
 #define LITE_ASSIGN_OUTPUT_ONLY_PIN_H(name, port, bit) \
 inline void LITE_SET_##name##_PIN(void); \
 inline void LITE_CLR_##name##_PIN(void); \
 inline void LITE_MAKE_##name##_OUTPUT(void);
 
+/** @brief Assign alias PINs in hardware. */
+
 #define LITE_ALIAS_OUTPUT_ONLY_PIN_H(alias, connector)\
 inline void LITE_SET_##alias##_PIN(void); \
 inline void LITE_CLR_##alias##_PIN(void); \
 inline void LITE_MAKE_##alias##_OUTPUT(void); \
+
+/** @brief Assign alias PINs in hardware. */
 
 #define LITE_ALIAS_PIN_H(alias, connector) \
 inline void LITE_SET_##alias##_PIN(void); \
@@ -65,6 +90,8 @@ inline void LITE_CLR_##alias##_PIN(void);  \
 inline char LITE_READ_##alias##_PIN(void);  \
 inline void LITE_MAKE_##alias##_OUTPUT(void);  \
 inline void LITE_MAKE_##alias##_INPUT(void);
+
+/** @brief Assign PIN port and names. */
 
 #define LITE_ASSIGN_PIN(name, port, bit) \
 inline void LITE_SET_##name##_PIN() {sbi(PORT##port , bit);} \
@@ -74,15 +101,22 @@ inline int LITE_READ_##name##_PIN() \
 inline void LITE_MAKE_##name##_OUTPUT() {sbi(DDR##port , bit);} \
 inline void LITE_MAKE_##name##_INPUT() {cbi(DDR##port , bit);}
 
+/** @brief Assign output PIN port and names. */
+
 #define LITE_ASSIGN_OUTPUT_ONLY_PIN(name, port, bit) \
 inline void LITE_SET_##name##_PIN() {sbi(PORT##port , bit);} \
 inline void LITE_CLR_##name##_PIN() {cbi(PORT##port , bit);} \
 inline void LITE_MAKE_##name##_OUTPUT() {;}
 
+/** @brief Assign output PIN port and names. */
+
 #define LITE_ALIAS_OUTPUT_ONLY_PIN(alias, connector)\
 inline void LITE_SET_##alias##_PIN() {LITE_SET_##connector##_PIN();} \
 inline void LITE_CLR_##alias##_PIN() {LITE_CLR_##connector##_PIN();} \
 inline void LITE_MAKE_##alias##_OUTPUT() {} \
+
+/** @brief Assign output PIN port and names. */
+
 
 #define LITE_ALIAS_PIN(alias, connector) \
 inline void LITE_SET_##alias##_PIN() {LITE_SET_##connector##_PIN();} \
@@ -91,7 +125,8 @@ inline char LITE_READ_##alias##_PIN() {return LITE_READ_##connector##_PIN();} \
 inline void LITE_MAKE_##alias##_OUTPUT() {LITE_MAKE_##connector##_OUTPUT();} \
 inline void LITE_MAKE_##alias##_INPUT()  {LITE_MAKE_##connector##_INPUT();}
 
-// We need slightly different defs than SIGNAL, INTERRUPT
+/** @brief Signal event definition. */
+
 #define LITE_SIGNAL(signame)					\
 void signame() __attribute__ ((signal, spontaneous, C/*, used,  
              externally_visible)*/))
@@ -99,7 +134,7 @@ void signame() __attribute__ ((signal, spontaneous, C/*, used,
 void   signame(void) __attribute__((interrupt/*, used,   externally_visible*/)); \
 void signame(void)
 
-/** Watchdog Prescaler
+/** @brief Watchdog prescaler.
 */
      enum
      {
@@ -114,19 +149,49 @@ void signame(void)
      };
      void wait_cycle(void);
 
-/// atomic statement runtime support
 
-/** \defgroup avrhardware AVR hardware related definitions
-These functions and definitions collectively form the avr hardware definitions */
-
-/** @{ */
+/** @brief Avr atomic start.
+	@return atomic register.
+*/
      inline _atomic_t _atomic_start_avr(void);
+
+/** @brief Avr atomic end. 
+	@return Void.
+*/
      inline void _atomic_end_avr(_atomic_t oldSreg);
+
+/** @brief Avr sleep. 
+       @return Void.
+*/
+
      inline void _atomic_sleep(void);
+
+/** @brief Avr sleep.
+	@return Void.
+*/	 
      inline void _avr_sleep();
+
+/** @brief Avr enable interrupt.
+       @return Void.
+*/
+
      inline void _avr_enable_interrupt(void);
-     inline void _avr_disable_interrupt(void);
+
+/** @brief Avr disable interrupt.
+       @return Void.
+*/
+
+	 inline void _avr_disable_interrupt(void);
+
+/** @brief Avr reset node.
+	@return Void.
+*/
+
      void avr_resetNode();
+
+
+/** @brief Avr push registers.	
+*/
 
 #define PUSH_GPR()        \
 __asm__("push r0");     \
@@ -162,22 +227,30 @@ __asm__("push r29");    \
 __asm__("push r30");    \
 __asm__("push r31")
 
-#define PUSH_PC()          \
-__asm__("push r0")
+
+/** @brief Avr push register status.	
+*/
+
 
 #define PUSH_REG_STATUS()         \
 __asm__("push r31");        \
 __asm__("in r31,__SREG__"); \
 __asm__("push r31")
 
-#define POP_PC()            \
-__asm__("pop r0")
+
+/** @brief Avr pop register status.
+*/
+
 
 #define POP_REG_STATUS()          \
 __asm__("pop r31");         \
 __asm__("out __SREG__,r31");\
 __asm__("pop r31")
-//Pop the general purpose registers
+
+
+/** @brief Avr pop registers.
+*/
+
 
 #define POP_GPR()         \
 __asm__("pop r31");     \
@@ -213,9 +286,18 @@ __asm__("pop r2");      \
 __asm__("pop r1");      \
 __asm__("pop r0")
 
+
+/** @brief Avr swap stack ptr to the kernel ptr.
+*/
+
+
 #define SWAP_STACK_PTR(OLD, NEW) \
 __asm__("in %A0, __SP_L__\n\t in %B0, __SP_H__":"=r"(OLD):);\
 __asm__("out __SP_H__,%B0\n\t out __SP_L__,%A0"::"r"(NEW))
+
+
+/** @brief Avr prepare stack. 
+*/
 
 #define PREPARE_REG_FOR_STACK()                               \
 SWAP_STACK_PTR(old_stack_ptr, current_thread->sp);  \
@@ -225,11 +307,13 @@ __asm__("push __zero_reg__");                     \
 SWAP_STACK_PTR(current_thread->sp, old_stack_ptr)
 
 
-
-//avr common stuff
+/** @brief Avr life cycle time. 
+*/
 
 #define LITE_CYCLE_TIME_NS 136
+
 void inline LITE_wait_250ns(void);
+
 void inline LITE_uwait(int u_sec);
 
 LITE_ASSIGN_PIN_H(RED_LED, A, 2);

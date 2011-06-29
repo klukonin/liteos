@@ -1,27 +1,35 @@
+/**
+   @file amcommon.h
+   @brief Radio layer common definitions. 
+   
+*  @author Qing Charles Cao (cao@utk.edu)
+*/
+
 #ifndef AMH
 #define AMH
 #include "../../types/types.h"
 
-/** \defgroup radio Radio related definitions 
-These definitons collectively form radio related API. 
+/** @defgroup radio Radio related definitions 
+
+	These definitons collectively form radio related API. 
 */
 
 /** @{*/
 
-/** This enum defines the broadcast address */
+/** @brief This enum defines the broadcast address */
 enum
 {
     BCAST_ADDRESS = 0xffff,
 };
 
-/** The payload length is by default 100 bytes */
+/** @brief The payload length is by default 100 bytes */
 #ifndef PAYLOAD_LENGTH
 #define PAYLOAD_LENGTH 100
 #endif
-/* Return the relative address of member in a type, which is usually a struct  */
+/** @brief  Return the relative address of member in a type, which is usually a struct  */
 #define offsetof_radio(type, member) ((size_t) &((type *)0)->member)
 
-/** The message format is specified by the standard 802.15.4 by IEEE (version 2003). */
+/** @brief The message format is specified by the standard 802.15.4 by IEEE (version 2003). */
 typedef struct Radio_Msg
 {
     ///length is not part of the header according to the format 
@@ -45,7 +53,7 @@ typedef struct Radio_Msg
     uint16_t time;
 } Radio_Msg;
 
-/* The enums for locating different parts of the mess */
+/** @brief  The enums for locating different parts of the mess */
 enum
 {
     /// size of the header NOT including the length byte
@@ -64,7 +72,7 @@ enum
     LITEOS_HEADER_SIZE = 5,     //LITEheader=addr(2)+type(1)+groupid(1)+length(1)
 };
 
-/** The readio messge pointer  */
+/** @brief The readio messge pointer  */
 typedef Radio_Msg *Radio_MsgPtr;
 
 /** @}*/

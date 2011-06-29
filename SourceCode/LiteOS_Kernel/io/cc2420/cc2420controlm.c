@@ -1,3 +1,13 @@
+/** @file cc2420controlm.c
+       @brief The definitions of the control module for cc2420. 
+
+	This file implements the cc2420 control module. 
+	@author Joe Polastre
+*     @author Alan Broad
+	@author Qing Charles Cao 
+*/
+
+
 #include "cc2420const.h"
 #include "cc2420controlm.h"
 #include "cc2420radiom.h"

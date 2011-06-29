@@ -1,3 +1,14 @@
+/**
+   @file hpltimer1.c
+   @brief hpl timer implementation. 
+   
+*  @author Su Ping
+* @author (converted to nesC by Sam Madden)
+* @author David Gay
+* @author Intel Research Berkeley Lab
+* @author Phil Levis
+*/
+
 
 #include <avr/interrupt.h>
 #include "cc2420const.h"

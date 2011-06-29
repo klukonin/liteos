@@ -1,3 +1,10 @@
+/**  @file threadmodel.c
+        @brief The implementation for the thread model module. 
+
+        @author Qing Charles Cao (cao@utk.edu)
+*/
+
+
 #include "threadmodel.h"
 #include "threaddata.h"
 #include "../types/types.h"

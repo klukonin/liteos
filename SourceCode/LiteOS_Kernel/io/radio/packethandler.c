@@ -1,3 +1,10 @@
+/**
+   @file packethandler.c
+   @brief Implementatio for standard sockdet for receiving packets. 
+   
+*  @author Qing Charles Cao (cao@utk.edu)
+*/
+
  
 #include "../../kernel/scheduling.h"
 #include "packethandler.h"

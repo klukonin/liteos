@@ -1,7 +1,17 @@
+/**
+   @file amradio.h
+   @brief Standard radio definitions. 
+   
+*  @author Qing Charles Cao (cao@utk.edu)
+*/
+
+
 #ifndef AMRADIOH
 #define AMRADIOH
 #include "amcommon.h"
 
+/** @addtogroup radio */
+/** @{ */
 
 extern bool AMStandard_state;
 inline bool AMStandard_Control_init(void);
@@ -28,4 +38,6 @@ inline result_t AMStandard_RadioSend_sendDone(Radio_MsgPtr msg, result_t
                                               success);
 inline result_t AMStandard_reportSendDone(Radio_MsgPtr msg, result_t success);
 inline void restoreRadioState();
+
+/** @} */
 #endif

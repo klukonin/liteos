@@ -1,3 +1,13 @@
+/**
+   @file cc2420radiom.c
+   @brief cc2420 implementation 
+   
+* @author Jason Hill
+* @author David Gay
+* @author Philip Levis
+*/
+
+
 #include "cc2420const.h"
 #include "cc2420controlm.h"
 #include "cc2420radiom.h"

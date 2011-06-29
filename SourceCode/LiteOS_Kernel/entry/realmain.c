@@ -1,3 +1,13 @@
+/** @file realmain.c
+       @brief The system entry point.
+
+       This file is the entry point of the entire LiteOS kernel. All functions are invocations of other system modules. 
+
+        @author Qing Charles Cao (cao@utk.edu)
+      
+*/
+
+
 #include "../hardware/avrhardware.h"
 #include "../hardware/micaz/micazhardware.h"
 #include "../types/types.h"
@@ -9,7 +19,7 @@
 #include "../storage/filesys/fsapi.h"
 #include "../bootloader/bootloader.h"
 #include "../sensors/adcdriver.h"
-#include "realmain.h"
+#include "./realmain.h"
 #include "../config/nodeconfig.h"
 #include "../storage/bytestorage/bytestorage.h"
 #include "../io/serial/stdserial.h"
@@ -25,6 +35,8 @@
 #include "../storage/filesys/storageconstants.h"
 
 #include "../shell/commandhandle.h"
+
+
 #ifdef RADIO_CC2420
 #include "../io/cc2420/cc2420controlm.h"
 #endif 
@@ -34,47 +46,62 @@
 
 #include "../libraries/commonapp.h"
 
+
 static uint16_t nodeid;
 
+/** @brief The starting point of the control loop 
+
+       @return  SUCCESS (0)
+*/
 
 int main()
 {
 	 
-    //micaz specific initilizations
-    //hardware ini
+    //micaz specific initilizations, hardware init
     LITE_SET_PIN_DIRECTIONS();
     
-    //sensors
+    //sensors init
     adcdriver_init_adc();
 
-    //kernels 
+    //kernel ints
     initScheduling();
+	
     thread_init();
     
-    //printing
+    //inits printing 
     initUSART();
     
     
      Leds_redToggle();
      Leds_greenToggle();
      Leds_yellowToggle();
-     mystrncpy(networkid, "sn01\0", 5);
-     mystrncpy(filenameid, "nodeR\0", 6);
-     CURRENT_NODE_ID = 2;
-
+     mystrncpy(networkid, "testbed\0", 8);
+     mystrncpy(filenameid, "node00\0", 7);
+	 
+     CURRENT_NODE_ID = 8; 
 
      nodeid = CURRENT_NODE_ID;
-     srand(nodeid);
+	 
+	 filenameid[4] = (char)(nodeid/10 + 0x30); 
+	 filenameid[5] = (char)(nodeid%10 + 0x30); 
+	   
+     
+
+	 #ifdef FORMATFILESYSTEM
      formatSystem();
      buildRootNode();
+     #endif
+	 
+	 
      genericwriteBytes(NETWORKNAMEOFFSET, 16, networkid);
      genericwriteBytes(NODEFILENAMEOFFSET, 16, filenameid);
      node_writenodeid(nodeid);
-     node_setradiochannel(22);
+	 
+     	 
      Leds_redToggle();
      Leds_greenToggle();
      Leds_yellowToggle();
-   
+     srand(CURRENT_NODE_ID);
   
 
     //timer and radio 
@@ -89,33 +116,20 @@ int main()
     initRadioHandle();
     
     InitShell();
-    //initTrace();
-    
 
- 
- 
+	//for logging only 
+
+	#ifdef LOGGINGTRACE
+    initTrace();     
+    #endif
     
+    #ifdef RADIO_CC2420
+    cc2420controlm_CC2420Control_TuneChannel(21); 
+    cc2420controlm_CC2420Control_TunePower(31);
+    #endif
     
-    
-    {
-        uint8_t currentchannel;
-         
-         
-        currentchannel = node_getradiochannel();
-#ifdef RADIO_CC2420
-				
-        cc2420controlm_CC2420Control_TuneChannel(currentchannel);
-       
-#endif
-#ifdef RADIO_CC2420
-        cc2420controlm_CC2420Control_TunePower(31);
-        
-#endif
-    }
-    
- 		
-// 	  uint32_t counter;    
-//
+    #ifdef TESTPRINTING
+    uint32_t counter;    
     printfuinteger32(234234223);
     printfstrln();
     printfinteger32(-5555555);
@@ -124,63 +138,32 @@ int main()
     printfstrln();
     printfstr("Showing the status!!! \n"); 
 	printfstrln();
-//    counter = getCurrentResolution();
-//    printfintegeru32(counter); 
-//    printfstrln();
-// 		}
-//    
+	counter = getCurrentResolution();
+    printfintegeru32(counter); 
+    printfstrln();
+	#endif    
 
-    //threadsequencelogging
-    //eeprom_chunk_init();
+    #ifdef THREADSEQUENCELOGGING
+    eeprom_chunk_init();
+    #endif
 
    create_thread(ShellThread, (uint16_t *) shellbuffer,
                   STACK_TOP(shellbuffer), 0, 15, "sysshell", 0, 0);
-
-
-
-   //trace program must be thread 1 to enable the tracing functionality. 
-   // create_thread(tracemain, (uint16_t *) tracebuffer,
-     //            STACK_TOP(tracebuffer), 0, 15, "trace", 0, 0);
-    
-	//  create_thread(sounder, (uint16_t *) sounderbuffer,
-      //            STACK_TOP(sounderbuffer), 0, 15, "sounder", 0, 0);
-      
-    // create_thread(countermain, (uint16_t *)countertorfm, STACK_TOP(countertorfm), 0, 15, "counter", 0, 0);
-      
-    create_thread(printserialmain, (uint16_t *)printserialbuffer,
-                STACK_TOP(printserialbuffer), 0, 15, "print", 0, 0);
-
-    //create_thread(count, (uint16_t *)countbuffer,
-      //            STACK_TOP(countbuffer), 0, 15, "count", 0, 0);
-    // create_thread(logger, (uint16_t *)loggerbuffer,     
-      //          STACK_TOP(loggerbuffer), 0, 15, "logger", 0, 0);
-                  
-    //create_thread(gfapp, (uint16_t *) gfbuffer,
-      //            STACK_TOP(gfbuffer), 0, 15, "gfapp", 0, 0);
-                  
-    //create_thread(protocol, (uint16_t *) protocolbuffer,
-      //            STACK_TOP(protocolbuffer), 0, 15, "proto", 0, 0);
-                                 
   
-
-
-    //sleeping configureation 
-    // sbi(MCUCR, SM0);
-    // sbi(MCUCR, SM1);
-    // cbi(MCUCR, SM2); 
-    // sbi(MCUCR, SE);
+   //sleeping configureation 
+   #ifdef ENERGYSAVINGMODE
+   sbi(MCUCR, SM0);
+   sbi(MCUCR, SM1);
+   cbi(MCUCR, SM2); 
+   sbi(MCUCR, SE);
+   #endif
    
-    //GenericTimerStart(15, TIMER_REPEAT, 100); 
+   #ifdef ENERGY_SHARE_SCHEDULING
+   ecb_init();     
+   GenericTimerStart(12, TIMER_REPEAT, 1000); 
+   #endif 
 
-
-  #ifdef ENERGY_SHARE_SCHEDULING
-
-      ecb_init();     
-      GenericTimerStart(12, TIMER_REPEAT, 1000); 
-     
-  #endif 
-
-    _avr_enable_interrupt();
+   _avr_enable_interrupt();
 
     while (1)
     {
