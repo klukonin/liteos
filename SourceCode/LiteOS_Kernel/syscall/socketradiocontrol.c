@@ -1,3 +1,10 @@
+/** @file socketradiocontrol.c
+	@brief The functional implementation for socket radio control. 
+
+	@author Qing Cao (cao@utk.edu)
+*/
+
+
 #include "socketradiocontrol.h"
 #include "../syscall/socketradiodata.h"
 #include "../kernel/threadkernel.h"

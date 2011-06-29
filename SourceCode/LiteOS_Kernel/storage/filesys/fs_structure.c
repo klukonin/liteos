@@ -1,3 +1,11 @@
+/** @file fs_structure.c
+	 @brief This file implements several functions for file system structure. 
+	 
+	 @author Qing Charles Cao (cao@utk.edu)
+*/
+
+
+
 #include "fs_structure.h"
 #include "inode.h"
 #include "fsconfig.h"

@@ -1,3 +1,10 @@
+/** @file socketthread.c
+	@brief The functional implementation for socket thread.
+
+	@author Qing Cao (cao@utk.edu)
+*/
+
+
 #include "../kernel/threadkernel.h"
 #include "socketthread.h"
 #include "../kernel/threadtools.h"

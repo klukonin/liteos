@@ -1,3 +1,9 @@
+/** @file globaltiming.c
+	@brief The detailed implementations of the global timing module. 
+
+	@author Qing Charles Cao (cao@utk.edu)
+*/
+
 #include "globaltiming.h"
 #include "timerraw.h"
 #include "clockraw.h"

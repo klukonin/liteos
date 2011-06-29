@@ -1,19 +1,16 @@
-/*
- *
- * Authors:             Jason Hill, David Gay, Philip Levis
- * Date last modified:  6/2/03
- *
- */
+/** @file Leds.c
+	@brief The detailed implementation of the Leds.
 
-/**
-* @author Jason Hill
-* @author David Gay
-* @author Philip Levis
+	@author Qing Charles Cao (cao@utk.edu)
 */
+
 #include "../hardware/avrhardware.h"
 #include "leds.h"
 
-uint8_t Leds_ledsOn;
+static uint8_t Leds_ledsOn;
+
+/** @brief The definitions of the LED bits.
+*/
 enum
 {
     Leds_RED_BIT = 1, Leds_GREEN_BIT = 2, Leds_YELLOW_BIT = 4

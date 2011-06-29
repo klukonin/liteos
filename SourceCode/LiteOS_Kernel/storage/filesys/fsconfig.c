@@ -1,3 +1,9 @@
+/** @file fsconfig.c
+	 @brief This file provides the implementation of functions in the configuration settings for the file system. 
+	 
+	 @author Qing Charles Cao (cao@utk.edu)
+*/
+
 #include "fsconfig.h"
 #include "../bytestorage/bytestorage.h"
 

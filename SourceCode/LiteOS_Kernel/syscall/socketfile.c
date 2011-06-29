@@ -1,3 +1,10 @@
+/** @file socketfile.c
+	@brief The functional implementation for socket file.
+
+	@author Qing Cao (cao@utk.edu)
+*/
+
+
 #include "socketfile.h"
 #include "../kernel/threadkernel.h"
 #include "socketthread.h"

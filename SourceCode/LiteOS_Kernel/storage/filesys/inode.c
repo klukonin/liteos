@@ -1,3 +1,8 @@
+/** @file inode.c
+	 @brief This file implements the file system node operations. 
+	 @author Qing Charles Cao (cao@utk.edu)
+*/
+
 #include "inode.h"
 #include "../../types/types.h"
 #include "fsconfig.h"

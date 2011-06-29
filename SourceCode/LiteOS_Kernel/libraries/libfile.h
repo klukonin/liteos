@@ -1,21 +1,8 @@
-/*
-The following is the license of LiteOS.
+/** @file libfile.h
+       @brief The functional prototypes of the file system API. 
 
-This file is part of LiteOS.
-Copyright Qing Cao, 2007-2008, University of Illinois , qcao2@uiuc.edu
-
-LiteOS is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-LiteOS is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with LiteOS.  If not, see <http://www.gnu.org/licenses/>.
+       @author Qing Charles Cao (cao@utk.edu)
+       
 */
 
 
@@ -25,12 +12,13 @@ along with LiteOS.  If not, see <http://www.gnu.org/licenses/>.
 #include "liteoscommon.h"
 
 
-/** \defgroup file LiteFS API
+/** @addtogroup api
+*/
 
-      This module implements reading/writing files for the motes. 
-      Testing code:
 
-      \code
+/** @name This module implements reading/writing files for the motes.  Testing code:
+
+       @code
       
 	#include "leds.h"
 	#include "libthread.h"
@@ -95,68 +83,62 @@ along with LiteOS.  If not, see <http://www.gnu.org/licenses/>.
 	return 0; 
 	}
 
-	\endcode
+	@endcode
+*/
+
+/** @{
 */
 
 
 
-/** \ingroup file 
 
-  	Open a file based on its parameters and for later operations. 
-  	\param pathname The path name of the file to be opened. 
-  	\param mode The mode of the file to be opened
-  	\return MYFILE The pointer to the file to be opened
+/** @brief 	Open a file based on its parameters and for later operations. 
+  	@param pathname The path name of the file to be opened. 
+  	@param mode The mode of the file to be opened.
+       @return MYFILE The pointer to the file to be opened.
 */
 
 LIB_MYFILE *lib_mfopen(const char *pathname, const char *mode);
 
-/** \ingroup file 
-
-      Close a file based on the file pointer.
-      \param fp The file pointer to the previously opened file. 
-      \return NONE
+/** @brief   Close a file based on the file pointer.
+       @param fp The file pointer to the previously opened file. 
+       @return Void.
 */
 void lib_mfclose(LIB_MYFILE *fp); 
 
-/** \ingroup file 
-
-      Read data from a file
-      \param fp The pointer of the previously opened file
-      \param buffer The buffer for the read data
-      \param nBytes The number of bytes to be read
-      \return NONE
+/**@brief   Read data from a file.
+      @param fp The pointer of the previously opened file.
+      @param buffer The buffer for the read data.
+      @param nBytes The number of bytes to be read.
+      @return Void.
 */
 void lib_mfread(LIB_MYFILE *fp, void *buffer, int nBytes);
 
-/** \ingroup file 
-
-      Write to a file. 
-      \param fp The pointer of the previously opened file. 
-      \param buffer The buffer for the data to be written. 
-      \param nBytes The number of bytes to be written. 
-      \return NONE
+/** @brief  Write to a file. 
+       @param fp The pointer of the previously opened file. 
+       @param buffer The buffer for the data to be written. 
+       @param nBytes The number of bytes to be written. 
+       @return Void. 
 */
 void lib_mfwrite(LIB_MYFILE *fp, void *buffer, int nBytes);
 
-/** \ingroup file 
-
-      Seek the file for repositioning the file pointer
-      \param fp The pointer of the previously opened file. 
-      \param offset The offset of the seek operation
-      \param position The position of the seek operation. 
-      \return NONE
+/** @brief   Seek the file for repositioning the file pointer.
+       @param fp The pointer of the previously opened file. 
+       @param offset The offset of the seek operation.
+       @param position The position of the seek operation. 
+       @return Void.
 */
 
 void lib_mfseek(LIB_MYFILE *fp, int offset, int position);
 
-/** \ingroup file 
-
-      Write to a file without specifying the length
-      \param fp The pointer of the previously opened file. 
-      \param buffer The start position for the write buffer. 
-      \return NONE
+/** @brief Write to a file without specifying the length.
+       @param fp The pointer of the previously opened file. 
+       @param buffer The start position for the write buffer. 
+       @return Void.
 */
 
 void lib_mfwrite_withoutlength(LIB_MYFILE *fp, void *buffer);
+
+/** @}*/
 
 #endif 

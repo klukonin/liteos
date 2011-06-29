@@ -1,3 +1,10 @@
+/** \file atmelflash.c
+       \brief The functional implementation of the flash driver. 
+
+	This file implements the flash driver, which is the foundation for the file system. 
+*/
+
+
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
@@ -54,7 +61,6 @@ void copyFlash(int sourcepage, int targetpage);
 static uint16_t dev_read_atmel_flash(void *p, uint16_t count);
 static uint16_t dev_write_atmel_flash(const void *p, uint16_t count);
 
-/* device-specific functions */
 void atmel_flash_init(void)
 {
     uint8_t sreg;
@@ -255,8 +261,6 @@ static uint16_t dev_write_atmel_flash(const void *p, uint16_t count)
     return count;
 }
 
-/** @brief Compare buf to the current flash address, for count bytes
-*/
 uint8_t atmel_flash_compare(uint8_t * buf, uint16_t count)
 {
     uint16_t page, offset, num_bytes;
@@ -310,8 +314,7 @@ uint8_t atmel_flash_compare(uint8_t * buf, uint16_t count)
     return compare;
 }
 
-/** @brief Compute the crc from the current flash address, for count bytes
-*/
+
 uint16_t atmel_flash_crc(uint32_t count)
 {
     uint16_t page, offset, crc;

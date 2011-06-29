@@ -1,10 +1,17 @@
- #ifndef SOCKETFILEH
+/** @file socketfile.h
+	@brief The functional prototypes for socket file.
+
+	@author Qing Cao (cao@utk.edu)
+*/
+
+
+#ifndef SOCKETFILEH
 #define SOCKETFILEH
 #include "../kernel/threadkernel.h"
 #include "socketthread.h"
 #include "../kernel/threadtools.h"
 
-/**\defgroup filesystem LiteFS API
+/**
 This module implements various commands and functions for the LiteFS file system. It is a layered architecture that touches down to the flash space.
 \par Overview
 The file system API contains two parts, just like the radio and the serial port API. The first part is for user space applications to access the file system 
@@ -18,39 +25,48 @@ To use the user space API, note that the user application first use getFilePathA
 file system memory data structures, populate them, then call the corresponding file task. Note that right now, this user side is limited to read and write. More 
 complicated support such as copy will be added in the future versions if found needed. 
 */ 
-///\ingroup filesystem
 
-/** Open the file task  */
+
+/** @addtogroup socket */
+/** @{ */
+
+/** @brief Open the file task.
+	@return Void. 
+*/
 void openFileTask();
 
-///\ingroup filesystem
-
-/** Close the file task  */
+/** @brief Close the file task.
+	@return Void. 
+*/
 void closeFileTask();
 
-///\ingroup filesystem
-
-/** Read the file task  */
+/** @brief Read the file task.
+	@return Void. 
+*/
 void readFileTask();
 
-///\ingroup filesystem
-
-/** Write the file task  */
+/** @brief Write the file task.
+	@return Void.
+*/
 void writeFileTask();
 
-///\ingroup filesystem
-
-/** Seek the file task  */
+/** @brief Seek the file task.
+	@return Void.
+*/
 void seekFileTask();
 
 
-///\ingroup filesystem
-///Get the file path address
+/** @brief Get the file path address.
+	@return Void pointer. 
+*/
 void *getFilePathAddress();     //  __attribute__((naked)) ;
 
-///\ingroup filesystem
-///Get the file mode address
+
+/** @brief Get the file mode address.
+	@return Void pointer.
+*/
 void *getFileModeAddress();     //  __attribute__((naked));
 
+/** @} */
 
 #endif

@@ -1,9 +1,16 @@
+/** @file socketradiodata.h
+	@brief The functional prototype of the socket radio data.
+
+	@author Qing Cao (cao@utk.edu)
+*/
+
+
 #ifndef SOCKETRADIODATAH
 #define SOCKETRADIODATAH
 #include "../types/types.h"
 
 
-/** \addtogroup radio 
+/** \addtogroup socket 
 \par Overview
 To operate radio, LiteOS provides the following key functions to send, receive and manage radio hardware. Note that, however,
 LiteOS follows a split-model where the kernel development and user side applications follow different way to invoke radio functions. This section discusses how 
@@ -27,8 +34,8 @@ the function registerReceiverHandle_syscall() is provided to register the handle
 the corresponding handler that registers this packet.       
 */
 
-/** \ingroup radio 
-The radio information internal representation for user applications 
+/** @ingroup socket 
+@brief The radio information internal representation for user applications.
 */
 
 typedef struct
@@ -41,21 +48,23 @@ typedef struct
 } radiosockettype;
  
 extern radiosockettype radiosocketdata;
-/** \ingroup radio 
-Standard radio send interface
+
+
+/** @ingroup socket
+	@brief Standard radio send interface.
+	@param port The port number.
+	@param address The destination address.
+	@param msglength The total length of the message.
+	@param msg The message.
+	@return Void. 
 */
 void StandardSocketSend(uint16_t port, uint16_t address, uint8_t msglength,
                         uint8_t * msg);
 
-/** \ingroup radio
-Get radio data structure for user applications
+/** @ingroup socket
+	@brief send task
+	@return Void.
 */
-//void *getRadioInfo();           //__attribute__((naked)
-
-/** \ingroup radio 
-For sending out packet through radio by user application through system call, and the standardsend, which is by kernel
-*/
-//void SocketRadioSend();
 
 void send_task(); 
 

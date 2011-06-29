@@ -1,3 +1,10 @@
+/** @file socketradiodata.c
+	@brief The functional implementation of the socket radio data.
+
+	@author Qing Cao (cao@utk.edu)
+*/
+
+
 #include "socketradiodata.h"
 
 #include "../io/radio/amradio.h"

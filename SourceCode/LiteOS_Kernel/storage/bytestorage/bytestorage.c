@@ -1,3 +1,11 @@
+/** @file bytestorage.c
+       @brief The functional implementation of the byte storage layer. 
+
+	This file implements the byte storage layer, which is implemented on top of the eeprom. 
+	@author Qing Charles Cao (cao@utk.edu)
+*/
+
+
 #include "bytestorage.h"
 
 //-------------------------------------------------------------------------

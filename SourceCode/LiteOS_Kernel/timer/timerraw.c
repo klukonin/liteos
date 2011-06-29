@@ -1,3 +1,10 @@
+/** @file timerraw.c
+	@brief The implementation of the raw timer module on top of clock. 
+
+	@author Qing Charles Cao (cao@utk.edu)
+*/
+
+
 #include "timerraw.h"
 #include "clockraw.h"
 #include "../kernel/threadkernel.h"
@@ -16,6 +23,8 @@ int8_t TimerM_queue_tail;
 uint8_t TimerM_queue_size;
 uint8_t TimerM_queue[NUM_TIMERS];
 volatile uint16_t TimerM_interval_outstanding;
+
+
 struct TimerM_timer_s
 {
     uint8_t type;
@@ -99,11 +108,11 @@ inline result_t TimerM_Timer_start(uint8_t id, char type, uint32_t interval)
 }
 
 //-------------------------------------------------------------------------
-inline result_t TimerM_Clock_setRate(char arg_0xa369e18, char arg_0xa369f58)
+inline result_t TimerM_Clock_setRate(char interval, char scale)
 {
     unsigned char result;
 
-    result = HPLClock_Clock_setRate(arg_0xa369e18, arg_0xa369f58);
+    result = HPLClock_Clock_setRate(interval, scale);
     return result;
 }
 
@@ -314,7 +323,7 @@ inline uint8_t TimerM_Clock_getInterval(void)
 }
 
 //-------------------------------------------------------------------------
-inline void TimerM_Clock_setInterval(uint8_t arg_0xa362928)
+inline void TimerM_Clock_setInterval(uint8_t interval)
 {
-    HPLClock_Clock_setInterval(arg_0xa362928);
+    HPLClock_Clock_setInterval(interval);
 }

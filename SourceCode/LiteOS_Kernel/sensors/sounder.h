@@ -1,25 +1,34 @@
-/* The LiteOS Operating System Kernel */
-/*
-   The following is the license of LiteOS.
-   This file is part of LiteOS.
-   LiteOS is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
-   LiteOS is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-   You should have received a copy of the GNU General Public License
-   along with LiteOS.  If not, see <http://www.gnu.org/licenses/>.
- */
-/* Author Qi Mi (qm8e@virginia.edu) */
+/** @file sounder.h
+	@brief The functional prototypes for sounder driver.
+
+	@author Qi Mi (qm8e@virginia.edu)
+*/
+
 #ifndef SounderH
 #define SounderH
 
+
 #include "../types/types.h"
- /**/ 
+
+/** \defgroup sounder Sounder driver. 
+*/
+
+/** @{ */
+
+/** @brief Initiates the sounder. 
+	@return Void.
+*/
 void sounder_init();
+
+/** @brief Turn on the sounder. 
+	@return Void.
+*/
 void sounderOn();
+
+/** @brief Turn off the sounder.
+	@return Void.
+*/
 void sounderOff();
+
+/** @} */
 #endif

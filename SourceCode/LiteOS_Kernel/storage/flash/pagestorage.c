@@ -1,8 +1,20 @@
+/** @file pagestorage.c
+       @brief The functional implementation of the page storage. 
+
+	This file implements the generic layer for page storage. 
+	@author Qing Charles Cao (cao@utk.edu)
+*/
+
+
+
 #include "pagestorage.h"
 //Note this file connects implementations to the particular hardware.
 //In case other platform is used, new platform impelemtnations should be provided in this file 
 #ifdef PLATFORM_AVR
+
 #include "./atmelflash.h"
+
+
 //Get the size of each page
 uint16_t getpagesize()
 {

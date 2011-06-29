@@ -1,3 +1,10 @@
+/** @file socketeeprom.c
+	@brief The functional implementation for socket eeprom.
+
+	@author Qing Cao (cao@utk.edu)
+*/
+
+
 #include "socketeeprom.h"
 #include "../storage/bytestorage/bytestorage.h"
 

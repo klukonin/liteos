@@ -1,3 +1,10 @@
+/**  @file vectorflash.c
+ 	 @brief 	 This file implements the operations for vector flash. 
+	 
+	 @author Qing Charles Cao (cao@utk.edu)
+*/
+
+
 #include "vectorflash.h"
 #include "../bytestorage/bytestorage.h"
 #include "fsconfig.h"

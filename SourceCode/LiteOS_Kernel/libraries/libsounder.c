@@ -1,4 +1,10 @@
-/* added by Qi Mi (qm8e@virginia.edu) */
+/** @file libsounder.c
+       @brief The functional implementation for the sounder API. 
+
+       @author  Qi Mi (qm8e@virginia.edu) 
+       
+*/
+
 
 #include "libsounder.h"
 #include "liteoscommon.h"

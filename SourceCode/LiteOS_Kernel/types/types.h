@@ -1,66 +1,16 @@
-/* The LiteOS Operating System Kernel */
-/*
-   The following is the license of LiteOS.
-   This file is part of LiteOS.
-   Copyright Qing Cao, 2007-2008, University of Illinois , qcao2@uiuc.edu
-   LiteOS is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
-   LiteOS is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-   You should have received a copy of the GNU General Public License
-   along with LiteOS.  If not, see <http://www.gnu.org/licenses/>.
- */
-/*                                                                      tab:4
- * "Copyright (c) 2000-2003 The Regents of the University  of California.  
- * All rights reserved.
- *
- * Permission to use, copy, modify, and distribute this software and its
- * documentation for any purpose, without fee, and without written agreement is
- * hereby granted, provided that the above copyright notice, the following
- * two paragraphs and the author appear in all copies of this software.
- * 
- * IN NO EVENT SHALL THE UNIVERSITY OF CALIFORNIA BE LIABLE TO ANY PARTY FOR
- * DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT
- * OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF THE UNIVERSITY OF
- * CALIFORNIA HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * 
- * THE UNIVERSITY OF CALIFORNIA SPECIFICALLY DISCLAIMS ANY WARRANTIES,
- * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
- * AND FITNESS FOR A PARTICULAR PURPOSE.  THE SOFTWARE PROVIDED HEREUNDER IS
- * ON AN "AS IS" BASIS, AND THE UNIVERSITY OF CALIFORNIA HAS NO OBLIGATION TO
- * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS."
- *
- * Copyright (c) 2002-2003 Intel Corporation
- * All rights reserved.
- *
- * This file is distributed under the terms in the attached INTEL-LICENSE     
- * file. If you do not find these files, copies can be found by writing to
- * Intel Research Berkeley, 2150 Shattuck Avenue, Suite 1300, Berkeley, CA, 
- * 94704.  Attention:  Intel License Inquiry.
- */
-/*
- *
- * Authors:             Jason Hill, David Gay, Philip Levis, Nelson Lee
- * Date last modified:  6/25/02
- *
- */
+/** @file types.h
+	@brief The definitions of types.
 
-/**
-* @author Jason Hill
-* @author David Gay
-* @author Philip Levis
-* @author Nelson Lee
+	@author Qing Charles Cao (cao@utk.edu)
 */
+
 #ifndef TYPESH
 #define TYPESH
 
 /**\addtogroup type */
 
 /**@{*/
+
 typedef signed char int8_t;
 typedef unsigned char uint8_t;
 typedef int int16_t;
@@ -109,26 +59,62 @@ enum
 /** @} */
 
 /** \ingroup type */
+/** @brief Check if a character is a letter or not. 
+*/
+
 #define isLetter(c) (('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z'))
 
-/** \ingroup type */
+/** \ingroup type */
+/** @brief Check if a character is a digit or not. 
+*/
+
 #define isDigit(c) (('0' <= c && c <= '9'))
 
 /** \ingroup type */
+/** @brief Convert a hex value into real value.
+	@param hex The hex value. 
+	@return The value of the hex in integer. 
+*/
+
 uint16_t hex2value(uint8_t hex);
 
 /** \ingroup type */
+/** @brief Convert a dec value into ascii char.
+	@param value The decimal value. 
+	@return The ascii char. 
+*/
 char dec2asciichar(uint8_t value);
 
 /** \ingroup type */
+/** @brief Starting atomic operations. 
+	@return The current status register. 
+*/
 _atomic_t _atomic_start(void);
 
 /** \ingroup type */
+/** @brief Ending atomic operations. 
+	@return Void. 
+*/
 void _atomic_end(_atomic_t oldSreg);
 
+/** \defgroup memory Memory operations.
+This module provides basic memory operations.  
+*/
+
+/** @{ */
+
+/** @brief Find the top of a stack using an array. */
 #define STACK_TOP(stack)    \
 (&(((uint16_t *)stack)[(sizeof(stack) / sizeof(uint16_t)) - 1]))
 
+
+/** @brief Set memory sections. 
+	@param to The memory section start. 
+	@param val The target value. 
+	@param n The size of the setting operation. 
+	@return Void. 
+*/
 inline void *nmemset(void *to, int val, size_t n);
 
+/** @} */
 #endif

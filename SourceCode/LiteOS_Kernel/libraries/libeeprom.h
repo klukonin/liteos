@@ -1,35 +1,21 @@
-/*
-The following is the license of LiteOS.
+/** @file libeeprom.h
+       @brief The functional prototypes for the eeprom API. 
 
-This file is part of LiteOS.
-Copyright Qing Cao, 2007-2008, University of Illinois , qcao2@uiuc.edu
-
-LiteOS is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-LiteOS is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with LiteOS.  If not, see <http://www.gnu.org/licenses/>.
+       @author Qing Charles Cao (cao@utk.edu)
+       
 */
-
 
 #ifndef LIBEEPROMH
 #define LIBEEPROMH
 #include "liteoscommon.h"
 
-/** \defgroup eeprom EEPROM Handling API
+/** @addtogroup api 
+*/
 
-      This module implements reading/writing EEPROM of the motes.
 
-      Testing code is as follows. 
+/** @name This module implements reading/writing EEPROM of the motes.  Testing code is as follows. 
 
-      \code 
+      @code 
       #include "leds.h"
 			#include "libthread.h"
 			#include "adc.h"
@@ -62,35 +48,34 @@ along with LiteOS.  If not, see <http://www.gnu.org/licenses/>.
     	return 0; 
 	   }
 
-    \endcode	
+       @endcode	
 */
 
 
+/** @{ */
 
 
-/** \ingroup eeprom
 
-      Read part of EEPROM into local buffer
-      \param addr The start address of the EEPROM
-      \param nBytes The number of bytes read from EEPROM
-      \param buffer Pointer to the internal buffer to keep EEPROM data
-      \return NONE
-      \note The first 3200 bytes of EEPROM is occupied by the LiteFS file system
+/** @brief Read part of EEPROM into local buffer
+       @param addr The start address of the EEPROM
+       @param nBytes The number of bytes read from EEPROM
+       @param buffer Pointer to the internal buffer to keep EEPROM data
+       @return NONE
+       @note The first 3200 bytes of EEPROM is occupied by the LiteFS file system
 */
 void lib_read_from_eeprom(uint16_t addr, uint16_t nBytes, uint8_t *buffer);
 
 
-/** \ingroup eeprom
-
-     Write part of EEPROM using local buffer
-      \param addr The start address of the EEPROM
-      \param nBytes The number of bytes written to EEPROM
-      \param buffer Pointer to the internal buffer to retrive data to be written
-      \return NONE
-      \note The first 3200 bytes of EEPROM is occupied by the LiteFS file system
+/** @brief Write part of EEPROM using local buffer
+       @param addr The start address of the EEPROM
+       @param nBytes The number of bytes written to EEPROM
+       @param buffer Pointer to the internal buffer to retrive data to be written
+       @return NONE
+       @note The first 3200 bytes of EEPROM is occupied by the LiteFS file system
 */ 
 
 void lib_write_to_eeprom(uint16_t addr, uint16_t nBytes, uint8_t *buffer);
 
+/** @} */
 
 #endif

@@ -1,3 +1,10 @@
+/** @file generictimer.c
+	@brief The detailed implementation of the generic timer module. 
+
+	@author Qing Charles Cao (cao@utk.edu)
+*/
+
+
 #include "clockraw.h"
 #include "timerraw.h"
 #include "../kernel/scheduling.h"
@@ -15,7 +22,7 @@
 
 #include "../kernel/threadmodel.h"
 
-Radio_Msg datamsg; 
+/*Radio_Msg datamsg; 
 
 typedef struct {
 	uint16_t index;
@@ -26,7 +33,7 @@ uint16_t currentcounter;
 uint8_t currentpower;
 
 bool enabled; 
-
+*/
  
 //Implementing platform related modules 
 //This part assumes that LITE_MAX_THREAD is 8
@@ -41,9 +48,9 @@ inline result_t GenericTimerInit(void)
 {
     uint8_t i;
 
-    currentcounter = 0;
-   currentpower = 3; 
-   enabled = true;
+  //  currentcounter = 0;
+  // currentpower = 3; 
+  // enabled = true;
     for (i = 0; i < 8; i++)
     {
         timercallback[i] = NULL;
@@ -159,7 +166,7 @@ inline result_t GenericTimerFired(uint8_t id)
    case 15:
       
 	      
-	      {
+	    /*  {
 	      	
 	      	datapayload *p = (datapayload *)datamsg.data; 
 	      	p->index = currentcounter; 
@@ -178,7 +185,9 @@ inline result_t GenericTimerFired(uint8_t id)
 	      		 }
 	      	if (currentpower == 21)
 	      		 enabled = false; 
-	      }
+	      
+		  }
+		  */
        break; 
 	
     default:

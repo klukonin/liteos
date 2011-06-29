@@ -1,3 +1,11 @@
+/** @file fsstring.c
+	 @brief This file implements several functions for string manipulations in file system. 
+	 
+	 @author Qing Charles Cao (cao@utk.edu)
+*/
+
+
+
 #include "fsstring.h"
 #include "../../types/types.h"
 #include "../../types/string.h"

@@ -1,3 +1,11 @@
+/**  @file vectornode.c
+ 	 @brief 	 This file implements the operations for vector node. 
+	 
+	 @author Qing Charles Cao (cao@utk.edu)
+*/
+
+
+
 #include "vectornode.h"
 #include "fsconfig.h"
 #include "fsapi.h"

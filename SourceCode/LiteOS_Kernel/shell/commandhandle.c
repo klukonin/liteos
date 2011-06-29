@@ -1,3 +1,10 @@
+/** @file commandhandle.c
+	@brief The detailed implementation of the command handle. 
+
+	@author Qing Charles Cao (cao@utk.edu)
+*/
+
+
 #include "commandhandle.h"
 
 
@@ -111,7 +118,7 @@ void reply_debugging_print(uint8_t * receivebuffer)
     uint8_t chunkindex;
     uint8_t numOfChunks;
 
-    addr = (uint16_t) receivebuffer[3] * 256 + receivebuffer[4];
+    addr = ((uint16_t) receivebuffer[3]) * 256 + (receivebuffer[4]);
     size = (uint16_t) receivebuffer[5] * 256 + receivebuffer[6];
     numOfChunks = size / 24 + 1;
     for (chunkindex = 0; chunkindex < numOfChunks; chunkindex++)
@@ -251,7 +258,7 @@ static void thread_state_restore(uint8_t index, uint8_t * filename)
         (uint16_t) ((uint8_t *) thread_table[index].ramend -
                     (uint8_t *) thread_table[index].ramstart + 1);
     internal_ram_start = (uint8_t *) thread_table[index].ramstart;
-    fp = fopen2((char *)filename, "r");
+    fp = fsopen((char *)filename, "r");
     fread2(fp, &thread_table[index], threadsize);
     fseek2(fp, threadsize, 1);
     fread2(fp, internal_ram_start, threadramsize);
@@ -270,7 +277,7 @@ static void thread_state_snapshot(uint8_t index, uint8_t * filename)
         (uint16_t) ((uint8_t *) thread_table[index].ramend -
                     (uint8_t *) thread_table[index].ramstart + 1);
     internal_ram_start = (uint8_t *) thread_table[index].ramstart;
-    fp = fopen2((char *)filename, "w");
+    fp = fsopen((char *)filename, "w");
     fwrite2(fp, &thread_table[index], threadsize);
     fseek2(fp, threadsize, 1);
     fwrite2(fp, internal_ram_start, threadramsize);

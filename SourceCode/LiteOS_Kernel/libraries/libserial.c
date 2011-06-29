@@ -1,3 +1,12 @@
+/** @file libserial.c
+       @brief The functional implementation for the serial API. 
+
+       @author Qing Charles Cao (cao@utk.edu)
+       
+*/
+
+
+
 #include "libsystem.h"
 #include <avr/io.h>
 #include <avr/interrupt.h>

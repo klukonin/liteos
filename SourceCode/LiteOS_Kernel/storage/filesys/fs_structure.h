@@ -1,25 +1,47 @@
+/** @file fs_structure.h
+	 @brief This file declares several functions for file system structure. 
+	 
+	 @author Qing Charles Cao (cao@utk.edu)
+*/
+
+
 
 #ifndef FSSTRUCTUREH
 #define FSSTRUCTUREH
 
 #include "fsapi.h"
+
+/** @brief The fid table for handles. */
+
 extern fid fidtable[MAX_FILE_TABLE_SIZE];
 
 /** \addtogroup filesystem */
 
 /** @{ */
-///check whether the file system is present in the system
+/** @brief Check whether the file system is present in the system.
+	@return Whether the file system is valid.
+*/
 int checkFsValid();
 
-///init the fid table used to keep track of the nodes 
+/** @brief Init the fid table used to keep track of the nodes.
+	@return Void. 
+*/
 void initFidTable();
 
-///get a free fid 
+/** @brief Get free fid. 
+	@return Fid integer.
+*/
 int getFreeFid();
 
-/////release a fid
+/** @brief Release an fid. 
+	@param fid The fid number.
+	@return Void.
+*/
 void releaseFid(int fid);
 
+/** @brief Release all fids.
+	@return Void.
+*/
 void releaseAllFid();
 
 /**@}*/

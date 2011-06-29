@@ -1,3 +1,10 @@
+/** @file fsapi.c
+	@brief This file implements the functions for the global level file system API. 
+	
+	@author Qing Charles Cao (cao@utk.edu)
+*/
+
+
 #include "stdfsa.h"
 #include "fs_structure.h"
 #include "vectornode.h"
@@ -15,7 +22,7 @@
 extern fid fidtable[MAX_FILE_TABLE_SIZE];
 
 //-------------------------------------------------------------------------
-MYFILE *fopen2(char *pathname, char *mode)
+MYFILE *fsopen(char *pathname, char *mode)
 {
     int retaddr, state;
     int openmode;

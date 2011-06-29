@@ -1,6 +1,16 @@
+/** @file ioeeprom.c
+       @brief The functional implementation of the eeprom byte operations. 
+
+	This file implements the eeprom layer for byte wise operations. 
+	@author Qing Charles Cao (cao@utk.edu)
+*/
+
+
 #include "ioeeprom.h"
 #include "../../hardware/avrhardware.h"
 #include <avr/eeprom.h>
+
+
 //-------------------------------------------------------------------------
 void eeprom_readBytes(uint16_t addr, int nBytes, void *buffer)
 {

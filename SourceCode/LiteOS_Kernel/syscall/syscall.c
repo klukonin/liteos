@@ -1,3 +1,8 @@
+/** @file syscall.c
+	@brief syscall definitions.
+	@author Qing Charles Cao (cao@utk.edu)
+*/
+
 #include "syscall.h"
 #include "../sensors/leds.h"
 #include "../kernel/threadkernel.h"
@@ -29,7 +34,6 @@
 
 
 
-/**\defgroup syscall System calls*/
  
 
 

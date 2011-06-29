@@ -1,16 +1,20 @@
- 
- /*! \file *********************************************************************
- *
- * \brief This file implements the functions for the global level file system API. 
- *
- */
+/** @file fsapi.h
+	 @brief This file declares the functions for the global level file system API. 
+	 
+	 @author Qing Charles Cao (cao@utk.edu)
+*/
+
  
 #ifndef FSAPIH
 #define FSAPIH
 #include "../../types/types.h"
 
 
-/**\addtogroup filesystem */
+/**@defgroup filesystem File system module. */
+
+/** @{ */
+
+/** @brief File handle. */
 
 typedef struct
 {
@@ -23,72 +27,136 @@ typedef struct
 } fid, *fidptr, MYFILE;
 
 
-/** This function opens a file according to a pathname and the mode. The file opened must be a file, not program, device driver and directory 
+/** @brief Open a file. 
+	This function opens a file according to a pathname and the mode. The file opened must be a file, not program, device driver and directory.
+	@param pathname The path of the file. 
+	@param mode Opening mode of the file. 
+	@return The file handle. 
 */
-MYFILE *fopen2(char *pathname, char *mode);
+MYFILE *fsopen(char *pathname, char *mode);
 
-/**This function closes the file  */
+/** @brief Close a file.
+	@param fp The file handle.
+	@return Void. 
+*/
 void fclose2(MYFILE * fp);
 
-/**This function changes teh current location of fpos parameter */
+/** @brief This function changes teh current location of fpos parameter.
+	@param fp The file handle. 
+	@param offset The offset.
+	@param position The position. 
+	@return 0 or 1 as integer.
+*/
+
 int fseek2(MYFILE * fp, int32_t offset, int position);
 
-/** This function checks if the file specificed by pathname exists or not 
-@param pathname The pathname of the file.
-@return -1 if not exist, or the block id of the file if it does exist 
+/** @brief This function checks if the file specificed by pathname exists or not.
+	@param pathname The pathname of the file.
+	@return -1 if not exist, or the block id of the file if it does exist.
 */
 int fexist2(char *pathname);
 
-/** This function creates a directory as specified by the pathname parameter 
+/** @brief This function creates a directory as specified by the pathname parameter.
+	@param pathname The pathname of the directory.
+	@return Success or not. 
 */
 int fcreatedir2(char *pathname);
 
-/** Right now this is implemented in a simple way. Bsaically it checks the pathname and see if the file is there. If it is, 
-then it deletes the block of the file.  
+/** @brief Deletes a file.
+	Right now this is implemented in a simple way. Bsaically it checks the pathname and see if the file is there. If it is, then it deletes the block of the file.  
+	@param pathname The pathname to the directory or the file. 
+	@return Success or not. 
 */
 int fdelete2(char *pathname);
 
-/** Read file into buffer for nBytes */
+/** @brief Read a number of bytes into the buffer. 
+	@param fp The file handle. 
+	@param buffer The buffer.
+	@param nBytes The number of bytes.
+	@return Success or not. 
+*/
 int fread2(MYFILE * fp, void *buffer, int nBytes);
 
-/**Write file into buffer for nBytes */
+/** @brief Write a number of bytes into the buffer. 
+	@param fp The file handle. 
+	@param buffer The buffer.
+	@param nBytes The number of bytes.
+	@return Success or not. 
+*/
+
 int fwrite2(MYFILE * fp, void *buffer, int nBytes);
 
-/** locate the file and change its parent name info and should be ok 
-to be implemented: only changes the parent information is necessary 
+/** @brief Move a file.
+	@param source The source file.
+	@param target The target file.
+	@return Success or not. 
 */
 int fmove(char *source, char *target);
 
-/** to be implemented. Basically what this does is to generate a new file,copy the file information, and allocate new spaces and copy blocks   it uses an interface called copyflash(sourcepage, targetpage)
-*    Implemented only to support files and the copy operation 
+/** @brief Copy files.
+	@param source The source file.
+	@param target target The target file.
+	@return Success or not. 
 */
 int fcopy(char *source, char *target);
 
-/**print all information for debugging */
+/** @brief Print all file system information.
+	@return Void. 
+*/
+
 void fsprintall();
 
-/**change dir based on directory information */
+/**	@brief Change dir based on directory information.
+	@param path The path information.
+	@return Void. 
+*/
 void fchangedir(char *path);
 
-/**get the current directory location */
+/**	@brief Get the current directory information.
+	@param buffer The buffer of the target.
+	@param size The size of the buffer.
+	@return Void. 
+*/
 void fcurrentdir(char *buffer, int size);
 
-/**get the addr location file info used for the ls command*/
+/** @brief Get the addr location file info used for the ls command.
+	@param buffer The buffer information.
+	@param addr The address.
+	@return Void.
+*/
 void finfonode(char *buffer, int addr);
 
-/**search for file information  */
+/** @brief Search for file information.
+	@param addrlist The searched information.
+	@param size The total size.
+	@param string The string information.
+	@return Void. 
+*/
 void fsearch(uint8_t * addrlist, uint8_t * size, char *string);
 
-/** Get node file information */
+/** @brief Get node file information.
+	@param buffer The buffer.
+	@param size The size of the buffer.
+	@param addr The address information.
+	@return Void. 
+*/
 void fdirnode(char *buffer, int size, int addr);
 
-/**Format the whole file system */
+/** @brief Format the whole file system.
+	@return Void. 
+*/
 void formatSystem();
 
 //-------------------------------------------------------------------------
+/** @brief Return the allocated EEPROM. 
+	@return The allocated blocks in EEPROM.
+*/
 int fcheckFSAllocation();
 
 //-------------------------------------------------------------------------
+/** @brief Return the allocated storage.
+	@return The allocated blocks in storage. 
+*/
 int fcheckStorageAllocation();
 
 /** @} */

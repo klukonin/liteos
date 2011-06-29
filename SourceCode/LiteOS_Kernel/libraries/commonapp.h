@@ -1,3 +1,8 @@
+/** @file commonapp.h
+	@brief File linkage to the application code. 
+	@author Qing Charles Cao  (cao@utk.edu)
+*/
+
 #ifndef COMMONAPPH
 #define COMMONAPPH
   
@@ -33,6 +38,10 @@
 //extern uint8_t countbuffer[150];
 //void count(); 
 
-  extern uint8_t printserialbuffer[250]; 
-  void printserialmain();
+  //extern uint8_t printserialbuffer[250]; 
+  //void printserialmain();
+  
+  //extern uint8_t blinkbuffer[200]; 
+  //void blink();
+  
 #endif

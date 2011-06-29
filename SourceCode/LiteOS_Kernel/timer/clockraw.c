@@ -1,3 +1,9 @@
+/** @file clockraw.c
+	@brief The detailed implementation of clock module. 
+
+	@author Qing Charles Cao (cao@utk.edu)
+*/
+
 
 #include "clockraw.h"
 #include "timerraw.h"
@@ -146,14 +152,7 @@ inline result_t HPLClock_Clock_setRate(char interval, char scale)
             outp(0, TCNT0);
             outp(interval, OCR0);
             sbi(TIMSK, OCIE0);
-            /* * (volatile unsigned char *)(unsigned int )& * (volatile unsigned char *)(0x37 + 0x20) &= ~(1 << 0);
-             * (volatile unsigned char *)(unsigned int )& * (volatile unsigned char *)(0x37 + 0x20) &= ~(1 << 1);
-             * (volatile unsigned char *)(unsigned int )& * (volatile unsigned char *)(0x30 + 0x20) |= 1 << 3;
-             * (volatile unsigned char *)(unsigned int )& * (volatile unsigned char *)(0x33 + 0x20) = scale;
-             * (volatile unsigned char *)(unsigned int )& * (volatile unsigned char *)(0x32 + 0x20) = 0;
-             * (volatile unsigned char *)(unsigned int )& * (volatile unsigned char *)(0x31 + 0x20) = interval;
-             * (volatile unsigned char *)(unsigned int )& * (volatile unsigned char *)(0x37 + 0x20) |= 1 << 1;
-             */
+          
         }
         _atomic_end(_atomic);
     }
