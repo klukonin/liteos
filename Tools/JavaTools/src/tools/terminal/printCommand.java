@@ -64,6 +64,8 @@ public class printCommand {
 		int addrlow = addr % 256;
 		int sizehigh = sizeofvar / 256;
 		int sizelow = sizeofvar % 256;
+		
+		System.out.println("The addr is " + addr + "\n"); 
 
 		reply[0] = (byte) 7;
 		reply[1] = (byte) 91;

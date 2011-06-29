@@ -73,8 +73,8 @@ public class genericCommand {
 								"The directory format is error. Must starting with /. For example, /c/Source/App");
 			dirname = cpCommand.stdFileName(dirname);
 
-			File a = new File(dirname + "\\build\\extract.pl");
-			File b = new File(dirname + "\\build\\App.elf");
+			File a = new File(dirname + "\\default\\extract.pl");
+			File b = new File(dirname + "\\default\\LiteOS.elf");
 			if ((a.exists() == false) || (b.exists() == false)) {
 				a = new File(dirname + "\\bin\\micaz\\extract.pl");
 				b = new File(dirname + "\\bin\\micaz\\LiteOS.elf");
