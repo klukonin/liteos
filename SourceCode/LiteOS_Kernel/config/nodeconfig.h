@@ -1,55 +1,67 @@
+/** @file nodeconfig.h
+	@brief The declarations of node configurations. 
+
+	@author Qing Charles Cao (cao@utk.edu)
+*/
+
+
 #ifndef NODECONFIGH
 #define NODECONFIGH
 #include "../types/types.h"
 
 
-/** \ingroup nodeconfig 
-Node id, assumed to be 16-bit
-*/
-extern uint16_t CURRENT_NODE_ID;
+/** \defgroup  nodeconfig Node configuration module. 
 
-/** \ingroup nodeconfig 
-The network name that this node belongs to 
 */
+
+/** @{ */
+
+/** @brief The current node id. 
+*/
+extern volatile uint16_t CURRENT_NODE_ID;
+
+/** 
+@brief The network name that this node belongs to.
+*/
+
 extern char networkid[17];
 
-/** \ingroup nodeconfig 
-The file name that this node belongs to 
+/**  
+@brief The file name that this node belongs to.
 */
+
 extern char filenameid[17];
 
 
-/** \ingroup nodeconfig 
-Write the node id into byte storage
+/**
+@brief Write the node id into byte storage.
+@param nodeid The nodeid to be written into storage. 
+@return Void. 
 */
 void node_writenodeid(uint16_t nodeid);
 
-/** \ingroup nodeconfig 
-Read the node id from byte storage
+/** 
+@brief Read the node id from byte storage.
+@return The node id read from the storage. 
 */
 uint16_t node_readnodeid();
 
+/**
+ @brief Read node name. 
+ */
 char *node_readnodestring();
 
-/** \ingroup nodeconfig 
-Set the current status of this node 
-*/
-void node_setinitstatus(uint8_t status);
 
-/** \ingroup nodeconfig 
-Read the node status. 
-*/
-uint8_t node_readinitstatus();
-
-/** \ingroup nodeconfig 
-Write the channel of the current node into byte storage
+/** @brief Write the channel of the current node into byte storage.
+	@param channel The channel to be written.
+	@return Void. 
 */
 void node_setradiochannel(uint8_t channel);
 
-/** \ingroup nodeconfig 
-Get the node channel from byte storage 
+/** @brief Get the node channel from byte storage.
+	@return The channel number. 
 */
 uint8_t node_getradiochannel();
 
-
+/** @} */
 #endif
