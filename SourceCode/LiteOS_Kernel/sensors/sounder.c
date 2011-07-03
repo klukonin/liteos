@@ -26,7 +26,7 @@ void sounderOn()
     {
         _atomic_t _atomic = _atomic_start();
 
-        sounder_init();
+         
 		LITE_MAKE_PW2_OUTPUT();
         LITE_SET_PW2_PIN();
         _atomic_end(_atomic);
@@ -40,7 +40,7 @@ void sounderOff()
     {
         _atomic_t _atomic = _atomic_start();
 
-        sounder_init();
+        
 		LITE_MAKE_PW2_OUTPUT();
         LITE_CLR_PW2_PIN();
         _atomic_end(_atomic);

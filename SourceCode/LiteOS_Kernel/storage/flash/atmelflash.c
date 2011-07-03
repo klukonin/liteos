@@ -16,7 +16,7 @@ static uint32_t atmel_flash_addr;
 static uint8_t cur_buff;
 static uint16_t cur_page;
 static uint8_t dirty;           // This will never be set in unbuffered mode
-static uint8_t initdone;
+
 
 #define ATMEL_FLASH_PORT PORTD
 #define ATMEL_FLASH_DIRE DDRD
@@ -88,7 +88,7 @@ void atmel_flash_init(void)
     cur_buff = ATMEL_FLASH_BUFFER_1;
     cur_page = ATMEL_FLASH_MAX_PAGES;
     dirty = 0;
-    initdone = 1;
+    
     _delay_ms(20);
 }
 
@@ -97,10 +97,6 @@ void readFlash(int pagenum, uint8_t offset, void *buffer, int NumOfBytes)
 {
     uint16_t count;
 
-    if (initdone == 0)
-    {
-        atmel_flash_init();
-    }
     atmel_flash_addr = pagenum * 264 + offset;
     if (offset + NumOfBytes > 256)
     {
@@ -134,10 +130,6 @@ void writeFlash(int pagenum, uint8_t offset, void *buffer, int NumOfBytes)
 {
     uint16_t count;
 
-    if (initdone == 0)
-    {
-        atmel_flash_init();
-    }
     atmel_flash_addr = pagenum * 264 + offset;
     if (offset + NumOfBytes > 256)
     {

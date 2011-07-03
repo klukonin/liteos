@@ -28,10 +28,10 @@
 #define NODECHANNELOFFSET  3156
 
 /** EEPROM vector contains 12 bytes. */
-#define EEPROMVECTORSTART 3138
+#define EEPROMVECTORSTART 3168
 
 /** flash vector contains 32 bytes. */
-#define FLASHVECTORSTART  3150
+#define FLASHVECTORSTART  3180
 
 /** @} */
 

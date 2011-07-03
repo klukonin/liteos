@@ -14,9 +14,14 @@
 
  
 
+/** @brief Currently located page. */
  
 static uint16_t pageindex;
+
+/** @brief BOOTLOADERSIZE must be set to 512 for this to work correctly. */
 static uint8_t pagebuffer[BOOTLOADERSIZE];
+
+/** @brief The index inside a page.  */
 static uint16_t currentpageindex;
 
 //only six bytes are used here. 
@@ -168,7 +173,8 @@ void __attribute__ ((section(".bootloader"))) boot_insertBreakPoint(uint16_t
     }
     reprogram(pagebuffer, pagenum);
 }
-
+
+
 //insert a breakpoint by removing 8 bytes at the location specified by the pagenum and offset 
 //insert a breakpoint by removing 8 bytes at the location specified by the pagenum and offset 
 void __attribute__ ((section(".bootloader"))) boot_insertTracePoint(uint16_t
@@ -254,7 +260,8 @@ void __attribute__ ((section(".bootloader"))) boot_insertTracePoint(uint16_t
     }
     reprogram(pagebuffer, pagenum + 1);
 }
-
+
+
 
 //insert a breakpoint by removing 8 bytes at the location specified by the pagenum and offset 
 void __attribute__ ((section(".bootloader")))

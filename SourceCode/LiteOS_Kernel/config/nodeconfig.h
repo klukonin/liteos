@@ -54,12 +54,14 @@ char *node_readnodestring();
 
 /** @brief Write the channel of the current node into byte storage.
 	@param channel The channel to be written.
+	@todo Remove this or combine with RF230?
 	@return Void. 
 */
 void node_setradiochannel(uint8_t channel);
 
 /** @brief Get the node channel from byte storage.
 	@return The channel number. 
+	@todo Remove this or combine with RF230?
 */
 uint8_t node_getradiochannel();
 

@@ -58,7 +58,7 @@ int reprogram(unsigned char *buffer, unsigned int codepage)
 int reprogramall(unsigned char *program)
     __attribute__ ((section(".bootloader")));
 
-/** @brief Reprogram using the pageno.
+/** @brief Set the current page index to be pageno. 
  	\param pageno The page number.
 	\return Void.
 */

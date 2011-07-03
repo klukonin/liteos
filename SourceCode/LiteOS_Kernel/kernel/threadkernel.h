@@ -13,6 +13,8 @@
 
 /** @addtogroup scheduling */
 
+/** @{ */
+
 /** @brief Common thread table. */
 extern thread thread_table[LITE_MAX_THREADS];
 

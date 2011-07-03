@@ -70,7 +70,7 @@ inline result_t hplcc2420fifom_HPLCC2420FIFO_writeTXFIFO(uint8_t len, uint8_t *
 {
     uint8_t i = 0;
     uint8_t status;
-    bool returnFail = FALSE;
+    bool returnFail =  FALSE;
 
     {
         _atomic_t _atomic = _atomic_start();

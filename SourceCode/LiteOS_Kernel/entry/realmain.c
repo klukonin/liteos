@@ -70,7 +70,9 @@ int main()
     
     //inits printing 
     initUSART();
-    
+
+	//Leds initing
+	Leds_Leds(); 
     
      Leds_redToggle();
      Leds_greenToggle();
@@ -84,8 +86,10 @@ int main()
 	 
 	 filenameid[4] = (char)(nodeid/10 + 0x30); 
 	 filenameid[5] = (char)(nodeid%10 + 0x30); 
-	   
-     
+
+  	 atmel_flash_init();
+
+	 sounder_init();      
 
 	 #ifdef FORMATFILESYSTEM
      formatSystem();
@@ -117,12 +121,7 @@ int main()
     
     InitShell();
 
-	//for logging only 
-
-	#ifdef LOGGINGTRACE
-    initTrace();     
-    #endif
-    
+	    
     #ifdef RADIO_CC2420
     cc2420controlm_CC2420Control_TuneChannel(21); 
     cc2420controlm_CC2420Control_TunePower(31);
@@ -143,15 +142,11 @@ int main()
     printfstrln();
 	#endif    
 
-    #ifdef THREADSEQUENCELOGGING
-    eeprom_chunk_init();
-    #endif
-
    create_thread(ShellThread, (uint16_t *) shellbuffer,
                   STACK_TOP(shellbuffer), 0, 15, "sysshell", 0, 0);
   
    create_thread(blink, (uint16_t *) blinkbuffer,
-                  STACK_TOP(blinkbuffer), 0, 15, "blink", 0, 0);
+                 STACK_TOP(blinkbuffer), 0, 15, "test", 0, 0);
    //sleeping configureation 
    #ifdef ENERGYSAVINGMODE
    sbi(MCUCR, SM0);
@@ -160,12 +155,7 @@ int main()
    sbi(MCUCR, SE);
    #endif
    
-   #ifdef ENERGY_SHARE_SCHEDULING
-   ecb_init();     
-   GenericTimerStart(12, TIMER_REPEAT, 1000); 
-   #endif 
-
-   _avr_enable_interrupt();
+     _avr_enable_interrupt();
 
     while (1)
     {
