@@ -149,8 +149,8 @@ int main()
    create_thread(ShellThread, (uint16_t *) shellbuffer,
                   STACK_TOP(shellbuffer), 0, 15, "sysshell", 0, 0);
   
-   create_thread(testradio, (uint16_t *) testradiobuffer,
-                 STACK_TOP(testradiobuffer), 0, 15, "test", 0, 0);
+   create_thread(channelhop, (uint16_t *) channelhopbuffer,
+                 STACK_TOP(channelhopbuffer), 0, 15, "test", 0, 0);
 				 
 				 
 

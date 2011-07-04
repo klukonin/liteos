@@ -41,7 +41,7 @@
   //extern uint8_t printserialbuffer[250]; 
   //void printserialmain();
   
-  extern uint8_t testradiobuffer[300]; 
-  void testradio();
+  extern uint8_t channelhopbuffer[250]; 
+  void channelhop();
   
 #endif
