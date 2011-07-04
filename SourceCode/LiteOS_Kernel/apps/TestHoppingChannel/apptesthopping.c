@@ -1,3 +1,10 @@
+/** @file apptesthopping.c
+	@brief The functional implementation of testing channel hopping. 
+
+	@author Qing Cao (cao@utk.edu)
+*/
+
+
 #include "../../libraries/libleds.h"
 #include "../../libraries/libthread.h"
 #include "../../libraries/libsystem.h"

@@ -1,3 +1,10 @@
+/** @file apptestserial.c
+	@brief The functional implementation of testing serial port. 
+
+	@author Qing Cao (cao@utk.edu)
+*/
+
+
 #include "../../libraries/libleds.h"
 #include "../../libraries/libthread.h"
 #include "../../libraries/libsystem.h"

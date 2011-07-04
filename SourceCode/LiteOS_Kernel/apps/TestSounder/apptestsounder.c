@@ -1,3 +1,10 @@
+/** @file apptestsounder.c
+	@brief The functional implementation of sounder. 
+
+	@author Qing Cao (cao@utk.edu)
+*/
+
+
 #include "../../libraries/libleds.h"
 #include "../../libraries/libthread.h"
 #include "../../libraries/libsystem.h"
