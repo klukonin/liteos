@@ -200,13 +200,14 @@ void lib_post_new_task(void (*tp) (void), uint16_t priority)
  
 
 
-
+/*
 void syscall_post_thread_task_no_logging()
 {
 	void (*postthreadfp)(void) = (void (*)(void))POST_NEW_THREAD_TASK_NOLOG; 
   postthreadfp();  
 	
 }
+*/
 
 
 

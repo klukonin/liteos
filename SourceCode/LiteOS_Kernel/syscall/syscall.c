@@ -29,6 +29,7 @@
 #include "socketfile.h"
 #include "socketadc.h"
 #include "socketeeprom.h"
+#include "../utilities/eventlogger.h"
 #include "socketradiocontrol.h"
 
 
@@ -278,7 +279,7 @@ void getThreadTableStart_Logger()
     _atomic_t _atomic = _atomic_start();
     currentindex = getThreadIndexAddress();
     _atomic_end(_atomic);
-    addTrace(TRACE_SYSCALL_GETTHREADTABLESTART, currentindex);
+    addTrace(TRACE_SYSCALL_GETTHREADCONTROLBLOCK, currentindex);
     getThreadTableStart_avr();
 }
 #endif 
@@ -363,9 +364,9 @@ void postThreadTask()
 
 
 
-/**\ingroup syscall 
+/*\ingroup syscall 
 Trigger the thread scheduling task. 
-*/
+
 void postThreadTaskNoLog() __attribute__ ((section(".systemcall.2")))
     __attribute__ ((naked));
 void postThreadTaskNoLog()
@@ -378,7 +379,7 @@ void postThreadTaskNoLog()
 }
  
 
-/*
+
 
 
 void break_point_function_Logger()
@@ -621,7 +622,7 @@ void getRadioSendingBuffer_Logger()
 
     currentindex = getThreadIndexAddress();
     _atomic_end(_atomic);
-    addTrace(TRACE_SYSCALL_GETCURRENTRADIOINFOADDRESS, currentindex);
+    addTrace(TRACE_SYSCALL_GETRADIOSENDBUFFER, currentindex);
     getRadioSendingBuffer_avr();
 }
 #endif 
@@ -635,6 +636,7 @@ void getRadioSendingBuffer()
 {
 #ifdef TRACE_ENABLE_EVENT
     getRadioSendingBuffer_Logger();
+	//getRadioSendingBuffer_avr();
 #else
     getRadioSendingBuffer_avr();
 #endif
@@ -653,7 +655,7 @@ void SocketRadioSend_Logger()
 
     currentindex = getThreadIndexAddress();
     _atomic_end(_atomic);
-    addTrace(TRACE_SYSCALL_GETRADIOSENDFUNCTION, currentindex);
+    addTrace(TRACE_SYSCALL_INVOKERADIOSENDFUNCTION, currentindex);
     SocketRadioSend();
 }
 #endif 
@@ -667,6 +669,7 @@ void invokeSocketRadioSend()
 {
 #ifdef TRACE_ENABLE_EVENT
     SocketRadioSend_Logger();
+	//SocketRadioSend();
 #else
     SocketRadioSend();
 #endif
@@ -698,7 +701,7 @@ void getReceiverBuffer_Logger()
 
     currentindex = getThreadIndexAddress();
     _atomic_end(_atomic);
-    addTrace(TRACE_SYSCALL_GETCURRENTRADIORECEIVERHANDLEADDRESS, currentindex);
+    addTrace(TRACE_SYSCALL_GETRADIORECEIVEBUFFER, currentindex);
     getReceiverBuffer_avr();
 }
 #endif 
@@ -731,7 +734,7 @@ void syscall_registerEvent_Logger()
 
     currentindex = getThreadIndexAddress();
     _atomic_end(_atomic);
-    addTrace(TRACE_SYSCALL_SETCURRENTRADIOHANDLE, currentindex);
+    addTrace(TRACE_SYSCALL_REGISTERRECEIVERHANDLE, currentindex);
     registerReceiverHandle_syscall();
 }
 #endif 
@@ -1657,6 +1660,7 @@ void seekFileSysCall()
     asm volatile ("ret"::);
 }
 
+
 //Defintition group 10
 
 //-------------------------------------------------------------------------
@@ -1680,7 +1684,7 @@ void getCPUCounterSyscall_Logger()
     _atomic_t _atomic = _atomic_start();
     currentindex = getThreadIndexAddress();
     _atomic_end(_atomic);
-    addTrace(TRACE_SYSCALL_GETTHREADTABLESTART, currentindex);
+    addTrace(TRACE_SYSCALL_GETCPUCOUNTSYSCALL, currentindex);
     getCPUCounterSyscall_avr();
 }
 #endif 
@@ -1702,47 +1706,3 @@ void getCPUCounterSyscall()
 
 
 
-//Definition group 11
-#ifdef TRACE_ENABLE_EVENT
-void getLoggerAddress_avr()
-{
-    void *addr;
-
-    addr = getTracingBlockAddress();
-    asm volatile ("mov r20, %A0" "\n\t" "mov r21, %B0" "\n\t"::"r" (addr));
-}
-
-
-
-void getLoggerBlockAddress() __attribute__ ((section(".systemcall.11")))
-    __attribute__ ((naked));
-void getLoggerBlockAddress()
-{
-
-    getLoggerAddress_avr();
-    asm volatile ("nop"::);
-    asm volatile ("ret"::);
-}
-
-
-void enableLogger() __attribute__ ((section(".systemcall.11")))
-    __attribute__ ((naked));
-void enableLogger()
-{
-
-    enabletracingfunction();
-    asm volatile ("nop"::);
-    asm volatile ("ret"::);
-}
-
-
-void disableLogger() __attribute__ ((section(".systemcall.11")))
-    __attribute__ ((naked));
-void disableLogger()
-{
-    disabletracingfunction();
-    asm volatile ("nop"::);
-    asm volatile ("ret"::);
-}
-
-#endif

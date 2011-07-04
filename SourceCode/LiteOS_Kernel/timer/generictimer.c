@@ -114,7 +114,7 @@ inline result_t GenericTimerFired(uint8_t id)
         break;
     case 1:
         ServiceTimerFired(1);
-        break;
+         break;
     case 2:
         ServiceTimerFired(2);
         break;
@@ -163,32 +163,15 @@ inline result_t GenericTimerFired(uint8_t id)
         #endif 
 	   break;  
        
-   case 15:
-      
-	      
-	    /*  {
-	      	
-	      	datapayload *p = (datapayload *)datamsg.data; 
-	      	p->index = currentcounter; 
-	      	p->power = currentpower;
-            cc2420controlm_CC2420Control_TunePower(currentpower); 
-
-	      	if (enabled == true)
-	      	{	        
-	        Leds_redToggle();
-	        AMStandard_SendMsg_send(16, 0xFFFF, 10, &datamsg);
-	        }
-	      	currentcounter++;
-	      	if (currentcounter == 500)
-	      		 { currentcounter = 0;
-	      		 	 currentpower+=3;
-	      		 }
-	      	if (currentpower == 21)
-	      		 enabled = false; 
-	      
-		  }
-		  */
-       break; 
+   
+	
+	case 14:
+		GenericInitTimerFired();
+		break;
+	
+	case 15:
+		reportTrace();
+		break; 	
 	
     default:
         timercallbackinvoke(id);

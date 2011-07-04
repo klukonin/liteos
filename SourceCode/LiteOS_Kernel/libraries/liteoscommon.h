@@ -44,7 +44,6 @@
 
 
 
-#define POST_NEW_THREAD_TASK_NOLOG 										0xEA94
 
 //Defintion group 3 
 
@@ -188,22 +187,7 @@
 // 
 //	
 
-//Definition group 11
 
-////getInternalTracingBlockAddressSyscall() function is called
-
-#ifdef TRACE_ENABLE_EVENT
-
-#define GET_LOGGER_BLOCK_ADDRESS  							    0xEF00
-//
-////enableTracingSyscall
-#define ENABLE_TRACING_SYSCALL									0xEF04
-//
-////disableTracingSyscall
-#define DISABLE_TRACING_SYSCALL									0xEF08
-// 
-
-#endif 
 
 
 

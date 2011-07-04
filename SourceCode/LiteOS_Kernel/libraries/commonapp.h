@@ -41,7 +41,7 @@
   //extern uint8_t printserialbuffer[250]; 
   //void printserialmain();
   
-  extern uint8_t blinkbuffer[200]; 
-  void blink();
+  extern uint8_t testradiobuffer[300]; 
+  void testradio();
   
 #endif

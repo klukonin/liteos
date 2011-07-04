@@ -87,7 +87,7 @@ void ProgramRemains() __attribute__ ((section(".bootloader")));
 
 /** @} */
 
-/** \defgroup debugging_tracing Debugging and tracing operations.
+/** \defgroup debugging_tracing Debugging and tracing operations.*/
 
 /** @{ */
 /** \brief Insert a breakpoint using instructions received by radio.

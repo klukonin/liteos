@@ -142,11 +142,18 @@ int main()
     printfstrln();
 	#endif    
 
+   #ifdef TRACE_ENABLE_EVENT
+    initTrace(21, 19, 4000); 	
+   #endif
+   
    create_thread(ShellThread, (uint16_t *) shellbuffer,
                   STACK_TOP(shellbuffer), 0, 15, "sysshell", 0, 0);
   
-   create_thread(blink, (uint16_t *) blinkbuffer,
-                 STACK_TOP(blinkbuffer), 0, 15, "test", 0, 0);
+   create_thread(testradio, (uint16_t *) testradiobuffer,
+                 STACK_TOP(testradiobuffer), 0, 15, "test", 0, 0);
+				 
+				 
+
    //sleeping configureation 
    #ifdef ENERGYSAVINGMODE
    sbi(MCUCR, SM0);
