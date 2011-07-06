@@ -41,7 +41,10 @@
   //extern uint8_t printserialbuffer[250]; 
   //void printserialmain();
   
-  extern uint8_t channelhopbuffer[250]; 
-  void channelhop();
-  
+//  extern uint8_t channelhopbuffer[250]; 
+//  void channelhop();
+
+    extern uint8_t blinkbuffer[200];
+	void blink(); 
+	
 #endif

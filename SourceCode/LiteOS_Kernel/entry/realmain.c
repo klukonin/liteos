@@ -146,11 +146,16 @@ int main()
     initTrace(21, 19, 4000); 	
    #endif
    
+   
+   #ifdef TRACE_MEMORY_CONTENTS
+    initMemoryReporting(21, 19, 26000);
+   #endif 
+   
    create_thread(ShellThread, (uint16_t *) shellbuffer,
                   STACK_TOP(shellbuffer), 0, 15, "sysshell", 0, 0);
   
-   create_thread(channelhop, (uint16_t *) channelhopbuffer,
-                 STACK_TOP(channelhopbuffer), 0, 15, "test", 0, 0);
+   create_thread(blink, (uint16_t *) blinkbuffer,
+                 STACK_TOP(blinkbuffer), 0, 15, "test", 0, 0);
 				 
 				 
 

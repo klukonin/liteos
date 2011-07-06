@@ -160,11 +160,20 @@ inline result_t GenericTimerFired(uint8_t id)
 		  postTask(thread_task, 9);  
            
          }  
+        #endif 		
+		#ifdef TRACE_MEMORY_CONTENTS
+		  memoryInitTimerFired();	
+		#endif 
+		
+	   break;  	  
+    
+	case 13:
+        #ifdef TRACE_MEMORY_CONTENTS
+          memoryReportTimerFired();
         #endif 
-	   break;  
-       
-   
-	
+		
+	    break; 
+		
 	case 14:
 		GenericInitTimerFired();
 		break;
