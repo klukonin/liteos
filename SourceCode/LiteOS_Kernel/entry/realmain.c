@@ -123,8 +123,8 @@ int main()
 
 	    
     #ifdef RADIO_CC2420
-    cc2420controlm_CC2420Control_TuneChannel(21); 
-    cc2420controlm_CC2420Control_TunePower(31);
+    AMStandard_TuneChannel(21); 
+    AMStandard_TunePower(31);
     #endif
     
     #ifdef TESTPRINTING
@@ -154,8 +154,8 @@ int main()
    create_thread(ShellThread, (uint16_t *) shellbuffer,
                   STACK_TOP(shellbuffer), 0, 15, "sysshell", 0, 0);
   
-   create_thread(blink, (uint16_t *) blinkbuffer,
-                 STACK_TOP(blinkbuffer), 0, 15, "test", 0, 0);
+   create_thread(testradio, (uint16_t *) testradiobuffer,
+                 STACK_TOP(testradiobuffer), 0, 15, "test", 0, 0);
 				 
 				 
 

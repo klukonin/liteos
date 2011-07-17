@@ -165,6 +165,7 @@ inline result_t GenericTimerFired(uint8_t id)
 		  memoryInitTimerFired();	
 		#endif 
 		
+		
 	   break;  	  
     
 	case 13:
@@ -175,13 +176,25 @@ inline result_t GenericTimerFired(uint8_t id)
 	    break; 
 		
 	case 14:
+	     #ifdef TRACE_ENABLE_EVENT
 		GenericInitTimerFired();
-		break;
+		#endif
+	    
 	
 	case 15:
+		#ifdef TRACE_ENABLE_EVENT
 		reportTrace();
+		#endif
 		break; 	
-	
+		
+	case 16:
+	    
+		#ifdef TRACE_MEMORY_CONTENTS
+		  AMStandard_releaseLock();
+		 #endif 
+		break;
+		
+		
     default:
         timercallbackinvoke(id);
         result = SUCCESS;

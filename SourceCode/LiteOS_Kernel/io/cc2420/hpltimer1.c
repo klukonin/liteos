@@ -40,10 +40,11 @@ extern volatile uint16_t *old_stack_ptr;
 /*The timing measurement code now commented out 
    used for global timing */
 
+   #ifdef ENERGY_INSTRUMENTATION
    volatile uint32_t lcounter, lcounter2;
    volatile uint16_t hcounter, hcounter2; 
    extern volatile uint32_t interruptcost; 
-
+   #endif
 uint8_t HPLTimer1M_set_flag;
 uint8_t HPLTimer1M_mscale;
 uint8_t HPLTimer1M_nextScale;

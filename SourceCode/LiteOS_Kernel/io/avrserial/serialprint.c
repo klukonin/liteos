@@ -20,10 +20,10 @@
 
 extern volatile uint16_t *stackinterrupt_ptr;  
 extern volatile uint16_t *old_stack_ptr;  
-static char cFlag;
+static char serial_print_cFlag;
 static uint8_t receivebuffer[33];
  
-static uint8_t previous;
+ 
 static uint8_t status;
  
 
@@ -37,15 +37,15 @@ void initUSART()
     UCSR0C |= _BV(UCSZ01) | _BV(UCSZ00);        // 8 data-bits, 1 stop-bit
     UCSR0B |= _BV(RXCIE0) | _BV(RXEN0) | _BV(TXEN0);
     // Enable recieve/transmit/interrupts
-    cFlag = 1;
-    previous = 0;
+    serial_print_cFlag = 1;
+ 
     status = 0;
 }
 
 //-------------------------------------------------------------------------
 void usartPrint(uint8_t c)
 {
-    if (cFlag == 0)
+    if (serial_print_cFlag == 0)
     {
         initUSART();
     }
@@ -56,7 +56,7 @@ void usartPrint(uint8_t c)
 
 void usartPrint_base(uint8_t c)
 {
-    if (cFlag == 0)
+    if (serial_print_cFlag == 0)
     {
         initUSART();
     }

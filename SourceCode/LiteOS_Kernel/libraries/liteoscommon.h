@@ -89,6 +89,19 @@
 //calls setCurrentRadioHandle
 #define REGISTER_RADIO_RECEIVE_EVENT 						0xEC18
 
+//Get radio lock
+
+#define GET_CURRENT_RADIO_LOCK								0xEC1C
+
+//Set the radio lock
+
+#define SET_CURRENT_RADIO_LOCK                              0xEC20
+
+
+
+//Release the radio lock
+
+#define RELEASE_CURRENT_RADIO_LOCK                              0xEC24
 
 
 

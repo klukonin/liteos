@@ -29,9 +29,9 @@
 #include "../../kernel/scheduling.h"
  
 
-// added for post-compile frequency changing
-uint8_t CC2420_CHANNEL;
-uint8_t CC2420_RFPOWER;
+
+
+ 
 uint8_t cc2420controlm_state;
 uint16_t cc2420controlm_gCurrentParameters[14];
 inline result_t cc2420controlm_SplitControl_init(void)
@@ -51,8 +51,8 @@ inline result_t cc2420controlm_SplitControl_init(void)
         //Qing Revision
         //IDLE state
         cc2420controlm_state = cc2420controlm_IDLE_STATE;
-        CC2420_CHANNEL = CC2420_DEF_CHANNEL;
-        CC2420_RFPOWER = CC2420_DEF_RFPOWER;
+       
+    
         _atomic_end(_atomic);
     }
     if (!_state)
@@ -73,7 +73,7 @@ inline result_t cc2420controlm_SplitControl_init(void)
     cc2420controlm_gCurrentParameters[CP_SYNCWORD] = 0xA70F;
     //the last one, according to page 52 of the data sheet and page 67, default to output 0dbm 
     cc2420controlm_gCurrentParameters[CP_TXCTRL] =
-        ((((1 << 14) | (1 << 13)) | (3 << 6)) | (1 << 5)) | (CC2420_RFPOWER <<
+        ((((1 << 14) | (1 << 13)) | (3 << 6)) | (1 << 5)) | (CC2420_DEF_RFPOWER <<
                                                              0);
     cc2420controlm_gCurrentParameters[CP_RXCTRL0] =
         (((((1 << 12) | (2 << 8)) | (3 << 6)) | (2 << 4)) | (1 << 2)) | (1 <<
@@ -83,7 +83,7 @@ inline result_t cc2420controlm_SplitControl_init(void)
                                                                          0);
     //PAGE 51 of the manual 
     cc2420controlm_gCurrentParameters[CP_FSCTRL] =
-        (1 << 14) | ((357 + 5 * (CC2420_CHANNEL - 11)) << 0);
+        (1 << 14) | ((357 + 5 * (CC2420_DEF_CHANNEL - 11)) << 0);
     cc2420controlm_gCurrentParameters[CP_SECCTRL0] =
         (((1 << 8) | (1 << 7)) | (1 << 6)) | (1 << 2);
     cc2420controlm_gCurrentParameters[CP_SECCTRL1] = 0;

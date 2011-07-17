@@ -20,7 +20,7 @@ ISR(ADC_vect)
 {
     ADCSRA |= _BV(ADIF);
     ADCSRA &= ~_BV(ADEN);       // disable interrupt
-    //   flag = 1;
+    
 }
 
 //-------------------------------------------------------------------------
@@ -45,8 +45,7 @@ uint16_t get_adc(int channel)
     while (ADCSRA & (1 << ADSC))
         ;
     //the interrupt based adc is currently not used. 
-    //while (flag == 0); 
-    //flag = 0; 
+    
     reading = ADCL;
     reading |= (ADCH & 3) << 8;
     ADCSRA &= ~_BV(ADEN);

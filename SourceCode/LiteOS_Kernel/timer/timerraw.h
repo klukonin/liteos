@@ -14,7 +14,7 @@
 /** @{ */
 enum
 {
-    NUM_TIMERS = 16
+    NUM_TIMERS = 20
 };
 
 

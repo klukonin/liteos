@@ -68,9 +68,9 @@ MYFILE *fp;
 unsigned char reply[32];
 
 //for reply 231
-uint8_t blockid;
+//uint8_t blockid;
 char filename[13];
-uint16_t nodeid;
+static uint16_t currentnodeid;
 
 typedef struct {
 	 uint16_t addr;
@@ -125,7 +125,7 @@ void reply_debugging_print(uint8_t * receivebuffer)
     {
         reply[0] = 24 + 6;
         reply[1] = 91;
-        reply[2] = nodeid;
+        reply[2] = currentnodeid;
         reply[3] = chunkindex;
         reply[4] = size / 256;
         reply[5] = size % 256;
@@ -152,7 +152,7 @@ void reply_debugging_set(uint8_t * receivebuffer)
     }
     reply[0] = 3;
     reply[1] = 96;
-    reply[2] = nodeid;
+    reply[2] = currentnodeid;
     //mystrncpy(&reply[3], (unsigned char *)addr, size); 
     StandardSocketSend(0xefef, 0xffff, 32, reply);
     //printStringN(reply,32); 
@@ -179,7 +179,7 @@ void reply_debugging_insert_avr_breakpoint(uint8_t * receivebuffer)
     boot_insertBreakPoint(pagecount, offset, instructions);
     reply[0] = 12;
     reply[1] = 92;
-    reply[2] = nodeid;
+    reply[2] = currentnodeid;
     reply[3] = receivebuffer[3];
     reply[4] = receivebuffer[4];
     reply[5] = receivebuffer[5];
@@ -238,7 +238,7 @@ void reply_debugging_remove_avr_breakpoint(uint8_t * receivebuffer)
     }
     reply[0] = 5;
     reply[1] = 93;
-    reply[2] = nodeid;
+    reply[2] = currentnodeid;
     reply[3] = breakpointfound;
     StandardSocketSend(0xefef, 0xffff, 32, reply);
 }
@@ -316,7 +316,7 @@ void reply_thread_state_snapshot_tofile(uint8_t * receivebuffer)
     }
     reply[0] = 4;
     reply[1] = 94;
-    reply[2] = nodeid;
+    reply[2] = currentnodeid;
     reply[3] = testtrue;
     StandardSocketSend(0xefef, 0xffff, 32, reply);
 }
@@ -351,7 +351,7 @@ void reply_thread_state_restore_fromfile(uint8_t * receivebuffer)
     }
     reply[0] = 4;
     reply[1] = 95;
-    reply[2] = nodeid;
+    reply[2] = currentnodeid;
     reply[3] = testtrue;
     StandardSocketSend(0xefef, 0xffff, 32, reply);
 }
@@ -366,7 +366,7 @@ void reply_ls_networkname()
     reply[0] = temp + 3;
     reply[1] = 101;
     //   foobar(); 
-    reply[2] = nodeid;
+    reply[2] = currentnodeid;
     mystrncpy((char *)&reply[3], networkid, temp);
     randomsleep = getRandomNumber() % 400;
     sleepThread(randomsleep);
@@ -390,7 +390,7 @@ void reply_ls_nodename(uint8_t * receivebuffer)
         temp = mystrlen(filenameid);
         reply[0] = temp + 3;
         reply[1] = 102;
-        reply[2] = nodeid;
+        reply[2] = currentnodeid;
         mystrncpy((char *)&reply[3], filenameid, temp);
         randomsleep = getRandomNumber() % 400;
         sleepThread(randomsleep);
@@ -427,7 +427,7 @@ void reply_ls_long(uint8_t block)
         }
         reply[0] = 32;
         reply[1] = 104;
-        reply[2] = nodeid;
+        reply[2] = currentnodeid;
         reply[3] = childblock;
         reply[4] = seq;
         seq++;
@@ -452,7 +452,7 @@ void reply_mkdir(uint8_t * receivebuffer)
     newblockid = createDir(dirname, (int)blockid);
     reply[0] = 4;
     reply[1] = 141;
-    reply[2] = nodeid;
+    reply[2] = currentnodeid;
     reply[3] = newblockid;
 	 sleepThread(20);
     StandardSocketSend(0xefef, 0xffff, 32, reply);
@@ -476,7 +476,7 @@ void reply_cp_fromPCtoNode_type1(uint8_t * receivebuffer)
     expectNextNum = 1;
     reply[0] = 4;
     reply[1] = 121;
-    reply[2] = nodeid;
+    reply[2] = currentnodeid;
     reply[3] = newblockid;
     fid = getFreeFid();
     openFile(newblockid, fid, 2);
@@ -499,7 +499,7 @@ void reply_cp_fromPCtoNode_type2(uint8_t * receivebuffer)
         {
             reply[0] = 7;
             reply[1] = 122;
-            reply[2] = nodeid;
+            reply[2] = currentnodeid;
             reply[3] = 15;
             reply[4] = 15;
             reply[5] = (expectNextNum - 1) / 256;
@@ -510,7 +510,7 @@ void reply_cp_fromPCtoNode_type2(uint8_t * receivebuffer)
         {
             reply[0] = 7;
             reply[1] = 122;
-            reply[2] = nodeid;
+            reply[2] = currentnodeid;
             reply[3] = 15;
             reply[4] = 15;
             reply[5] = 0;
@@ -552,7 +552,7 @@ void reply_touch(uint8_t * receivebuffer)
     newblockid = createFileFromDirectory(filename, (int)blockid);
     reply[0] = 4;
     reply[1] = 151;
-    reply[2] = nodeid;
+    reply[2] = currentnodeid;
     reply[3] = newblockid;
     StandardSocketSend(0xefef, 0xffff, 32, reply);
     //printStringN(reply,32);       
@@ -576,7 +576,7 @@ void reply_fromNodeToPC_type1(uint8_t * receivebuffer)
     filename[receivebuffer[0] - 4] = '\0';
     newblockid = existBlockAddr(filename, (int)blockid);
     reply[1] = 124;
-    reply[2] = nodeid;
+    reply[2] = currentnodeid;
     fid = getFreeFid();
     openFile(newblockid, fid, 1);
     fp = &fidtable[fid];
@@ -657,7 +657,7 @@ void reply_rm(uint8_t * receivebuffer)
     }
     reply[0] = 4;
     reply[1] = 161;
-    reply[2] = nodeid;
+    reply[2] = currentnodeid;
     reply[3] = newblockid;
     StandardSocketSend(0xefef, 0xffff, 32, reply);
     //printStringN(reply,32);       
@@ -672,7 +672,7 @@ void reply_fromNodeToPC_type2(uint8_t * receivebuffer)
     pos = ((uint16_t) receivebuffer[4]) * 256 + receivebuffer[5];
     reply[0] = 26;
     reply[1] = 125;
-    reply[2] = nodeid;
+    reply[2] = currentnodeid;
     reply[3] = pos / 256;
     reply[4] = pos % 256;
     fseek2(fp, (int32_t) pos, 0);
@@ -696,7 +696,7 @@ void reply_ps(uint8_t * receivebuffer)
 
     //reply[0] = 15;
     reply[1] = 171;
-    reply[2] = nodeid;
+    reply[2] = currentnodeid;
     for (i = 0; i < LITE_MAX_THREADS; i++)
     {
         if (thread_table[i].state != STATE_NULL)
@@ -778,7 +778,7 @@ void reply_killthread(uint8_t * receivebuffer)
     }
     reply[0] = 4;
     reply[1] = 232;
-    reply[2] = nodeid;
+    reply[2] = currentnodeid;
     reply[3] = testtrue;
     StandardSocketSend(0xefef, 0xffff, 32, reply);
 }
@@ -798,7 +798,7 @@ void reply_du(uint8_t * receivebuffer)
     }
     reply[0] = 6;
     reply[1] = 211;
-    reply[2] = nodeid;
+    reply[2] = currentnodeid;
     reply[3] = e1;
     reply[4] = e2;
     reply[5] = e3;
@@ -822,7 +822,7 @@ void reply_search(uint8_t * receivebuffer)
         fdirnode((char *)&reply[3], 29, searchresults[i]);
         reply[0] = mystrlen((char *)&reply[3]) + 3;
         reply[1] = 221;
-        reply[2] = nodeid;
+        reply[2] = currentnodeid;
         //printStringN(reply,32);       
         StandardSocketSend(0xefef, 0xffff, 32, reply);
     }
@@ -853,7 +853,7 @@ void WakeupMe()
 void InitShell()
 {
     IncomingLength = 0;
-    nodeid = CURRENT_NODE_ID;
+    currentnodeid = CURRENT_NODE_ID;
     registerEvent(0xfefe, 64, &IncomingLength, IncomingMsg, PacketInfo,
                   WakeupMe);
     init_breakpoint_table();
@@ -884,7 +884,7 @@ void commandHandle(uint8_t * receivebuffer, uint8_t total)
 {
     uint8_t commandtype;
 
-    if (!((receivebuffer[2] == 0) || (receivebuffer[2] == nodeid)))
+    if (!((receivebuffer[2] == 0) || (receivebuffer[2] == currentnodeid)))
     {
         return;
     }

@@ -19,11 +19,11 @@
 
 //These are implementation functions that are defined specifically for this file. 
 
-static char cFlag;
-static uint8_t previous;
+static char lib_serial_cFlag;
+ 
 static uint8_t status;
  
-_atomic_t flag; 
+
  
 
 static uint8_t localbuffer[16];
@@ -102,19 +102,19 @@ void lib_init_usart()
     UCSR0C |= _BV(UCSZ01) | _BV(UCSZ00);        // 8 data-bits, 1 stop-bit
     UCSR0B |= _BV(RXCIE0) | _BV(RXEN0) | _BV(TXEN0);
     // Enable recieve/transmit/interrupts
-    cFlag = 1;
-    previous = 0;
+    lib_serial_cFlag = 1;
+  
     status = 0;
 }
 
 //-------------------------------------------------------------------------
 void lib_print_usart_char(uint8_t c)
 {
-
+   _atomic_t flag; 
    flag = _atomic_start();
      
 
-    if (cFlag == 0)
+    if (lib_serial_cFlag == 0)
     {
         lib_init_usart();
     }
@@ -135,7 +135,7 @@ void lib_print_usart_char(uint8_t c)
 void lib_print_usart_long(uint32_t l)
 {
     uint8_t *pcByte = ((uint8_t *) (&l)) + 3;
-
+   _atomic_t flag; 
    flag = _atomic_start();
     
     lib_print_usart_char(*pcByte);
@@ -153,7 +153,7 @@ void lib_print_usart_long(uint32_t l)
 void lib_printf_string_source_disabled(char *p)
 {
    
-   
+   _atomic_t flag; 
    flag = _atomic_start();
       
 	lib_print_usart_char(0xFC);
@@ -173,7 +173,7 @@ void lib_printf_string_source_disabled(char *p)
 void lib_printf_string(char *p)
 {
    
-   
+   _atomic_t flag; 
    flag = _atomic_start();
    
    #ifdef PRINT_SOURCE_ENABLED
@@ -200,7 +200,7 @@ void lib_printf_string(char *p)
 //-------------------------------------------------------------------------
 void lib_printf_integer32(int32_t a)
 {
-   
+   _atomic_t flag; 
    flag = _atomic_start();
   
 	#ifdef PRINT_SOURCE_ENABLED   
@@ -219,6 +219,7 @@ void lib_printf_integer32(int32_t a)
 //-------------------------------------------------------------------------
 void lib_printf_uinteger32(uint32_t l)
 {
+	_atomic_t flag; 
    flag = _atomic_start();
    
     #ifdef PRINT_SOURCE_ENABLED

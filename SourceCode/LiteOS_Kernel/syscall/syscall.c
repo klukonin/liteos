@@ -758,6 +758,137 @@ void setCurrentRadioHandle()
 
 
 
+void getStandardAMRadioLock()
+{
+    
+    uint16_t lock; 
+
+    lock = AMStandard_getLock();
+    asm volatile ("mov r20, %A0" "\n\t" "mov r21, %B0" "\n\t"::"r" (lock));
+}
+	
+
+//-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
+void getCurrentRadioLock_Logger()
+{
+    uint8_t currentindex;
+    _atomic_t _atomic = _atomic_start();
+
+    currentindex = getThreadIndexAddress();
+    _atomic_end(_atomic);
+    addTrace(TRACE_SYSCALL_GETRADIOLOCK, currentindex);
+    getStandardAMRadioLock();
+}
+#endif 
+
+/**\ingroup syscall
+Get the current radio lock. 
+*/
+ 
+
+void getCurrentRadioLock() __attribute__ ((section(".systemcall.5")))
+    __attribute__ ((naked));
+void getCurrentRadioLock()
+
+{
+#ifdef TRACE_ENABLE_EVENT
+    getCurrentRadioLock_Logger();
+#else
+    getStandardAMRadioLock();
+#endif
+    asm volatile ("nop"::);
+    asm volatile ("ret"::);
+}
+
+
+
+void setStandardAMRadioLock()
+{
+    
+    AMStandard_setLock();
+}
+	
+
+ 
+//-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
+void setCurrentRadioLock_Logger()
+{
+    uint8_t currentindex;
+    _atomic_t _atomic = _atomic_start();
+
+    currentindex = getThreadIndexAddress();
+    _atomic_end(_atomic);
+    addTrace(TRACE_SYSCALL_SETRADIOLOCK, currentindex);
+    setStandardAMRadioLock();
+}
+#endif 
+
+/**\ingroup syscall
+Set the current radio lock. 
+*/
+ 
+
+void setCurrentRadioLock() __attribute__ ((section(".systemcall.5")))
+    __attribute__ ((naked));
+void setCurrentRadioLock()
+
+{
+#ifdef TRACE_ENABLE_EVENT
+    setCurrentRadioLock_Logger();
+#else
+    setStandardAMRadioLock();
+#endif
+    asm volatile ("nop"::);
+    asm volatile ("ret"::);
+}
+
+
+void releaseStandardAMRadioLock()
+{
+    
+    AMStandard_releaseLock();
+}
+
+
+ 
+
+//-------------------------------------------------------------------------
+#ifdef TRACE_ENABLE_EVENT
+void releaseCurrentRadioLock_Logger()
+{
+    uint8_t currentindex;
+    _atomic_t _atomic = _atomic_start();
+
+    currentindex = getThreadIndexAddress();
+    _atomic_end(_atomic);
+    addTrace(TRACE_SYSCALL_RELEASERADIOLOCK, currentindex);
+    releaseStandardAMRadioLock();
+}
+#endif 
+
+/**\ingroup syscall
+Set the current radio lock. 
+*/
+ 
+
+void releaseCurrentRadioLock() __attribute__ ((section(".systemcall.5")))
+    __attribute__ ((naked));
+void releaseCurrentRadioLock()
+
+{
+#ifdef TRACE_ENABLE_EVENT
+    releaseCurrentRadioLock_Logger();
+#else
+    releaseStandardAMRadioLock();
+#endif
+    asm volatile ("nop"::);
+    asm volatile ("ret"::);
+}
+
+
+
 //-----------------------------------------------------------------------------
 //Boundary EC80 Device: LED Operations
 //-----------------------------------------------------------------------------

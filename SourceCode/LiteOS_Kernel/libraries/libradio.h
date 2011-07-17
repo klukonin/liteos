@@ -126,5 +126,22 @@ radioinfotype *lib_get_current_radio_send_addr();
 
 void lib_radio_send_msg_syscall();
 
+
+/** @brief Get the radio lock to operate. May suspend the current thread. 
+	@return void. 
+	
+*/
+
+void lib_get_radio_lock();
+
+/** @brief Release the radio lock to operate.  
+	@return void. 
+	
+*/
+
+void lib_release_radio_lock();
+
+
+
 /** @} */
 #endif

@@ -83,6 +83,9 @@
 #define TRACE_SYSCALL_INVOKERADIOSENDFUNCTION                               505
 #define TRACE_SYSCALL_GETRADIORECEIVEBUFFER 						        506
 #define TRACE_SYSCALL_REGISTERRECEIVERHANDLE    			            	507
+#define TRACE_SYSCALL_GETRADIOLOCK											508
+#define TRACE_SYSCALL_SETRADIOLOCK											509
+#define TRACE_SYSCALL_RELEASERADIOLOCK										510
  
 
 
@@ -119,7 +122,9 @@
 #define TRACE_SYSCALL_SEEKFILESYSCALL      								    807
 
 #define TRACE_SYSCALL_GETCPUCOUNTSYSCALL                                    901
- 
+
+
+#ifdef TRACE_ENABLE_EVENT
 /** @brief Init the event logging with channel. 
 	@param basechannel The base channel used. 
 	@param reportingchannel The channel used.
@@ -147,4 +152,6 @@ void GenericInitTimerFired();
 */
 void reportTrace();
 /** @} */
+
+#endif
 #endif

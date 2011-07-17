@@ -37,7 +37,7 @@ uint8_t cc2420radiom_txlength;
 Radio_MsgPtr cc2420radiom_txbufptr;
 Radio_MsgPtr cc2420radiom_rxbufptr;
 Radio_Msg cc2420radiom_RxBuf;
-volatile uint16_t cc2420radiom_LocalAddr;
+ 
 enum cc2420radiom___nesc_unnamed4269
 {
     cc2420radiom_DISABLED_STATE = 0, cc2420radiom_DISABLED_STATE_STARTTASK,
@@ -49,18 +49,7 @@ enum cc2420radiom___nesc_unnamed4269
     cc2420radiom_TIMER_ACK
 };
 
-/*
-   uint8_t cc2420radiom_countRetry;
-   uint8_t cc2420radiom_stateRadio;
-   uint8_t cc2420radiom_currentDSN;
-   bool cc2420radiom_bAckEnable;
-   bool cc2420radiom_bPacketReceiving;
-   uint8_t cc2420radiom_txlength;
-   Radio_MsgPtr cc2420radiom_txbufptr;
-   Radio_MsgPtr cc2420radiom_rxbufptr;
-   Radio_Msg cc2420radiom_RxBuf;
-   volatile uint16_t cc2420radiom_LocalAddr;
- */
+
 inline result_t cc2420radiom_SplitControl_default_initDone(void)
 {
     return SUCCESS;
@@ -88,7 +77,7 @@ inline result_t cc2420radiom_SplitControl_init(void)
         }
         _atomic_end(_atomic);
     }
-    cc2420radiom_LocalAddr = CURRENT_NODE_ID;
+ 
     return cc2420controlm_SplitControl_init();
 }
 

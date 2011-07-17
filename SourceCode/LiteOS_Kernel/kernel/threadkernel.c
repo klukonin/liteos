@@ -41,7 +41,7 @@ volatile uint16_t *stackinterrupt_ptr;
 volatile uint8_t thread_task_active;
 
  
- 
+ #ifdef ENERGY_INSTRUMENTATION
  uint32_t timediff;
  
  //resolution
@@ -49,7 +49,7 @@ volatile uint8_t thread_task_active;
  
  //time 
  uint16_t counterFrom, counterTo; 
-
+ #endif 
 
 //-------------------------------------------------------------------------
 void thread_init()
@@ -251,11 +251,13 @@ void __attribute__((noinline))lite_switch_to_user_thread() /* __attribute__(
     #endif 
   #endif 
   
+   #ifdef ENERGY_INSTRUMENTATION
   //these are the current times for the switch to user thread
   
   counterTo = getCurrentCounterHigh();
   switchToThreadTime = getCurrentResolution();
-  
+   
+   #endif
    //printfstr("Now switching to user.  \n"); 
   #ifdef PLATFORM_AVR
     PUSH_REG_STATUS();
@@ -402,6 +404,7 @@ void thread_task()
  
 
   
+  #ifdef ENERGY_INSTRUMENTATION
   
   counterFrom = getCurrentCounterHigh(); 
   switchFromThreadTime = getCurrentResolution(); 
@@ -410,7 +413,8 @@ void thread_task()
 	  timediff = switchFromThreadTime - switchToThreadTime;
 	  else
 	  timediff = ((uint32_t)(counterTo-counterFrom))*50000*50000 + switchFromThreadTime - switchToThreadTime; 
-     
+  
+  #endif   
 	 /*
    if (current_thread != &thread_table[0])
      {

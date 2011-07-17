@@ -43,11 +43,13 @@ uint8_t hplcc2420interruptm_CCALastState;
 //void  __vector_7(void) __attribute__((signal, used,   externally_visible)); 
 //void __attribute((signal, used, externally_visible)) __vector_7(void)
 
+   #ifdef ENERGY_INSTRUMENTATION
    extern volatile uint32_t interruptcost; 
    volatile uint32_t alcounter;
    volatile uint16_t ahcounter; 
    volatile uint32_t alcounter2; 
-   volatile uint16_t ahcounter2; 
+   volatile uint16_t ahcounter2;
+   #endif  
 
 SIGNAL(INT6_vect)
 {

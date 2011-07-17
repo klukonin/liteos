@@ -10,7 +10,7 @@
 #include "packethandler.h"
 
  
-Radio_MsgPtr tmp; 
+ 
 
 //the handles definition
 radio_receiving_buffer receivehandles[RECEIVE_HANDLE_NUM];
@@ -80,7 +80,7 @@ Radio_MsgPtr Standard_Receive_Packet(uint16_t port, Radio_MsgPtr packet)
 {
     uint8_t i;
 
-    tmp = packet; 
+  
 		 
     for (i = 0; i < RECEIVE_HANDLE_NUM; i++)
     {

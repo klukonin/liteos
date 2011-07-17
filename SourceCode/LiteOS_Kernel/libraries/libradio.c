@@ -257,3 +257,69 @@ int lib_radio_receive_timed(uint16_t port, uint8_t maxlength, uint8_t *msg, uint
   
 	return radioReceiveDataReady;
 }
+
+//Get and set the radio lock. Assumed to be called by apps. 
+
+void lib_get_radio_lock(){
+	
+	_atomic_t currentatomic;	
+	uint16_t currentlock; 
+	
+	void (*getlockfp)(void) = (void (*)(void))GET_CURRENT_RADIO_LOCK;
+	void (*setlockfp)(void) = (void (*)(void))SET_CURRENT_RADIO_LOCK;
+	
+	
+	while (1)
+   {
+    currentatomic = _atomic_start();
+    
+	asm volatile("push r20" "\n\t"
+                "push r21" "\n\t"
+                ::);
+    getlockfp();
+    asm volatile(" mov %A0, r20" "\n\t"
+	             "mov %B0, r21" "\n\t"
+				 :"=r" (currentlock)
+				 :
+                );
+    asm volatile("pop r21" "\n\t"
+	             "pop r20" "\n\t"
+	              ::);
+				  
+	if (currentlock == 1)
+	{
+			_atomic_end(currentatomic);
+			lib_sleep_thread(20); 
+			continue; 
+		   
+	}
+	
+	
+	else
+	{	
+			setlockfp();
+		    _atomic_end(currentatomic);
+			break; 
+		
+	}
+		
+   }		
+    
+return; 
+	
+}
+
+
+
+void lib_release_radio_lock(){
+	
+	_atomic_t currentatomic;
+	void (*releaselockfp)(void) = (void (*)(void))RELEASE_CURRENT_RADIO_LOCK;
+	
+	currentatomic = _atomic_start();
+	
+	releaselockfp(); 
+	
+	_atomic_end(currentatomic);
+	
+}

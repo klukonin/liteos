@@ -36,17 +36,17 @@
 
 bool AMStandard_state;
 Radio_MsgPtr AMStandard_buffer;
-uint16_t AMStandard_lastCount;
-uint16_t AMStandard_counter;
+ 
+uint16_t AMStandard_receive_counter;
 
-Radio_MsgPtr debugmsg; 
+volatile uint16_t global_radio_lock; 
 
 //-------------------------------------------------------------------------
 inline bool AMStandard_Control_init(void)
 {
     result_t ok2;
 	ok2 = 0; 
-
+    global_radio_lock = 0; 
 
 #if defined(PLATFORM_AVR) && defined(RADIO_CC2420)
     ok2 = cc2420radiom_SplitControl_init();
@@ -57,8 +57,8 @@ inline bool AMStandard_Control_init(void)
 #endif 
 
     AMStandard_state = FALSE;
-    AMStandard_lastCount = 0;
-    AMStandard_counter = 0;
+ 
+    AMStandard_receive_counter = 0;
     return ok2;
 }
 
@@ -118,6 +118,9 @@ inline void AMStandard_sendTask(void)
     }
 }
 
+							 
+
+								 
 //addr means the current broadcast address, et. id is the port 
 //Send out a message and takes a while to complete 
 result_t AMStandard_SendMsg_send(uint16_t port, uint16_t addr, uint8_t length,
@@ -219,8 +222,8 @@ Radio_MsgPtr received(Radio_MsgPtr packet)
 #endif
 #endif
 
-    debugmsg = packet; 
-    AMStandard_counter++;
+ 
+    AMStandard_receive_counter++;
     if (packet->crc == 1 && (packet->addr == BCAST_ADDRESS || packet->addr ==
                              addr))
     {
@@ -278,4 +281,33 @@ inline void restoreRadioState()
 #if defined(PLATFORM_AVR) && defined (RADIO_CC2420)
     restorecc2420state();
 #endif
+}
+
+
+//---------------------------------------------------------------------------
+
+inline result_t AMStandard_TuneChannel(uint8_t channel)
+{
+	return cc2420controlm_CC2420Control_TuneChannel(channel);
+
+}
+
+
+//---------------------------------------------------------------------------
+
+inline result_t AMStandard_TunePower(uint8_t powerlevel)
+{
+	return cc2420controlm_CC2420Control_TunePower(powerlevel);
+}
+
+inline uint16_t AMStandard_getLock(){
+	return global_radio_lock; 
+}
+
+inline void AMStandard_setLock(){
+	global_radio_lock = 1; 
+}
+
+inline void AMStandard_releaseLock(){
+	global_radio_lock = 0; 
 }

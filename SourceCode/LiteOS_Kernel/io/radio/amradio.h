@@ -22,6 +22,7 @@ inline result_t AMStandard_RadioSend_send(Radio_MsgPtr arg_0xa3c31f8);
 inline void AMStandard_sendTask(void);
 result_t AMStandard_SendMsg_send(uint16_t port, uint16_t addr, uint8_t length,
                                  Radio_MsgPtr data);
+
 inline result_t AMStandard_SendMsg_default_sendDone(uint8_t id, Radio_MsgPtr
                                                     msg, result_t success);
 inline result_t AMStandard_SendMsg_sendDone(uint16_t arg_0xa3b8f90,
@@ -38,6 +39,13 @@ inline result_t AMStandard_RadioSend_sendDone(Radio_MsgPtr msg, result_t
                                               success);
 inline result_t AMStandard_reportSendDone(Radio_MsgPtr msg, result_t success);
 inline void restoreRadioState();
+inline result_t AMStandard_TuneChannel(uint8_t channel);
+inline result_t AMStandard_TunePower(uint8_t power); 
+
+
+inline uint16_t AMStandard_getLock();
+inline void AMStandard_setLock();
+inline void AMStandard_releaseLock(); 
 
 /** @} */
 #endif

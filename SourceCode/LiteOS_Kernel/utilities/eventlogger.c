@@ -12,7 +12,8 @@
 #include "../timer/generictimer.h"
 
 
-static uint8_t basefreq, reportingfreq; 
+#ifdef TRACE_ENABLE_EVENT
+static uint8_t base_event_logger_freq, reporting_event_logger_freq; 
 
 typedef struct 
 {
@@ -33,8 +34,8 @@ uint16_t interval;
 void initTrace(uint8_t basechannel, uint8_t reportingchannel, uint16_t reportinterval){
 	
 	//Tune the channel and power	
-	basefreq = basechannel;
-	reportingfreq = reportingchannel;
+	base_event_logger_freq = basechannel;
+	reporting_event_logger_freq = reportingchannel;
 	prevcount = endingcount = 0; 
 	interval = reportinterval; 
 	GenericTimerStart(14, TIMER_ONE_SHOT, 1000);
@@ -89,4 +90,5 @@ void reportTrace()
 	 
 	 
 }
- 
+
+#endif 
