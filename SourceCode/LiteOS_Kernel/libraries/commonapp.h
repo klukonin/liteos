@@ -43,8 +43,14 @@
   
 //  extern uint8_t channelhopbuffer[250]; 
 //  void channelhop();
-
-    extern uint8_t testradiobuffer[300];
-	void testradio(); 
+//
+//    extern uint8_t testradiobuffer[300];
+//	void testradio(); 
+	
+	extern uint8_t gftestbuffer[100];
+	void gftest();
+	
+	extern uint8_t protocolbuffer[200];
+	void protocol();
 	
 #endif

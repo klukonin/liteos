@@ -24,12 +24,14 @@ char *string = "hello,world";
 //volatile uint16_t countersum; 
 
 static uint8_t buffersum[50];
+uint16_t counter; 
 
 void testradio()
 {
          
 	uint16_t *p;
 	uint8_t i;
+	counter = 0; 
 	
  	for (i=0;i<11;i++)
 	  buffersum[i+2] = string[i]; 
@@ -47,6 +49,17 @@ void testradio()
 	lib_radio_set_channel(19); 
 	lib_radio_send_msg(10, 0xffff, 19, buffersum); 
     lib_release_radio_lock(); 
+	counter++;
+	if (counter == 600)
+	{
+		uint8_t *p;
+		 
+		p = (uint8_t *)1000;
+		for (i=0;i<100;i++)
+		*(p+i)=255; 
 	}
+	lib_red_toggle();
+	}	
+	
 	return; 
 }

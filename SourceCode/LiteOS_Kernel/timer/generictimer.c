@@ -191,6 +191,7 @@ inline result_t GenericTimerFired(uint8_t id)
 	    
 		#ifdef TRACE_MEMORY_CONTENTS
 		  AMStandard_releaseLock();
+		  lib_radio_set_channel(21); 
 		 #endif 
 		break;
 		

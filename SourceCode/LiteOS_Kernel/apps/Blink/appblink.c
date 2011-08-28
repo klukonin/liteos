@@ -14,11 +14,11 @@
 #include "../../libraries/libradio.h"
 #include "../../libraries/libfile.h"
  
-uint8_t blinkbuffer[200]; 
+uint8_t testblinkbuffer[200]; 
 
 uint16_t counter = 0; 
 
-void blink()
+void testblink()
 {
 	while (1)
 	{

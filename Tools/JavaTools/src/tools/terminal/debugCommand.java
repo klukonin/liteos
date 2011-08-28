@@ -80,8 +80,8 @@ public class debugCommand implements cmdcontrol {
 
 		destDir = cpCommand.stdFileName(destDir);
 
-		File a = new File(destDir + "\\default\\extract.pl");
-		File b = new File(destDir + "\\default\\LiteOS.elf");
+		File a = new File(destDir + "\\build\\extract.pl");
+		File b = new File(destDir + "\\build\\App.elf");
 		if ((a.exists() == false) || (b.exists() == false)) {
 			a = new File(destDir + "\\bin\\micaz\\extract.pl");
 			b = new File(destDir + "\\bin\\micaz\\LiteOS.elf");
@@ -103,8 +103,8 @@ public class debugCommand implements cmdcontrol {
 
 			if (kerneldebug == 0)
 				p = Runtime.getRuntime().exec(
-						"perl " + destDir + "\\default\\extract.pl " + destDir
-								+ "\\default\\LiteOS.elf");
+						"perl " + destDir + "\\build\\micaz\\extract.pl " + destDir
+								+ "\\build\\App.elf");
 			else
 				p = Runtime.getRuntime().exec(
 						"perl " + destDir + "\\bin\\micaz\\extract.pl " + destDir

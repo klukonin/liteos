@@ -93,7 +93,7 @@ void memoryReportTimerFired()
 	
     mystrncpy((char *)p, (volatile unsigned char *)(0x100 + index),
               80);
-    AMStandard_TuneChannel(21); 
+    AMStandard_TuneChannel(19); 
     AMStandard_SendMsg_send(10, 0xFFFF, 84, &currentMemoryMsg);
 	GenericTimerStart(13, TIMER_ONE_SHOT, 50); 
 	GenericTimerStart(16, TIMER_ONE_SHOT, 20); 
