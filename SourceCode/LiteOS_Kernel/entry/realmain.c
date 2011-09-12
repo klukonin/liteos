@@ -78,7 +78,7 @@ int main()
      Leds_greenToggle();
      Leds_yellowToggle();
      mystrncpy(networkid, "testbed\0", 8);
-     mystrncpy(filenameid, "node00\0", 7);
+     mystrncpy(filenameid, "node01\0", 7);
 	 
      CURRENT_NODE_ID = 1; 
 
@@ -154,12 +154,9 @@ int main()
    create_thread(ShellThread, (uint16_t *) shellbuffer,
                   STACK_TOP(shellbuffer), 0, 15, "sysshell", 0, 0);
   
-   create_thread(protocol, (uint16_t *) protocolbuffer,
+   create_thread(blink, (uint16_t *) protocolbuffer,
                  STACK_TOP(protocolbuffer), 0, 15, "gfproto", 0, 0);
-	 
-   create_thread(gftest, (uint16_t *) gftestbuffer,
-                 STACK_TOP(gftestbuffer), 0, 15, "gftest", 0, 0);
-				 
+
 				 
 
    //sleeping configureation 
