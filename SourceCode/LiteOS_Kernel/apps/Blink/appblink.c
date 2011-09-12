@@ -18,6 +18,7 @@ uint8_t testblinkbuffer[200];
 
 uint16_t counter = 0; 
 
+
 void testblink()
 {
 	while (1)
@@ -27,6 +28,7 @@ void testblink()
    lib_green_toggle();
    
    counter++; 
+    
   }
   
   return; 

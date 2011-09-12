@@ -127,6 +127,7 @@ int main()
     AMStandard_TunePower(31);
     #endif
     
+	/*
     #ifdef TESTPRINTING
     uint32_t counter;    
     printfuinteger32(234234223);
@@ -141,7 +142,8 @@ int main()
     printfintegeru32(counter); 
     printfstrln();
 	#endif    
-
+    */
+	
    #ifdef TRACE_ENABLE_EVENT
     initTrace(21, 19, 4000); 	
    #endif
