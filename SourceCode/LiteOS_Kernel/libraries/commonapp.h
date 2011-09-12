@@ -34,7 +34,10 @@
  //extern uint8_t loggerbuffer[400];
  //void logger();
 
-
+  extern uint8_t testblinkbuffer[200];
+  void testblink();
+  
+  
 //extern uint8_t countbuffer[150];
 //void count(); 
 
@@ -47,10 +50,10 @@
 //    extern uint8_t testradiobuffer[300];
 //	void testradio(); 
 	
-	extern uint8_t gftestbuffer[100];
-	void gftest();
+//	extern uint8_t gftestbuffer[100];
+	//void gftest();
 	
-	extern uint8_t protocolbuffer[200];
-	void protocol();
+	//extern uint8_t protocolbuffer[200];
+	//void protocol();
 	
 #endif

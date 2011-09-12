@@ -24,6 +24,7 @@ void testblink()
 	{
    lib_sleep_thread(500);  
    lib_red_toggle();
+   lib_green_toggle();
    
    counter++; 
   }
