@@ -29,7 +29,7 @@
 #endif
 
 #if defined(PLATFORM_AVR) && defined(RADIO_RF230)
-#include "../io/rf230/rf230radiom.h"
+#include "../rf230/rf230radiom.h"
 #endif
 
 
@@ -97,8 +97,7 @@ inline result_t AMStandard_RadioSend_send(Radio_MsgPtr arg_0xa3c31f8)
 #endif
 
 #if defined(PLATFORM_AVR)&& defined(RADIO_RF230)
-   trx_init();
-   result = rf230radio_Send_send(arg_0xa3c31f8);
+    result = rf230radio_Send_send(arg_0xa3c31f8);
 #endif
 
     return result;
@@ -224,6 +223,9 @@ Radio_MsgPtr received(Radio_MsgPtr packet)
 
  
     AMStandard_receive_counter++;
+	
+	#if defined(PLATFORM_AVR_MICAZ)
+	
     if (packet->crc == 1 && (packet->addr == BCAST_ADDRESS || packet->addr ==
                              addr))
     {
@@ -236,6 +238,24 @@ Radio_MsgPtr received(Radio_MsgPtr packet)
             packet = tmp;
         }
     }
+	
+	#elif defined(PLATFORM_AVR_IRIS)
+	
+	 if ((packet->addr == BCAST_ADDRESS || packet->addr ==
+                             addr))
+    {
+        uint16_t port = packet->port;
+        Radio_MsgPtr tmp;
+
+        tmp = Standard_Receive_Packet(port, packet);
+        if (tmp)
+        {
+            packet = tmp;
+        }
+    }
+	
+	#endif 
+	
     return packet;
 }
 
@@ -247,13 +267,9 @@ Radio_MsgPtr received(Radio_MsgPtr packet)
 //-------------------------------------------------------------------------
 inline Radio_MsgPtr AMStandard_RadioReceive_receive(Radio_MsgPtr packet)
 {
-   #if defined(PLATFORM_AVR) && defined(RADIO_CC2420)
-   return received( packet );
-   #endif
    
-   #if defined(PLATFORM_AVR) && defined(RADIO_RF230)
-   return received_iris( packet );
-   #endif
+   return received( packet );
+   
 
      
 }
@@ -288,8 +304,9 @@ inline void restoreRadioState()
 
 inline result_t AMStandard_TuneChannel(uint8_t channel)
 {
+	#ifdef RADIO_CC2420
 	return cc2420controlm_CC2420Control_TuneChannel(channel);
-
+    #endif 
 }
 
 
@@ -297,7 +314,9 @@ inline result_t AMStandard_TuneChannel(uint8_t channel)
 
 inline result_t AMStandard_TunePower(uint8_t powerlevel)
 {
+	#ifdef RADIO_CC2420
 	return cc2420controlm_CC2420Control_TunePower(powerlevel);
+	#endif 
 }
 
 inline uint16_t AMStandard_getLock(){

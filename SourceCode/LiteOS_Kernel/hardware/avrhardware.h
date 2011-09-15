@@ -13,9 +13,9 @@
 #include <avr/wdt.h>
 #include <avr/pgmspace.h>
 #include <avr/eeprom.h>
-#if defined(AVR_PLATFORM_IRIS)
+#if defined(PLATFORM_AVR_IRIS)
 #include <avr/iom1281.h>
-#elif defined(AVR_PLATFORM)
+#elif defined(PLATFORM_AVR_MICAZ)
 #include <avr/iom128.h>
 
 #endif

@@ -370,7 +370,7 @@ uint16_t atmel_flash_crc(uint32_t count)
 /** @brief Write one bit of data.
 */
 
-#ifdef PLATFORM_AVR_IRIS
+#if defined(PLATFORM_AVR_IRIS)
 
 #define WRITEBIT(n)					\
 PORTD = clrClkAndData;				\
@@ -391,7 +391,7 @@ asm __volatile__				\
 : "=d" (spiIn) : "0" (spiIn))
 
 
-#else
+#elif defined(PLATFORM_AVR_MICAZ)
 
 #define WRITEBIT(n)					\
 PORTD = clrClkAndData;				\

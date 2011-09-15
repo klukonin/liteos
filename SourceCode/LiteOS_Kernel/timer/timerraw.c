@@ -6,7 +6,13 @@
 
 
 #include "timerraw.h"
-#include "clockraw.h"
+
+#if defined(PLATFORM_AVR_MICAZ)
+#include "micaz/clockraw.h"
+#elif defined(PLATFORM_AVR_IRIS)
+#include "iris/clockraw.h"
+#endif 
+
 #include "../kernel/threadkernel.h"
 #include "../kernel/scheduling.h"
 #include "../hardware/avrhardware.h"

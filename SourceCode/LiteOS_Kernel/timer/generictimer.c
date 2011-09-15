@@ -5,7 +5,7 @@
 */
 
 
-#include "clockraw.h"
+#include "micaz/clockraw.h"
 #include "timerraw.h"
 #include "../kernel/scheduling.h"
 #include "../kernel/threadkernel.h"

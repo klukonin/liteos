@@ -47,6 +47,11 @@
 #include "../libraries/commonapp.h"
 
 
+#ifdef RADIO_RF230
+#include "../io/rf230/at86rf230_registermap.h"
+#include "../io/rf230/tat.h"
+#endif
+
 static uint16_t nodeid;
 
 /** @brief The starting point of the control loop 
@@ -126,6 +131,13 @@ int main()
     AMStandard_TuneChannel(21); 
     AMStandard_TunePower(31);
     #endif
+	
+	#ifdef RADIO_RF230
+   	
+  	if (tat_set_trx_state( RX_ON )==TAT_SUCCESS) {}
+	else
+    {}
+   #endif
     
 	/*
     #ifdef TESTPRINTING

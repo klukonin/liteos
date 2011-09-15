@@ -19,8 +19,11 @@ void setRadioFrequencyTask()
 {
     volatile uint16_t freq;
     asm volatile ("mov  %A0, r20" "\n\t" "mov  %B0, r21" "\n\t":"=r" (freq):);
-
+    
+	#ifdef RADIO_CC2420
     cc2420controlm_CC2420Control_TuneManual(freq);
+	#endif
+	
     return;
 }
 
@@ -29,9 +32,10 @@ void setRadioChannelTask()
 {
     volatile uint16_t channel;
     asm volatile ("mov  %A0, r20" "\n\t" "mov  %B0, r21" "\n\t":"=r" (channel):);
-
+    
     AMStandard_TuneChannel(channel);
-    return;
+    
+	return;
 }
 
 //-------------------------------------------------------------------------
