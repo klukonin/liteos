@@ -1,0 +1,698 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>5.0</ProjectVersion>
+    <ProjectGuid>9bebe87b-53be-4e12-86e6-bc2e0200577f</ProjectGuid>
+    <avrdevice>atmega128</avrdevice>
+    <avrdeviceseries>none</avrdeviceseries>
+    <OutputFile>LiteOS.elf</OutputFile>
+    <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
+    <AvrGccProjectExtensions>
+    </AvrGccProjectExtensions>
+    <avrtool>com.atmel.avrdbg.tool.jtagicemkii</avrtool>
+    <avrtoolinterface>JTAG</avrtoolinterface>
+    <com_atmel_avrdbg_tool_jtagicemkii>
+      <ToolType>com.atmel.avrdbg.tool.jtagicemkii</ToolType>
+      <ToolName>JTAGICE mkII</ToolName>
+      <ToolNumber>00B00000073A</ToolNumber>
+      <Channel>
+        <host>127.0.0.1</host>
+        <port>4701</port>
+        <ssl>False</ssl>
+      </Channel>
+      <ToolOptions>
+        <InterfaceName>JTAG</InterfaceName>
+        <InterfaceProperties>
+          <JtagDbgClock>200000</JtagDbgClock>
+          <JtagProgClock>1000000</JtagProgClock>
+          <IspClock>150000</IspClock>
+          <JtagInChain>false</JtagInChain>
+          <JtagEnableExtResetOnStartSession>false</JtagEnableExtResetOnStartSession>
+          <JtagDevicesBefore>0</JtagDevicesBefore>
+          <JtagDevicesAfter>0</JtagDevicesAfter>
+          <JtagInstrBitsBefore>0</JtagInstrBitsBefore>
+          <JtagInstrBitsAfter>0</JtagInstrBitsAfter>
+        </InterfaceProperties>
+      </ToolOptions>
+    </com_atmel_avrdbg_tool_jtagicemkii>
+    <OutputType>Executable</OutputType>
+    <Language>C</Language>
+    <UseGlobalToolchain>True</UseGlobalToolchain>
+    <GlobalToolchainPath>C:\Program Files (x86)\Atmel\AVR Studio 5.0\AVR ToolChain\bin</GlobalToolchainPath>
+    <ToolchainDirPath />
+    <MakeDirPath />
+    <com_atmel_avrdbg_tool_simulator>
+      <ToolType>com.atmel.avrdbg.tool.simulator</ToolType>
+      <ToolName>AVR Simulator</ToolName>
+      <ToolNumber>
+      </ToolNumber>
+      <Channel>
+        <host>127.0.0.1</host>
+        <port>4701</port>
+        <ssl>False</ssl>
+      </Channel>
+    </com_atmel_avrdbg_tool_simulator>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'default' ">
+    <OutputPath>bin\default\</OutputPath>
+    <MemorySettings>
+      <MemorySegments>
+        <MemorySegment>
+          <MemoryType>Flash</MemoryType>
+          <Name>.bootloader</Name>
+          <Address>0xf000</Address>
+        </MemorySegment>
+        <MemorySegment>
+          <MemoryType>Flash</MemoryType>
+          <Name>.systemcall.1</Name>
+          <Address>0xea00</Address>
+        </MemorySegment>
+        <MemorySegment>
+          <MemoryType>Flash</MemoryType>
+          <Name>.systemcall.2</Name>
+          <Address>0xea80</Address>
+        </MemorySegment>
+        <MemorySegment>
+          <MemoryType>Flash</MemoryType>
+          <Name>.systemcall.3</Name>
+          <Address>0xeb00</Address>
+        </MemorySegment>
+        <MemorySegment>
+          <MemoryType>Flash</MemoryType>
+          <Name>.systemcall.4</Name>
+          <Address>0xeb80</Address>
+        </MemorySegment>
+        <MemorySegment>
+          <MemoryType>Flash</MemoryType>
+          <Name>.systemcall.5</Name>
+          <Address>0xec00</Address>
+        </MemorySegment>
+        <MemorySegment>
+          <MemoryType>Flash</MemoryType>
+          <Name>.systemcall.6</Name>
+          <Address>0xec80</Address>
+        </MemorySegment>
+        <MemorySegment>
+          <MemoryType>Flash</MemoryType>
+          <Name>.systemcall.7</Name>
+          <Address>0xed00</Address>
+        </MemorySegment>
+        <MemorySegment>
+          <MemoryType>Flash</MemoryType>
+          <Name>.systemcall.8</Name>
+          <Address>0xed80</Address>
+        </MemorySegment>
+        <MemorySegment>
+          <MemoryType>Flash</MemoryType>
+          <Name>.systemcall.9</Name>
+          <Address>0xee00</Address>
+        </MemorySegment>
+        <MemorySegment>
+          <MemoryType>Flash</MemoryType>
+          <Name>.systemcall.10</Name>
+          <Address>0xee80</Address>
+        </MemorySegment>
+        <MemorySegment>
+          <MemoryType>Flash</MemoryType>
+          <Name>.systemcall.11</Name>
+          <Address>0xef00</Address>
+        </MemorySegment>
+        <InitialStack IsEnabled="0">
+          <Address>0xff00</Address>
+        </InitialStack>
+      </MemorySegments>
+    </MemorySettings>
+    <ToolchainSettings>
+      <AvrGcc>
+  <avrgcc.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>PLATFORM_AVR</Value>
+      <Value>PRINT_SOURCE_ENABLED</Value>
+      <Value>FILE_SYS_RANGE=32</Value>
+      <Value>MAX_FILE_TABLE_SIZE=2</Value>
+      <Value>LITE_MAX_THREADS=3</Value>
+      <Value>F_CPU=8000000UL</Value>
+      <Value>COMMON_SHARE_SCHEDULING</Value>
+      <Value>AVR_STACK_PREPARE_LENGTH=34</Value>
+      <Value>BOOTLOADERSIZE=0</Value>
+      <Value>MAX_MSG_LENGTH=64</Value>
+      <Value>NUM_BREAKPOINTS=0</Value>
+      <Value>PLATFORM_AVR_MICAZ</Value>
+      <Value>RADIO_CC2420</Value>
+    </ListValues>
+  </avrgcc.compiler.symbols.DefSymbols>
+  <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
+  <avrgcc.compiler.optimization.OtherFlags>-combine</avrgcc.compiler.optimization.OtherFlags>
+  <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+  <avrgcc.compiler.miscellaneous.OtherFlags>-gdwarf-2 -fsigned-char </avrgcc.compiler.miscellaneous.OtherFlags>
+  <avrgcc.compiler.miscellaneous.Verbose>True</avrgcc.compiler.miscellaneous.Verbose>
+  <avrgcc.assembler.general.AssemblerFlags>-Wall -gdwarf-2 -DPLATFORM_AVR -DRADIO_CC2420 -DPRINT_SOURCE_ENABLED -DBOOTLOADERSIZE=512 -DFILE_SYS_RANGE=32 -DMAX_FILE_TABLE_SIZE=2 -DNUM_BREAKPOINTS=3 -DAVR_STACK_PREPARE_LENGTH=34 -DJTAG_TOGGLE=1 -DLITE_MAX_THREADS=3 -DMAX_MSG_LENGTH=32     -DENERGY_SHARE_SCHEDULING   -DF_CPU=8000000UL -Os -fsigned-char</avrgcc.assembler.general.AssemblerFlags>
+</AvrGcc>
+    </ToolchainSettings>
+    <GenerateHexFile>True</GenerateHexFile>
+    <GenerateMapFile>True</GenerateMapFile>
+    <GenerateListFile>True</GenerateListFile>
+    <GenerateEepFile>True</GenerateEepFile>
+  </PropertyGroup>
+  <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\AvrGCC.targets" />
+  <ItemGroup>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\apps\Blink\appblink.c">
+      <SubType>compile</SubType>
+      <Link>appblink.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\entry\realmain.h">
+      <SubType>compile</SubType>
+      <Link>realmain.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\bootloader\bootloader.h">
+      <SubType>compile</SubType>
+      <Link>bootloader.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\config\nodeconfig.h">
+      <SubType>compile</SubType>
+      <Link>nodeconfig.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\hardware\avrhardware.c">
+      <SubType>compile</SubType>
+      <Link>avrhardware.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\hardware\avrhardware.h">
+      <SubType>compile</SubType>
+      <Link>avrhardware.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\hardware\micaz\micazhardware.h">
+      <SubType>compile</SubType>
+      <Link>micazhardware.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\io\avrserial\serialprint.h">
+      <SubType>compile</SubType>
+      <Link>serialprint.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\io\serial\stdserial.h">
+      <SubType>compile</SubType>
+      <Link>stdserial.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\io\cc2420\cc2420const.h">
+      <SubType>compile</SubType>
+      <Link>cc2420const.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\io\cc2420\cc2420controlm.h">
+      <SubType>compile</SubType>
+      <Link>cc2420controlm.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\io\cc2420\cc2420radiom.h">
+      <SubType>compile</SubType>
+      <Link>cc2420radiom.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\io\cc2420\hplcc2420fifom.h">
+      <SubType>compile</SubType>
+      <Link>hplcc2420fifom.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\io\cc2420\hplcc2420interruptm.h">
+      <SubType>compile</SubType>
+      <Link>hplcc2420interruptm.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\io\cc2420\hplcc2420m.h">
+      <SubType>compile</SubType>
+      <Link>hplcc2420m.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\io\cc2420\hpltimer1.h">
+      <SubType>compile</SubType>
+      <Link>hpltimer1.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\io\radio\amcommon.h">
+      <SubType>compile</SubType>
+      <Link>amcommon.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\io\radio\amradio.h">
+      <SubType>compile</SubType>
+      <Link>amradio.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\io\radio\packethandler.h">
+      <SubType>compile</SubType>
+      <Link>packethandler.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\kernel\scheduling.h">
+      <SubType>compile</SubType>
+      <Link>scheduling.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\kernel\threadkernel.h">
+      <SubType>compile</SubType>
+      <Link>threadkernel.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\kernel\threadtools.h">
+      <SubType>compile</SubType>
+      <Link>threadtools.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\libleds.c">
+      <SubType>compile</SubType>
+      <Link>libleds.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\libleds.h">
+      <SubType>compile</SubType>
+      <Link>libleds.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\sensors\adcdriver.h">
+      <SubType>compile</SubType>
+      <Link>adcdriver.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\sensors\leds.h">
+      <SubType>compile</SubType>
+      <Link>leds.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\sensors\sounder.h">
+      <SubType>compile</SubType>
+      <Link>sounder.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\bytestorage\bytestorage.h">
+      <SubType>compile</SubType>
+      <Link>bytestorage.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\eeprom\ioeeprom.h">
+      <SubType>compile</SubType>
+      <Link>ioeeprom.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\filesys\fs_structure.h">
+      <SubType>compile</SubType>
+      <Link>fs_structure.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\filesys\fsapi.h">
+      <SubType>compile</SubType>
+      <Link>fsapi.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\filesys\fsconfig.h">
+      <SubType>compile</SubType>
+      <Link>fsconfig.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\filesys\fsstring.h">
+      <SubType>compile</SubType>
+      <Link>fsstring.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\filesys\inode.h">
+      <SubType>compile</SubType>
+      <Link>inode.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\filesys\stdfsa.h">
+      <SubType>compile</SubType>
+      <Link>stdfsa.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\filesys\storageconstants.h">
+      <SubType>compile</SubType>
+      <Link>storageconstants.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\filesys\vectorflash.h">
+      <SubType>compile</SubType>
+      <Link>vectorflash.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\filesys\vectornode.h">
+      <SubType>compile</SubType>
+      <Link>vectornode.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\flash\atmelflash.h">
+      <SubType>compile</SubType>
+      <Link>atmelflash.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\flash\pagestorage.h">
+      <SubType>compile</SubType>
+      <Link>pagestorage.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\syscall\socketadc.c">
+      <SubType>compile</SubType>
+      <Link>socketadc.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\syscall\socketadc.h">
+      <SubType>compile</SubType>
+      <Link>socketadc.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\syscall\socketeeprom.c">
+      <SubType>compile</SubType>
+      <Link>socketeeprom.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\syscall\socketeeprom.h">
+      <SubType>compile</SubType>
+      <Link>socketeeprom.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\syscall\socketfile.c">
+      <SubType>compile</SubType>
+      <Link>socketfile.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\syscall\socketfile.h">
+      <SubType>compile</SubType>
+      <Link>socketfile.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\syscall\socketradiocontrol.c">
+      <SubType>compile</SubType>
+      <Link>socketradiocontrol.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\syscall\socketradiocontrol.h">
+      <SubType>compile</SubType>
+      <Link>socketradiocontrol.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\syscall\socketradiodata.c">
+      <SubType>compile</SubType>
+      <Link>socketradiodata.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\syscall\socketradiodata.h">
+      <SubType>compile</SubType>
+      <Link>socketradiodata.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\syscall\socketthread.c">
+      <SubType>compile</SubType>
+      <Link>socketthread.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\syscall\socketthread.h">
+      <SubType>compile</SubType>
+      <Link>socketthread.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\timer\generictimer.h">
+      <SubType>compile</SubType>
+      <Link>generictimer.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\timer\globaltiming.h">
+      <SubType>compile</SubType>
+      <Link>globaltiming.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\timer\micaz\clockraw.c">
+      <SubType>compile</SubType>
+      <Link>clockraw.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\timer\micaz\clockraw.h">
+      <SubType>compile</SubType>
+      <Link>clockraw.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\timer\timerraw.h">
+      <SubType>compile</SubType>
+      <Link>timerraw.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\types\byteorder.h">
+      <SubType>compile</SubType>
+      <Link>byteorder.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\types\string.h">
+      <SubType>compile</SubType>
+      <Link>string.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\types\types.h">
+      <SubType>compile</SubType>
+      <Link>types.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\utilities\eventlogger.c">
+      <SubType>compile</SubType>
+      <Link>eventlogger.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\utilities\eventlogger.h">
+      <SubType>compile</SubType>
+      <Link>eventlogger.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\utilities\math.h">
+      <SubType>compile</SubType>
+      <Link>math.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\shell\commandhandle.h">
+      <SubType>compile</SubType>
+      <Link>commandhandle.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\syscall\syscall.h">
+      <SubType>compile</SubType>
+      <Link>syscall.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\commonapp.h">
+      <SubType>compile</SubType>
+      <Link>commonapp.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\libadc.h">
+      <SubType>compile</SubType>
+      <Link>libadc.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\libeeprom.h">
+      <SubType>compile</SubType>
+      <Link>libeeprom.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\libfile.h">
+      <SubType>compile</SubType>
+      <Link>libfile.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\libradio.h">
+      <SubType>compile</SubType>
+      <Link>libradio.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\libserial.h">
+      <SubType>compile</SubType>
+      <Link>libserial.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\libsounder.h">
+      <SubType>compile</SubType>
+      <Link>libsounder.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\libstring.h">
+      <SubType>compile</SubType>
+      <Link>libstring.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\libsystem.h">
+      <SubType>compile</SubType>
+      <Link>libsystem.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\libthread.h">
+      <SubType>compile</SubType>
+      <Link>libthread.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\liteoscommon.h">
+      <SubType>compile</SubType>
+      <Link>liteoscommon.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\libmutex.h">
+      <SubType>compile</SubType>
+      <Link>libmutex.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\kernel\threadmodel.h">
+      <SubType>compile</SubType>
+      <Link>threadmodel.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\kernel\threaddata.h">
+      <SubType>compile</SubType>
+      <Link>threaddata.h</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\entry\realmain.c">
+      <SubType>compile</SubType>
+      <Link>realmain.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\bootloader\bootloader.c">
+      <SubType>compile</SubType>
+      <Link>bootloader.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\config\nodeconfig.c">
+      <SubType>compile</SubType>
+      <Link>nodeconfig.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\hardware\micaz\micazhardware.c">
+      <SubType>compile</SubType>
+      <Link>micazhardware.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\io\avrserial\serialprint.c">
+      <SubType>compile</SubType>
+      <Link>serialprint.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\io\serial\stdserial.c">
+      <SubType>compile</SubType>
+      <Link>stdserial.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\io\radio\amradio.c">
+      <SubType>compile</SubType>
+      <Link>amradio.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\io\radio\packethandler.c">
+      <SubType>compile</SubType>
+      <Link>packethandler.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\io\cc2420\cc2420controlm.c">
+      <SubType>compile</SubType>
+      <Link>cc2420controlm.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\io\cc2420\cc2420radiom.c">
+      <SubType>compile</SubType>
+      <Link>cc2420radiom.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\io\cc2420\hplcc2420fifom.c">
+      <SubType>compile</SubType>
+      <Link>hplcc2420fifom.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\io\cc2420\hplcc2420interruptm.c">
+      <SubType>compile</SubType>
+      <Link>hplcc2420interruptm.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\io\cc2420\hplcc2420m.c">
+      <SubType>compile</SubType>
+      <Link>hplcc2420m.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\io\cc2420\hpltimer1.c">
+      <SubType>compile</SubType>
+      <Link>hpltimer1.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\kernel\scheduling.c">
+      <SubType>compile</SubType>
+      <Link>scheduling.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\kernel\threaddata.c">
+      <SubType>compile</SubType>
+      <Link>threaddata.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\kernel\threadkernel.c">
+      <SubType>compile</SubType>
+      <Link>threadkernel.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\kernel\threadtools.c">
+      <SubType>compile</SubType>
+      <Link>threadtools.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\sensors\adcdriver.c">
+      <SubType>compile</SubType>
+      <Link>adcdriver.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\sensors\leds.c">
+      <SubType>compile</SubType>
+      <Link>leds.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\sensors\sounder.c">
+      <SubType>compile</SubType>
+      <Link>sounder.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\bytestorage\bytestorage.c">
+      <SubType>compile</SubType>
+      <Link>bytestorage.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\eeprom\ioeeprom.c">
+      <SubType>compile</SubType>
+      <Link>ioeeprom.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\filesys\fs_structure.c">
+      <SubType>compile</SubType>
+      <Link>fs_structure.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\filesys\fsapi.c">
+      <SubType>compile</SubType>
+      <Link>fsapi.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\filesys\fsconfig.c">
+      <SubType>compile</SubType>
+      <Link>fsconfig.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\filesys\fsstring.c">
+      <SubType>compile</SubType>
+      <Link>fsstring.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\filesys\inode.c">
+      <SubType>compile</SubType>
+      <Link>inode.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\filesys\stdfsa.c">
+      <SubType>compile</SubType>
+      <Link>stdfsa.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\filesys\vectorflash.c">
+      <SubType>compile</SubType>
+      <Link>vectorflash.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\filesys\vectornode.c">
+      <SubType>compile</SubType>
+      <Link>vectornode.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\flash\atmelflash.c">
+      <SubType>compile</SubType>
+      <Link>atmelflash.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\storage\flash\pagestorage.c">
+      <SubType>compile</SubType>
+      <Link>pagestorage.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\timer\generictimer.c">
+      <SubType>compile</SubType>
+      <Link>generictimer.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\timer\globaltiming.c">
+      <SubType>compile</SubType>
+      <Link>globaltiming.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\timer\timerraw.c">
+      <SubType>compile</SubType>
+      <Link>timerraw.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\types\byteorder.c">
+      <SubType>compile</SubType>
+      <Link>byteorder.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\types\string.c">
+      <SubType>compile</SubType>
+      <Link>string.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\types\types.c">
+      <SubType>compile</SubType>
+      <Link>types.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\utilities\math.c">
+      <SubType>compile</SubType>
+      <Link>math.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\shell\commandhandle.c">
+      <SubType>compile</SubType>
+      <Link>commandhandle.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\syscall\syscall.c">
+      <SubType>compile</SubType>
+      <Link>syscall.c</Link>
+      <CustomCompilationSetting Condition="'$(Configuration)' == 'default'">-O0</CustomCompilationSetting>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\libadc.c">
+      <SubType>compile</SubType>
+      <Link>libadc.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\libeeprom.c">
+      <SubType>compile</SubType>
+      <Link>libeeprom.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\libfile.c">
+      <SubType>compile</SubType>
+      <Link>libfile.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\libradio.c">
+      <SubType>compile</SubType>
+      <Link>libradio.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\libserial.c">
+      <SubType>compile</SubType>
+      <Link>libserial.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\libsounder.c">
+      <SubType>compile</SubType>
+      <Link>libsounder.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\libstring.c">
+      <SubType>compile</SubType>
+      <Link>libstring.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\libsystem.c">
+      <SubType>compile</SubType>
+      <Link>libsystem.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\libthread.c">
+      <SubType>compile</SubType>
+      <Link>libthread.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\libraries\libmutex.c">
+      <SubType>compile</SubType>
+      <Link>libmutex.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\kernel\threadmodel.c">
+      <SubType>compile</SubType>
+      <Link>threadmodel.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\utilities\memorylogger.c">
+      <SubType>compile</SubType>
+      <Link>memorylogger.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\utilities\memorylogger.h">
+      <SubType>compile</SubType>
+      <Link>memorylogger.h</Link>
+    </Compile>
+  </ItemGroup>
+</Project>
