@@ -15,16 +15,16 @@
     <com_atmel_avrdbg_tool_jtagicemkii>
       <ToolType>com.atmel.avrdbg.tool.jtagicemkii</ToolType>
       <ToolName>JTAGICE mkII</ToolName>
-      <ToolNumber>07000000377C</ToolNumber>
+      <ToolNumber>090000006997</ToolNumber>
       <Channel>
         <host>127.0.0.1</host>
-        <port>3135</port>
+        <port>1136</port>
         <ssl>False</ssl>
       </Channel>
       <ToolOptions>
         <InterfaceName>JTAG</InterfaceName>
         <InterfaceProperties>
-          <JtagDbgClock>200000</JtagDbgClock>
+          <JtagDbgClock>1994528</JtagDbgClock>
           <JtagProgClock>1000000</JtagProgClock>
           <IspClock>150000</IspClock>
           <JtagInChain>false</JtagInChain>
@@ -142,7 +142,7 @@
             <Value>RADIO_RF230</Value>
           </ListValues>
         </avrgcc.compiler.symbols.DefSymbols>
-        <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
+        <avrgcc.compiler.optimization.level>Optimize more (-O2)</avrgcc.compiler.optimization.level>
         <avrgcc.compiler.optimization.OtherFlags>-combine</avrgcc.compiler.optimization.OtherFlags>
         <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
         <avrgcc.compiler.miscellaneous.OtherFlags>-gdwarf-2 -fsigned-char </avrgcc.compiler.miscellaneous.OtherFlags>

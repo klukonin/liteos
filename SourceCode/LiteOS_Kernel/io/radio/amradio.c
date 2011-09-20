@@ -41,6 +41,7 @@ uint16_t AMStandard_receive_counter;
 
 volatile uint16_t global_radio_lock; 
 
+Radio_MsgPtr temp; 
 //-------------------------------------------------------------------------
 inline bool AMStandard_Control_init(void)
 {
@@ -247,6 +248,7 @@ Radio_MsgPtr received(Radio_MsgPtr packet)
         uint16_t port = packet->port;
         Radio_MsgPtr tmp;
 
+		temp = packet; 
         tmp = Standard_Receive_Packet(port, packet);
         if (tmp)
         {

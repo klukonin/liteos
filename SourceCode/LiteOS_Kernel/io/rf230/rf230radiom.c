@@ -28,6 +28,7 @@
 #include "../../sensors/leds.h"
 
 
+static uint16_t rf230radiom_currentDSN;
 
 //--------------------------------------------------------
 /*! \brief IRIS: This function is used to initialize the TRX.
@@ -55,6 +56,7 @@ inline bool2 trx_init( void ){
         status = true;
     } // end: if (tat_init( ) != TAT_SUCCESS) ...
 
+    rf230radiom_currentDSN = 0;
     return status;
 }    
 
@@ -71,7 +73,7 @@ result_t rf230radio_Send_send(Radio_MsgPtr pMsg)
 	
     pMsg->fcflo=0x08;
     pMsg->fcfhi=0x01;
-    pMsg->dsn=0x66; //seq ++
+    pMsg->dsn = rf230radiom_currentDSN ++; //seq ++
     pMsg->destpan=BCAST_ADDRESS;
 
     //pMsg->addr==BCAST_ADDRESS;
@@ -107,7 +109,7 @@ result_t rf230radio_Send_send(Radio_MsgPtr pMsg)
    if (tat_set_trx_state( PLL_ON ) == TAT_SUCCESS) {
        
      //	Leds_yellowToggle();  //Debug--yellowtoggle Upon
-   result= tat_send_data((pMsg->length+3), (uint8_t*) pMsg); //Note: Include MSG_FOOTER_SIZE
+   result= tat_send_data((pMsg->length+2), ((uint8_t*) pMsg)+1); //Note: Include MSG_FOOTER_SIZE
    
      if (result == TAT_SUCCESS)
    	  {  result=SUCCESS;

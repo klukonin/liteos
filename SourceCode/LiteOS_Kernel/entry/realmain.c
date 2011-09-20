@@ -133,8 +133,7 @@ int main()
     #endif
 	
 	#ifdef RADIO_RF230
-   	
-  	if (tat_set_trx_state( RX_ON )==TAT_SUCCESS) {}
+   	if (tat_set_trx_state( RX_ON )==TAT_SUCCESS) {}
 	else
     {}
    #endif

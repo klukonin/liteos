@@ -95,7 +95,7 @@
 #define HAL_PLL_LOCK_MASK      ( 0x01 ) //!< Mask for the PLL_LOCK interrupt.
 
 #define HAL_MIN_FRAME_LENGTH   ( 0x03 ) //!< A frame should be at least 3 bytes.
-#define HAL_MAX_FRAME_LENGTH   ( 0x7F ) //!< A frame should no more than 127 bytes.
+#define HAL_MAX_FRAME_LENGTH   ( 0x64 ) // A frame is extactly 100 bytes to be consistent on both sides of the radio. 
 /*============================ TYPDEFS =======================================*/
 /*! \brief  This struct defines the rx data container.
  *

@@ -85,6 +85,10 @@
 #include "../../io/radio/amcommon.h"
 #include "../../io/radio/amradio.h"
 #include "../../io/serial/stdserial.h"
+
+  
+
+hal_rx_frame_t rx_frame;
 //#include "../../eds.h"
 //#include "commandProcessor.h"
 //#include "testUSART2.h"
@@ -628,7 +632,10 @@ __z void hal_frame_read( hal_rx_frame_t *rx_frame ){
     /*Send frame read command.*/
     SPDR = HAL_TRX_CMD_FR;
     while ((SPSR & (1 << SPIF)) == 0) {;}
-    uint8_t frame_length = SPDR;
+    
+	uint8_t frame_length = SPDR;
+	
+	 
     cmd=HAL_TRX_CMD_FR;
     
     /*Read frame length.*/    
@@ -641,7 +648,7 @@ __z void hal_frame_read( hal_rx_frame_t *rx_frame ){
         
         uint16_t crc = 0;
         uint8_t *rx_data = (rx_frame->data);
-        
+        *rx_data++ = frame_length; 
         rx_frame->length = frame_length; //Store frame length.
         
         /*Upload frame buffer to data pointer. Calculate CRC.*/
@@ -1025,7 +1032,7 @@ void rf230radio_receive ( void )
 {
 	
 	//printfstr ("\n---Start to Receive in Post Tasks-----"); 
-	hal_rx_frame_t rx_frame;
+	
   struct Radio_Msg *result;
   hal_frame_read( &rx_frame ); //Then read data to the MCU. 
   //Leds_yellowToggle();  //Upon Receiving Packet in hal fun
