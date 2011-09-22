@@ -15,10 +15,10 @@
     <com_atmel_avrdbg_tool_jtagicemkii>
       <ToolType>com.atmel.avrdbg.tool.jtagicemkii</ToolType>
       <ToolName>JTAGICE mkII</ToolName>
-      <ToolNumber>090000006997</ToolNumber>
+      <ToolNumber>07000000377C</ToolNumber>
       <Channel>
         <host>127.0.0.1</host>
-        <port>1136</port>
+        <port>2088</port>
         <ssl>False</ssl>
       </Channel>
       <ToolOptions>

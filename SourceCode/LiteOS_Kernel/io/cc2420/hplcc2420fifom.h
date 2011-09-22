@@ -12,7 +12,7 @@
 #include "../../types/types.h"
 #include "../radio/amcommon.h"
 
-/** \addtogroup radio */
+/** \addtogroup radiocc2420 */
 /** @{ */
 inline result_t hplcc2420fifom_HPLCC2420FIFO_TXFIFODone(uint8_t arg_0xa40cd20,
                                                         uint8_t *

@@ -10,7 +10,7 @@
 #ifndef hplcc2420interruptmH
 #define hplcc2420interruptmH
 #include "../../types/types.h"
-/** \addtogroup radio */
+/** \addtogroup radiocc2420 */
 /** @{ */
 inline result_t hplcc2420interruptm_CCA_startWait(bool low_to_high);
 inline void hplcc2420interruptm_SFDCapture_enableEvents(void);

@@ -12,7 +12,9 @@
 #include "../../types/types.h"
 
 
-/** \addtogroup radio */
+/** @defgroup radiocc2420 CC2420 Implementation */
+
+/** \addtogroup radiocc2420 */
 /**@{ */
 
 /// times for the CC2420 in microseconds

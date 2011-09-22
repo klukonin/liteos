@@ -25,7 +25,7 @@ void testblink()
 	{
    lib_sleep_thread(500);  
   // lib_red_toggle();
-   //lib_radio_send_string("hello,world\n");
+  // lib_radio_send_string("hello,world\n");
    lib_yellow_toggle();
    
    counter++; 

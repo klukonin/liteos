@@ -11,7 +11,7 @@
 #define CC2420RADIOMH
 #include "../radio/amcommon.h"
 #include "../../types/types.h"
-/** \addtogroup radio */
+/** \addtogroup radiocc2420 */
 /** @{ */
 inline result_t cc2420radiom_SplitControl_default_initDone(void);
 inline result_t cc2420radiom_CC2420SplitControl_initDone(void);

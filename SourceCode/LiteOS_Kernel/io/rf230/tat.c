@@ -1,68 +1,20 @@
-/* The LiteOS Operating System Kernel */
-/*
-   The following is the license of LiteOS.
-   This file is part of LiteOS.
-   Copyright Qing Cao, 2007-2008, University of Illinois , qcao2@uiuc.edu
-   LiteOS is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
-   LiteOS is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-   You should have received a copy of the GNU General Public License
-   along with LiteOS.  If not, see <http://www.gnu.org/licenses/>.
- */
- 
- 
- /* This file has been prepared for Doxygen automatic documentation generation.*/
-/*! \file *********************************************************************
+/** @file tat.c
  *
- * \brief This files implements the Transceiver Access Toolbox.
+ * @brief This files implements the Transceiver Access Toolbox.
  *
- * \par Application note:
+ * @par Application note:
  *      AVR2001:  AT86RF230 Software Programmer's Guide
  *
- * \par Documentation
+ * @par Documentation
  *      For comprehensive code documentation, supported compilers, compiler 
  *      settings and supported devices see readme.html
  *
- * \author
+ * @author
  *      Atmel Corporation: http://www.atmel.com \n
  *      Support email: avr@atmel.com
- * 
- * $Name$
- * $Revision: 613 $
- * $RCSfile$
- * $Date: 2006-04-07 14:40:07 +0200 (fr, 07 apr 2006) $  \n
- *
- * Copyright (c) 2006, Atmel Corporation All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * 1. Redistributions of source code must retain the above copyright notice,
- * this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- * this list of conditions and the following disclaimer in the documentation
- * and/or other materials provided with the distribution.
- *
- * 3. The name of ATMEL may not be used to endorse or promote products derived
- * from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY ATMEL ``AS IS'' AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE EXPRESSLY AND
- * SPECIFICALLY DISCLAIMED. IN NO EVENT SHALL ATMEL BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
- * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
- * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- ******************************************************************************/
+ */
+
+ 
 /*============================ INCLDUE =======================================*/
 //#include <stdint.h>
 //#include <stdbool.h>
@@ -87,12 +39,12 @@
 #define TAT_MIN_IEEE_FRAME_LENGTH ( 5 )
 /*============================ TYPEDEFS ======================================*/
 
-/*! \brief  This enumeration defines the necessary timing information for the 
+/** @brief  This enumeration defines the necessary timing information for the 
  *          AT86RF230 radio transceiver. All times are in microseconds.
  *
  *          These constants are extracted from the datasheet.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 typedef enum{
     
@@ -113,22 +65,22 @@ typedef enum{
 /*============================ PROTOTYPES ====================================*/
 static bool2 is_sleeping( void );
 
-/*! \brief  Initialize the Transceiver Access Toolbox and lower layers.
+/** @brief  Initialize the Transceiver Access Toolbox and lower layers.
  *
  *          If the initialization is successful the radio transceiver will be in 
  *          TRX_OFF state.          
  *
- *  \note  This function must be called prior to any of the other functions in 
+ *  @note  This function must be called prior to any of the other functions in 
  *         this file! Can be called from any transceiver state.
  *
- *  \retval TAT_SUCCESS     The radio transceiver was successfully initialized 
+ *  @return TAT_SUCCESS     The radio transceiver was successfully initialized 
  *                          and put into the TRX_OFF state.
- *  \retval TAT_UNSUPPORTED_DEVICE  The connected device is not an Atmel 
+ *  @return TAT_UNSUPPORTED_DEVICE  The connected device is not an Atmel 
  *                                  AT86RF230 radio transceiver.
- *  \retval TAT_TIMED_OUT   The radio transceiver was not able to initialize and 
+ *  @return TAT_TIMED_OUT   The radio transceiver was not able to initialize and 
  *                          enter TRX_OFF state within the specified time.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
  //Debug-tat_init() work correctly now!
  
@@ -143,28 +95,13 @@ tat_status_t tat_init( void ){
     
     tat_reset_trx( ); //Do HW reset of radio transeiver.
     
-    /*//Debug
-    printfstr ("\n *radio_status pre"); 
-    radio_status=tat_get_trx_state( );
-    printfintegeru32(radio_status);*/
     
     //Force transition to TRX_OFF.
     hal_subregister_write( SR_TRX_CMD, CMD_FORCE_TRX_OFF );
     delay_us( TIME_P_ON_TO_TRX_OFF ); //Wait for the transition to be complete.
     
-    //Debug read SR_TRX_CMD Subregister
-   // radio_status=hal_subregister_read( SR_TRX_CMD );
-    
-    //printfstr ("\n TRX_CMD Reg: "); 
-    //printfintegeru32(radio_status);
-        
-   /*  //Debug 
-     printfstr ("\n *radio_status post"); 
-     radio_status=tat_get_trx_state( );
-     printfintegeru32(radio_status);*/
     
     if (tat_get_trx_state( ) != TRX_OFF) {
-       // Leds_redToggle();  //Debug--Redtoggle Upon
         
         init_status = TAT_TIMED_OUT;    
     } else {
@@ -180,12 +117,6 @@ tat_status_t tat_init( void ){
                 init_status = TAT_UNSUPPORTED_DEVICE;
             } else {
                 hal_register_write( RG_IRQ_MASK, RF230_SUPPORTED_INTERRUPT_MASK );
-                 /*//Debug   				            
-				 //Leds_yellowToggle(); 
-				 //Debug--Redtoggle Upon Sucess Init
-                 //printfstr ("\n Init Status: "); 
-                 //printfintegeru32(init_status);*/
-                 //Return TAT_SUCCESS Here!!
                  
             } // end: if (hal_register_read( RG_MAN_ID_0 ) != ...
         } // end: if ((version_number != RF230_REVA ) ...
@@ -194,27 +125,27 @@ tat_status_t tat_init( void ){
     return init_status;
 }
 
-/*! \brief  This function will return the channel used by the radio transceiver.
+/** @brief  This function will return the channel used by the radio transceiver.
  *
- *  \return Current channel, 11 to 26.
+ *  @return Current channel, 11 to 26.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 uint8_t tat_get_operating_channel( void ){
     return hal_subregister_read( SR_CHANNEL );
 }
 
-/*! \brief This function will change the operating channel.
+/** @brief This function will change the operating channel.
  *
- *  \param  channel New channel to operate on. Must be between 11 and 26.
+ *  @param  channel New channel to operate on. Must be between 11 and 26.
  *
- *  \retval TAT_SUCCESS New channel set.
- *  \retval TAT_WRONG_STATE Transceiver is in a state where the channel cannot 
+ *  @return TAT_SUCCESS New channel set.
+ *  @return TAT_WRONG_STATE Transceiver is in a state where the channel cannot 
  *                          be changed (SLEEP).
- *  \retval TAT_INVALID_ARGUMENT Channel argument is out of bounds.
- *  \retval TAT_TIMED_OUT The PLL did not lock within the specified time.
+ *  @return TAT_INVALID_ARGUMENT Channel argument is out of bounds.
+ *  @return TAT_TIMED_OUT The PLL did not lock within the specified time.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 tat_status_t tat_set_operating_channel( uint8_t channel ){
     
@@ -248,28 +179,28 @@ tat_status_t tat_set_operating_channel( uint8_t channel ){
     return channel_set_status;
 }
 
-/*! \brief This function will read and return the output power level.
+/** @brief This function will read and return the output power level.
  *
- *  \returns 0 to 15 Current output power in "TX power settings" as defined in 
+ *  @returns 0 to 15 Current output power in "TX power settings" as defined in 
  *          the radio transceiver's datasheet
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 uint8_t tat_get_tx_power_level( void ){
     return hal_subregister_read( SR_TX_PWR );
 }
 
-/*! \brief This function will change the output power level.
+/** @brief This function will change the output power level.
  *
- *  \param  power_level New output power level in the "TX power settings" 
+ *  @param  power_level New output power level in the "TX power settings" 
  *                      as defined in the radio transceiver's datasheet.
  *
- *  \retval TAT_SUCCESS New output power set successfully.
- *  \retval TAT_INVALID_ARGUMENT The supplied function argument is out of bounds.
- *  \retval TAT_WRONG_STATE It is not possible to change the TX power when the 
+ *  @return TAT_SUCCESS New output power set successfully.
+ *  @return TAT_INVALID_ARGUMENT The supplied function argument is out of bounds.
+ *  @return TAT_WRONG_STATE It is not possible to change the TX power when the 
  *                          device is sleeping.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 tat_status_t tat_set_tx_power_level( uint8_t power_level ){
         
@@ -284,17 +215,17 @@ tat_status_t tat_set_tx_power_level( uint8_t power_level ){
     return TAT_SUCCESS;
 }
 
-/*! \brief This function will measure the amount of energy sensed on the antenna 
+/** @brief This function will measure the amount of energy sensed on the antenna 
  *         pins.
  *
- *  \param ed_level  This is a pointer used to return the measured energy. The 
+ *  @param ed_level  This is a pointer used to return the measured energy. The 
  *                   value is only written if the function returns with 
  *                   TAT_SUCCESS. The written value is 0 to 84.
  *
- *  \retval TAT_SUCCESS The detection was successful.
- *  \retval TAT_WRONG_STATE The energy detection can only be done if the radio
+ *  @return TAT_SUCCESS The detection was successful.
+ *  @return TAT_WRONG_STATE The energy detection can only be done if the radio
  *                          transceiver's state is RX_ON or BUSY_RX.
- *  \ingroup tat
+ *  @ingroup tat
  */
 tat_status_t tat_do_ed_scan( uint8_t *ed_level ){
 
@@ -314,42 +245,42 @@ tat_status_t tat_do_ed_scan( uint8_t *ed_level ){
     return TAT_SUCCESS;
 }
 
-/*! \brief This function returns the current CCA mode used.
+/** @brief This function returns the current CCA mode used.
  *
- *  \return CCA mode currently used, 0 to 3.
+ *  @return CCA mode currently used, 0 to 3.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 uint8_t tat_get_cca_mode( void ){           
     return hal_subregister_read( SR_CCA_MODE );
 }
 
-/*! \brief This function returns the current ED threshold used by the CCA algorithm.
+/** @brief This function returns the current ED threshold used by the CCA algorithm.
  *
- *  \return Current ED threshold, 0 to 15.
+ *  @return Current ED threshold, 0 to 15.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 uint8_t tat_get_ed_threshold( void ){
     return hal_subregister_read( SR_CCA_ED_THRES );
 }
 
-/*! \brief This function will configure the Clear Channel Assessment algorithm.
+/** @brief This function will configure the Clear Channel Assessment algorithm.
  *
- *  \param  mode Three modes are available: Energy above threshold, carrier 
+ *  @param  mode Three modes are available: Energy above threshold, carrier 
  *               sense only and carrier sense with energy above threshold.
- *  \param  ed_threshold Above this energy threshold the channel is assumed to be 
+ *  @param  ed_threshold Above this energy threshold the channel is assumed to be 
  *                      busy. The threshold is given in positive dBm values. 
  *                      Ex. -91 dBm gives a csThreshold of 91. Value range for 
  *                      the variable is [61 to 91]. Only valid for the CCA_ED 
  *                      and CCA_CARRIER_SENSE_ED modes.
  *
- *  \retval TAT_SUCCESS Mode and its parameters successfully changed.
- *  \retval TAT_WRONG_STATE This function cannot be called in the SLEEP state.
- *  \retval TAT_INVALID_ARGUMENT If one of the three function arguments are out 
+ *  @return TAT_SUCCESS Mode and its parameters successfully changed.
+ *  @return TAT_WRONG_STATE This function cannot be called in the SLEEP state.
+ *  @return TAT_INVALID_ARGUMENT If one of the three function arguments are out 
  *                               of bounds.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 tat_status_t tat_set_cca_mode( uint8_t mode, uint8_t ed_threshold ){
     
@@ -372,16 +303,16 @@ tat_status_t tat_set_cca_mode( uint8_t mode, uint8_t ed_threshold ){
     return TAT_SUCCESS;
 }
 
-/*! \brief  This function will perform a Clear Channel Assessment.
+/** @brief  This function will perform a Clear Channel Assessment.
  *
- *  \note The state after the cca mesasurement will be RX_ON.
+ *  @note The state after the cca mesasurement will be RX_ON.
  *
- *  \retval TAT_CCA_IDLE  Channel is ready for transmission.
- *  \retval TAT_CCA_BUSY  Channel is not ready for transmission.
- *  \retval TAT_WRONG_STATE CCA can only be done in PLL_ON.
- *  \retval TAT_TIMED_OUT CCA algorithm timed out.
+ *  @return TAT_CCA_IDLE  Channel is ready for transmission.
+ *  @return TAT_CCA_BUSY  Channel is not ready for transmission.
+ *  @return TAT_WRONG_STATE CCA can only be done in PLL_ON.
+ *  @return TAT_TIMED_OUT CCA algorithm timed out.
  *   
- *  \ingroup tat
+ *  @ingroup tat
  */
 tat_status_t tat_do_cca( void ){
 
@@ -416,16 +347,16 @@ tat_status_t tat_do_cca( void ){
     return cca_status;
 }
 
-/*! \brief This function returns the Received Signal Strength Indication.
+/** @brief This function returns the Received Signal Strength Indication.
  *
- *  \note This function should only be called from the: RX_ON and BUSY_RX. This
+ *  @note This function should only be called from the: RX_ON and BUSY_RX. This
  *        can be ensured by reading the current state of the radio transceiver 
  *        before executing this function!
- *  \param rssi Pointer to memory location where RSSI value should be written.
- *  \retval TAT_SUCCESS The RSSI measurement was successful.
- *  \retval TAT_WRONG_STATE The radio transceiver is not in RX_ON or BUSY_RX.
+ *  @param rssi Pointer to memory location where RSSI value should be written.
+ *  @return TAT_SUCCESS The RSSI measurement was successful.
+ *  @return TAT_WRONG_STATE The radio transceiver is not in RX_ON or BUSY_RX.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 tat_status_t tat_get_rssi_value( uint8_t *rssi ){
     
@@ -442,44 +373,44 @@ tat_status_t tat_get_rssi_value( uint8_t *rssi ){
     return retval;
 }
 
-/*! \brief This function returns the current threshold volatge used by the 
+/** @brief This function returns the current threshold volatge used by the 
  *         battery monitor (BATMON_VTH). 
  *
- *  \note This function can not be called from P_ON or SLEEP. This is ensured
+ *  @note This function can not be called from P_ON or SLEEP. This is ensured
  *        by reading the device state before calling this function.
  *
- *  \return Current threshold voltage, 0 to 15.
+ *  @return Current threshold voltage, 0 to 15.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 uint8_t tat_batmon_get_voltage_threshold( void ){
     return hal_subregister_read( SR_BATMON_VTH );
 }
 
-/*! \brief This function returns if high or low voltage range is used. 
+/** @brief This function returns if high or low voltage range is used. 
  *
- *  \note This function can not be called from P_ON or SLEEP. This is ensured
+ *  @note This function can not be called from P_ON or SLEEP. This is ensured
  *        by reading the device state before calling this function.
  *
- *  \retval 0 Low voltage range selected.
- *  \retval 1 High voltage range selected.
+ *  @return 0 Low voltage range selected.
+ *  @return 1 High voltage range selected.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 uint8_t tat_batmon_get_voltage_range( void ){
     return hal_subregister_read( SR_BATMON_HR );
 }
 
-/*! \brief This function is used to configure the battery monitor module 
+/** @brief This function is used to configure the battery monitor module 
  *
- *  \param range True means high voltage range and false low voltage range.
- *  \param voltage_threshold The datasheet defines 16 voltage levels for both
+ *  @param range True means high voltage range and false low voltage range.
+ *  @param voltage_threshold The datasheet defines 16 voltage levels for both
  *                          low and high range.
- *  \retval TAT_SUCCESS Battery monitor configured
- *  \retval TAT_WRONG_STATE The device is sleeping.
- *  \retval TAT_INVALID_ARGUMENT The voltage_threshold parameter is out of 
+ *  @return TAT_SUCCESS Battery monitor configured
+ *  @return TAT_WRONG_STATE The device is sleeping.
+ *  @return TAT_INVALID_ARGUMENT The voltage_threshold parameter is out of 
  *                               bounds (Not within [0 - 15]).
- *  \ingroup tat
+ *  @ingroup tat
  */
 tat_status_t tat_batmon_configure( bool2 range, uint8_t voltage_threshold ){
      
@@ -502,15 +433,15 @@ tat_status_t tat_batmon_configure( bool2 range, uint8_t voltage_threshold ){
     return TAT_SUCCESS;
 }
 
-/*! \brief This function returns the status of the Battery Monitor module.
+/** @brief This function returns the status of the Battery Monitor module.
  *
- *  \note This function can not be called from P_ON or SLEEP. This is ensured
+ *  @note This function can not be called from P_ON or SLEEP. This is ensured
  *        by reading the device state before calling this function.
  *
- *  \retval TAT_BAT_LOW Battery voltage is below the programmed threshold.
- *  \retval TAT_BAT_OK Battery voltage is above the programmed threshold.
+ *  @return TAT_BAT_LOW Battery voltage is below the programmed threshold.
+ *  @return TAT_BAT_OK Battery voltage is above the programmed threshold.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 tat_status_t tat_batmon_get_status( void ){
     
@@ -524,24 +455,24 @@ tat_status_t tat_batmon_get_status( void ){
     return batmon_status;
 }
 
-/*! \brief This function returns the current clock setting for the CLKM pin.
+/** @brief This function returns the current clock setting for the CLKM pin.
  *
- *  \retval CLKM_DISABLED CLKM pin is disabled.
- *  \retval CLKM_1MHZ CLKM pin is prescaled to 1 MHz.
- *  \retval CLKM_2MHZ CLKM pin is prescaled to 2 MHz.
- *  \retval CLKM_4MHZ CLKM pin is prescaled to 4 MHz.
- *  \retval CLKM_8MHZ CLKM pin is prescaled to 8 MHz.
- *  \retval CLKM_16MHZ CLKM pin is not prescaled. Output is 16 MHz.
+ *  @return CLKM_DISABLED CLKM pin is disabled.
+ *  @return CLKM_1MHZ CLKM pin is prescaled to 1 MHz.
+ *  @return CLKM_2MHZ CLKM pin is prescaled to 2 MHz.
+ *  @return CLKM_4MHZ CLKM pin is prescaled to 4 MHz.
+ *  @return CLKM_8MHZ CLKM pin is prescaled to 8 MHz.
+ *  @return CLKM_16MHZ CLKM pin is not prescaled. Output is 16 MHz.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 uint8_t tat_get_clock_speed( void ){
     return hal_subregister_read( SR_CLKM_CTRL );
 }
 
-/*! \brief This function changes the prescaler on the CLKM pin.
+/** @brief This function changes the prescaler on the CLKM pin.
  *
- *  \param direct   This boolean variable is used to determine if the frequency 
+ *  @param direct   This boolean variable is used to determine if the frequency 
  *                  of the CLKM pin shall be changed directly or not. If direct
  *                  equals true, the frequency will be changed directly. This is 
  *                  fine if the CLKM signal is used to drive a timer etc. on the
@@ -551,14 +482,14 @@ uint8_t tat_get_clock_speed( void ){
  *                  (direct == false). When the direct argument equlas false, the
  *                  CLKM frequency will be changed first after the radio transceiver
  *                  has been taken to SLEEP and awaken again.
- *  \param clock_speed This parameter can be one of the following constants: 
+ *  @param clock_speed This parameter can be one of the following constants: 
  *                     CLKM_DISABLED, CLKM_1MHZ, CLKM_2MHZ, CLKM_4MHZ, CLKM_8MHZ
  *                     or CLKM_16MHZ.
  *
- *  \retval TAT_SUCCESS Clock speed updated. New state is TRX_OFF.
- *  \retval TAT_INVALID_ARGUMENT Requested clock speed is out of bounds.
+ *  @return TAT_SUCCESS Clock speed updated. New state is TRX_OFF.
+ *  @return TAT_INVALID_ARGUMENT Requested clock speed is out of bounds.
  *  
- * \ingroup tat
+ * @ingroup tat
  */
 tat_status_t tat_set_clock_speed( bool2 direct, uint8_t clock_speed ){
     
@@ -579,14 +510,14 @@ tat_status_t tat_set_clock_speed( bool2 direct, uint8_t clock_speed ){
     return TAT_SUCCESS;
 }
 
-/*! \brief  This function calibrates the Single Side Band Filter.
+/** @brief  This function calibrates the Single Side Band Filter.
  *
- *  \retval     TAT_SUCCESS    Filter is calibrated.
- *  \retval     TAT_TIMED_OUT  The calibration could not be completed within time.
- *  \retval     TAT_WRONG_STATE This function can only be called from TRX_OFF or 
+ *  @return     TAT_SUCCESS    Filter is calibrated.
+ *  @return     TAT_TIMED_OUT  The calibration could not be completed within time.
+ *  @return     TAT_WRONG_STATE This function can only be called from TRX_OFF or 
  *              PLL_ON.
  *   
- *  \ingroup tat
+ *  @ingroup tat
  */
 tat_status_t tat_calibrate_filter( void ){
     
@@ -609,13 +540,13 @@ tat_status_t tat_calibrate_filter( void ){
     return filter_calibration_status;
 }
 
-/*! \brief  This function calibrates the PLL.
+/** @brief  This function calibrates the PLL.
  *
- *  \retval     TAT_SUCCESS    PLL Center Frequency and Delay Cell is calibrated.
- *  \retval     TAT_TIMED_OUT  The calibration could not be completed within time.
- *  \retval     TAT_WRONG_STATE This function can only be called from PLL_ON.
+ *  @return     TAT_SUCCESS    PLL Center Frequency and Delay Cell is calibrated.
+ *  @return     TAT_TIMED_OUT  The calibration could not be completed within time.
+ *  @return     TAT_WRONG_STATE This function can only be called from PLL_ON.
  *   
- *  \ingroup tat
+ *  @ingroup tat
  */
 tat_status_t tat_calibrate_pll( void ){
     
@@ -645,49 +576,49 @@ tat_status_t tat_calibrate_pll( void ){
     return pll_calibration_status;
 }
 
-/*! \brief  This function return the Radio Transceivers current state.
+/** @brief  This function return the Radio Transceivers current state.
  *
- *  \retval     P_ON               When the external supply voltage (VDD) is 
+ *  @return     P_ON               When the external supply voltage (VDD) is 
  *                                 first supplied to the transceiver IC, the 
  *                                 system is in the P_ON (Poweron) mode. 
- *  \retval     BUSY_RX            The radio transceiver is busy receiving a 
+ *  @return     BUSY_RX            The radio transceiver is busy receiving a 
  *                                 frame.
- *  \retval     BUSY_TX            The radio transceiver is busy transmitting a 
+ *  @return     BUSY_TX            The radio transceiver is busy transmitting a 
  *                                 frame.
- *  \retval     RX_ON              The RX_ON mode enables the analog and digital 
+ *  @return     RX_ON              The RX_ON mode enables the analog and digital 
  *                                 receiver blocks and the PLL frequency 
  *                                 synthesizer.
- *  \retval     TRX_OFF            In this mode, the SPI module and crystal 
+ *  @return     TRX_OFF            In this mode, the SPI module and crystal 
  *                                 oscillator are active.
- *  \retval     PLL_ON             Entering the PLL_ON mode from TRX_OFF will 
+ *  @return     PLL_ON             Entering the PLL_ON mode from TRX_OFF will 
  *                                 first enable the analog voltage regulator. The
  *                                 transceiver is ready to transmit a frame.
- *  \retval     BUSY_RX_AACK       The radio was in RX_AACK_ON mode and received 
+ *  @return     BUSY_RX_AACK       The radio was in RX_AACK_ON mode and received 
  *                                 the Start of Frame Delimiter (SFD). State 
  *                                 transition to BUSY_RX_AACK is done if the SFD
  *                                 is valid. 
- *  \retval     BUSY_TX_ARET       The radio transceiver is busy handling the 
+ *  @return     BUSY_TX_ARET       The radio transceiver is busy handling the 
  *                                 auto retry mechanism.
- *  \retval     RX_AACK_ON         The auto acknowledge mode of the radio is 
+ *  @return     RX_AACK_ON         The auto acknowledge mode of the radio is 
  *                                 enabled and it is waiting for an incomming 
  *                                 frame.
- *  \retval     TX_ARET_ON         The auto retry mechanism is enabled and the 
+ *  @return     TX_ARET_ON         The auto retry mechanism is enabled and the 
  *                                 radio transceiver is waiting for the user to 
  *                                 send the TX_START command.
- *  \retval     RX_ON_NOCLK        The radio transceiver is listening for 
+ *  @return     RX_ON_NOCLK        The radio transceiver is listening for 
  *                                 incomming frames, but the CLKM is disabled so 
  *                                 that the controller could be sleeping. 
  *                                 However, this is only true if the controller 
  *                                 is run from the clock output of the radio. 
- *  \retval     RX_AACK_ON_NOCLK   Same as the RX_ON_NOCLK state, but with the 
+ *  @return     RX_AACK_ON_NOCLK   Same as the RX_ON_NOCLK state, but with the 
  *                                 auto acknowledge module turned on. 
- *  \retval     BUSY_RX_AACK_NOCLK Same as BUSY_RX_AACK, but the controller 
+ *  @return     BUSY_RX_AACK_NOCLK Same as BUSY_RX_AACK, but the controller 
  *                                 could be sleeping since the CLKM pin is 
  *                                 disabled.
- *  \retval     STATE_TRANSITION   The radio transceiver's state machine is in 
+ *  @return     STATE_TRANSITION   The radio transceiver's state machine is in 
  *                                 transition between two states.
  *   
- *  \ingroup tat
+ *  @ingroup tat
  */
 uint8_t tat_get_trx_state( void ){
 	//Debug
@@ -696,13 +627,13 @@ uint8_t tat_get_trx_state( void ){
     return hal_subregister_read( SR_TRX_STATUS );
 }
 
-/*! \brief  This function checks if the radio transceiver is sleeping.
+/** @brief  This function checks if the radio transceiver is sleeping.
  *
- *  \retval     true    The radio transceiver is in SLEEP or one of the *_NOCLK 
+ *  @return     true    The radio transceiver is in SLEEP or one of the *_NOCLK 
  *                      states.
- *  \retval     false   The radio transceiver is not sleeping.
+ *  @return     false   The radio transceiver is not sleeping.
  *   
- *  \ingroup tat
+ *  @ingroup tat
  */
 static bool2 is_sleeping( void ){
     
@@ -717,25 +648,25 @@ static bool2 is_sleeping( void ){
     return sleeping;
 }
 
-/*! \brief  This function will change the current state of the radio 
+/** @brief  This function will change the current state of the radio 
  *          transceiver's internal state machine.
  *
- *  \param     new_state        Here is a list of possible states: 
+ *  @param     new_state        Here is a list of possible states: 
  *             - RX_ON        Requested transition to RX_ON state.
  *             - TRX_OFF      Requested transition to TRX_OFF state.
  *             - PLL_ON       Requested transition to PLL_ON state.
  *             - RX_AACK_ON   Requested transition to RX_AACK_ON state.
  *             - TX_ARET_ON   Requested transition to TX_ARET_ON state.
  *
- *  \retval    TAT_SUCCESS          Requested state transition completed 
+ *  @return    TAT_SUCCESS          Requested state transition completed 
  *                                  successfully.
- *  \retval    TAT_INVALID_ARGUMENT Supplied function parameter out of bounds.  
- *  \retval    TAT_WRONG_STATE      Illegal state to do transition from.
- *  \retval    TAT_BUSY_STATE       The radio transceiver is busy.
- *  \retval    TAT_TIMED_OUT        The state transition could not be completed 
+ *  @return    TAT_INVALID_ARGUMENT Supplied function parameter out of bounds.  
+ *  @return    TAT_WRONG_STATE      Illegal state to do transition from.
+ *  @return    TAT_BUSY_STATE       The radio transceiver is busy.
+ *  @return    TAT_TIMED_OUT        The state transition could not be completed 
  *                                  within resonable time.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 tat_status_t tat_set_trx_state( uint8_t new_state ){
     
@@ -802,12 +733,12 @@ tat_status_t tat_set_trx_state( uint8_t new_state ){
     return set_state_status;
 }
 
-/*! \brief  This function will put the radio transceiver to sleep.
+/** @brief  This function will put the radio transceiver to sleep.
  *
- *  \retval    TAT_SUCCESS          Sleep mode entered successfully.
- *  \retval    TAT_TIMED_OUT        The transition to TRX_OFF took too long.
+ *  @return    TAT_SUCCESS          Sleep mode entered successfully.
+ *  @return    TAT_TIMED_OUT        The transition to TRX_OFF took too long.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 tat_status_t tat_enter_sleep_mode( void ){
     
@@ -827,13 +758,13 @@ tat_status_t tat_enter_sleep_mode( void ){
     return enter_sleep_status;  
 }
 
-/*! \brief  This function will take the radio transceiver from sleep mode and 
+/** @brief  This function will take the radio transceiver from sleep mode and 
  *          put it into the TRX_OFF state.
  *
- *  \retval    TAT_SUCCESS          Left sleep mode and entered TRX_OFF state.
- *  \retval    TAT_TIMED_OUT        Transition to TRX_OFF state timed out.
+ *  @return    TAT_SUCCESS          Left sleep mode and entered TRX_OFF state.
+ *  @return    TAT_TIMED_OUT        Transition to TRX_OFF state timed out.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 tat_status_t tat_leave_sleep_mode( void ){
     
@@ -853,10 +784,10 @@ tat_status_t tat_leave_sleep_mode( void ){
     return leave_sleep_status;
 }
 
-/*! \brief  This function will reset the state machine (to TRX_OFF) from any of 
+/** @brief  This function will reset the state machine (to TRX_OFF) from any of 
  *          its states, except for the SLEEP state.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 void tat_reset_state_machine( void ){
     
@@ -866,10 +797,10 @@ void tat_reset_state_machine( void ){
     delay_us( TIME_CMD_FORCE_TRX_OFF );
 }
 
-/*! \brief  This function will reset all the registers and the state machine of 
+/** @brief  This function will reset all the registers and the state machine of 
  *          the radio transceiver.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 void tat_reset_trx( void ){
 
@@ -879,15 +810,15 @@ void tat_reset_trx( void ){
     hal_set_rst_high( );
 }
 
-/*! \brief  This function will enable or disable automatic CRC during frame 
+/** @brief  This function will enable or disable automatic CRC during frame 
  *          transmission.
  *
- *  \param  auto_crc_on If this parameter equals true auto CRC will be used for 
+ *  @param  auto_crc_on If this parameter equals true auto CRC will be used for 
  *                      all frames to be transmitted. The framelength must be 
  *                      increased by two bytes (16 bit CRC). If the parameter equals 
  *                      false, the automatic CRC will be disabled.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 void tat_use_auto_tx_crc( bool2 auto_crc_on ){
     
@@ -898,20 +829,20 @@ void tat_use_auto_tx_crc( bool2 auto_crc_on ){
     } // end: if (auto_crc_on == true) ...
 }
 
-/*! \brief  This function will download a frame to the radio transceiver's 
+/** @brief  This function will download a frame to the radio transceiver's 
  *          transmit buffer and send it.
  *
- *  \param  data_length Length of the frame to be transmitted. 1 to 128 bytes are the valid lengths. 
- *  \param  *data   Pointer to the data to transmit
+ *  @param  data_length Length of the frame to be transmitted. 1 to 128 bytes are the valid lengths. 
+ *  @param  *data   Pointer to the data to transmit
  *
- *  \retval TAT_SUCCESS Frame downloaded and sent successfully.
- *  \retval TAT_INVALID_ARGUMENT If the dataLength is 0 byte or more than 127 
+ *  @return TAT_SUCCESS Frame downloaded and sent successfully.
+ *  @return TAT_INVALID_ARGUMENT If the dataLength is 0 byte or more than 127 
  *                               bytes the frame will not be sent.
- *  \retval TAT_WRONG_STATE It is only possible to use this function in the 
+ *  @return TAT_WRONG_STATE It is only possible to use this function in the 
  *                          PLL_ON and TX_ARET_ON state. If any other state is 
  *                          detected this error message will be returned.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 __x tat_status_t tat_send_data( uint8_t data_length, uint8_t *data ){
     
@@ -944,24 +875,24 @@ __x tat_status_t tat_send_data( uint8_t data_length, uint8_t *data ){
     return TAT_SUCCESS; 
 }
 
-/*! \brief  This function will read the I_AM_COORD sub register.
+/** @brief  This function will read the I_AM_COORD sub register.
  *
- *  \retval 0 Not coordinator.
- *  \retval 1 Coordinator role enabled.
+ *  @return 0 Not coordinator.
+ *  @return 1 Coordinator role enabled.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 uint8_t tat_get_device_role( void ){
     return hal_subregister_read( SR_I_AM_COORD);
 }
 
-/*! \brief  This function will set the I_AM_COORD sub register.
+/** @brief  This function will set the I_AM_COORD sub register.
  *
- *  \param[in] i_am_coordinator If this parameter is true, the associated 
+ *  @param[in] i_am_coordinator If this parameter is true, the associated 
  *                              coordinator role will be enabled in the radio 
  *                              transceiver's address filter. 
  *                              False disables the same feature.
- *  \ingroup tat
+ *  @ingroup tat
  */
 void tat_set_device_role( bool2 i_am_coordinator ){
     
@@ -972,11 +903,11 @@ void tat_set_device_role( bool2 i_am_coordinator ){
     } // end: if (i_am_coordinator == true) ...
 }
 
-/*! \brief  This function will return the PANID used by the address filter.
+/** @brief  This function will return the PANID used by the address filter.
  *
- *  \retval Any value from 0 to 0xFFFF.
+ *  @return Any value from 0 to 0xFFFF.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 uint16_t tat_get_pan_id( void ){
     
@@ -988,11 +919,11 @@ uint16_t tat_get_pan_id( void ){
     return pan_id;
 }
 
-/*! \brief  This function will set the PANID used by the address filter.
+/** @brief  This function will set the PANID used by the address filter.
  *
- *  \param  new_pan_id Desired PANID. Can be any value from 0x0000 to 0xFFFF 
+ *  @param  new_pan_id Desired PANID. Can be any value from 0x0000 to 0xFFFF 
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 void tat_set_pan_id( uint16_t new_pan_id ){
     
@@ -1003,12 +934,12 @@ void tat_set_pan_id( uint16_t new_pan_id ){
     hal_register_write( RG_PAN_ID_1, pan_byte );    
 }
 
-/*! \brief  This function will return the current short address used by the 
+/** @brief  This function will return the current short address used by the 
  *          address filter.
  *
- *  \retval Any value from 0x0000 to 0xFFFF
+ *  @return Any value from 0x0000 to 0xFFFF
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 uint16_t tat_get_short_address( void ){
 
@@ -1020,11 +951,11 @@ uint16_t tat_get_short_address( void ){
     return short_address;
 }
 
-/*! \brief  This function will set the short address used by the address filter.
+/** @brief  This function will set the short address used by the address filter.
  *
- *  \param  new_short_address Short address to be used by the address filter. 
+ *  @param  new_short_address Short address to be used by the address filter. 
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 void tat_set_short_address( uint16_t new_short_address ){
     
@@ -1035,15 +966,15 @@ void tat_set_short_address( uint16_t new_short_address ){
     hal_register_write( RG_SHORT_ADDR_1, short_address_byte );
 }
 
-/*! \brief  This function will read the extended address used by the address 
+/** @brief  This function will read the extended address used by the address 
  *          filter.
  *
- *  \note In this function a pointer is used to convey the 64-bit result, since
+ *  @note In this function a pointer is used to convey the 64-bit result, since
  *        it is very inefficient to use the stack for this.
  *
- *  \return Extended Address, any 64-bit value.
+ *  @return Extended Address, any 64-bit value.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 __x void tat_get_extended_address( uint8_t *extended_address ){
     
@@ -1057,12 +988,12 @@ __x void tat_get_extended_address( uint8_t *extended_address ){
     *extended_address   = hal_register_read( RG_IEEE_ADDR_0 ); // Read ieee_address_7_0.
 }
 
-/*! \brief  This function will set a new extended address to be used by the 
+/** @brief  This function will set a new extended address to be used by the 
  *          address filter.
  *
- *  \param  new_extended_address Extended address to be used by the address filter. 
+ *  @param  new_extended_address Extended address to be used by the address filter. 
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 __x void tat_set_extended_address( uint8_t *extended_address ){
     
@@ -1076,12 +1007,12 @@ __x void tat_set_extended_address( uint8_t *extended_address ){
     hal_register_write( RG_IEEE_ADDR_0, *extended_address++ );
 }
 
-/*! \brief  This function will configure the CSMA algorithm used by the radio 
+/** @brief  This function will configure the CSMA algorithm used by the radio 
  *          transceiver when transmitting data from TX_ARET_ON state. 
  *          
- *  \param  seed0 Lower 8 bits of the seed used for the random number generator 
+ *  @param  seed0 Lower 8 bits of the seed used for the random number generator 
  *                in the CSMA algorithm. Value range: 0 to 255. 
- *  \param  be_csma_seed1 Is a combined argument of the MIN_BE, MAX_CSMA_RETRIES
+ *  @param  be_csma_seed1 Is a combined argument of the MIN_BE, MAX_CSMA_RETRIES
  *                        and SEED1 variables:
  *                        -# MIN_BE: Bit[7:6] Minimum back-off exponent in the 
  *                           CSMA/CA algorithm.
@@ -1091,11 +1022,11 @@ __x void tat_set_extended_address( uint8_t *extended_address ){
  *                        -# SEED1: Bits[2:0] Higher 3 bits of CSMA_SEED, bits[10:8]
  *                           Seed for the random number generator in the 
  *                           CSMA/CA algorithm. 
- *  \retval TAT_SUCCESS The CSMA algorithm was configured successfully.
- *  \retval TAT_WRONG_STATE This function should not be called in the 
+ *  @return TAT_SUCCESS The CSMA algorithm was configured successfully.
+ *  @return TAT_WRONG_STATE This function should not be called in the 
  *                          SLEEP state.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 tat_status_t tat_configure_csma( uint8_t seed0, uint8_t be_csma_seed1 ){
     
@@ -1116,25 +1047,25 @@ tat_status_t tat_configure_csma( uint8_t seed0, uint8_t be_csma_seed1 ){
     return TAT_SUCCESS;
 }
 
-/*! \brief  This function uses the .
+/** @brief  This function uses the .
  *
- *  \note This function can only be executed after tat_configure_csma has been 
+ *  @note This function can only be executed after tat_configure_csma has been 
  *        called!
- *  \note This function can only send valid IEEE 802.15.4 Frames.
+ *  @note This function can only send valid IEEE 802.15.4 Frames.
  *
- *  \param frame_length Length of frame to transmit.
- *  \param frame Pointer to the frame to transmit.
- *  \param retries Number of times to retry frame transmission (Zero means that 
+ *  @param frame_length Length of frame to transmit.
+ *  @param frame Pointer to the frame to transmit.
+ *  @param retries Number of times to retry frame transmission (Zero means that 
  *                 the frame will be sent once.).
- *  \retval TAT_SUCCESS if the frame was sent successfully within the defined 
+ *  @return TAT_SUCCESS if the frame was sent successfully within the defined 
  *                      number of retries.
- *  \retval TAT_CHANNEL_ACCESS_FAILURE if the channel was found to be busy on 
+ *  @return TAT_CHANNEL_ACCESS_FAILURE if the channel was found to be busy on 
  *                      the last retry.
- *  \retval TAT_NO_ACK if an IEEE 802.15.4 acknowledge was not received in time.
- *  \retval TAT_INVALID_ARGUMENT if the frame_length is too long.
- *  \retval TAT_WRONG_STATE if the radio transceiver is not in TX_ARET_ON.
+ *  @return TAT_NO_ACK if an IEEE 802.15.4 acknowledge was not received in time.
+ *  @return TAT_INVALID_ARGUMENT if the frame_length is too long.
+ *  @return TAT_WRONG_STATE if the radio transceiver is not in TX_ARET_ON.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
 __x tat_status_t tat_send_data_with_retry( uint8_t frame_length, uint8_t *frame, 
                                        uint8_t retries ){ 
@@ -1200,26 +1131,20 @@ __x tat_status_t tat_send_data_with_retry( uint8_t frame_length, uint8_t *frame,
 }
 
 
-/* Receive and Read frame Function
 
- * Author: Dong Wang
- * Date: May 14, 2008
-
-*/
-
-/*! \brief  This function will receive a frame from the radio transceiver's 
+/** @brief  This function will receive a frame from the radio transceiver's 
  *          recieve buffer and read it.
  *
  *  
- *  \param  *data   Pointer to the data to receive
+ *  @param  *data   Pointer to the data to receive
  *
- *  \retval TAT_SUCCESS Frame receive and read successfully.
+ *  @return TAT_SUCCESS Frame receive and read successfully.
  * 
- *  \retval TAT_WRONG_STATE It is only possible to use this function in the 
+ *  @return TAT_WRONG_STATE It is only possible to use this function in the 
  *                          RX_ON  state. If any other state is 
  *                          detected this error message will be returned.
  *
- *  \ingroup tat
+ *  @ingroup tat
  */
  
  /*

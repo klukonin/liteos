@@ -10,7 +10,7 @@
 #ifndef HPLCC2420MH
 #define HPLCC2420MH
 #include "../../types/types.h"
-/** \addtogroup radio */
+/** \addtogroup radiocc2420 */
 /** @{ */
 inline result_t HPLCC2420M_StdControl_init(void);
 inline result_t HPLCC2420M_HPLCC2420RAM_writeDone(uint16_t arg_0xa45b460,

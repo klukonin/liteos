@@ -11,7 +11,7 @@
 #define CC2420CONTROLMH
 #include "../../types/types.h"
 
-/** \addtogroup radio */
+/** \addtogroup radiocc2420 */
 /** @{ */
 
 enum 
