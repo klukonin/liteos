@@ -15,7 +15,9 @@
 //the handles definition
 radio_receiving_buffer receivehandles[RECEIVE_HANDLE_NUM];
 
+#ifdef VER_DEBUG
 Radio_MsgPtr debug; 
+#endif 
 
 //init all handles by setting their handle valid indicator as 0
 void initRadioHandle()
@@ -85,7 +87,10 @@ Radio_MsgPtr Standard_Receive_Packet(uint16_t port, Radio_MsgPtr packet)
 		 
     for (i = 0; i < RECEIVE_HANDLE_NUM; i++)
     {
+		#ifdef VER_DEBUG
 		debug = packet; 
+		#endif 
+		
         if ((receivehandles[i].port == port)
             && (receivehandles[i].handlevalid == 1))
         {
