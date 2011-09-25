@@ -22,6 +22,14 @@
 
 #include "../kernel/threadmodel.h"
 
+
+#ifdef PLATFORM_CPU_MEASURE 
+
+  extern uint32_t cpucounter_history[20];
+  extern uint8_t loop; 
+  extern uint32_t cpucounter;
+
+#endif 
 /*Radio_Msg datamsg; 
 
 typedef struct {
@@ -136,14 +144,16 @@ inline result_t GenericTimerFired(uint8_t id)
     case 9:
 
 #ifdef PLATFORM_CPU_MEASURE
-        {
-            _atomic_t currentatomic;
-
-            currentatomic = _atomic_start();
-            usartPutLong(cpucounter);
-            _atomic_end(currentatomic);
-        }
+        
+		cpucounter_history[loop++] = cpucounter; 
+		cpucounter = 0; 
+		if (loop == 20)
+		loop = 0; 
+             
+        
 #endif
+
+
         break;
 #if defined(PLATFORM_AVR) && defined(RADIO_CC2420)
     case 10:
@@ -176,13 +186,13 @@ inline result_t GenericTimerFired(uint8_t id)
 	    break; 
 		
 	case 14:
-	     #ifdef TRACE_ENABLE_EVENT
+	     #ifdef TRACE_ENABLE
 		GenericInitTimerFired();
 		#endif
 	    
-	
+	    break; 
 	case 15:
-		#ifdef TRACE_ENABLE_EVENT
+		#ifdef TRACE_ENABLE
 		reportTrace();
 		#endif
 		break; 	

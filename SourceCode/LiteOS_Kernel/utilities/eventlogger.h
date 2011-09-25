@@ -123,8 +123,11 @@
 
 #define TRACE_SYSCALL_GETCPUCOUNTSYSCALL                                    901
 
+#ifdef PLATFORM_CPU_MEASURE
+#define TRACE_SYSCALL_GETCPUUTILIZATIONSYSCALL								1001
+#endif 
 
-#ifdef TRACE_ENABLE_EVENT
+#ifdef TRACE_ENABLE
 /** @brief Init the event logging with channel. 
 	@param basechannel The base channel used. 
 	@param reportingchannel The channel used.

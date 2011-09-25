@@ -12,7 +12,7 @@
 #include "../timer/generictimer.h"
 
 
-#ifdef TRACE_ENABLE_EVENT
+#ifdef TRACE_ENABLE
 static uint8_t base_event_logger_freq, reporting_event_logger_freq; 
 
 typedef struct 

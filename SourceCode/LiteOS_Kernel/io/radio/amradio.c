@@ -314,6 +314,10 @@ inline result_t AMStandard_TuneChannel(uint8_t channel)
 	#ifdef RADIO_CC2420
 	return cc2420controlm_CC2420Control_TuneChannel(channel);
     #endif 
+	
+	#ifdef RADIO_RF230
+	return tat_set_operating_channel(channel); 
+	#endif
 }
 
 

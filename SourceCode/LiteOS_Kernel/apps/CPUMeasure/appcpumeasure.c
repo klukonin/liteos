@@ -5,9 +5,7 @@
 */
 
 
-#include <util/delay.h>
 
-#define F_CPU 8000000UL //8MHz
 #include "../../libraries/libleds.h"
 #include "../../libraries/libthread.h"
 #include "../../libraries/libsystem.h"
@@ -16,24 +14,24 @@
 #include "../../libraries/libradio.h"
 #include "../../libraries/libfile.h"
  
-uint8_t blinkbuffer[200]; 
+uint8_t testblinkbuffer[200]; 
 
-uint16_t counter = 0; 
+uint16_t counter; 
 
 
-void blink()
+
+void testblink()
 {
 	while (1)
 	{
-   lib_sleep_thread(800);  
-  // lib_red_toggle();
-  // lib_radio_send_string("hello,world\n");
+   lib_sleep_thread(1000);  
+  
    lib_yellow_toggle();
    
-   for (counter=0;counter<5;counter++)
-     _delay_ms(20); 
+   counter = getKernelUtilization();
    
-   counter++; 
+   lib_printf_uinteger32(counter); 
+   lib_printf_ln();     
     
   }
   

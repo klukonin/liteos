@@ -200,8 +200,15 @@
 // 
 //	
 
+//Definition group 11
+
+#ifdef PLATFORM_CPU_MEASURE
+
+#define GET_CPU_UTILIZATION								0xEF00
 
 
+
+#endif 
 
 
 typedef struct {

@@ -85,7 +85,7 @@ int main()
      mystrncpy(networkid, "testbed\0", 8);
      mystrncpy(filenameid, "node01\0", 7);
 	 
-     CURRENT_NODE_ID = 1; 
+     CURRENT_NODE_ID = 2; 
 
      nodeid = CURRENT_NODE_ID;
 	 
@@ -133,6 +133,10 @@ int main()
     #endif
 	
 	#ifdef RADIO_RF230
+	AMStandard_TuneChannel(21); 
+	#endif 
+	
+	#ifdef RADIO_RF230
    	if (tat_set_trx_state( RX_ON )==TAT_SUCCESS) {}
 	else
     {}
@@ -155,7 +159,7 @@ int main()
 	#endif    
     */
 	
-   #ifdef TRACE_ENABLE_EVENT
+   #ifdef TRACE_ENABLE
     initTrace(21, 19, 4000); 	
    #endif
    
@@ -171,6 +175,8 @@ int main()
                  STACK_TOP(testblinkbuffer), 0, 15, "blink", 0, 0);
 
 				 
+   create_thread(blink, (uint16_t *) blinkbuffer,
+                 STACK_TOP(blinkbuffer), 0, 15, "blink2", 0, 0);
 
    //sleeping configureation 
    
@@ -180,6 +186,11 @@ int main()
    cbi(MCUCR, SM2); 
    sbi(MCUCR, SE);
    #endif
+   
+   
+   #ifdef PLATFORM_CPU_MEASURE
+   GenericTimerStart(9, TIMER_REPEAT, 100);    
+   #endif 
    
      _avr_enable_interrupt();
 

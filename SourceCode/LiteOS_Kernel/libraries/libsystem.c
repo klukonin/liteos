@@ -118,6 +118,29 @@ uint32_t get_current_timestamp()
 }
 
 
+#ifdef PLATFORM_CPU_MEASURE
+
+
+uint16_t getKernelUtilization()
+{
+   uint16_t index;
+   void (*getaddrfp)(void) = (void (*)(void))GET_CPU_UTILIZATION; 
+   asm volatile("push r20" "\n\t"
+                "push r21" "\n\t"
+                ::);
+   getaddrfp();     
+   asm volatile(" mov %A0, r20" "\n\t"
+	             "mov %B0, r21" "\n\t"
+				 :"=r" (index)
+				 :
+                );
+    asm volatile("pop r21" "\n\t"
+	             "pop r20" "\n\t"
+	              ::);
+   return index; 
+}
+
+#endif 
  
 
 

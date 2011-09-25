@@ -17,41 +17,55 @@
 #include "../../libraries/libstring.h"
 #include "../../libraries/libadc.h"
 
-uint8_t testradiobuffer[300]; 
-
-char *string = "hello,world"; 
+uint8_t testcounterbuffer[300]; 
 
 //volatile uint16_t countersum; 
 
-static uint8_t buffersum[50];
 uint16_t counter; 
 
-void testradio()
+uint16_t buffersum[4];
+
+void testcounter()
 {
          
-	uint16_t *p;
-	uint8_t i;
-	counter = 0; 
 	
- 	for (i=0;i<11;i++)
-	  buffersum[i+2] = string[i]; 
-	  
-    buffersum[0] = 0; 
+	
+	uint8_t ledcounter; 
+	counter = 0;
+	 
+	
+ 	
 	 
 	while (1)
 	{
    
     lib_sleep_thread(500);
-    buffersum[0]++; 
-	buffersum[1] = getNodeID();
-    lib_green_toggle();
+    
+	buffersum[0] = getNodeID();
+    
 	lib_get_radio_lock();
 	lib_radio_set_channel(19); 
-	lib_radio_send_msg(10, 0xffff, 19, buffersum); 
+	buffersum[1] = counter; 
+	lib_radio_send_msg(0xffff, 0xffff, 8, (uint8_t *)buffersum); 
     lib_release_radio_lock(); 
 	counter++;
 	
-	lib_red_toggle();
+	
+	if (counter&0x1)
+	lib_red_on();
+	else
+	lib_red_off();
+	
+	if (counter&0x2)
+	lib_green_on();
+	else
+	lib_green_off();
+
+    if (counter&0x04)
+	lib_yellow_on();
+	else
+	lib_yellow_off();	
+	
 	}	
 	
 	return; 

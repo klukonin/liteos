@@ -33,4 +33,10 @@ bool postTask(void (*tp) (void), uint8_t priority);
 bool runNextTask(void);
 
 /** @} */
+
+#ifdef PLATFORM_CPU_MEASURE
+
+uint16_t getUtilization();
+
+#endif
 #endif

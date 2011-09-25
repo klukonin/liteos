@@ -5,9 +5,7 @@
 */
 
 
-#include <util/delay.h>
-
-#define F_CPU 8000000UL //8MHz
+#include <math.h>
 #include "../../libraries/libleds.h"
 #include "../../libraries/libthread.h"
 #include "../../libraries/libsystem.h"
@@ -15,28 +13,24 @@
 #include "../../types/types.h"
 #include "../../libraries/libradio.h"
 #include "../../libraries/libfile.h"
+
  
-uint8_t blinkbuffer[200]; 
+uint8_t testblinkbuffer[200]; 
 
 uint16_t counter = 0; 
 
+volatile float test; 
 
-void blink()
+void testblink()
 {
-	while (1)
-	{
-   lib_sleep_thread(800);  
-  // lib_red_toggle();
-  // lib_radio_send_string("hello,world\n");
-   lib_yellow_toggle();
-   
-   for (counter=0;counter<5;counter++)
-     _delay_ms(20); 
-   
-   counter++; 
-    
-  }
-  
+ while(1)
+ {
+  test = 0.123; 
+  for (counter =0; counter<5; counter++)
+   test = test*2; 
+  if (test > 10)
+   lib_red_toggle(); 
+ } 
   return; 
 }
 

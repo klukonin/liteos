@@ -25,7 +25,26 @@ volatile uint8_t LITE_sched_num;
 
 #ifdef PLATFORM_CPU_MEASURE
 uint32_t cpucounter;
+uint32_t cpucounter_history[20];
+volatile uint8_t loop; 
+
+
+uint16_t getUtilization()
+{
+	int i;
+	uint32_t testsum;
+	testsum = 0; 
+	for (i=0; i<20; i++)
+	testsum += cpucounter_history[i];
+	
+	testsum = testsum/20;
+	return (uint16_t)testsum; 
+}
+
 #endif
+
+
+
 void initScheduling(void)
 {
     int i;
@@ -37,6 +56,10 @@ void initScheduling(void)
     }
 #ifdef PLATFORM_CPU_MEASURE
     cpucounter = 0;
+	loop = 0; 
+	for (loop =0; loop < 20; loop++)
+	 cpucounter_history[loop] = 0;
+	loop = 0;  
 #endif
 }
 
@@ -84,6 +107,8 @@ bool runNextTask()
     {
         _atomic_end(fInterruptFlags);
         _avr_enable_interrupt();
+		
+		
 #ifdef PLATFORM_CPU_MEASURE
         cpucounter++;
 #else

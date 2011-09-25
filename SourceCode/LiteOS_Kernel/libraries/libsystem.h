@@ -52,4 +52,8 @@ uint32_t get_current_timestamp();
 */
 
 
+#ifdef PLATFORM_CPU_MEASURE
+uint16_t getKernelUtilization(); 
+#endif
+
 #endif

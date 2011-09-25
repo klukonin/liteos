@@ -37,7 +37,8 @@
   extern uint8_t testblinkbuffer[200];
   void testblink();
   
-  
+  extern uint8_t blinkbuffer[200];
+  void blink();
 //extern uint8_t countbuffer[150];
 //void count(); 
 
