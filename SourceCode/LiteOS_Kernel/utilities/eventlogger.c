@@ -41,6 +41,8 @@ void initTrace(uint8_t basechannel, uint8_t reportingchannel, uint16_t reportint
 	GenericTimerStart(14, TIMER_ONE_SHOT, 1000);
 }
 
+//Tracing functionality uses timer resources 14 and 15 for its purpose. Do not conflict!
+
 void GenericInitTimerFired()
 {
 	GenericTimerStart(15, TIMER_REPEAT, interval);

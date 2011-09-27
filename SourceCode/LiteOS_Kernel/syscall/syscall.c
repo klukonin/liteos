@@ -400,7 +400,7 @@ void breakfunction() __attribute__ ((section(".systemcall.2")))
 void breakfunction(){
 
   #ifdef TRACE_ENABLE
-  #ifdef TRACE_ENABLE_SYSCALL_BREAKPOINTYIELD
+  #ifdef TRACE_SYSCALL_BREAKPOINTYIELD
    break_point_function_Logger();
   #endif
   #else

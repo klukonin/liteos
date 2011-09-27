@@ -6,6 +6,7 @@
 
 #include "../hardware/avrhardware.h"
 #include "leds.h"
+#include "../utilities/eventlogger.h"
 
 static uint8_t Leds_ledsOn;
 
@@ -74,9 +75,7 @@ void Leds_redToggle()
         _atomic_end(_atomic);
     }
 #ifdef TRACE_ENABLE
-#ifdef TRACE_ENABLE_LEDEVENT
     addTrace(TRACE_LEDEVENT_REDTOGGLE, 100);
-#endif
 #endif
     return;
 }

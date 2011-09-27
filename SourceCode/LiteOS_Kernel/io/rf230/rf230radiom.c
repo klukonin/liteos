@@ -17,6 +17,11 @@
 
 static uint16_t rf230radiom_currentDSN;
 
+#ifdef VER_DEBUG
+Radio_MsgPtr temp;
+#endif 
+
+
 //--------------------------------------------------------
 /** @brief IRIS: This function is used to initialize the TRX.
  *
@@ -53,10 +58,12 @@ inline bool2 trx_init( void ){
 result_t rf230radio_Send_send(Radio_MsgPtr pMsg)
 {
     unsigned char result;
-	int i =0; 
 	  
 
   	// format the 802.15.4 packet
+	#ifdef VER_DEBUG
+	temp = pMsg; 
+	#endif
 	
     pMsg->fcflo=0x08;
     pMsg->fcfhi=0x01;
@@ -103,19 +110,26 @@ result_t rf230radio_Send_send(Radio_MsgPtr pMsg)
       
         //delay_us(1000);
         
-        for (i=0;i++;i<100000)
-        {
-        asm volatile("nop"::); 
-        }
+       // for (i=0;i++;i<100000)
+       // {
+       // asm volatile("nop"::); 
+       // }
 	
         
        // Option-Go to RX_ON after Send-Important!
-   	  	if (tat_set_trx_state( RX_ON )==TAT_SUCCESS) printfstr ("\n after send go to RX_ON sucessfully "); 
+   	  	if (tat_set_trx_state( RX_ON )==TAT_SUCCESS)
+			  printfstr ("\n after send go to RX_ON sucessfully "); 
    	  	else {
    	  		result=FAIL;
    	  	}
    	  }
      else {
+		 
+		if (tat_set_trx_state( RX_ON )==TAT_SUCCESS)
+		  printfstr ("\n after send go to RX_ON sucessfully "); 
+   	  	else {
+   	  		result=FAIL;
+   	  	}
      	result=FAIL;   
     }
    	}
@@ -126,3 +140,13 @@ result_t rf230radio_Send_send(Radio_MsgPtr pMsg)
 	return result; 
 }
 
+
+
+void restorerf230state()
+{
+	   	  	if (tat_set_trx_state( RX_ON )==TAT_SUCCESS)
+				 {
+				 					 
+				 }
+				
+}

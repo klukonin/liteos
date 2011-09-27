@@ -171,12 +171,12 @@ int main()
    create_thread(ShellThread, (uint16_t *) shellbuffer,
                   STACK_TOP(shellbuffer), 0, 15, "sysshell", 0, 0);
   
-   create_thread(testblink, (uint16_t *) testblinkbuffer,
-                 STACK_TOP(testblinkbuffer), 0, 15, "blink", 0, 0);
+   //create_thread(oscilloscope, (uint16_t *) oscilloscopebuffer,
+     //            STACK_TOP(oscilloscopebuffer), 0, 15, "blink", 0, 0);
 
 				 
-   create_thread(blink, (uint16_t *) blinkbuffer,
-                 STACK_TOP(blinkbuffer), 0, 15, "blink2", 0, 0);
+   //create_thread(blink, (uint16_t *) blinkbuffer,
+     //            STACK_TOP(blinkbuffer), 0, 15, "blink2", 0, 0);
 
    //sleeping configureation 
    

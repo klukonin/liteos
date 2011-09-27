@@ -26,7 +26,18 @@ static uint16_t totalround;
 
 static uint8_t base_memory_logger_freq, reporting_memory_logger_freq; 
 
-static int8_t counter_memory_report = 50; 
+#ifdef PLATFORM_AVR_MICAZ
+static int8_t counter_memory_report = 50;
+static int8_t counter_memory_init = 50;
+static uint16_t total_report = 4000; 
+#endif
+
+#ifdef PLATFORM_AVR_IRIS
+static int8_t counter_memory_report = 100;
+static int8_t counter_memory_init = 100;
+static uint16_t total_report = 8000; 
+#endif
+ 
 
 void initMemoryReporting(uint8_t basechannel, uint8_t reportingchannel, uint16_t reportinterval){
 	
@@ -55,7 +66,7 @@ void memoryReportTimerFired()
 	  
 	  
 	  
-	  uint16_t index = 4000 - counter_memory_report*80; 
+	  uint16_t index = total_report - counter_memory_report*80; 
 	  
 	  _atomic_t flag;
 	   
@@ -79,7 +90,7 @@ void memoryReportTimerFired()
 	    counter_memory_report--;
 	  else
 	   {
-		   counter_memory_report = 50;
+		   counter_memory_report = counter_memory_init;
 		   AMStandard_releaseLock();
 		   return; 
 	   }

@@ -85,8 +85,8 @@ static bool2 is_sleeping( void );
  //Debug-tat_init() work correctly now!
  
 tat_status_t tat_init( void ){
-    uint8_t radio_status=50;
-    tat_status_t init_status = TAT_SUCCESS;
+  
+     tat_status_t init_status = TAT_SUCCESS;
     
     delay_us( TIME_TO_ENTER_P_ON );
         

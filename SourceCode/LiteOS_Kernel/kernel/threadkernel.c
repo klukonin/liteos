@@ -15,7 +15,7 @@
 #include "../timer/generictimer.h"
 #include "../hardware/avrhardware.h"
 #include "../timer/globaltiming.h"
- 
+#include "../utilities/eventlogger.h"
 
 
 //stores the maximum thread bound updated when adding thread
@@ -185,9 +185,7 @@ int create_thread(void(*fcn)(), uint16_t *ram_start, uint16_t *stack_ptr,
   _atomic_end(currentatomic);
   
   #ifdef TRACE_ENABLE
-    #ifdef TRACE_ENABLE_THREADCREATE
       addTrace(TRACE_THREADCREATE, 100);
-    #endif 
   #endif 
   return (1);
 }
@@ -227,10 +225,8 @@ void destroy_user_thread()
   }
   
   #ifdef TRACE_ENABLE
-    #ifdef TRACE_ENABLE_THREADDESTROY
-      addTrace(TRACE_THREADDESTROY, 100);
-    #endif 
-  #endif 
+       addTrace(TRACE_THREADDESTROY, 100);
+   #endif 
   thread_yield();
   _atomic_end(currentatomic);
 }
@@ -246,9 +242,7 @@ void __attribute__((noinline))lite_switch_to_user_thread() /* __attribute__(
 (naked)) */
 {
   #ifdef TRACE_ENABLE
-    #ifdef TRACE_ENABLE_CONTEXTSWITCH
       addTrace(TRACE_CONTEXTSWITCHTOUSERTHREAD, 100);
-    #endif 
   #endif 
   
    #ifdef ENERGY_INSTRUMENTATION
@@ -285,9 +279,7 @@ void __attribute__((noinline))thread_yield() /* __attribute__((noinline)) */
 
   #endif 
   #ifdef TRACE_ENABLE
-    #ifdef TRACE_ENABLE_CONTEXTSWITCH
       addTrace(TRACE_CONTEXTSWITCHFROMUSERTHREAD, 100);
-    #endif 
   #endif 
 }
 

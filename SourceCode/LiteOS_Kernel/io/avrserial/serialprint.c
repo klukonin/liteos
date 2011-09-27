@@ -18,11 +18,15 @@
 #include "../../entry/realmain.h"
 #include "../../sensors/leds.h"
 
+
+#ifdef BASE_MODE
 extern volatile uint16_t *stackinterrupt_ptr;  
 extern volatile uint16_t *old_stack_ptr;  
-static char serial_print_cFlag;
-static uint8_t receivebuffer[33];
- 
+
+static uint8_t receivebuffer[64];
+#endif 
+
+static char serial_print_cFlag; 
  
 static uint8_t status;
  
@@ -198,6 +202,8 @@ void printInteger(int32_t a, int32_t b, int32_t c, int32_t d)
 }
 
 
+#ifdef BASE_MODE
+
 SIGNAL(USART0_RX_vect)
 {
     uint8_t dummy = UDR0;
@@ -210,52 +216,43 @@ SIGNAL(USART0_RX_vect)
     isthreadtrue = 0;
     _atomic = _atomic_start();
 	
-	Leds_greenOn();
-	Leds_yellowOn();
+	 
     if (is_thread())
     {
         isthreadtrue = 1;
         SWAP_STACK_PTR(stackinterrupt_ptr, old_stack_ptr);
     }
     _atomic_end(_atomic);
+	
+	
     if (dummy == 'a')
     {
-        _atomic_t _atomic = _atomic_start();
+       _atomic_t _atomic = _atomic_start();
 
-        while (!(UCSR0A & (1 << RXC0)))
-            ;
-        portnum = UDR0;
-        portnum = portnum - 48;
-        while (!(UCSR0A & (1 << RXC0)))
-            ;
-        length = UDR0;
-        length = length - 48;
-        for (i = 0; i < length; i++)
-        {
-            while (!(UCSR0A & (1 << RXC0)))
-                ;
-            receivebuffer[currentindex++] = UDR0;
-        }
-        _atomic_end(_atomic);
-        //commandHandle(receivebuffer, currentindex); 
-        //initCommandReceived(receivebuffer); 
-        //serialDeliverPacket(((uint16_t) portnum), ((uint8_t) length),
-                            //&receivebuffer[0]);
+       for (i=0;i<31;i++)
+	  {
+       while (!(UCSR0A & (1<<RXC0)));
+	     receivebuffer[currentindex++] = UDR0; 
+	   }  
+
+      _atomic_end(_atomic); 
+        
+        broadcastCommand(receivebuffer, currentindex); 
+		
         currentindex = 0;
     }
-    else if (dummy == 'z')
+    else if (dummy == 'l')
     {
         _atomic_t _atomic = _atomic_start();
-
-        for (i = 0; i < 33; i++)
-        {
-            while (!(UCSR0A & (1 << RXC0)))
-                ;
-            receivebuffer[currentindex++] = UDR0;
-        }
-        _atomic_end(_atomic);
-        //initCommandReceived(receivebuffer);
-        currentindex = 0;
+        for (i=0;i<63;i++)
+	   {
+        while (!(UCSR0A & (1<<RXC0)));
+	      receivebuffer[currentindex++] = UDR0; 
+	   }  
+       _atomic_end(_atomic); 
+	   Leds_greenToggle(); 
+	   broadcastCommand(receivebuffer, currentindex); 
+       currentindex = 0;
     }
     _atomic = _atomic_start();
     if (isthreadtrue == 1)
@@ -265,11 +262,8 @@ SIGNAL(USART0_RX_vect)
         //thread_yield();   
     }
     _atomic_end(_atomic);
-    // if (is_thread())
-    //{SWAP_STACK_PTR(stackinterrupt_ptr, old_stack_ptr);  }
-    // if (is_thread())
-    // {
-    //   SWAP_STACK_PTR( old_stack_ptr, stackinterrupt_ptr);
-    //  thread_yield();   
-    // }
+   
 }
+
+
+#endif

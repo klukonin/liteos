@@ -14,9 +14,7 @@
 #include "../../types/types.h"
 #include "packethandler.h"
 #include "../../config/nodeconfig.h"
-
-
-
+#include "../../utilities/eventlogger.h"
 
 #if defined(PLATFORM_AVR) && defined(RADIO_CC2420)
 #include "../cc2420/cc2420const.h"
@@ -33,6 +31,9 @@
 #endif
 
 
+#ifdef BASE_MODE
+#include "../../basemode/commandprocessor.h"
+#endif
 
 bool AMStandard_state;
 Radio_MsgPtr AMStandard_buffer;
@@ -130,9 +131,7 @@ result_t AMStandard_SendMsg_send(uint16_t port, uint16_t addr, uint8_t length,
                                  Radio_MsgPtr data)
 {
 #ifdef TRACE_ENABLE
-#ifdef TRACE_ENABLE_RADIOEVENT
     addTrace(TRACE_RADIOEVENT_SENDPACKET, 100);
-#endif
 #endif
     if (!AMStandard_state)
     {
@@ -220,19 +219,39 @@ Radio_MsgPtr received(Radio_MsgPtr packet)
     uint16_t addr = CURRENT_NODE_ID;
 
 #ifdef TRACE_ENABLE
-#ifdef TRACE_ENABLE_RADIOEVENT
     addTrace(TRACE_RADIOEVENT_RECEIVEPACKET, 100);
-#endif
 #endif
 
  
     AMStandard_receive_counter++;
+	
+	#ifdef VER_DEBUG
+	 temp = packet; 
+	#endif
+	
+	#ifdef BASE_MODE
+	  
+	  Radio_MsgPtr tmp;
+	  #ifdef PLATFORM_AVR_IRIS
+	  packet->length = packet->length - MSG_HEADER_SIZE -2; 
+	  #endif 
+      tmp = Broadcast2SerialAlternative(packet); 
+      if (tmp) {
+       packet = tmp;
+     }
+	 
+	return packet; 
+	 	
+	#endif 
+	
 	
 	#if defined(PLATFORM_AVR_MICAZ)
 	
     if (packet->crc == 1 && (packet->addr == BCAST_ADDRESS || packet->addr ==
                              addr))
     {
+		
+		
         uint16_t port = packet->port;
         Radio_MsgPtr tmp;
 
@@ -304,6 +323,11 @@ inline void restoreRadioState()
 #if defined(PLATFORM_AVR) && defined (RADIO_CC2420)
     restorecc2420state();
 #endif
+
+#if defined(PLATFORM_AVR) && defined (RADIO_RF230)
+   restorerf230state(); 
+#endif
+
 }
 
 

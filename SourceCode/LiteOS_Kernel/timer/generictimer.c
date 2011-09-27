@@ -190,11 +190,19 @@ inline result_t GenericTimerFired(uint8_t id)
 		GenericInitTimerFired();
 		#endif
 	    
-	    break; 
+		
+		#ifdef BASE_MODE		
+		restoreRadioState();
+		#endif
+	    
+		break; 
+		
 	case 15:
+	
 		#ifdef TRACE_ENABLE
 		reportTrace();
 		#endif
+	
 		break; 	
 		
 	case 16:

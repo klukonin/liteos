@@ -23,6 +23,7 @@ result_t rf230radio_Send_send(Radio_MsgPtr pMsg);
 
 inline bool2 trx_init( void ); 
 
+void restorerf230state();
 /** @} */
 #endif 
 
