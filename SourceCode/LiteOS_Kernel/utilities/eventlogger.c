@@ -29,6 +29,7 @@ uint8_t prevcount, endingcount;
 
 uint16_t interval; 
 
+Radio_Msg eventmsg; 
 
 
 void initTrace(uint8_t basechannel, uint8_t reportingchannel, uint16_t reportinterval){
@@ -53,6 +54,12 @@ void GenericInitTimerFired()
 void addTrace(uint16_t eventid, uint8_t threadid){
 	
 	uint32_t time;
+	
+	//bug fix: sometmies r20 and r21 are being used. So they must be saved and restored. 
+	
+	 asm volatile("push r20" "\n\t"
+                "push r21" "\n\t"
+                ::);
 	time = getCurrentResolution();
 	records[endingcount].id = threadid; 
 	records[endingcount].timestamp = time;
@@ -60,20 +67,27 @@ void addTrace(uint16_t eventid, uint8_t threadid){
 	endingcount ++;
 	if (endingcount == 64)
 	 endingcount = 0; 
-	
+   asm volatile("pop r21" "\n\t"
+                "pop r20" "\n\t"
+                ::);
 }
 
 
 void reportTrace()
 {
    	 
-     
+    uint8_t *p; 
      
 	if (prevcount == endingcount)
 	 return; 
 	 
-	 
-	AMStandard_SendMsg_send(10, 0xFFFF, 64, &records[prevcount]);
+	
+	p = (uint8_t*)eventmsg.data;
+	
+    mystrncpy((char *)p, (unsigned char *)&records[prevcount]),
+              64);
+			   
+	AMStandard_SendMsg_send(10, 0xFFFF, 64, &eventmsg);
 	
 	if (prevcount + 8 <= endingcount)
 		prevcount += 8;

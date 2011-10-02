@@ -34,16 +34,21 @@
  //extern uint8_t loggerbuffer[400];
  //void logger();
 
-  extern uint8_t oscilloscopebuffer[300];
-  void oscilloscope();
+  //extern uint8_t oscilloscopebuffer[300];
+  //void oscilloscope();
   
   //extern uint8_t blinkbuffer[200];
   //void blink();
+  
+ // extern uint8_t channelhopbuffer[250];
+ // void channelhop(); 
+  
+  
 //extern uint8_t countbuffer[150];
 //void count(); 
 
-  //extern uint8_t printserialbuffer[250]; 
-  //void printserialmain();
+ // extern uint8_t printserialbuffer[250]; 
+ // void printserialmain();
   
 //  extern uint8_t channelhopbuffer[250]; 
 //  void channelhop();
@@ -54,7 +59,10 @@
 //	extern uint8_t gftestbuffer[100];
 	//void gftest();
 	
-	//extern uint8_t protocolbuffer[200];
-	//void protocol();
+ //  extern uint8_t protocolbuffer[300];
+  // void protocol();
+  
+   extern uint8_t testradiobuffer[300];
+   void testradio();
 	
 #endif

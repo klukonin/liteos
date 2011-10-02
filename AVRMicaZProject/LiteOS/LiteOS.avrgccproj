@@ -15,10 +15,10 @@
     <com_atmel_avrdbg_tool_jtagicemkii>
       <ToolType>com.atmel.avrdbg.tool.jtagicemkii</ToolType>
       <ToolName>JTAGICE mkII</ToolName>
-      <ToolNumber>00B00000073A</ToolNumber>
+      <ToolNumber>07000000377C</ToolNumber>
       <Channel>
         <host>127.0.0.1</host>
-        <port>4701</port>
+        <port>1434</port>
         <ssl>False</ssl>
       </Channel>
       <ToolOptions>
@@ -140,6 +140,8 @@
       <Value>NUM_BREAKPOINTS=0</Value>
       <Value>PLATFORM_AVR_MICAZ</Value>
       <Value>RADIO_CC2420</Value>
+      <Value>VER_DEBUG</Value>
+      <Value>TRACE_ENABLE</Value>
     </ListValues>
   </avrgcc.compiler.symbols.DefSymbols>
   <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
@@ -157,9 +159,17 @@
   </PropertyGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\AvrGCC.targets" />
   <ItemGroup>
-    <Compile Include="..\..\SourceCode\LiteOS_Kernel\apps\Blink\appblink.c">
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\apps\TestRadio\apptestradio.c">
       <SubType>compile</SubType>
-      <Link>appblink.c</Link>
+      <Link>apptestradio.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\basemode\commandprocessor.c">
+      <SubType>compile</SubType>
+      <Link>commandprocessor.c</Link>
+    </Compile>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\basemode\commandprocessor.h">
+      <SubType>compile</SubType>
+      <Link>commandprocessor.h</Link>
     </Compile>
     <Compile Include="..\..\SourceCode\LiteOS_Kernel\entry\realmain.h">
       <SubType>compile</SubType>

@@ -45,6 +45,10 @@ inline bool2 trx_init( void ){
     } // end: if (tat_init( ) != TAT_SUCCESS) ...
 
     rf230radiom_currentDSN = 0;
+    
+    if (tat_set_trx_state( RX_ON )==TAT_SUCCESS) {}
+	   else
+     {}
     return status;
 }    
 

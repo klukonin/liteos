@@ -85,7 +85,7 @@ int main()
      mystrncpy(networkid, "testbed\0", 8);
      mystrncpy(filenameid, "node01\0", 7);
 	 
-     CURRENT_NODE_ID = 2; 
+     CURRENT_NODE_ID = 1; 
 
      nodeid = CURRENT_NODE_ID;
 	 
@@ -136,11 +136,7 @@ int main()
 	AMStandard_TuneChannel(21); 
 	#endif 
 	
-	#ifdef RADIO_RF230
-   	if (tat_set_trx_state( RX_ON )==TAT_SUCCESS) {}
-	else
-    {}
-   #endif
+	
     
 	/*
     #ifdef TESTPRINTING
@@ -171,13 +167,15 @@ int main()
    create_thread(ShellThread, (uint16_t *) shellbuffer,
                   STACK_TOP(shellbuffer), 0, 15, "sysshell", 0, 0);
   
-   //create_thread(oscilloscope, (uint16_t *) oscilloscopebuffer,
-     //            STACK_TOP(oscilloscopebuffer), 0, 15, "blink", 0, 0);
+  // create_thread(oscilloscope, (uint16_t *) oscilloscopebuffer,
+    //             STACK_TOP(oscilloscopebuffer), 0, 15, "blink", 0, 0);
 
 				 
-   //create_thread(blink, (uint16_t *) blinkbuffer,
-     //            STACK_TOP(blinkbuffer), 0, 15, "blink2", 0, 0);
-
+  //create_thread(protocol, (uint16_t *) protocolbuffer,
+    //            STACK_TOP(protocolbuffer), 0, 15, "blink2", 0, 0);
+ 
+   create_thread(testradio, (uint16_t *) testradiobuffer,
+                STACK_TOP(testradiobuffer), 0, 15, "blink2", 0, 0);
    //sleeping configureation 
    
    #ifdef ENERGYSAVINGMODE

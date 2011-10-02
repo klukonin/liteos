@@ -25,8 +25,6 @@ void printserialmain()
 {
 	 
 
-    __asm__ __volatile__("sei" ::); 
- 
    for (i =0; i< 100; i++)
    	{
      counter = get_current_timestamp();

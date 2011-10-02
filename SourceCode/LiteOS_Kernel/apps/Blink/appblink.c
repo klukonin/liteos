@@ -25,13 +25,10 @@ void blink()
 {
 	while (1)
 	{
-   lib_sleep_thread(800);  
+   lib_sleep_thread(1000);  
   // lib_red_toggle();
   // lib_radio_send_string("hello,world\n");
    lib_yellow_toggle();
-   
-   for (counter=0;counter<5;counter++)
-     _delay_ms(20); 
    
    counter++; 
     

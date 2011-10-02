@@ -32,10 +32,11 @@ void wakeupMeOnDataMsg()
     int i;
     lib_green_toggle();
 	counter = get_current_timestamp();
-	lib_printf_string("A message is received, first three bytes: ");
-	lib_printf_uinteger32(incomingMsg[0]);
-	lib_printf_uinteger32(incomingMsg[1]);
-	lib_printf_uinteger32(incomingMsg[2]);
+	lib_printf_string("A message is received, packet info: ");
+	lib_printf_uinteger32(incomingPacketInfo[0]);
+	lib_printf_uinteger32(incomingPacketInfo[1]);
+	lib_printf_uinteger32(incomingPacketInfo[2]);
+	lib_printf_uinteger32(incomingPacketInfo[3]);
     lib_printf_ln();
     return;
 }
