@@ -141,7 +141,7 @@
       <Value>PLATFORM_AVR_MICAZ</Value>
       <Value>RADIO_CC2420</Value>
       <Value>VER_DEBUG</Value>
-      <Value>TRACE_ENABLE</Value>
+      <Value>TRACE_MEMORY_CONTENTS</Value>
     </ListValues>
   </avrgcc.compiler.symbols.DefSymbols>
   <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>

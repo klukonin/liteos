@@ -129,12 +129,10 @@
 
 #ifdef TRACE_ENABLE
 /** @brief Init the event logging with channel. 
-	@param basechannel The base channel used. 
-	@param reportingchannel The channel used.
 	@param reportinterval The interval for reporting. 
 	@return Void. 
 */
-void initTrace(uint8_t basechannel, uint8_t reportingchannel,  uint16_t reportinterval); 
+void initTrace( uint16_t reportinterval); 
 
 /** @brief Add to trace.
 	@param eventid The event id. 

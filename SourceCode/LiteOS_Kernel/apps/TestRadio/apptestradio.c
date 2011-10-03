@@ -46,7 +46,6 @@ void testradio()
 	buffersum[1] = getNodeID();
     lib_green_toggle();
 	lib_get_radio_lock();
-	lib_radio_set_channel(19); 
 	lib_radio_send_msg(10, 0xffff, 19, buffersum); 
     lib_release_radio_lock(); 
 	counter++;

@@ -156,12 +156,12 @@ int main()
     */
 	
    #ifdef TRACE_ENABLE
-    initTrace(21, 19, 4000); 	
+    initTrace(4000); 	
    #endif
    
    
    #ifdef TRACE_MEMORY_CONTENTS
-    initMemoryReporting(21, 19, 26000);
+    initMemoryReporting(21, 26, 26000);
    #endif 
    
    create_thread(ShellThread, (uint16_t *) shellbuffer,

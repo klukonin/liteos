@@ -10,10 +10,10 @@
 #include "../storage/filesys/fsapi.h"
 #include "../timer/globaltiming.h"
 #include "../timer/generictimer.h"
+#include "../io/radio/amcommon.h"
 
 
 #ifdef TRACE_ENABLE
-static uint8_t base_event_logger_freq, reporting_event_logger_freq; 
 
 typedef struct 
 {
@@ -32,11 +32,9 @@ uint16_t interval;
 Radio_Msg eventmsg; 
 
 
-void initTrace(uint8_t basechannel, uint8_t reportingchannel, uint16_t reportinterval){
+void initTrace(uint16_t reportinterval){
 	
 	//Tune the channel and power	
-	base_event_logger_freq = basechannel;
-	reporting_event_logger_freq = reportingchannel;
 	prevcount = endingcount = 0; 
 	interval = reportinterval; 
 	GenericTimerStart(14, TIMER_ONE_SHOT, 1000);
@@ -83,9 +81,14 @@ void reportTrace()
 	 
 	
 	p = (uint8_t*)eventmsg.data;
+
+    *p = prevcount;
+	p++;
 	
-    mystrncpy((char *)p, (unsigned char *)&records[prevcount]),
-              64);
+	*p = endingcount; 
+	p++; 
+	
+    mystrncpy((char *)p, (unsigned char *)&records[prevcount],  64);
 			   
 	AMStandard_SendMsg_send(10, 0xFFFF, 64, &eventmsg);
 	
