@@ -130,9 +130,10 @@ inline void AMStandard_sendTask(void)
 result_t AMStandard_SendMsg_send(uint16_t port, uint16_t addr, uint8_t length,
                                  Radio_MsgPtr data)
 {
-#ifdef TRACE_ENABLE
-    addTrace(TRACE_RADIOEVENT_SENDPACKET, 100);
-#endif
+	
+//#ifdef TRACE_ENABLE
+  //  addTrace(TRACE_RADIOEVENT_SENDPACKET, 100);
+//#endif
     if (!AMStandard_state)
     {
         AMStandard_state = TRUE;

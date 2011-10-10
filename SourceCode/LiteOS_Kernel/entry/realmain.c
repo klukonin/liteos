@@ -65,7 +65,10 @@ int main()
     //micaz specific initilizations, hardware init
     LITE_SET_PIN_DIRECTIONS();
     
-    //sensors init
+	 //for global timing purpose use
+    GenericTimingStart(); 
+	
+	    //sensors init
     adcdriver_init_adc();
 
     //kernel ints
@@ -116,8 +119,7 @@ int main()
     //timer and radio 
     GenericTimerInit();
 	
-    //for global timing purpose use
-    GenericTimingStart(); 
+   
      
     AMStandard_Control_init();
     AMStandard_Control_start();
@@ -156,9 +158,8 @@ int main()
     */
 	
    #ifdef TRACE_ENABLE
-    initTrace(4000); 	
-   #endif
-   
+     initTrace();
+   #endif    
    
    #ifdef TRACE_MEMORY_CONTENTS
     initMemoryReporting(21, 26, 26000);
@@ -174,8 +175,14 @@ int main()
   //create_thread(protocol, (uint16_t *) protocolbuffer,
     //            STACK_TOP(protocolbuffer), 0, 15, "blink2", 0, 0);
  
-   create_thread(testradio, (uint16_t *) testradiobuffer,
-                STACK_TOP(testradiobuffer), 0, 15, "blink2", 0, 0);
+  // create_thread(blink, (uint16_t *) blinkbuffer,
+    //            STACK_TOP(blinkbuffer), 0, 15, "blink2", 0, 0);
+	
+	// create_thread(testradio, (uint16_t *) testradiobuffer,
+      //          STACK_TOP(testradiobuffer), 0, 15, "blink2", 0, 0);
+	
+	//create_thread(sndrecv, (uint16_t *)sndrecvbuffer, STACK_TOP(sndrecvbuffer), 0, 15, "test", 0, 0);
+	
    //sleeping configureation 
    
    #ifdef ENERGYSAVINGMODE

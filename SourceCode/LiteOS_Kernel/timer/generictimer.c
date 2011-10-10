@@ -186,10 +186,9 @@ inline result_t GenericTimerFired(uint8_t id)
 	    break; 
 		
 	case 14:
-	     #ifdef TRACE_ENABLE
-		GenericInitTimerFired();
-		#endif
-	    
+	    #ifdef TRACE_ENABLE
+		 reportTrace();
+		#endif 
 		
 		#ifdef BASE_MODE		
 		restoreRadioState();
@@ -199,10 +198,7 @@ inline result_t GenericTimerFired(uint8_t id)
 		
 	case 15:
 	
-		#ifdef TRACE_ENABLE
-		reportTrace();
-		#endif
-	
+		
 		break; 	
 		
 	case 16:

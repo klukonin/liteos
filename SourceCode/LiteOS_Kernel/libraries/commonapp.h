@@ -62,7 +62,7 @@
  //  extern uint8_t protocolbuffer[300];
   // void protocol();
   
-   extern uint8_t testradiobuffer[300];
-   void testradio();
+ //  extern uint8_t sndrecvbuffer[256];
+ //  void sndrecv();
 	
 #endif

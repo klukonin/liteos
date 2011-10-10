@@ -69,6 +69,8 @@ SIGNAL(INT6_vect)
 
    #endif
    
+   
+   
     isthreadtrue = 0;
     _atomic = _atomic_start();
     if (is_thread())

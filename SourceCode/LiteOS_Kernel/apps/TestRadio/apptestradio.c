@@ -41,13 +41,13 @@ void testradio()
 	while (1)
 	{
    
-    lib_sleep_thread(500);
+    lib_sleep_thread(50);
     buffersum[0]++; 
 	buffersum[1] = getNodeID();
     lib_green_toggle();
-	lib_get_radio_lock();
-	lib_radio_send_msg(10, 0xffff, 19, buffersum); 
-    lib_release_radio_lock(); 
+	//lib_get_radio_lock();
+	//lib_radio_send_msg(10, 0xffff, 19, buffersum); 
+    //lib_release_radio_lock(); 
 	counter++;
 	
 	lib_red_toggle();

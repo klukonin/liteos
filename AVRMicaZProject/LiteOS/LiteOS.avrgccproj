@@ -141,7 +141,6 @@
       <Value>PLATFORM_AVR_MICAZ</Value>
       <Value>RADIO_CC2420</Value>
       <Value>VER_DEBUG</Value>
-      <Value>TRACE_MEMORY_CONTENTS</Value>
     </ListValues>
   </avrgcc.compiler.symbols.DefSymbols>
   <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
@@ -159,10 +158,6 @@
   </PropertyGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\AvrGCC.targets" />
   <ItemGroup>
-    <Compile Include="..\..\SourceCode\LiteOS_Kernel\apps\TestRadio\apptestradio.c">
-      <SubType>compile</SubType>
-      <Link>apptestradio.c</Link>
-    </Compile>
     <Compile Include="..\..\SourceCode\LiteOS_Kernel\basemode\commandprocessor.c">
       <SubType>compile</SubType>
       <Link>commandprocessor.c</Link>
