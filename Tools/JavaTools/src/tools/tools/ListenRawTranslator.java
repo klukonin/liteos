@@ -71,7 +71,7 @@ public class ListenRawTranslator {
 	private long starttimestamp, nowtimestamp; 
 	private static FileOutputStream outputstream; // declare a file output
 													// object
-	private static PrintStream pstream; // declare a print stream object
+	private static OutputStream pstream; // declare a print stream object
 
 	private CommPortIdentifier portId;
 	private SerialPort port;
@@ -86,6 +86,12 @@ public class ListenRawTranslator {
 		 
 		
 	}
+	
+	 public static String byteToHex(byte b) {
+		    int i = b & 0xFF;
+		    return Integer.toHexString(i);
+	 }  
+		    
 
 	public void open() throws NoSuchPortException, PortInUseException,
 			IOException, UnsupportedCommOperationException {
@@ -143,7 +149,7 @@ public class ListenRawTranslator {
 
 	long previoustime, nowtime;
 
-	byte[] receivedbyte = new byte[100];
+	byte[] receivedbyte = new byte[10000];
 
 	public static long arr2long(byte[] arr, int start) {
 		int i = 0;
@@ -200,12 +206,12 @@ public class ListenRawTranslator {
 					// print the string
 					int j;
 					if ((receivedstring[0]== 'c')&&(receivedstring[1] == 'o')&&(receivedstring[4]== '1'))
-					{ System.out.print(" end \n");
+					{ //System.out.print(" end \n");
 					 // pstream.print(" end \n");
 					}
 					
 					if ((receivedstring[0]== 0x6D)&&(receivedstring[1] == 0x6D)&&(receivedstring[2]== 0x6D))
-					{ System.out.print("\n");
+					{ //System.out.print("\n");
 					 // pstream.print("\n");
 					 // System.out.print(nowtimestamp+ " - ");
 					 // pstream.print(nowtimestamp + " ");
@@ -215,14 +221,14 @@ public class ListenRawTranslator {
 					else
 					{
 					for (j = 0; j < counter; j++) {
-						System.out.print((char) receivedstring[j]);
-					//	pstream.print((char) receivedstring[j]);
+						//System.out.print((char) receivedstring[j]);
+						//pstream.print((char) receivedstring[j]);
 					}
 					// System.out.print("\ncounter is "+counter+ "\n");
 
 					if (receivedstring[counter - 1] != '\n') {
-						System.out.print(" ");
-					//	pstream.print(" ");
+						//System.out.print(" ");
+						//pstream.print(" ");
 				
 					}
 					
@@ -269,7 +275,7 @@ public class ListenRawTranslator {
 				// System.out.print(" " +realvalue + " "+ "(0x"+
 				// Long.toHexString(Math.abs(realvalue))+") ");
 				{
-					System.out.print(" " + realvalue + " ");
+					//System.out.print(" " + realvalue + " ");
 					//pstream.print(" " +  realvalue + " ");
 				}
 				if (countintegers%3== 0){
@@ -300,15 +306,44 @@ public class ListenRawTranslator {
 				// Long.toHexString(Math.abs(realvalue))+") ");
 				// System.out.print("unsinged integer ");
 				{
-					System.out.print(" "+realvalue+ " ");
+					//System.out.print(" "+realvalue+ " ");
 					
-				//	pstream.print(" "+realvalue + " ");
+					//pstream.write(realvalue);
 				}
 				counter = 0;
 				continue;
 
 			}
 
+			if (i == 0xFF) {
+				int j;
+				mode = 0;
+				receivedbyte[counter++] = (byte) i;
+				for (j = 0; j < 8001; j++) {
+					i = in.read();
+					receivedbyte[counter++] = (byte) i;
+				}
+				
+			//	pstream.print(" "+ byteToHex((byte)255)+ " ");
+				
+				for (j=0; j < 8002; j++)
+				 
+				// System.out.print(" "+realvalue + " "+ "(0x"+
+				// Long.toHexString(Math.abs(realvalue))+") ");
+				// System.out.print("unsinged integer ");
+				{
+					//System.out.print(" "+realvalue+ " ");
+					
+					pstream.write(receivedbyte[j]);
+				}
+				counter = 0; 
+			
+				
+				continue;
+
+			}
+			
+			
 			if (mode == 1) {
 				receivedstring[counter++] = i;
 
@@ -391,29 +426,12 @@ public class ListenRawTranslator {
 			printUsage();
 		}
 
-		File fileoutput = new File("trace");
-		boolean exist = fileoutput.exists();
-		if (exist == true)
-			fileoutput.delete();
-
-		try {
-			// Create a new file output stream
-			// connected to "myfile.txt"
-			outputstream = new FileOutputStream("trace");
-			// Connect print stream to the output stream
-			pstream = new PrintStream(outputstream);
-			
-
-		}
-
-		catch (Exception e) {
-			System.err.println("Error writing to file");
-		}
 
 		for (int i = 0; i < args.length; i++) {
 			if (args[i].equals("-h") || args[i].equals("--help")) {
 				printUsage();
 			}
+			 
 			if (args[i].equals("-p")) {
 				printAllPorts();
 			}
@@ -443,6 +461,27 @@ public class ListenRawTranslator {
 			e.printStackTrace();
 		}
 
+
+		File fileoutput = new File(args[args.length - 2]+"/trace_"+ args[args.length-1]);
+		boolean exist = fileoutput.exists();
+		if (exist == true)
+			fileoutput.delete();
+
+		try {
+			// Create a new file output stream
+			// connected to "myfile.txt"
+			outputstream = new FileOutputStream(args[args.length - 2]+"/trace_"+ args[args.length-1]);
+			// Connect print stream to the output stream
+			//pstream = new PrintStream(outputstream);
+			pstream = outputstream; 
+			
+
+		}
+
+		catch (Exception e) {
+			System.err.println("Error writing to file");
+		}
+		
 		try {
 			reader.read();
 		} catch (Exception e) {
