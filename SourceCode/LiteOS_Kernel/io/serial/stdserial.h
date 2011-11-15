@@ -57,5 +57,13 @@ void printfuinteger32(uint32_t val);
 void printfstrln();
 
 
+/** @brief Print a chunk of memory.
+	@param p The starting address. 
+	@param count The total number of bytes. 
+	@return Void. 
+*/
+
+void printfmemory(char *p, uint16_t count);
+
 /** @} */
 #endif

@@ -84,6 +84,21 @@ void printString(char *p)
 }
 
 //-------------------------------------------------------------------------
+void printMemory(char *p, uint16_t count)
+{
+	uint16_t i; 
+	
+    usartPrint(0xFF);
+	for (i=0;i<count;i++)
+    {
+        usartPrint(*p);
+        p++;
+    }
+    usartPrint(0xFF);
+}
+
+
+//-------------------------------------------------------------------------
 void printStringN(char *p, uint8_t n)
 {
     uint8_t i;

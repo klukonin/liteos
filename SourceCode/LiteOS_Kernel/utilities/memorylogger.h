@@ -24,7 +24,7 @@
 	@param reportinterval The interval for reporting. 
 	@return Void. 
 */
-void initMemoryReporting(uint8_t basechannel, uint8_t reportingchannel,  uint16_t reportinterval); 
+void initMemoryReporting(uint16_t reportinterval); 
 
 /** @brief Start a new cycle for sending out multiple packets for memory contents. 
 	@return Void.

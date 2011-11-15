@@ -25,7 +25,7 @@ void printserialmain()
 {
 	 
 
-   for (i =0; i< 100; i++)
+   for (i =0; i< 1000; i++)
    	{
      counter = get_current_timestamp();
 	 lib_red_toggle(); 

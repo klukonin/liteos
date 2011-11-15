@@ -171,10 +171,7 @@ inline result_t GenericTimerFired(uint8_t id)
            
          }  
         #endif 		
-		#ifdef TRACE_MEMORY_CONTENTS
-		  memoryInitTimerFired();	
-		#endif 
-		
+			
 		
 	   break;  	  
     

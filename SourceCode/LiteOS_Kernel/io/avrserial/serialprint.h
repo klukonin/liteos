@@ -79,6 +79,14 @@ void usartPutLong(uint32_t l);
 void printStringLn();
 
 
+/** @brief Print a chunk of memory.
+	@param p The starting address. 
+	@param count The total number of bytes. 
+	@return Void.
+*/
+
+void printMemory(char *p, uint16_t count);
+
 
 /** @} */
 #endif

@@ -14,8 +14,9 @@
 
 
 uint16_t thisnodeid;
-
-uint8_t protocolbuffer[200];
+volatile uint8_t prevreceivecounter; 
+volatile uint8_t currentcounter; 
+uint8_t gfprotocolbuffer[200];
 
 //Pointer to the current thread data structure. Useful for waking up the current thread. 
 lib_thread **thiscurrentthread;
@@ -23,7 +24,7 @@ lib_thread *currentthread;
 uint16_t packetslocal;
 uint16_t packetsremote;
 uint16_t packetsdeliver;
-uint16_t packetsdrop; 
+volatile uint16_t packetsdrop; 
 
 //The neighbor table
 typedef struct
@@ -46,7 +47,7 @@ static nbr_table_entry nbtTable[NBR_SIZE];
 static uint8_t iswakenup;
 
 //Every five seconds, send out neighbor update message (beacons)
-#define NBR_UPDATE_CYCLE 5000
+#define NBR_UPDATE_CYCLE 3000
 
 
 //This function initlizes the neighhood table 
@@ -87,7 +88,7 @@ void registerDataPacket()
     radiohandleaddr = lib_get_current_radio_receive_handle_addr();
     incomingDataLength = 0;
     //set up the radiohandleaddr data structures
-    radiohandleaddr->port = 10;
+    radiohandleaddr->port = 21;
     radiohandleaddr->maxLength = 32;
     radiohandleaddr->dataReady = &incomingDataLength;
     radiohandleaddr->data = incomingMsg;
@@ -179,9 +180,11 @@ void protocol()
     uint16_t maxdist;
     uint8_t index;
     uint8_t portnum;
+	
 
     packetsremote = packetslocal = packetsdeliver = packetsdrop = 0; 
     index = 100;
+	prevreceivecounter = 0; 
     initTable();
     thisnodeid = lib_get_node_id();
     //register both the negibhorhood update and the message incoming 
@@ -211,7 +214,23 @@ void protocol()
             from = incomingMsg[2];
             to = incomingMsg[3];
             portnum = incomingMsg[4];
-            if (to == thisnodeid)
+			currentcounter = incomingMsg[7]; 
+			
+			packetsdrop ++;
+			
+em			if (currentcounter <= prevreceivecounter)
+				{
+				
+					continue; 
+				}
+			else
+			    {
+                      prevreceivecounter = currentcounter; 
+			          packetsdrop --; 
+				}			   
+				
+				
+			if (to == thisnodeid)
             {
                 //StandardSocketSend( portnum, 0, incomingDataLength, incomingMsg );
                 lib_radio_send_msg(portnum, 0, incomingDataLength, incomingMsg);
@@ -219,8 +238,11 @@ void protocol()
             }
             else
             {
+				
                 index = 100;
-                maxdist = 32000;
+                maxdist = 32000; 
+		  		
+					  
 				{
 					int tempx, tempy; 
 					tempx= thisnodeid%256;
@@ -253,8 +275,8 @@ void protocol()
                 if (index != 100)
                 {
 					lib_get_radio_lock();
-					lib_radio_set_channel(21); 
-                    lib_radio_send_msg(10, nbtTable[index].nodeid, 				
+					//lib_radio_set_channel(21); 
+                    lib_radio_send_msg(21, nbtTable[index].nodeid, 				
                     incomingDataLength, incomingMsg);
 					lib_release_radio_lock();
                     lib_green_toggle();
@@ -281,9 +303,9 @@ void protocol()
             //sends out hte neighborhood update message in case the previous action has used up the time slot anyway. The next
             //sleep will be another NBR_UPDATE_CYCLE 
             setNeighborMsg();
-            lib_yellow_toggle();
+            //lib_yellow_toggle();
 			lib_get_radio_lock();
-			lib_radio_set_channel(21); 
+			//lib_radio_set_channel(21); 
             lib_radio_send_msg(11, 0xffff, 16, nbrUpdateMsg);
 			lib_release_radio_lock(); 
 			

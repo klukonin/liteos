@@ -30,6 +30,25 @@ void printfstr(char *str)
   _atomic_end(currentatomic);
 }
 
+
+void printfmemory(char *p, uint16_t count)
+{
+	
+	_atomic_t currentatomic;
+
+    currentatomic = _atomic_start();
+#ifdef PLATFORM_AVR
+	#ifdef PRINT_SOURCE_ENABLED
+	 printString(node_readnodestring());
+	 printString(": ");
+	  #endif
+     printMemory(p, count);
+#endif
+  _atomic_end(currentatomic);
+}
+
+
+
 void printfstrln()
  {
  	_atomic_t currentatomic;

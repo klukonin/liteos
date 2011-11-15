@@ -88,7 +88,7 @@ int main()
      mystrncpy(networkid, "testbed\0", 8);
      mystrncpy(filenameid, "node01\0", 7);
 	 
-     CURRENT_NODE_ID = 1; 
+     CURRENT_NODE_ID = 2; 
 
      nodeid = CURRENT_NODE_ID;
 	 
@@ -162,7 +162,7 @@ int main()
    #endif    
    
    #ifdef TRACE_MEMORY_CONTENTS
-    initMemoryReporting(21, 26, 26000);
+    initMemoryReporting(10000);
    #endif 
    
    create_thread(ShellThread, (uint16_t *) shellbuffer,
@@ -175,8 +175,15 @@ int main()
   //create_thread(protocol, (uint16_t *) protocolbuffer,
     //            STACK_TOP(protocolbuffer), 0, 15, "blink2", 0, 0);
  
-  // create_thread(blink, (uint16_t *) blinkbuffer,
-    //            STACK_TOP(blinkbuffer), 0, 15, "blink2", 0, 0);
+  // create_thread(printserialmain, (uint16_t *) printserialbuffer,
+    //           STACK_TOP(printserialbuffer), 0, 15, "blink2", 0, 0);
+	
+	create_thread(protocol, (uint16_t *)gfprotocolbuffer, 
+	 STACK_TOP(gfprotocolbuffer), 0, 15, "gfproto", 0, 0);
+	 
+	 
+    create_thread(gftest, (uint16_t *)gftestbuffer, 
+	 STACK_TOP(gftestbuffer), 0, 15, "gftest", 0, 0);
 	
 	// create_thread(testradio, (uint16_t *) testradiobuffer,
       //          STACK_TOP(testradiobuffer), 0, 15, "blink2", 0, 0);

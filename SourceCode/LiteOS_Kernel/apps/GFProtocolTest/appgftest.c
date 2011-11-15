@@ -17,7 +17,7 @@ uint8_t fromnode;
 uint8_t tonode; 
 
 
-volatile uint16_t counter; 
+volatile uint8_t counter; 
 
 void gftest()
 {
@@ -25,7 +25,7 @@ void gftest()
  uint16_t *p;
  
  uint8_t destx, desty; 
- counter = 0; 
+ counter = 1; 
  
  fromnode= 1;
  tonode = 5;
@@ -46,33 +46,32 @@ void gftest()
 			msg[1] = desty; 
 			msg[2] = fromnode; 
 			msg[3] = tonode;
-			msg[4] = 80;
+			msg[4] = 91;
 			msg[5] = 0xff;
 			msg[6] = 0xff;
 			msg[7] = counter; 
-		
 			msg[8] = 'h';
 			msg[9] = 'e';
 			msg[10] = 'l';
 			msg[11] = 'l';
 			msg[12] = 'o';
 			msg[13] = 0;
+			counter++; 
 			
-			if (counter<=300)
-			   { lib_radio_send_msg(10, 0, 16, msg);
-			//lib_red_toggle(); 
-			//lib_yellow_toggle(); 
-        } 
+			lib_radio_send_msg(21, 0, 16, msg);	   
+			lib_green_toggle();
+			lib_yellow_toggle();
       }
+	  
 	else if (nodeid == tonode)
 	  {
-			lib_radio_receive(80, 16, msg); 
+			lib_radio_receive(91, 16, msg); 
 		  //  lib(16, msg); 
 			//lib_red_toggle();
 			lib_red_toggle();
 				
 	  }
-	  lib_sleep_thread(10000);
+	  lib_sleep_thread(500);
   	}	 
 	return; 
 }
