@@ -1,7 +1,3 @@
-import org.omg.CORBA.INTERNAL;
-import org.omg.CORBA.PRIVATE_MEMBER;
-import sun.org.mozilla.javascript.internal.JavaScriptException;
-
 import java.io.IOException;
 import java.io.*;
 
@@ -17,13 +13,6 @@ import java.io.*;
 public class psdapp {
 
     private static memoryimage[] m = new memoryimage[100];
-
-
-    private static void printStreamContents(ByteArrayOutputStream baos) {
-
-        // printing the contents
-        System.out.println("ByteArrayOutputStream contents: " + baos.toString());
-    }
 
 
     // Returns the contents of the file in a byte array.
@@ -64,15 +53,13 @@ public class psdapp {
 
     public static void main(String[] args) throws IOException {
 
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         File inputfile;
         variable variables[] = new variable[1002];
         long totallength;
-        long numofpackets;
+        long numrounds;
         byte[] inputbytes;
         int sizeOfVariables = 0;
-        byte[] subbytes;
-        packet temppacket;
+        byte[] subbytes;        
         int maximumround;
 
         for (int i = 0; i < 100; i++)
@@ -90,20 +77,19 @@ public class psdapp {
         }
 
         totallength = inputbytes.length;
-        numofpackets = (totallength - 4) / 132;
+        numrounds = (totallength) / 8002;
 
         int count = 0;
         do {
-            subbytes = utils.get(inputbytes, 4 + count * 132, 132);
-            temppacket = new packet(subbytes, count);
+            subbytes = utils.get(inputbytes,  count * 8002+1, 8000);
+            
             count++;
-            if (temppacket.getStatus() == 0)
-                continue;
-            m[temppacket.getRound() - 1].addcell(temppacket.getMacpayload(), temppacket.getIndex());
-            if (temppacket.getRound() > maximumround)
-                maximumround = temppacket.getRound();
+            
+            m[count-1].addcell(subbytes, 0);
+            if (count > maximumround)
+                maximumround = count; 
         }
-        while (count < numofpackets);
+        while (count < numrounds);
 
 
         //Now read the memory table and display the memory indexes and so on.
@@ -126,7 +112,7 @@ public class psdapp {
 
         PrintWriter outfile;
 
-        outfile = new PrintWriter(new FileWriter("5_blink.csv"));
+        outfile = new PrintWriter(new FileWriter(args[0]+".csv"));
 
         int countvariable, countmemoryimage;
         for (countvariable = 0; countvariable < sizeOfVariables; countvariable++) {

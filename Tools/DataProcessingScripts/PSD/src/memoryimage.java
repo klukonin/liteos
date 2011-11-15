@@ -7,17 +7,17 @@
  */
 public class memoryimage {
 
-    private byte cells[] = new byte[4000];
+    private byte cells[] = new byte[8000];
 
     public void memoryimage() {
         int i;
-        for (i = 0; i < 4000; i++)
+        for (i = 0; i < 8000; i++)
             cells[i] = (byte) 0xfe;
 
     }
 
     public void addcell(byte[] contents, int index) {
-        System.arraycopy(contents, 0, cells, index, 80);
+        System.arraycopy(contents, index, cells, 0, 8000);
 
     }
 
