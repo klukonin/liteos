@@ -178,12 +178,12 @@ int main()
   // create_thread(printserialmain, (uint16_t *) printserialbuffer,
     //           STACK_TOP(printserialbuffer), 0, 15, "blink2", 0, 0);
 	
-	create_thread(protocol, (uint16_t *)gfprotocolbuffer, 
-	 STACK_TOP(gfprotocolbuffer), 0, 15, "gfproto", 0, 0);
+	//create_thread(protocol, (uint16_t *)gfprotocolbuffer, 
+	// STACK_TOP(gfprotocolbuffer), 0, 15, "gfproto", 0, 0);
 	 
 	 
-    create_thread(gftest, (uint16_t *)gftestbuffer, 
-	 STACK_TOP(gftestbuffer), 0, 15, "gftest", 0, 0);
+   // create_thread(gftest, (uint16_t *)gftestbuffer, 
+	// STACK_TOP(gftestbuffer), 0, 15, "gftest", 0, 0);
 	
 	// create_thread(testradio, (uint16_t *) testradiobuffer,
       //          STACK_TOP(testradiobuffer), 0, 15, "blink2", 0, 0);
