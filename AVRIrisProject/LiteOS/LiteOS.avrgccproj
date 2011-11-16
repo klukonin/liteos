@@ -140,7 +140,6 @@
       <Value>MAX_FILE_TABLE_SIZE=6</Value>
       <Value>LITE_MAX_THREADS=6</Value>
       <Value>BOOTLOADERSIZE=512</Value>
-      <Value>TRACE_MEMORY_CONTENTS</Value>
     </ListValues>
   </avrgcc.compiler.symbols.DefSymbols>
   <avrgcc.compiler.optimization.level>Optimize more (-O2)</avrgcc.compiler.optimization.level>
@@ -158,14 +157,6 @@
   </PropertyGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\AvrGCC.targets" />
   <ItemGroup>
-    <Compile Include="..\..\SourceCode\LiteOS_Kernel\apps\GFProtocolTest\appgftest.c">
-      <SubType>compile</SubType>
-      <Link>appgftest.c</Link>
-    </Compile>
-    <Compile Include="..\..\SourceCode\LiteOS_Kernel\apps\GFProtocol\appgforotocol.c">
-      <SubType>compile</SubType>
-      <Link>appgforotocol.c</Link>
-    </Compile>
     <Compile Include="..\..\SourceCode\LiteOS_Kernel\basemode\commandprocessor.c">
       <SubType>compile</SubType>
       <Link>commandprocessor.c</Link>
