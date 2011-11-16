@@ -218,7 +218,7 @@ void protocol()
 			
 			packetsdrop ++;
 			
-em			if (currentcounter <= prevreceivecounter)
+			if (currentcounter <= prevreceivecounter)
 				{
 				
 					continue; 
