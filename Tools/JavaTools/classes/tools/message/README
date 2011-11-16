@@ -1,0 +1,23 @@
+The basic underlying abstraction for this message-format layer is the
+element, which is defined by its type, bit offset and bit length.
+
+Possible types are unsigned integer, signed integer, float, double
+and long (the last 3 are actually identical, and always 32 bits long).
+
+Due to Java restrictions, 64-bit unsigned integer types do not work
+properly (but avr-gcc doesn't support integers greater than 32 bits
+anyway...).
+
+Fields represent one (simple fields) or more (array fields) elements.
+A field has a name, and:
+
+for simple fields: an element specification
+
+for array fields: 
+  an n-dimensional array specification
+     offset, bitsize and arraysize for each dim
+  an element specification
+
+  array field f[i[1], ..., i[n]] is found at offset
+    sum(j = 1 .. n, offset[j] + i[j] * bitsize[j]) + element offset
+
