@@ -6,7 +6,7 @@ import sys
 #20 and 29 removed
 
 
-commtable = [6, 10, 12, 16, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 50]
+commtable = [6, 8, 10, 12, 16, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 50]
 startid = 1
 commonchannel = 21
 
@@ -27,6 +27,6 @@ class MyThread ( threading.Thread ):
 
 
 #total 9 threads
-for i in range(1, 18):
+for i in range(1, 19):
     commport = str(commtable[i-1])
     MyThread(commport, str(startid+i-1)).start()
