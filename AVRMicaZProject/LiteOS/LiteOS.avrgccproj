@@ -18,7 +18,7 @@
       <ToolNumber>07000000377C</ToolNumber>
       <Channel>
         <host>127.0.0.1</host>
-        <port>1434</port>
+        <port>8663</port>
         <ssl>False</ssl>
       </Channel>
       <ToolOptions>
@@ -125,31 +125,31 @@
     </MemorySettings>
     <ToolchainSettings>
       <AvrGcc>
-  <avrgcc.compiler.symbols.DefSymbols>
-    <ListValues>
-      <Value>PLATFORM_AVR</Value>
-      <Value>PRINT_SOURCE_ENABLED</Value>
-      <Value>FILE_SYS_RANGE=32</Value>
-      <Value>MAX_FILE_TABLE_SIZE=2</Value>
-      <Value>LITE_MAX_THREADS=3</Value>
-      <Value>F_CPU=8000000UL</Value>
-      <Value>COMMON_SHARE_SCHEDULING</Value>
-      <Value>AVR_STACK_PREPARE_LENGTH=34</Value>
-      <Value>BOOTLOADERSIZE=0</Value>
-      <Value>MAX_MSG_LENGTH=64</Value>
-      <Value>NUM_BREAKPOINTS=0</Value>
-      <Value>PLATFORM_AVR_MICAZ</Value>
-      <Value>RADIO_CC2420</Value>
-      <Value>VER_DEBUG</Value>
-    </ListValues>
-  </avrgcc.compiler.symbols.DefSymbols>
-  <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
-  <avrgcc.compiler.optimization.OtherFlags>-combine</avrgcc.compiler.optimization.OtherFlags>
-  <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
-  <avrgcc.compiler.miscellaneous.OtherFlags>-gdwarf-2 -fsigned-char </avrgcc.compiler.miscellaneous.OtherFlags>
-  <avrgcc.compiler.miscellaneous.Verbose>True</avrgcc.compiler.miscellaneous.Verbose>
-  <avrgcc.assembler.general.AssemblerFlags>-Wall -gdwarf-2 -DPLATFORM_AVR -DRADIO_CC2420 -DPRINT_SOURCE_ENABLED -DBOOTLOADERSIZE=512 -DFILE_SYS_RANGE=32 -DMAX_FILE_TABLE_SIZE=2 -DNUM_BREAKPOINTS=3 -DAVR_STACK_PREPARE_LENGTH=34 -DJTAG_TOGGLE=1 -DLITE_MAX_THREADS=3 -DMAX_MSG_LENGTH=32     -DENERGY_SHARE_SCHEDULING   -DF_CPU=8000000UL -Os -fsigned-char</avrgcc.assembler.general.AssemblerFlags>
-</AvrGcc>
+        <avrgcc.compiler.symbols.DefSymbols>
+          <ListValues>
+            <Value>PLATFORM_AVR</Value>
+            <Value>PRINT_SOURCE_ENABLED</Value>
+            <Value>FILE_SYS_RANGE=32</Value>
+            <Value>MAX_FILE_TABLE_SIZE=2</Value>
+            <Value>LITE_MAX_THREADS=3</Value>
+            <Value>F_CPU=8000000UL</Value>
+            <Value>COMMON_SHARE_SCHEDULING</Value>
+            <Value>AVR_STACK_PREPARE_LENGTH=34</Value>
+            <Value>BOOTLOADERSIZE=0</Value>
+            <Value>MAX_MSG_LENGTH=64</Value>
+            <Value>NUM_BREAKPOINTS=0</Value>
+            <Value>PLATFORM_AVR_MICAZ</Value>
+            <Value>RADIO_CC2420</Value>
+            <Value>VER_DEBUG</Value>
+          </ListValues>
+        </avrgcc.compiler.symbols.DefSymbols>
+        <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
+        <avrgcc.compiler.optimization.OtherFlags>-combine</avrgcc.compiler.optimization.OtherFlags>
+        <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+        <avrgcc.compiler.miscellaneous.OtherFlags>-gdwarf-2 -fsigned-char </avrgcc.compiler.miscellaneous.OtherFlags>
+        <avrgcc.compiler.miscellaneous.Verbose>True</avrgcc.compiler.miscellaneous.Verbose>
+        <avrgcc.assembler.general.AssemblerFlags>-Wall -gdwarf-2 -DPLATFORM_AVR -DRADIO_CC2420 -DPRINT_SOURCE_ENABLED -DBOOTLOADERSIZE=512 -DFILE_SYS_RANGE=32 -DMAX_FILE_TABLE_SIZE=2 -DNUM_BREAKPOINTS=3 -DAVR_STACK_PREPARE_LENGTH=34 -DJTAG_TOGGLE=1 -DLITE_MAX_THREADS=3 -DMAX_MSG_LENGTH=32     -DENERGY_SHARE_SCHEDULING   -DF_CPU=8000000UL -Os -fsigned-char</avrgcc.assembler.general.AssemblerFlags>
+      </AvrGcc>
     </ToolchainSettings>
     <GenerateHexFile>True</GenerateHexFile>
     <GenerateMapFile>True</GenerateMapFile>
@@ -158,6 +158,10 @@
   </PropertyGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\AvrGCC.targets" />
   <ItemGroup>
+    <Compile Include="..\..\SourceCode\LiteOS_Kernel\apps\SequentialRadio\app.c">
+      <SubType>compile</SubType>
+      <Link>app.c</Link>
+    </Compile>
     <Compile Include="..\..\SourceCode\LiteOS_Kernel\basemode\commandprocessor.c">
       <SubType>compile</SubType>
       <Link>commandprocessor.c</Link>
