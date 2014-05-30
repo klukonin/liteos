@@ -1,0 +1,6564 @@
+0	jmp	99
+4	jmp	1497
+8	jmp	1507
+12	jmp	1517
+16	jmp	1527
+20	jmp	1537
+24	jmp	1547
+28	jmp	2319
+32	jmp	1557
+36	jmp	130
+40	jmp	130
+44	jmp	6475
+48	jmp	6889
+52	jmp	1443
+56	jmp	1465
+60	jmp	1681
+64	jmp	1426
+68	jmp	4103
+72	jmp	130
+76	jmp	130
+80	jmp	130
+84	jmp	1567
+88	jmp	130
+92	jmp	130
+96	jmp	1454
+100	jmp	130
+104	jmp	130
+108	jmp	130
+112	jmp	130
+116	jmp	130
+120	jmp	130
+124	jmp	130
+128	jmp	130
+132	jmp	130
+136	jmp	130
+140	cpse	r9, r6
+142	cpse	r15, r3
+144	cpse	r15, r9
+146	cpse	r20, r10
+148	cpse	r22, r5
+150	cpse	r22, r12
+152	cpse	r26, r5
+154	cpse	r6, r18
+156	cpse	r8, r21
+158	cpse	r9, r25
+160	cp	r7, r8
+162	cp	r10, r11
+164	cp	r16, r3
+166	cp	r18, r12
+168	cp	r21, r2
+170	cp	r26, r1
+172	cp	r26, r12
+174	cp	r26, r14
+176	cp	r27, r2
+178	cp	r27, r6
+180	cp	r27, r10
+182	cp	r28, r12
+184	cp	r29, r13
+186	cp	r31, r5
+188	cpse	r8, r14
+190	cp	r15, r21
+192	sbc	r0, r0
+194	sub	r1, r12
+196	cpse	r1, r4
+198	eor	r1, r1
+200	out	63, r1
+202	ldi	r28, 255
+204	ldi	r29, 16
+206	out	62, r29
+208	out	61, r28
+210	ldi	r17, 1
+212	ldi	r26, 0
+214	ldi	r27, 1
+216	ldi	r30, 44
+218	ldi	r31, 59
+220	ldi	r16, 0
+222	out	59, r16
+224	rjmp	2
+226	elpmpi	r0, Z
+228	stpi	X, r0
+230	cpi	r26, 24
+232	cpc	r27, r17
+234	brne	-5
+236	ldi	r17, 2
+238	ldi	r26, 24
+240	ldi	r27, 1
+242	rjmp	1
+244	stpi	X, r1
+246	cpi	r26, 202
+248	cpc	r27, r17
+250	brne	-4
+252	call	5966
+256	jmp	7573
+260	jmp	0
+264	in	r24, 63
+266	cli	
+268	eor	r25, r25
+270	ret	
+272	out	63, r24
+274	ret	
+276	in	r24, 63
+278	cli	
+280	eor	r25, r25
+282	in	r18, 27
+284	ldi	r19, 2
+286	eor	r18, r19
+288	out	27, r18
+290	out	63, r24
+292	ret	
+294	in	r24, 63
+296	cli	
+298	eor	r25, r25
+300	in	r18, 27
+302	ldi	r19, 4
+304	eor	r18, r19
+306	out	27, r18
+308	out	63, r24
+310	ret	
+312	movw	r30, r24
+314	ldd	r24, Z+2
+316	eor	r25, r25
+318	mov	r21, r24
+320	eor	r20, r20
+322	ldd	r24, Z+1
+324	eor	r25, r25
+326	or	r20, r24
+328	or	r21, r25
+330	movw	r24, r20
+332	mov	r24, r25
+334	eor	r25, r25
+336	lsr	r24
+338	lsr	r24
+340	andi	r24, 3
+342	andi	r25, 0
+344	cpi	r24, 2
+346	cpc	r25, r1
+348	breq	11
+350	cpi	r24, 3
+352	cpc	r25, r1
+354	breq	11
+356	or	r24, r25
+358	brne	3
+360	ldi	r18, 0
+362	ldi	r19, 0
+364	rjmp	8
+366	ldi	r18, 156
+368	ldi	r19, 255
+370	rjmp	5
+372	ldi	r18, 2
+374	ldi	r19, 0
+376	rjmp	2
+378	ldi	r18, 8
+380	ldi	r19, 0
+382	movw	r24, r20
+384	ldi	r24, 4
+386	mul	r25, r24
+388	mov	r24, r1
+390	eor	r25, r25
+392	eor	r1, r1
+394	cpi	r24, 2
+396	cpc	r25, r1
+398	breq	11
+400	cpi	r24, 3
+402	cpc	r25, r1
+404	breq	11
+406	or	r24, r25
+408	brne	3
+410	ldi	r24, 0
+412	ldi	r25, 0
+414	rjmp	8
+416	ldi	r24, 156
+418	ldi	r25, 255
+420	rjmp	5
+422	ldi	r24, 2
+424	ldi	r25, 0
+426	rjmp	2
+428	ldi	r24, 8
+430	ldi	r25, 0
+432	add	r18, r24
+434	adc	r19, r25
+436	subi	r18, 250
+438	sbci	r19, 255
+440	movw	r24, r30
+442	add	r24, r18
+444	adc	r25, r19
+446	ret	
+448	mov	r18, r24
+450	in	r25, 63
+452	cli	
+454	and	r22, r22
+456	breq	9
+458	mov	r30, r24
+460	eor	r31, r31
+462	subi	r30, 4
+464	sbci	r31, 254
+466	ld	r24, Z
+468	and	r24, r24
+470	breq	2
+472	ldi	r18, 1
+474	rjmp	6
+476	mov	r30, r18
+478	eor	r31, r31
+480	subi	r30, 4
+482	sbci	r31, 254
+484	st	Z, r22
+486	ldi	r18, 0
+488	mov	r24, r25
+490	eor	r25, r25
+492	out	63, r24
+494	mov	r24, r18
+496	eor	r25, r25
+498	ret	
+500	mov	r30, r24
+502	in	r24, 63
+504	cli	
+506	mov	r18, r24
+508	eor	r19, r19
+510	ldi	r25, 0
+512	eor	r31, r31
+514	subi	r30, 4
+516	sbci	r31, 254
+518	ld	r24, Z
+520	cp	r24, r22
+522	brne	1
+524	ldi	r25, 1
+526	out	63, r18
+528	mov	r24, r25
+530	eor	r25, r25
+532	ret	
+534	and	r24, r24
+536	breq	2
+538	sbi	13, 6
+540	ret	
+542	cbi	13, 6
+544	ret	
+546	and	r24, r24
+548	breq	2
+550	sbi	13, 7
+552	ret	
+554	cbi	13, 7
+556	ret	
+558	ldi	r24, 0
+560	call	267
+564	sbi	23, 2
+566	cbi	23, 3
+568	sbi	23, 1
+570	sbi	23, 0
+572	sbi	13, 4
+574	ldi	r24, 0
+576	call	273
+580	cbi	13, 3
+582	cbi	13, 2
+584	ldi	r24, 1
+586	call	267
+590	sbi	14, 0
+592	in	r24, 13
+594	andi	r24, 252
+596	out	13, r24
+598	ret	
+600	mov	r18, r24
+602	in	r25, 63
+604	cli	
+606	mov	r30, r24
+608	eor	r31, r31
+610	subi	r30, 178
+612	sbci	r31, 254
+614	ld	r24, Z
+616	cpi	r24, 255
+618	brne	16
+620	lds	r30, 712
+624	cp	r30, r18
+626	brne	14
+628	rjmp	11
+630	sts	696, r18
+634	rjmp	4
+636	eor	r31, r31
+638	subi	r30, 178
+640	sbci	r31, 254
+642	st	Z, r18
+644	sts	712, r18
+648	ldi	r18, 0
+650	rjmp	7
+652	ldi	r18, 5
+654	rjmp	5
+656	lds	r24, 696
+660	cpi	r24, 255
+662	brne	-14
+664	rjmp	-18
+666	mov	r24, r25
+668	eor	r25, r25
+670	out	63, r24
+672	mov	r24, r18
+674	eor	r25, r25
+676	ret	
+678	push	r17
+680	mov	r17, r24
+682	ldi	r24, 1
+684	call	267
+688	out	15, r17
+690	sbis	14, 7
+692	rjmp	-2
+694	in	r24, 15
+696	eor	r25, r25
+698	pop	r17
+700	ret	
+702	push	r8
+704	push	r9
+706	push	r10
+708	push	r11
+710	push	r12
+712	push	r13
+714	push	r14
+716	push	r15
+718	push	r16
+720	push	r17
+722	push	r28
+724	push	r29
+726	in	r24, 63
+728	cli	
+730	eor	r25, r25
+732	lds	r12, 706
+736	lds	r13, 707
+740	lds	r8, 499
+744	lds	r9, 500
+748	lds	r28, 463
+752	lds	r29, 464
+756	lds	r18, 306
+760	lds	r19, 307
+764	ldi	r30, 10
+766	mov	r10, r30
+768	mov	r11, r1
+770	add	r10, r28
+772	adc	r11, r29
+774	cp	r18, r10
+776	cpc	r19, r11
+778	brcc	1
+780	movw	r10, r18
+782	out	63, r24
+784	movw	r14, r8
+786	add	r14, r28
+788	adc	r15, r29
+790	movw	r16, r12
+792	add	r16, r28
+794	adc	r17, r29
+796	rjmp	20
+798	cp	r12, r1
+800	cpc	r13, r1
+802	breq	3
+804	movw	r30, r16
+806	ld	r24, Z
+808	rjmp	1
+810	ldi	r24, 0
+812	call	339
+816	cp	r8, r1
+818	cpc	r9, r1
+820	breq	2
+822	movw	r30, r14
+824	st	Z, r24
+826	adiw	r28, 1
+828	sec	
+830	adc	r14, r1
+832	adc	r15, r1
+834	subi	r16, 255
+836	sbci	r17, 255
+838	movw	r24, r10
+840	sbiw	r24, 1
+842	cp	r28, r24
+844	cpc	r29, r25
+846	brcs	-25
+848	ldi	r24, 1
+850	call	273
+854	in	r25, 63
+856	cli	
+858	cp	r12, r1
+860	cpc	r13, r1
+862	breq	6
+864	add	r12, r28
+866	adc	r13, r29
+868	movw	r30, r12
+870	ld	r24, Z
+872	out	15, r24
+874	rjmp	1
+876	out	15, r1
+878	sts	464, r29
+882	sts	463, r28
+886	mov	r24, r25
+888	eor	r25, r25
+890	out	63, r24
+892	ldi	r24, 0
+894	ldi	r25, 0
+896	pop	r29
+898	pop	r28
+900	pop	r17
+902	pop	r16
+904	pop	r15
+906	pop	r14
+908	pop	r13
+910	pop	r12
+912	pop	r11
+914	pop	r10
+916	pop	r9
+918	pop	r8
+920	ret	
+922	in	r18, 63
+924	cli	
+926	eor	r19, r19
+928	sts	307, r21
+932	sts	306, r20
+936	sts	707, r25
+940	sts	706, r24
+944	sts	500, r23
+948	sts	499, r22
+952	sts	464, r1
+956	sts	463, r1
+960	out	63, r18
+962	or	r20, r21
+964	breq	5
+966	in	r24, 15
+968	call	351
+972	eor	r25, r25
+974	ret	
+976	ldi	r24, 7
+978	call	300
+982	ldi	r24, 0
+984	ldi	r25, 0
+986	ret	
+988	in	r24, 63
+990	cli	
+992	eor	r25, r25
+994	sts	510, r1
+998	out	63, r24
+1000	ret	
+1002	mov	r25, r24
+1004	lsr	r25
+1006	lsr	r25
+1008	lsr	r25
+1010	ldi	r30, 213
+1012	ldi	r31, 1
+1014	add	r30, r25
+1016	adc	r31, r1
+1018	andi	r24, 7
+1020	ldi	r18, 1
+1022	ldi	r19, 0
+1024	rjmp	2
+1026	add	r18, r18
+1028	adc	r19, r19
+1030	dec	r24
+1032	brpl	-4
+1034	ld	r24, Z
+1036	and	r24, r18
+1038	eor	r25, r25
+1040	ret	
+1042	in	r25, 63
+1044	cli	
+1046	mov	r18, r25
+1048	eor	r19, r19
+1050	mov	r20, r18
+1052	lds	r25, 275
+1056	cp	r25, r24
+1058	brne	8
+1060	lds	r24, 293
+1064	cpi	r24, 3
+1066	brne	4
+1068	out	63, r18
+1070	ldi	r24, 1
+1072	ldi	r25, 0
+1074	ret	
+1076	out	63, r20
+1078	ldi	r24, 0
+1080	ldi	r25, 0
+1082	ret	
+1084	mov	r25, r24
+1086	lsr	r25
+1088	lsr	r25
+1090	lsr	r25
+1092	ldi	r30, 76
+1094	ldi	r31, 1
+1096	add	r30, r25
+1098	adc	r31, r1
+1100	andi	r24, 7
+1102	ldi	r18, 1
+1104	ldi	r19, 0
+1106	rjmp	2
+1108	add	r18, r18
+1110	adc	r19, r19
+1112	dec	r24
+1114	brpl	-4
+1116	ld	r24, Z
+1118	and	r24, r18
+1120	eor	r25, r25
+1122	ret	
+1124	lds	r24, 699
+1128	and	r24, r24
+1130	breq	3
+1132	ldi	r18, 31
+1134	ldi	r23, 0
+1136	rjmp	2
+1138	ldi	r23, 8
+1140	ldi	r18, 1
+1142	mov	r22, r18
+1144	in	r30, 63
+1146	cli	
+1148	lds	r24, 366
+1152	andi	r24, 254
+1154	sts	366, r24
+1158	in	r24, 7
+1160	mov	r25, r24
+1162	andi	r25, 31
+1164	swap	r24
+1166	lsr	r24
+1168	lsr	r24
+1170	andi	r24, 3
+1172	breq	3
+1174	ldi	r24, 0
+1176	ldi	r25, 0
+1178	rjmp	18
+1180	mov	r24, r18
+1182	subi	r24, 8
+1184	cpi	r24, 22
+1186	brcs	3
+1188	ldi	r24, 1
+1190	ldi	r25, 0
+1192	rjmp	11
+1194	ldi	r20, 0
+1196	ldi	r21, 0
+1198	eor	r19, r19
+1200	mov	r24, r25
+1202	eor	r25, r25
+1204	cp	r18, r24
+1206	cpc	r19, r25
+1208	brne	2
+1210	ldi	r20, 1
+1212	ldi	r21, 0
+1214	movw	r24, r20
+1216	mov	r25, r24
+1218	andi	r25, 1
+1220	add	r25, r25
+1222	lds	r24, 366
+1226	andi	r24, 129
+1228	mov	r18, r22
+1230	andi	r18, 31
+1232	mov	r20, r18
+1234	add	r20, r20
+1236	add	r20, r20
+1238	or	r24, r25
+1240	or	r24, r20
+1242	sts	366, r24
+1246	eor	r19, r19
+1248	out	7, r18
+1250	cpi	r23, 8
+1252	brne	43
+1254	lds	r24, 697
+1258	lds	r25, 698
+1262	ldi	r18, 1
+1264	cpi	r24, 134
+1266	cpc	r25, r18
+1268	brcs	3
+1270	ldi	r24, 7
+1272	ldi	r25, 0
+1274	rjmp	31
+1276	cpi	r24, 195
+1278	cpc	r25, r1
+1280	brcs	3
+1282	ldi	r24, 6
+1284	ldi	r25, 0
+1286	rjmp	25
+1288	cpi	r24, 97
+1290	cpc	r25, r1
+1292	brcs	3
+1294	ldi	r24, 5
+1296	ldi	r25, 0
+1298	rjmp	19
+1300	cpi	r24, 48
+1302	cpc	r25, r1
+1304	brcs	3
+1306	ldi	r24, 4
+1308	ldi	r25, 0
+1310	rjmp	13
+1312	cpi	r24, 24
+1314	cpc	r25, r1
+1316	brcs	3
+1318	ldi	r24, 3
+1320	ldi	r25, 0
+1322	rjmp	7
+1324	sbiw	r24, 12
+1326	brcs	3
+1328	ldi	r24, 2
+1330	ldi	r25, 0
+1332	rjmp	2
+1334	ldi	r24, 0
+1336	ldi	r25, 0
+1338	mov	r23, r24
+1340	andi	r23, 7
+1342	andi	r24, 216
+1344	or	r24, r23
+1346	ori	r24, 216
+1348	eor	r25, r25
+1350	out	6, r24
+1352	mov	r24, r30
+1354	eor	r25, r25
+1356	out	63, r24
+1358	ret	
+1360	mov	r25, r24
+1362	lsr	r25
+1364	lsr	r25
+1366	lsr	r25
+1368	ldi	r30, 215
+1370	ldi	r31, 1
+1372	add	r30, r25
+1374	adc	r31, r1
+1376	andi	r24, 7
+1378	ldi	r18, 1
+1380	ldi	r19, 0
+1382	rjmp	2
+1384	add	r18, r18
+1386	adc	r19, r19
+1388	dec	r24
+1390	brpl	-4
+1392	ld	r24, Z
+1394	and	r24, r18
+1396	eor	r25, r25
+1398	ret	
+1400	push	r16
+1402	push	r17
+1404	push	r28
+1406	push	r29
+1408	mov	r17, r24
+1410	in	r24, 63
+1412	cli	
+1414	mov	r18, r24
+1416	eor	r19, r19
+1418	mov	r16, r18
+1420	lds	r24, 293
+1424	and	r24, r24
+1426	brne	38
+1428	ldi	r24, 1
+1430	sts	293, r24
+1434	sts	602, r17
+1438	out	63, r18
+1440	in	r24, 63
+1442	cli	
+1444	mov	r28, r24
+1446	eor	r29, r29
+1448	mov	r25, r28
+1450	lds	r24, 275
+1454	cpi	r24, 2
+1456	brne	21
+1458	lds	r24, 293
+1462	cpi	r24, 1
+1464	brne	4
+1466	ldi	r24, 13
+1468	call	300
+1472	rjmp	9
+1474	cpi	r24, 2
+1476	brne	11
+1478	lds	r24, 602
+1482	sts	275, r24
+1486	ldi	r24, 3
+1488	sts	293, r24
+1492	out	63, r28
+1494	ldi	r24, 0
+1496	ldi	r25, 0
+1498	rjmp	37
+1500	out	63, r25
+1502	rjmp	-5
+1504	lds	r24, 602
+1508	cp	r24, r17
+1510	brne	2
+1512	out	63, r18
+1514	rjmp	-11
+1516	mov	r24, r17
+1518	call	680
+1522	and	r24, r24
+1524	breq	3
+1526	ldi	r24, 5
+1528	ldi	r25, 0
+1530	rjmp	20
+1532	mov	r30, r17
+1534	lsr	r30
+1536	lsr	r30
+1538	lsr	r30
+1540	eor	r31, r31
+1542	subi	r30, 41
+1544	sbci	r31, 254
+1546	andi	r17, 7
+1548	ldi	r24, 1
+1550	ldi	r25, 0
+1552	rjmp	2
+1554	add	r24, r24
+1556	adc	r25, r25
+1558	dec	r17
+1560	brpl	-4
+1562	ld	r18, Z
+1564	or	r18, r24
+1566	st	Z, r18
+1568	ldi	r24, 0
+1570	ldi	r25, 0
+1572	out	63, r16
+1574	pop	r29
+1576	pop	r28
+1578	pop	r17
+1580	pop	r16
+1582	ret	
+1584	in	r23, 63
+1586	cli	
+1588	in	r22, 50
+1590	lds	r18, 309
+1594	lds	r19, 310
+1598	lds	r20, 311
+1602	lds	r21, 312
+1606	in	r0, 54
+1608	sbrs	r0, 1
+1610	rjmp	15
+1612	in	r24, 49
+1614	in	r25, 50
+1616	add	r18, r24
+1618	adc	r19, r1
+1620	adc	r20, r1
+1622	adc	r21, r1
+1624	subi	r18, 255
+1626	sbci	r19, 255
+1628	sbci	r20, 255
+1630	sbci	r21, 255
+1632	add	r18, r25
+1634	adc	r19, r1
+1636	adc	r20, r1
+1638	adc	r21, r1
+1640	rjmp	4
+1642	add	r18, r22
+1644	adc	r19, r1
+1646	adc	r20, r1
+1648	adc	r21, r1
+1650	mov	r24, r23
+1652	eor	r25, r25
+1654	out	63, r24
+1656	movw	r24, r20
+1658	movw	r22, r18
+1660	ret	
+1662	push	r13
+1664	push	r14
+1666	push	r15
+1668	push	r16
+1670	push	r17
+1672	in	r24, 63
+1674	cli	
+1676	mov	r18, r24
+1678	eor	r19, r19
+1680	mov	r13, r18
+1682	in	r25, 49
+1684	in	r24, 50
+1686	in	r20, 54
+1688	cp	r25, r24
+1690	breq	2
+1692	sbrs	r20, 1
+1694	rjmp	2
+1696	out	63, r18
+1698	rjmp	106
+1700	lds	r24, 462
+1704	and	r24, r24
+1706	breq	60
+1708	call	792
+1712	lds	r14, 504
+1716	lds	r15, 505
+1720	lds	r16, 506
+1724	lds	r17, 507
+1728	lds	r18, 327
+1732	lds	r19, 328
+1736	lds	r20, 329
+1740	lds	r21, 330
+1744	sub	r22, r14
+1746	sbc	r23, r15
+1748	sbc	r24, r16
+1750	sbc	r25, r17
+1752	cp	r22, r18
+1754	cpc	r23, r19
+1756	cpc	r24, r20
+1758	cpc	r25, r21
+1760	brcs	4
+1762	sts	462, r1
+1766	ldi	r23, 1
+1768	rjmp	30
+1770	add	r18, r14
+1772	adc	r19, r15
+1774	adc	r20, r16
+1776	adc	r21, r17
+1778	lds	r24, 309
+1782	lds	r25, 310
+1786	lds	r26, 311
+1790	lds	r27, 312
+1794	sub	r18, r24
+1796	sbc	r19, r25
+1798	sbc	r20, r26
+1800	sbc	r21, r27
+1802	cpi	r18, 231
+1804	cpc	r19, r1
+1806	cpc	r20, r1
+1808	cpc	r21, r1
+1810	brcc	8
+1812	mov	r24, r18
+1814	cpi	r18, 2
+1816	brcs	2
+1818	ldi	r23, 0
+1820	rjmp	5
+1822	ldi	r23, 0
+1824	ldi	r24, 2
+1826	rjmp	2
+1828	ldi	r23, 0
+1830	ldi	r24, 230
+1832	mov	r22, r24
+1834	subi	r22, 1
+1836	in	r0, 48
+1838	sbrc	r0, 1
+1840	rjmp	-3
+1842	in	r24, 50
+1844	cp	r22, r24
+1846	brne	1
+1848	subi	r22, 255
+1850	lds	r18, 309
+1854	lds	r19, 310
+1858	lds	r20, 311
+1862	lds	r21, 312
+1866	movw	r26, r20
+1868	movw	r24, r18
+1870	adiw	r24, 1
+1872	adc	r26, r1
+1874	adc	r27, r1
+1876	add	r24, r22
+1878	adc	r25, r1
+1880	adc	r26, r1
+1882	adc	r27, r1
+1884	cp	r24, r18
+1886	cpc	r25, r19
+1888	cpc	r26, r20
+1890	cpc	r27, r21
+1892	brcc	2
+1894	mov	r22, r18
+1896	com	r22
+1898	out	49, r22
+1900	out	63, r13
+1902	and	r23, r23
+1904	breq	3
+1906	ldi	r24, 10
+1908	call	300
+1912	pop	r17
+1914	pop	r16
+1916	pop	r15
+1918	pop	r14
+1920	pop	r13
+1922	ret	
+1924	in	r26, 63
+1926	cli	
+1928	eor	r27, r27
+1930	ldi	r30, 1
+1932	sts	462, r30
+1936	sts	504, r22
+1940	sts	505, r23
+1944	sts	506, r24
+1948	sts	507, r25
+1952	sts	327, r18
+1956	sts	328, r19
+1960	sts	329, r20
+1964	sts	330, r21
+1968	out	63, r26
+1970	call	831
+1974	ret	
+1976	ldi	r24, 128
+1978	sts	331, r24
+1982	sts	425, r1
+1986	sts	700, r1
+1990	sts	695, r1
+1994	sts	368, r1
+1998	ret	
+2000	push	r28
+2002	push	r29
+2004	movw	r30, r24
+2006	std	Z+45, r1
+2008	movw	r26, r24
+2010	adiw	r26, 46
+2012	movw	r28, r26
+2014	std	Y+3, r1
+2016	std	Y+2, r1
+2018	std	Y+1, r1
+2020	ldi	r24, 128
+2022	std	Z+46, r24
+2024	pop	r29
+2026	pop	r28
+2028	ret	
+2030	push	r2
+2032	push	r3
+2034	push	r4
+2036	push	r5
+2038	push	r6
+2040	push	r7
+2042	push	r8
+2044	push	r9
+2046	push	r10
+2048	push	r11
+2050	push	r12
+2052	push	r13
+2054	push	r14
+2056	push	r15
+2058	push	r16
+2060	push	r17
+2062	push	r28
+2064	push	r29
+2066	in	r28, 61
+2068	in	r29, 62
+2070	sbiw	r28, 8
+2072	in	r0, 63
+2074	cli	
+2076	out	62, r29
+2078	out	63, r0
+2080	out	61, r28
+2082	lds	r2, 434
+2086	lds	r3, 435
+2090	lds	r4, 436
+2094	lds	r5, 437
+2098	eor	r6, r6
+2100	eor	r7, r7
+2102	eor	r8, r8
+2104	ldi	r27, 78
+2106	mov	r10, r27
+2108	ldi	r26, 131
+2110	mov	r11, r26
+2112	eor	r12, r12
+2114	eor	r13, r13
+2116	eor	r14, r14
+2118	eor	r15, r15
+2120	ldi	r16, 0
+2122	ldi	r17, 0
+2124	mov	r18, r2
+2126	mov	r19, r3
+2128	mov	r20, r4
+2130	mov	r21, r5
+2132	mov	r22, r6
+2134	mov	r23, r7
+2136	mov	r24, r8
+2138	ldi	r25, 0
+2140	call	7031
+2144	std	Y+1, r18
+2146	std	Y+2, r19
+2148	std	Y+3, r20
+2150	std	Y+4, r21
+2152	std	Y+5, r22
+2154	std	Y+6, r23
+2156	std	Y+7, r24
+2158	std	Y+8, r25
+2160	mov	r8, r18
+2162	mov	r9, r19
+2164	mov	r10, r20
+2166	mov	r11, r21
+2168	movw	r4, r8
+2170	movw	r6, r10
+2172	ldi	r16, 32
+2174	call	7285
+2178	mov	r10, r18
+2180	mov	r11, r19
+2182	mov	r12, r20
+2184	mov	r13, r21
+2186	movw	r24, r6
+2188	movw	r22, r4
+2190	lsr	r25
+2192	ror	r24
+2194	ror	r23
+2196	ror	r22
+2198	add	r22, r10
+2200	adc	r23, r11
+2202	adc	r24, r12
+2204	adc	r25, r13
+2206	sbrs	r25, 7
+2208	rjmp	5
+2210	andi	r25, 127
+2212	subi	r22, 255
+2214	sbci	r23, 255
+2216	sbci	r24, 255
+2218	sbci	r25, 255
+2220	sts	434, r22
+2224	sts	435, r23
+2228	sts	436, r24
+2232	sts	437, r25
+2236	adiw	r28, 8
+2238	in	r0, 63
+2240	cli	
+2242	out	62, r29
+2244	out	63, r0
+2246	out	61, r28
+2248	pop	r29
+2250	pop	r28
+2252	pop	r17
+2254	pop	r16
+2256	pop	r15
+2258	pop	r14
+2260	pop	r13
+2262	pop	r12
+2264	pop	r11
+2266	pop	r10
+2268	pop	r9
+2270	pop	r8
+2272	pop	r7
+2274	pop	r6
+2276	pop	r5
+2278	pop	r4
+2280	pop	r3
+2282	pop	r2
+2284	ret	
+2286	in	r24, 63
+2288	cli	
+2290	lds	r22, 467
+2294	lds	r23, 468
+2298	in	r18, 44
+2300	in	r19, 45
+2302	in	r0, 54
+2304	sbrs	r0, 2
+2306	rjmp	4
+2308	subi	r22, 255
+2310	sbci	r23, 255
+2312	in	r18, 44
+2314	in	r19, 45
+2316	eor	r25, r25
+2318	out	63, r24
+2320	eor	r24, r24
+2322	eor	r25, r25
+2324	movw	r24, r22
+2326	eor	r23, r23
+2328	eor	r22, r22
+2330	eor	r20, r20
+2332	eor	r21, r21
+2334	or	r22, r18
+2336	or	r23, r19
+2338	or	r24, r20
+2340	or	r25, r21
+2342	ret	
+2344	push	r14
+2346	push	r15
+2348	push	r16
+2350	push	r17
+2352	call	1143
+2356	movw	r14, r22
+2358	movw	r16, r24
+2360	lds	r18, 444
+2364	lds	r19, 445
+2368	lds	r20, 446
+2372	lds	r21, 447
+2376	lds	r24, 439
+2380	lds	r25, 440
+2384	lds	r26, 441
+2388	lds	r27, 442
+2392	add	r24, r18
+2394	adc	r25, r19
+2396	adc	r26, r20
+2398	adc	r27, r21
+2400	cp	r14, r18
+2402	cpc	r15, r19
+2404	cpc	r16, r20
+2406	cpc	r17, r21
+2408	brcs	6
+2410	cp	r24, r18
+2412	cpc	r25, r19
+2414	cpc	r26, r20
+2416	cpc	r27, r21
+2418	brcs	11
+2420	rjmp	5
+2422	cp	r24, r18
+2424	cpc	r25, r19
+2426	cpc	r26, r20
+2428	cpc	r27, r21
+2430	brcc	60
+2432	cp	r14, r24
+2434	cpc	r15, r25
+2436	cpc	r16, r26
+2438	cpc	r17, r27
+2440	brcc	55
+2442	movw	r18, r24
+2444	movw	r20, r26
+2446	sub	r18, r14
+2448	sbc	r19, r15
+2450	sbc	r20, r16
+2452	sbc	r21, r17
+2454	cpi	r18, 1
+2456	ldi	r22, 128
+2458	cpc	r19, r22
+2460	ldi	r22, 0
+2462	cpc	r20, r22
+2464	ldi	r22, 0
+2466	cpc	r21, r22
+2468	brcs	45
+2470	ldi	r24, 0
+2472	ldi	r25, 128
+2474	ldi	r26, 0
+2476	ldi	r27, 0
+2478	add	r14, r24
+2480	adc	r15, r25
+2482	adc	r16, r26
+2484	adc	r17, r27
+2486	sts	444, r14
+2490	sts	445, r15
+2494	sts	446, r16
+2498	sts	447, r17
+2502	ldi	r24, 0
+2504	ldi	r25, 128
+2506	ldi	r26, 255
+2508	ldi	r27, 255
+2510	add	r14, r24
+2512	adc	r15, r25
+2514	adc	r16, r26
+2516	adc	r17, r27
+2518	subi	r18, 0
+2520	sbci	r19, 128
+2522	sbci	r20, 0
+2524	sbci	r21, 0
+2526	sts	439, r18
+2530	sts	440, r19
+2534	sts	441, r20
+2538	sts	442, r21
+2542	ldi	r18, 0
+2544	ldi	r19, 128
+2546	ldi	r20, 0
+2548	ldi	r21, 0
+2550	rjmp	20
+2552	ldi	r18, 0
+2554	ldi	r19, 0
+2556	ldi	r20, 0
+2558	ldi	r21, 0
+2560	sts	444, r24
+2564	sts	445, r25
+2568	sts	446, r26
+2572	sts	447, r27
+2576	sts	439, r1
+2580	sts	440, r1
+2584	sts	441, r1
+2588	sts	442, r1
+2592	movw	r20, r18
+2594	movw	r22, r14
+2596	in	r18, 44
+2598	in	r19, 45
+2600	movw	r24, r18
+2602	sub	r24, r14
+2604	sbc	r25, r15
+2606	adiw	r24, 3
+2608	cp	r24, r20
+2610	cpc	r25, r21
+2612	brcs	4
+2614	movw	r22, r18
+2616	subi	r22, 253
+2618	sbci	r23, 255
+2620	rjmp	2
+2622	add	r22, r20
+2624	adc	r23, r21
+2626	cp	r22, r1
+2628	cpc	r23, r1
+2630	brne	2
+2632	ldi	r22, 1
+2634	ldi	r23, 0
+2636	subi	r22, 1
+2638	sbci	r23, 0
+2640	out	43, r23
+2642	out	42, r22
+2644	ldi	r24, 16
+2646	out	54, r24
+2648	in	r24, 55
+2650	ori	r24, 16
+2652	out	55, r24
+2654	pop	r17
+2656	pop	r16
+2658	pop	r15
+2660	pop	r14
+2662	ret	
+2664	push	r16
+2666	push	r17
+2668	in	r16, 63
+2670	cli	
+2672	eor	r17, r17
+2674	sts	444, r22
+2678	sts	445, r23
+2682	sts	446, r24
+2686	sts	447, r25
+2690	sts	439, r18
+2694	sts	440, r19
+2698	sts	441, r20
+2702	sts	442, r21
+2706	call	1172
+2710	out	63, r16
+2712	pop	r17
+2714	pop	r16
+2716	ret	
+2718	in	r25, 55
+2720	andi	r25, 223
+2722	out	55, r25
+2724	ldi	r25, 32
+2726	out	54, r25
+2728	and	r24, r24
+2730	breq	3
+2732	in	r24, 46
+2734	ori	r24, 64
+2736	rjmp	2
+2738	in	r24, 46
+2740	andi	r24, 191
+2742	out	46, r24
+2744	in	r24, 55
+2746	ori	r24, 32
+2748	out	55, r24
+2750	ldi	r24, 0
+2752	ldi	r25, 0
+2754	ret	
+2756	push	r10
+2758	push	r11
+2760	push	r12
+2762	push	r13
+2764	push	r14
+2766	push	r15
+2768	push	r16
+2770	push	r17
+2772	push	r28
+2774	push	r29
+2776	in	r28, 61
+2778	in	r29, 62
+2780	sbiw	r28, 8
+2782	in	r0, 63
+2784	cli	
+2786	out	62, r29
+2788	out	63, r0
+2790	out	61, r28
+2792	ldi	r18, 0
+2794	ldi	r23, 0
+2796	lds	r30, 263
+2800	lds	r31, 264
+2804	ldi	r19, 18
+2806	ldi	r20, 109
+2808	ldi	r21, 76
+2810	ldi	r22, 79
+2812	lds	r24, 264
+2816	mov	r25, r30
+2818	adiw	r28, 8
+2820	in	r0, 63
+2822	cli	
+2824	out	62, r29
+2826	out	63, r0
+2828	out	61, r28
+2830	pop	r29
+2832	pop	r28
+2834	pop	r17
+2836	pop	r16
+2838	pop	r15
+2840	pop	r14
+2842	pop	r13
+2844	pop	r12
+2846	pop	r11
+2848	pop	r10
+2850	ret	
+2852	push	r1
+2854	push	r0
+2856	in	r0, 63
+2858	push	r0
+2860	eor	r1, r1
+2862	push	r24
+2864	in	r24, 51
+2866	out	51, r24
+2868	in	r0, 48
+2870	sbrc	r0, 0
+2872	rjmp	-3
+2874	pop	r24
+2876	pop	r0
+2878	out	63, r0
+2880	pop	r0
+2882	pop	r1
+2884	reti	
+2886	sei	
+2888	push	r1
+2890	push	r0
+2892	in	r0, 63
+2894	push	r0
+2896	eor	r1, r1
+2898	pop	r0
+2900	out	63, r0
+2902	pop	r0
+2904	pop	r1
+2906	reti	
+2908	sei	
+2910	push	r1
+2912	push	r0
+2914	in	r0, 63
+2916	push	r0
+2918	eor	r1, r1
+2920	pop	r0
+2922	out	63, r0
+2924	pop	r0
+2926	pop	r1
+2928	reti	
+2930	sei	
+2932	push	r1
+2934	push	r0
+2936	in	r0, 63
+2938	push	r0
+2940	eor	r1, r1
+2942	push	r18
+2944	push	r19
+2946	push	r24
+2948	push	r25
+2950	in	r18, 63
+2952	cli	
+2954	eor	r19, r19
+2956	lds	r24, 467
+2960	lds	r25, 468
+2964	adiw	r24, 1
+2966	sts	468, r25
+2970	sts	467, r24
+2974	out	63, r18
+2976	pop	r25
+2978	pop	r24
+2980	pop	r19
+2982	pop	r18
+2984	pop	r0
+2986	out	63, r0
+2988	pop	r0
+2990	pop	r1
+2992	reti	
+2994	push	r1
+2996	push	r0
+2998	in	r0, 63
+3000	push	r0
+3002	eor	r1, r1
+3004	pop	r0
+3006	out	63, r0
+3008	pop	r0
+3010	pop	r1
+3012	reti	
+3014	push	r1
+3016	push	r0
+3018	in	r0, 63
+3020	push	r0
+3022	eor	r1, r1
+3024	pop	r0
+3026	out	63, r0
+3028	pop	r0
+3030	pop	r1
+3032	reti	
+3034	push	r1
+3036	push	r0
+3038	in	r0, 63
+3040	push	r0
+3042	eor	r1, r1
+3044	pop	r0
+3046	out	63, r0
+3048	pop	r0
+3050	pop	r1
+3052	reti	
+3054	push	r1
+3056	push	r0
+3058	in	r0, 63
+3060	push	r0
+3062	eor	r1, r1
+3064	pop	r0
+3066	out	63, r0
+3068	pop	r0
+3070	pop	r1
+3072	reti	
+3074	push	r1
+3076	push	r0
+3078	in	r0, 63
+3080	push	r0
+3082	eor	r1, r1
+3084	pop	r0
+3086	out	63, r0
+3088	pop	r0
+3090	pop	r1
+3092	reti	
+3094	push	r1
+3096	push	r0
+3098	in	r0, 63
+3100	push	r0
+3102	eor	r1, r1
+3104	pop	r0
+3106	out	63, r0
+3108	pop	r0
+3110	pop	r1
+3112	reti	
+3114	push	r1
+3116	push	r0
+3118	in	r0, 63
+3120	push	r0
+3122	eor	r1, r1
+3124	pop	r0
+3126	out	63, r0
+3128	pop	r0
+3130	pop	r1
+3132	reti	
+3134	push	r1
+3136	push	r0
+3138	in	r0, 63
+3140	push	r0
+3142	eor	r1, r1
+3144	push	r18
+3146	push	r19
+3148	push	r20
+3150	push	r21
+3152	push	r22
+3154	push	r23
+3156	push	r24
+3158	push	r25
+3160	push	r26
+3162	push	r27
+3164	push	r30
+3166	push	r31
+3168	in	r20, 4
+3170	in	r21, 5
+3172	sei	
+3174	in	r24, 63
+3176	cli	
+3178	eor	r25, r25
+3180	lds	r18, 366
+3184	mov	r19, r18
+3186	lsr	r19
+3188	andi	r19, 1
+3190	andi	r18, 1
+3192	out	63, r24
+3194	and	r18, r18
+3196	brne	27
+3198	cbi	6, 3
+3200	lds	r24, 457
+3204	cpi	r24, 1
+3206	breq	4
+3208	cpi	r24, 2
+3210	breq	1
+3212	rjmp	57
+3214	rjmp	10
+3216	and	r19, r19
+3218	breq	10
+3220	sts	502, r21
+3224	sts	501, r20
+3228	ldi	r24, 23
+3230	call	300
+3234	rjmp	46
+3236	and	r19, r19
+3238	brne	3
+3240	call	562
+3244	rjmp	41
+3246	sts	457, r1
+3250	rjmp	38
+3252	in	r24, 63
+3254	cli	
+3256	eor	r25, r25
+3258	out	63, r24
+3260	in	r18, 63
+3262	cli	
+3264	eor	r19, r19
+3266	in	r24, 6
+3268	mov	r21, r24
+3270	andi	r21, 7
+3272	mov	r20, r24
+3274	andi	r20, 32
+3276	andi	r25, 216
+3278	or	r25, r20
+3280	or	r25, r21
+3282	andi	r24, 64
+3284	andi	r25, 183
+3286	or	r25, r24
+3288	ori	r25, 16
+3290	andi	r25, 127
+3292	mov	r24, r25
+3294	eor	r25, r25
+3296	out	6, r24
+3298	andi	r24, 216
+3300	or	r24, r20
+3302	or	r24, r21
+3304	andi	r24, 55
+3306	ori	r24, 16
+3308	eor	r25, r25
+3310	out	6, r24
+3312	andi	r24, 216
+3314	or	r24, r20
+3316	or	r24, r21
+3318	andi	r24, 183
+3320	ori	r24, 144
+3322	eor	r25, r25
+3324	out	6, r24
+3326	out	63, r18
+3328	pop	r31
+3330	pop	r30
+3332	pop	r27
+3334	pop	r26
+3336	pop	r25
+3338	pop	r24
+3340	pop	r23
+3342	pop	r22
+3344	pop	r21
+3346	pop	r20
+3348	pop	r19
+3350	pop	r18
+3352	pop	r0
+3354	out	63, r0
+3356	pop	r0
+3358	pop	r1
+3360	reti	
+3362	push	r1
+3364	push	r0
+3366	in	r0, 63
+3368	push	r0
+3370	eor	r1, r1
+3372	push	r18
+3374	push	r19
+3376	push	r20
+3378	push	r21
+3380	push	r22
+3382	push	r23
+3384	push	r24
+3386	push	r25
+3388	push	r26
+3390	push	r27
+3392	push	r30
+3394	push	r31
+3396	in	r24, 51
+3398	out	51, r24
+3400	in	r0, 48
+3402	sbrc	r0, 0
+3404	rjmp	-3
+3406	in	r24, 49
+3408	eor	r25, r25
+3410	adiw	r24, 1
+3412	eor	r26, r26
+3414	eor	r27, r27
+3416	lds	r18, 309
+3420	lds	r19, 310
+3424	lds	r20, 311
+3428	lds	r21, 312
+3432	add	r18, r24
+3434	adc	r19, r25
+3436	adc	r20, r26
+3438	adc	r21, r27
+3440	sts	309, r18
+3444	sts	310, r19
+3448	sts	311, r20
+3452	sts	312, r21
+3456	sei	
+3458	call	831
+3462	pop	r31
+3464	pop	r30
+3466	pop	r27
+3468	pop	r26
+3470	pop	r25
+3472	pop	r24
+3474	pop	r23
+3476	pop	r22
+3478	pop	r21
+3480	pop	r20
+3482	pop	r19
+3484	pop	r18
+3486	pop	r0
+3488	out	63, r0
+3490	pop	r0
+3492	pop	r1
+3494	reti	
+3496	push	r16
+3498	push	r17
+3500	push	r28
+3502	push	r29
+3504	mov	r17, r24
+3506	in	r24, 63
+3508	cli	
+3510	mov	r28, r24
+3512	eor	r29, r29
+3514	mov	r16, r28
+3516	ldi	r22, 1
+3518	ldi	r24, 0
+3520	call	224
+3524	and	r24, r24
+3526	breq	4
+3528	out	63, r28
+3530	ldi	r24, 5
+3532	ldi	r25, 0
+3534	rjmp	36
+3536	lds	r24, 268
+3540	and	r24, r24
+3542	brne	20
+3544	lds	r24, 285
+3548	cpi	r24, 2
+3550	brne	16
+3552	rjmp	9
+3554	ldi	r24, 2
+3556	sts	285, r24
+3560	sts	268, r1
+3564	call	279
+3568	sbi	23, 0
+3570	cbi	24, 0
+3572	sts	265, r17
+3576	ldi	r24, 0
+3578	out	63, r16
+3580	eor	r25, r25
+3582	rjmp	12
+3584	lds	r24, 285
+3588	and	r24, r24
+3590	breq	-19
+3592	in	r24, 63
+3594	cli	
+3596	eor	r25, r25
+3598	sts	508, r1
+3602	out	63, r24
+3604	ldi	r24, 1
+3606	rjmp	-15
+3608	pop	r29
+3610	pop	r28
+3612	pop	r17
+3614	pop	r16
+3616	ret	
+3618	push	r14
+3620	push	r16
+3622	push	r17
+3624	mov	r26, r14
+3626	ldi	r25, 9
+3628	mul	r24, r25
+3630	movw	r30, r0
+3632	eor	r1, r1
+3634	subi	r30, 40
+3636	sbci	r31, 254
+3638	st	Z, r20
+3640	std	Z+1, r21
+3642	std	Z+2, r22
+3644	std	Z+3, r23
+3646	std	Z+4, r16
+3648	std	Z+5, r17
+3650	std	Z+6, r18
+3652	std	Z+7, r19
+3654	andi	r26, 1
+3656	ldd	r24, Z+8
+3658	andi	r24, 254
+3660	or	r24, r26
+3662	ori	r24, 2
+3664	std	Z+8, r24
+3666	ldi	r24, 11
+3668	call	300
+3672	pop	r17
+3674	pop	r16
+3676	pop	r14
+3678	ret	
+3680	push	r10
+3682	push	r11
+3684	push	r12
+3686	push	r13
+3688	push	r14
+3690	push	r15
+3692	push	r16
+3694	push	r17
+3696	mov	r15, r24
+3698	movw	r10, r20
+3700	movw	r12, r22
+3702	call	792
+3706	movw	r20, r22
+3708	movw	r22, r24
+3710	eor	r14, r14
+3712	movw	r18, r12
+3714	movw	r16, r10
+3716	mov	r24, r15
+3718	call	1809
+3722	pop	r17
+3724	pop	r16
+3726	pop	r15
+3728	pop	r14
+3730	pop	r13
+3732	pop	r12
+3734	pop	r11
+3736	pop	r10
+3738	ret	
+3740	push	r14
+3742	push	r15
+3744	push	r16
+3746	push	r17
+3748	push	r28
+3750	push	r29
+3752	mov	r25, r24
+3754	in	r24, 63
+3756	cli	
+3758	mov	r14, r24
+3760	lds	r24, 293
+3764	cpi	r24, 3
+3766	breq	1
+3768	rjmp	69
+3770	lds	r24, 275
+3774	cp	r24, r25
+3776	breq	1
+3778	rjmp	64
+3780	lds	r24, 471
+3784	and	r24, r24
+3786	breq	1
+3788	rjmp	69
+3790	rjmp	62
+3792	mov	r30, r15
+3794	lsr	r30
+3796	lsr	r30
+3798	lsr	r30
+3800	eor	r31, r31
+3802	mov	r20, r15
+3804	eor	r21, r21
+3806	subi	r30, 41
+3808	sbci	r31, 254
+3810	movw	r18, r20
+3812	andi	r18, 7
+3814	andi	r19, 0
+3816	ldi	r24, 1
+3818	ldi	r25, 0
+3820	rjmp	2
+3822	add	r24, r24
+3824	adc	r25, r25
+3826	dec	r18
+3828	brpl	-4
+3830	com	r24
+3832	ld	r18, Z
+3834	and	r18, r24
+3836	st	Z, r18
+3838	sts	292, r28
+3842	rjmp	17
+3844	adiw	r28, 1
+3846	cpi	r28, 2
+3848	cpc	r29, r1
+3850	brne	2
+3852	ldi	r28, 0
+3854	ldi	r29, 0
+3856	mov	r15, r28
+3858	mov	r24, r28
+3860	call	680
+3864	and	r24, r24
+3866	brne	-38
+3868	cp	r28, r16
+3870	cpc	r29, r17
+3872	brne	-15
+3874	ldi	r20, 255
+3876	ldi	r21, 0
+3878	sts	602, r20
+3882	ldi	r24, 255
+3884	sts	275, r24
+3888	ldi	r24, 1
+3890	sts	293, r24
+3894	ldi	r24, 13
+3896	call	300
+3900	out	63, r14
+3902	ldi	r24, 0
+3904	ldi	r25, 0
+3906	rjmp	16
+3908	out	63, r14
+3910	ldi	r24, 1
+3912	ldi	r25, 0
+3914	rjmp	12
+3916	ldi	r24, 2
+3918	sts	275, r24
+3922	sts	293, r1
+3926	rjmp	-14
+3928	lds	r24, 292
+3932	mov	r16, r24
+3934	eor	r17, r17
+3936	movw	r28, r16
+3938	rjmp	-48
+3940	pop	r29
+3942	pop	r28
+3944	pop	r17
+3946	pop	r16
+3948	pop	r15
+3950	pop	r14
+3952	ret	
+3954	push	r16
+3956	push	r17
+3958	mov	r17, r24
+3960	in	r16, 63
+3962	cli	
+3964	ldi	r22, 1
+3966	ldi	r24, 0
+3968	call	224
+3972	and	r24, r24
+3974	brne	46
+3976	sts	265, r17
+3980	lds	r24, 268
+3984	and	r24, r24
+3986	brne	53
+3988	lds	r24, 285
+3992	cpi	r24, 2
+3994	brne	49
+3996	ldi	r24, 6
+3998	rjmp	12
+4000	call	279
+4004	lds	r24, 285
+4008	and	r24, r24
+4010	brne	9
+4012	ldi	r24, 1
+4014	sts	285, r24
+4018	sts	369, r1
+4022	ldi	r24, 8
+4024	call	300
+4028	rjmp	42
+4030	lds	r24, 443
+4034	cpi	r24, 255
+4036	brne	38
+4038	lds	r30, 267
+4042	and	r30, r30
+4044	breq	34
+4046	rjmp	28
+4048	sts	266, r1
+4052	rjmp	4
+4054	eor	r31, r31
+4056	subi	r30, 69
+4058	sbci	r31, 254
+4060	st	Z, r1
+4062	sts	267, r1
+4066	rjmp	23
+4068	ldi	r24, 1
+4070	ldi	r25, 0
+4072	rjmp	2
+4074	add	r24, r24
+4076	adc	r25, r25
+4078	dec	r17
+4080	brpl	-4
+4082	lds	r18, 284
+4086	or	r18, r24
+4088	sts	284, r18
+4092	rjmp	10
+4094	lds	r24, 285
+4098	and	r24, r24
+4100	brne	-36
+4102	rjmp	-52
+4104	lds	r24, 266
+4108	cpi	r24, 255
+4110	brne	-29
+4112	rjmp	-33
+4114	mov	r24, r16
+4116	eor	r25, r25
+4118	out	63, r24
+4120	ldi	r24, 0
+4122	ldi	r25, 0
+4124	pop	r17
+4126	pop	r16
+4128	ret	
+4130	push	r17
+4132	ldi	r24, 3
+4134	call	1748
+4138	eor	r25, r25
+4140	mov	r17, r24
+4142	and	r24, r24
+4144	breq	3
+4146	ldi	r24, 3
+4148	call	1977
+4152	mov	r24, r17
+4154	eor	r25, r25
+4156	pop	r17
+4158	ret	
+4160	push	r12
+4162	push	r13
+4164	push	r14
+4166	push	r15
+4168	push	r16
+4170	push	r17
+4172	push	r28
+4174	push	r29
+4176	movw	r16, r24
+4178	mov	r15, r22
+4180	movw	r12, r20
+4182	mov	r14, r18
+4184	in	r24, 63
+4186	cli	
+4188	mov	r28, r24
+4190	eor	r29, r29
+4192	ldi	r22, 0
+4194	ldi	r24, 0
+4196	call	250
+4200	and	r24, r24
+4202	breq	4
+4204	out	63, r28
+4206	ldi	r24, 0
+4208	ldi	r25, 0
+4210	rjmp	30
+4212	out	63, r28
+4214	add	r16, r15
+4216	adc	r17, r1
+4218	mov	r24, r16
+4220	ori	r24, 128
+4222	call	339
+4226	mov	r15, r24
+4228	lsr	r17
+4230	ror	r16
+4232	mov	r24, r16
+4234	andi	r24, 192
+4236	call	339
+4240	mov	r16, r14
+4242	rjmp	10
+4244	mov	r30, r14
+4246	eor	r31, r31
+4248	sub	r30, r16
+4250	sbc	r31, r1
+4252	add	r30, r12
+4254	adc	r31, r13
+4256	ld	r24, Z
+4258	call	339
+4262	subi	r16, 1
+4264	and	r16, r16
+4266	brne	-12
+4268	mov	r24, r15
+4270	eor	r25, r25
+4272	pop	r29
+4274	pop	r28
+4276	pop	r17
+4278	pop	r16
+4280	pop	r15
+4282	pop	r14
+4284	pop	r13
+4286	pop	r12
+4288	ret	
+4290	push	r28
+4292	push	r29
+4294	in	r28, 61
+4296	in	r29, 62
+4298	sbiw	r28, 12
+4300	in	r0, 63
+4302	cli	
+4304	out	62, r29
+4306	out	63, r0
+4308	out	61, r28
+4310	in	r24, 63
+4312	cli	
+4314	mov	r18, r24
+4316	movw	r20, r28
+4318	subi	r20, 255
+4320	sbci	r21, 255
+4322	movw	r26, r20
+4324	ldi	r30, 82
+4326	ldi	r31, 2
+4328	ldi	r24, 8
+4330	ldpi	r0, Z
+4332	stpi	X, r0
+4334	subi	r24, 1
+4336	brne	-4
+4338	lds	r24, 427
+4342	lds	r25, 428
+4346	std	Y+9, r24
+4348	mov	r24, r25
+4350	eor	r25, r25
+4352	std	Y+10, r24
+4354	lds	r24, 448
+4358	lds	r25, 449
+4362	std	Y+11, r24
+4364	mov	r24, r25
+4366	eor	r25, r25
+4368	std	Y+12, r24
+4370	out	63, r18
+4372	ldi	r18, 12
+4374	ldi	r22, 0
+4376	ldi	r24, 96
+4378	ldi	r25, 1
+4380	call	2080
+4384	adiw	r28, 12
+4386	in	r0, 63
+4388	cli	
+4390	out	62, r29
+4392	out	63, r0
+4394	out	61, r28
+4396	pop	r29
+4398	pop	r28
+4400	ret	
+4402	push	r17
+4404	push	r28
+4406	push	r29
+4408	mov	r17, r24
+4410	in	r24, 63
+4412	cli	
+4414	mov	r28, r24
+4416	eor	r29, r29
+4418	ldi	r22, 0
+4420	ldi	r24, 0
+4422	call	250
+4426	and	r24, r24
+4428	breq	4
+4430	out	63, r28
+4432	ldi	r24, 0
+4434	ldi	r25, 0
+4436	rjmp	5
+4438	out	63, r28
+4440	mov	r24, r17
+4442	call	339
+4446	eor	r25, r25
+4448	pop	r29
+4450	pop	r28
+4452	pop	r17
+4454	ret	
+4456	push	r14
+4458	push	r15
+4460	push	r16
+4462	push	r17
+4464	push	r28
+4466	push	r29
+4468	mov	r17, r24
+4470	movw	r14, r22
+4472	mov	r16, r20
+4474	in	r24, 63
+4476	cli	
+4478	mov	r28, r24
+4480	eor	r29, r29
+4482	ldi	r22, 0
+4484	ldi	r24, 0
+4486	call	250
+4490	and	r24, r24
+4492	breq	4
+4494	out	63, r28
+4496	ldi	r24, 0
+4498	ldi	r25, 0
+4500	rjmp	20
+4502	out	63, r28
+4504	ori	r17, 64
+4506	mov	r24, r17
+4508	eor	r25, r25
+4510	sts	453, r25
+4514	sts	452, r24
+4518	call	339
+4522	mov	r17, r24
+4524	mov	r20, r16
+4526	eor	r21, r21
+4528	movw	r22, r14
+4530	ldi	r24, 0
+4532	ldi	r25, 0
+4534	call	461
+4538	mov	r24, r17
+4540	eor	r25, r25
+4542	pop	r29
+4544	pop	r28
+4546	pop	r17
+4548	pop	r16
+4550	pop	r15
+4552	pop	r14
+4554	ret	
+4556	cbi	24, 0
+4558	lds	r22, 304
+4562	lds	r23, 305
+4566	ldi	r20, 1
+4568	ldi	r24, 63
+4570	call	2228
+4574	ret	
+4576	ldi	r24, 2
+4578	ldi	r25, 0
+4580	sts	361, r25
+4584	sts	360, r24
+4588	ldi	r24, 1
+4590	sts	425, r24
+4594	ldi	r18, 0
+4596	ldi	r19, 0
+4598	lds	r24, 265
+4602	cpi	r24, 4
+4604	brne	2
+4606	ldi	r18, 1
+4608	ldi	r19, 0
+4610	or	r18, r19
+4612	brne	5
+4614	ldi	r24, 4
+4616	call	1748
+4620	and	r24, r24
+4622	brne	3
+4624	call	2278
+4628	ret	
+4630	ldi	r24, 4
+4632	call	1977
+4636	ret	
+4638	push	r1
+4640	push	r0
+4642	in	r0, 63
+4644	push	r0
+4646	eor	r1, r1
+4648	push	r18
+4650	push	r19
+4652	push	r20
+4654	push	r21
+4656	push	r22
+4658	push	r23
+4660	push	r24
+4662	push	r25
+4664	push	r26
+4666	push	r27
+4668	push	r30
+4670	push	r31
+4672	lds	r24, 360
+4676	lds	r25, 361
+4680	sbiw	r24, 1
+4682	brne	9
+4684	ldi	r24, 2
+4686	ldi	r25, 0
+4688	sts	361, r25
+4692	sts	360, r24
+4696	call	2288
+4700	rjmp	5
+4702	lds	r24, 368
+4706	subi	r24, 255
+4708	sts	368, r24
+4712	pop	r31
+4714	pop	r30
+4716	pop	r27
+4718	pop	r26
+4720	pop	r25
+4722	pop	r24
+4724	pop	r23
+4726	pop	r22
+4728	pop	r21
+4730	pop	r20
+4732	pop	r19
+4734	pop	r18
+4736	pop	r0
+4738	out	63, r0
+4740	pop	r0
+4742	pop	r1
+4744	reti	
+4746	push	r17
+4748	lds	r24, 284
+4752	and	r24, r24
+4754	breq	1
+4756	rjmp	75
+4758	lds	r17, 265
+4762	cpi	r17, 255
+4764	breq	1
+4766	rjmp	70
+4768	ldi	r22, 0
+4770	call	250
+4774	and	r24, r24
+4776	brne	1
+4778	rjmp	64
+4780	ldi	r24, 1
+4782	sts	604, r24
+4786	lds	r24, 333
+4790	and	r24, r24
+4792	breq	60
+4794	sts	604, r1
+4798	ldi	r24, 5
+4800	ldi	r25, 0
+4802	rjmp	69
+4804	cpi	r25, 2
+4806	brne	45
+4808	sbi	24, 0
+4810	lds	r24, 266
+4814	ldi	r18, 0
+4816	ldi	r19, 0
+4818	cpi	r24, 255
+4820	brne	2
+4822	ldi	r18, 1
+4824	ldi	r19, 0
+4826	or	r18, r19
+4828	brne	29
+4830	sts	268, r17
+4834	cpi	r24, 255
+4836	brne	3
+4838	ldi	r18, 255
+4840	ldi	r19, 0
+4842	rjmp	13
+4844	mov	r18, r24
+4846	eor	r19, r19
+4848	movw	r30, r18
+4850	subi	r30, 69
+4852	sbci	r31, 254
+4854	ld	r24, Z
+4856	sts	266, r24
+4860	cpi	r24, 255
+4862	brne	2
+4864	sts	267, r17
+4868	st	Z, r17
+4870	sts	369, r18
+4874	ldi	r24, 1
+4876	sts	285, r24
+4880	ldi	r24, 8
+4882	call	300
+4886	rjmp	5
+4888	sts	268, r17
+4892	sts	285, r1
+4896	rjmp	17
+4898	lds	r24, 285
+4902	and	r24, r24
+4904	breq	13
+4906	rjmp	15
+4908	ldi	r24, 1
+4910	ldi	r25, 0
+4912	rjmp	14
+4914	lds	r24, 268
+4918	lds	r25, 285
+4922	and	r24, r24
+4924	breq	-61
+4926	cpi	r25, 2
+4928	breq	4
+4930	rjmp	-17
+4932	ldi	r24, 0
+4934	call	267
+4938	ldi	r24, 0
+4940	ldi	r25, 0
+4942	pop	r17
+4944	ret	
+4946	push	r17
+4948	push	r28
+4950	push	r29
+4952	in	r25, 63
+4954	cli	
+4956	mov	r28, r25
+4958	eor	r29, r29
+4960	mov	r17, r28
+4962	lds	r25, 265
+4966	cp	r25, r24
+4968	breq	4
+4970	out	63, r28
+4972	ldi	r24, 1
+4974	ldi	r25, 0
+4976	rjmp	58
+4978	ldi	r24, 255
+4980	sts	265, r24
+4984	lds	r19, 284
+4988	and	r19, r19
+4990	brne	30
+4992	in	r24, 63
+4994	cli	
+4996	eor	r25, r25
+4998	sts	508, r1
+5002	out	63, r24
+5004	call	2373
+5008	out	63, r28
+5010	rjmp	17
+5012	sts	265, r18
+5016	ldi	r24, 1
+5018	ldi	r25, 0
+5020	rjmp	2
+5022	add	r24, r24
+5024	adc	r25, r25
+5026	dec	r20
+5028	brpl	-4
+5030	com	r24
+5032	and	r19, r24
+5034	sts	284, r19
+5038	ldi	r24, 6
+5040	call	300
+5044	out	63, r17
+5046	ldi	r24, 0
+5048	ldi	r25, 0
+5050	rjmp	21
+5052	ldi	r24, 0
+5054	ldi	r22, 5
+5056	mov	r30, r19
+5058	eor	r31, r31
+5060	call	7416
+5064	mov	r18, r25
+5066	mov	r20, r25
+5068	eor	r21, r21
+5070	movw	r24, r30
+5072	mov	r0, r20
+5074	rjmp	2
+5076	asr	r25
+5078	ror	r24
+5080	dec	r0
+5082	brpl	-4
+5084	sbrc	r24, 0
+5086	rjmp	-38
+5088	mov	r24, r18
+5090	subi	r24, 255
+5092	rjmp	-17
+5094	pop	r29
+5096	pop	r28
+5098	pop	r17
+5100	ret	
+5102	push	r17
+5104	push	r28
+5106	push	r29
+5108	in	r24, 63
+5110	cli	
+5112	mov	r28, r24
+5114	eor	r29, r29
+5116	mov	r17, r28
+5118	lds	r24, 360
+5122	lds	r25, 361
+5126	or	r24, r25
+5128	brne	5
+5130	ldi	r24, 4
+5132	call	2473
+5136	out	63, r28
+5138	rjmp	30
+5140	sts	425, r1
+5144	lds	r24, 368
+5148	and	r24, r24
+5150	breq	2
+5152	sbic	22, 7
+5154	rjmp	4
+5156	sbic	1, 6
+5158	rjmp	8
+5160	and	r24, r24
+5162	breq	3
+5164	subi	r24, 1
+5166	sts	368, r24
+5170	call	2288
+5174	rjmp	11
+5176	ldi	r24, 1
+5178	ldi	r25, 0
+5180	sts	361, r25
+5184	sts	360, r24
+5188	sts	368, r1
+5192	ldi	r24, 4
+5194	call	2473
+5198	out	63, r17
+5200	pop	r29
+5202	pop	r28
+5204	pop	r17
+5206	ret	
+5208	call	988
+5212	sbi	24, 0
+5214	cbi	24, 0
+5216	ldi	r24, 8
+5218	call	2201
+5222	ldi	r24, 8
+5224	call	2201
+5228	sbi	24, 0
+5230	ldi	r24, 4
+5232	call	2473
+5236	call	2551
+5240	ret	
+5242	push	r15
+5244	push	r16
+5246	push	r17
+5248	push	r28
+5250	push	r29
+5252	mov	r15, r24
+5254	movw	r16, r22
+5256	in	r24, 63
+5258	cli	
+5260	mov	r28, r24
+5262	eor	r29, r29
+5264	ldi	r22, 0
+5266	ldi	r24, 0
+5268	call	250
+5272	and	r24, r24
+5274	breq	4
+5276	out	63, r28
+5278	ldi	r24, 0
+5280	ldi	r25, 0
+5282	rjmp	12
+5284	out	63, r28
+5286	mov	r24, r15
+5288	call	339
+5292	mov	r24, r17
+5294	eor	r25, r25
+5296	call	339
+5300	mov	r24, r16
+5302	call	339
+5306	eor	r25, r25
+5308	pop	r29
+5310	pop	r28
+5312	pop	r17
+5314	pop	r16
+5316	pop	r15
+5318	ret	
+5320	push	r17
+5322	in	r17, 63
+5324	cli	
+5326	lds	r24, 367
+5330	and	r24, r24
+5332	brne	3
+5334	ldi	r22, 0
+5336	ldi	r23, 0
+5338	rjmp	9
+5340	ldi	r22, 0
+5342	lds	r24, 705
+5346	and	r24, r24
+5348	brne	1
+5350	ldi	r22, 1
+5352	ldi	r24, 1
+5354	eor	r22, r24
+5356	eor	r23, r23
+5358	lds	r24, 430
+5362	and	r24, r24
+5364	brne	3
+5366	ldi	r24, 0
+5368	ldi	r25, 0
+5370	rjmp	10
+5372	ldi	r25, 0
+5374	lds	r24, 593
+5378	and	r24, r24
+5380	brne	1
+5382	ldi	r25, 1
+5384	ldi	r24, 1
+5386	eor	r25, r24
+5388	mov	r24, r25
+5390	eor	r25, r25
+5392	mov	r23, r22
+5394	eor	r22, r22
+5396	add	r23, r23
+5398	add	r23, r23
+5400	add	r23, r23
+5402	ldi	r31, 4
+5404	add	r24, r24
+5406	adc	r25, r25
+5408	dec	r31
+5410	brne	-4
+5412	ori	r24, 226
+5414	ori	r25, 34
+5416	or	r22, r24
+5418	or	r23, r25
+5420	ldi	r24, 17
+5422	call	2621
+5426	mov	r24, r17
+5428	eor	r25, r25
+5430	out	63, r24
+5432	pop	r17
+5434	ret	
+5436	in	r24, 63
+5438	cli	
+5440	eor	r25, r25
+5442	lds	r22, 603
+5446	out	63, r24
+5448	ldi	r24, 5
+5450	mul	r22, r24
+5452	movw	r22, r0
+5454	eor	r1, r1
+5456	subi	r22, 210
+5458	sbci	r23, 254
+5460	ori	r23, 64
+5462	ldi	r24, 24
+5464	call	2621
+5468	ret	
+5470	push	r14
+5472	push	r15
+5474	push	r17
+5476	push	r28
+5478	push	r29
+5480	lds	r14, 431
+5484	lds	r15, 432
+5488	movw	r30, r14
+5490	ldd	r24, Z+42
+5492	eor	r25, r25
+5494	mov	r17, r24
+5496	and	r24, r24
+5498	brne	1
+5500	ldi	r17, 31
+5502	cbi	24, 0
+5504	lds	r24, 365
+5508	cp	r24, r17
+5510	breq	9
+5512	mov	r22, r17
+5514	eor	r23, r23
+5516	andi	r22, 31
+5518	andi	r23, 0
+5520	ori	r22, 224
+5522	ori	r23, 128
+5524	ldi	r24, 21
+5526	call	2621
+5530	sts	365, r17
+5534	movw	r30, r14
+5536	ld	r17, Z
+5538	in	r24, 63
+5540	cli	
+5542	mov	r28, r24
+5544	eor	r29, r29
+5546	ldi	r22, 0
+5548	ldi	r24, 0
+5550	call	250
+5554	and	r24, r24
+5556	breq	2
+5558	out	63, r28
+5560	rjmp	18
+5562	out	63, r28
+5564	ldi	r24, 62
+5566	ldi	r25, 0
+5568	sts	453, r25
+5572	sts	452, r24
+5576	ldi	r24, 62
+5578	call	339
+5582	subi	r17, 1
+5584	mov	r20, r17
+5586	eor	r21, r21
+5588	ldi	r22, 0
+5590	ldi	r23, 0
+5592	movw	r24, r14
+5594	call	461
+5598	pop	r29
+5600	pop	r28
+5602	pop	r17
+5604	pop	r15
+5606	pop	r14
+5608	ret	
+5610	push	r16
+5612	push	r17
+5614	push	r28
+5616	push	r29
+5618	movw	r28, r24
+5620	in	r16, 63
+5622	cli	
+5624	eor	r17, r17
+5626	call	156
+5630	movw	r30, r24
+5632	ldi	r24, 63
+5634	st	Z, r24
+5636	out	63, r16
+5638	sts	703, r1
+5642	sts	702, r1
+5646	ldi	r22, 1
+5648	ldi	r24, 2
+5650	call	224
+5654	and	r24, r24
+5656	breq	3
+5658	ldi	r24, 5
+5660	ldi	r25, 0
+5662	rjmp	114
+5664	lds	r24, 605
+5668	subi	r24, 255
+5670	sts	605, r24
+5674	subi	r24, 1
+5676	std	Y+3, r24
+5678	in	r24, 63
+5680	cli	
+5682	mov	r16, r24
+5684	eor	r17, r17
+5686	ldi	r22, 2
+5688	ldi	r24, 1
+5690	call	250
+5694	and	r24, r24
+5696	brne	5
+5698	out	63, r16
+5700	call	494
+5704	ldi	r24, 1
+5706	rjmp	91
+5708	in	r24, 63
+5710	cli	
+5712	eor	r25, r25
+5714	ldi	r18, 4
+5716	sts	509, r18
+5720	out	63, r24
+5722	sts	461, r29
+5726	sts	460, r28
+5730	out	63, r16
+5732	movw	r30, r28
+5734	adiw	r30, 1
+5736	ldd	r24, Z+1
+5738	ldd	r18, Y+1
+5740	eor	r25, r25
+5742	mov	r25, r24
+5744	eor	r24, r24
+5746	eor	r19, r19
+5748	or	r24, r18
+5750	or	r25, r19
+5752	andi	r24, 32
+5754	andi	r25, 204
+5756	std	Y+1, r24
+5758	mov	r24, r25
+5760	eor	r25, r25
+5762	std	Z+1, r24
+5764	ldd	r18, Y+1
+5766	mov	r25, r24
+5768	eor	r24, r24
+5770	eor	r19, r19
+5772	ori	r18, 65
+5774	or	r24, r18
+5776	or	r25, r19
+5778	std	Y+1, r24
+5780	mov	r24, r25
+5782	eor	r25, r25
+5784	std	Z+1, r24
+5786	std	Y+44, r1
+5788	std	Y+40, r1
+5790	std	Y+41, r1
+5792	std	Y+49, r1
+5794	std	Y+48, r1
+5796	std	Y+47, r1
+5798	ldi	r24, 128
+5800	std	Y+46, r24
+5802	ldi	r22, 1
+5804	sts	512, r22
+5808	lds	r20, 460
+5812	lds	r21, 461
+5816	in	r24, 63
+5818	cli	
+5820	mov	r18, r24
+5822	eor	r19, r19
+5824	lds	r24, 286
+5828	lds	r25, 287
+5832	cpi	r24, 8
+5834	cpc	r25, r1
+5836	breq	2
+5838	sbiw	r24, 1
+5840	breq	2
+5842	out	63, r18
+5844	rjmp	21
+5846	ldi	r24, 2
+5848	ldi	r25, 0
+5850	sts	287, r25
+5854	sts	286, r24
+5858	sts	713, r22
+5862	sts	432, r21
+5866	sts	431, r20
+5870	sts	308, r1
+5874	out	63, r18
+5876	call	2065
+5880	and	r24, r24
+5882	brne	2
+5884	call	2735
+5888	ldi	r24, 0
+5890	eor	r25, r25
+5892	pop	r29
+5894	pop	r28
+5896	pop	r17
+5898	pop	r16
+5900	ret	
+5902	push	r28
+5904	push	r29
+5906	movw	r26, r20
+5908	mov	r20, r18
+5910	cpi	r18, 29
+5912	brcs	3
+5914	ldi	r24, 2
+5916	ldi	r25, 0
+5918	rjmp	94
+5920	movw	r28, r26
+5922	std	Y+11, r24
+5924	std	Y+6, r22
+5926	mov	r24, r23
+5928	eor	r25, r25
+5930	std	Y+7, r24
+5932	in	r18, 63
+5934	cli	
+5936	eor	r19, r19
+5938	lds	r24, 427
+5942	lds	r25, 428
+5946	out	63, r18
+5948	movw	r30, r26
+5950	std	Z+4, r24
+5952	mov	r24, r25
+5954	eor	r25, r25
+5956	std	Z+5, r24
+5958	in	r18, 63
+5960	cli	
+5962	eor	r19, r19
+5964	lds	r24, 269
+5968	lds	r25, 270
+5972	out	63, r18
+5974	std	Y+8, r24
+5976	mov	r24, r25
+5978	eor	r25, r25
+5980	std	Y+9, r24
+5982	adiw	r30, 1
+5984	ldd	r24, Z+1
+5986	ldd	r18, Y+1
+5988	eor	r25, r25
+5990	mov	r25, r24
+5992	eor	r24, r24
+5994	eor	r19, r19
+5996	ori	r18, 64
+5998	ori	r19, 136
+6000	or	r24, r18
+6002	or	r25, r19
+6004	std	Y+1, r24
+6006	mov	r24, r25
+6008	eor	r25, r25
+6010	std	Z+1, r24
+6012	subi	r20, 243
+6014	st	X, r20
+6016	subi	r20, 13
+6018	lds	r24, 272
+6022	and	r24, r24
+6024	breq	11
+6026	sts	272, r1
+6030	mov	r22, r20
+6032	movw	r24, r26
+6034	call	2805
+6038	eor	r25, r25
+6040	mov	r18, r24
+6042	and	r24, r24
+6044	brne	21
+6046	rjmp	23
+6048	mov	r24, r20
+6050	eor	r25, r25
+6052	sts	459, r25
+6056	sts	458, r24
+6060	sts	291, r27
+6064	sts	290, r26
+6068	ldi	r24, 12
+6070	call	300
+6074	lds	r24, 272
+6078	and	r24, r24
+6080	brne	9
+6082	ldi	r24, 9
+6084	ldi	r25, 0
+6086	rjmp	10
+6088	ldi	r24, 255
+6090	sts	272, r24
+6094	mov	r24, r18
+6096	eor	r25, r25
+6098	rjmp	4
+6100	sts	438, r1
+6104	ldi	r24, 0
+6106	ldi	r25, 0
+6108	pop	r29
+6110	pop	r28
+6112	ret	
+6114	push	r28
+6116	push	r29
+6118	movw	r30, r22
+6120	movw	r26, r22
+6122	adiw	r26, 6
+6124	std	Z+6, r24
+6126	mov	r24, r25
+6128	eor	r25, r25
+6130	movw	r28, r26
+6132	std	Y+1, r24
+6134	ldi	r24, 147
+6136	std	Z+11, r24
+6138	lds	r24, 465
+6142	lds	r25, 466
+6146	or	r24, r25
+6148	breq	3
+6150	ldi	r24, 5
+6152	ldi	r25, 0
+6154	rjmp	43
+6156	sts	466, r31
+6160	sts	465, r30
+6164	subi	r20, 243
+6166	st	Z, r20
+6168	subi	r20, 13
+6170	lds	r24, 278
+6174	and	r24, r24
+6176	brne	3
+6178	ldi	r24, 0
+6180	ldi	r25, 0
+6182	rjmp	29
+6184	ldd	r24, Z+11
+6186	movw	r28, r26
+6188	ldd	r22, Y+1
+6190	eor	r23, r23
+6192	mov	r23, r22
+6194	eor	r22, r22
+6196	ldd	r18, Z+6
+6198	eor	r19, r19
+6200	or	r22, r18
+6202	or	r23, r19
+6204	sts	278, r1
+6208	mov	r18, r20
+6210	movw	r20, r30
+6212	call	2951
+6216	eor	r25, r25
+6218	mov	r18, r24
+6220	and	r24, r24
+6222	breq	7
+6224	ldi	r24, 1
+6226	sts	278, r24
+6230	sts	466, r1
+6234	sts	465, r1
+6238	mov	r24, r18
+6240	eor	r25, r25
+6242	pop	r29
+6244	pop	r28
+6246	ret	
+6248	push	r10
+6250	push	r11
+6252	push	r12
+6254	push	r13
+6256	push	r14
+6258	push	r15
+6260	push	r16
+6262	push	r17
+6264	push	r28
+6266	push	r29
+6268	movw	r10, r22
+6270	movw	r12, r24
+6272	ldi	r28, 0
+6274	ldi	r29, 0
+6276	ldi	r30, 216
+6278	ldi	r31, 1
+6280	ldd	r22, Z+8
+6282	sbrs	r22, 1
+6284	rjmp	283
+6286	ld	r18, Z
+6288	ldd	r19, Z+1
+6290	ldd	r20, Z+2
+6292	ldd	r21, Z+3
+6294	ldd	r14, Z+4
+6296	ldd	r15, Z+5
+6298	ldd	r16, Z+6
+6300	ldd	r17, Z+7
+6302	movw	r26, r12
+6304	movw	r24, r10
+6306	sub	r24, r18
+6308	sbc	r25, r19
+6310	sbc	r26, r20
+6312	sbc	r27, r21
+6314	cp	r24, r14
+6316	cpc	r25, r15
+6318	cpc	r26, r16
+6320	cpc	r27, r17
+6322	brcc	1
+6324	rjmp	263
+6326	sbrs	r22, 0
+6328	rjmp	3
+6330	andi	r22, 253
+6332	std	Z+8, r22
+6334	rjmp	8
+6336	add	r18, r14
+6338	adc	r19, r15
+6340	adc	r20, r16
+6342	adc	r21, r17
+6344	st	Z, r18
+6346	std	Z+1, r19
+6348	std	Z+2, r20
+6350	std	Z+3, r21
+6352	cpi	r28, 1
+6354	breq	4
+6356	cpi	r28, 2
+6358	breq	1
+6360	rjmp	251
+6362	rjmp	115
+6364	lds	r24, 433
+6368	cpi	r24, 10
+6370	brne	57
+6372	lds	r24, 426
+6376	and	r24, r24
+6378	brne	28
+6380	ldi	r26, 129
+6382	ldi	r27, 1
+6384	ldi	r30, 53
+6386	ldi	r31, 2
+6388	ldi	r24, 28
+6390	ldpi	r0, Z
+6392	stpi	X, r0
+6394	subi	r24, 1
+6396	brne	-4
+6398	ldi	r20, 28
+6400	ldi	r22, 117
+6402	ldi	r23, 1
+6404	ldi	r24, 255
+6406	ldi	r25, 255
+6408	call	3057
+6412	and	r24, r24
+6414	brne	4
+6416	ldi	r24, 1
+6418	sts	426, r24
+6422	rjmp	6
+6424	lds	r24, 426
+6428	and	r24, r24
+6430	brne	2
+6432	call	147
+6436	sts	433, r1
+6440	lds	r24, 708
+6444	and	r24, r24
+6446	brne	17
+6448	lds	r24, 571
+6452	eor	r25, r25
+6454	mov	r25, r24
+6456	eor	r24, r24
+6458	lds	r18, 572
+6462	eor	r19, r19
+6464	or	r24, r18
+6466	or	r25, r19
+6468	adiw	r24, 1
+6470	sts	572, r24
+6474	mov	r24, r25
+6476	eor	r25, r25
+6478	sts	571, r24
+6482	sts	708, r1
+6486	in	r24, 63
+6488	cli	
+6490	mov	r18, r24
+6492	eor	r19, r19
+6494	mov	r17, r18
+6496	lds	r24, 295
+6500	and	r24, r24
+6502	brne	17
+6504	ldi	r25, 1
+6506	sts	295, r25
+6510	sts	429, r1
+6514	out	63, r18
+6516	lds	r24, 298
+6520	and	r24, r24
+6522	brne	4
+6524	ldi	r24, 16
+6526	call	300
+6530	rjmp	166
+6532	sts	299, r25
+6536	rjmp	163
+6538	lds	r24, 429
+6542	and	r24, r24
+6544	brne	2
+6546	out	63, r18
+6548	rjmp	157
+6550	ldi	r24, 0
+6552	call	542
+6556	and	r24, r24
+6558	breq	3
+6560	ldi	r24, 5
+6562	ldi	r25, 0
+6564	rjmp	7
+6566	lds	r24, 332
+6570	ori	r24, 1
+6572	sts	332, r24
+6576	ldi	r24, 0
+6578	ldi	r25, 0
+6580	out	63, r17
+6582	or	r24, r25
+6584	brne	1
+6586	rjmp	138
+6588	call	147
+6592	rjmp	135
+6594	ldi	r24, 0
+6596	call	521
+6600	and	r24, r24
+6602	brne	1
+6604	rjmp	58
+6606	in	r25, 63
+6608	cli	
+6610	lds	r18, 295
+6614	and	r18, r18
+6616	brne	3
+6618	ldi	r18, 1
+6620	ldi	r19, 0
+6622	rjmp	15
+6624	lds	r24, 276
+6628	cpi	r24, 1
+6630	breq	3
+6632	ldi	r18, 0
+6634	ldi	r19, 0
+6636	rjmp	8
+6638	ldi	r20, 0
+6640	ldi	r21, 0
+6642	subi	r18, 1
+6644	cpi	r18, 2
+6646	brcc	2
+6648	ldi	r20, 1
+6650	ldi	r21, 0
+6652	movw	r18, r20
+6654	mov	r24, r25
+6656	eor	r25, r25
+6658	out	63, r24
+6660	and	r18, r18
+6662	breq	29
+6664	in	r24, 63
+6666	cli	
+6668	mov	r16, r24
+6670	eor	r17, r17
+6672	mov	r25, r16
+6674	lds	r24, 276
+6678	cpi	r24, 1
+6680	brne	19
+6682	lds	r24, 295
+6686	cpi	r24, 1
+6688	brne	4
+6690	ldi	r24, 14
+6692	call	300
+6696	rjmp	9
+6698	cpi	r24, 2
+6700	brne	9
+6702	lds	r24, 429
+6706	sts	276, r24
+6710	ldi	r24, 3
+6712	sts	295, r24
+6716	out	63, r16
+6718	rjmp	1
+6720	out	63, r25
+6722	ldi	r24, 1
+6724	call	521
+6728	and	r24, r24
+6730	brne	1
+6732	rjmp	65
+6734	in	r25, 63
+6736	cli	
+6738	lds	r18, 296
+6742	and	r18, r18
+6744	brne	3
+6746	ldi	r18, 1
+6748	ldi	r19, 0
+6750	rjmp	15
+6752	lds	r24, 297
+6756	and	r24, r24
+6758	breq	3
+6760	ldi	r18, 0
+6762	ldi	r19, 0
+6764	rjmp	8
+6766	ldi	r20, 0
+6768	ldi	r21, 0
+6770	subi	r18, 1
+6772	cpi	r18, 2
+6774	brcc	2
+6776	ldi	r20, 1
+6778	ldi	r21, 0
+6780	movw	r18, r20
+6782	mov	r24, r25
+6784	eor	r25, r25
+6786	out	63, r24
+6788	and	r18, r18
+6790	breq	36
+6792	in	r24, 63
+6794	cli	
+6796	mov	r16, r24
+6798	eor	r17, r17
+6800	mov	r25, r16
+6802	lds	r24, 297
+6806	and	r24, r24
+6808	brne	19
+6810	lds	r24, 296
+6814	cpi	r24, 1
+6816	brne	4
+6818	ldi	r24, 15
+6820	call	300
+6824	rjmp	9
+6826	cpi	r24, 2
+6828	brne	9
+6830	lds	r24, 362
+6834	sts	297, r24
+6838	ldi	r24, 3
+6840	sts	296, r24
+6844	out	63, r16
+6846	rjmp	8
+6848	out	63, r25
+6850	rjmp	6
+6852	adiw	r28, 1
+6854	adiw	r30, 9
+6856	cpi	r28, 3
+6858	cpc	r29, r1
+6860	breq	1
+6862	rjmp	-292
+6864	ldi	r24, 11
+6866	call	300
+6870	pop	r29
+6872	pop	r28
+6874	pop	r17
+6876	pop	r16
+6878	pop	r15
+6880	pop	r14
+6882	pop	r13
+6884	pop	r12
+6886	pop	r11
+6888	pop	r10
+6890	ret	
+6892	push	r17
+6894	mov	r17, r24
+6896	ldi	r24, 1
+6898	ldi	r25, 0
+6900	sts	287, r25
+6904	sts	286, r24
+6908	sts	333, r1
+6912	call	2373
+6916	in	r24, 63
+6918	cli	
+6920	eor	r25, r25
+6922	sts	280, r17
+6926	out	63, r24
+6928	ldi	r24, 2
+6930	call	300
+6934	pop	r17
+6936	ret	
+6938	push	r16
+6940	push	r17
+6942	mov	r17, r24
+6944	mov	r16, r20
+6946	mov	r30, r24
+6948	eor	r31, r31
+6950	add	r30, r30
+6952	adc	r31, r31
+6954	subi	r30, 47
+6956	sbci	r31, 254
+6958	std	Z+1, r1
+6960	st	Z, r1
+6962	sts	278, r1
+6966	lds	r30, 465
+6970	lds	r31, 466
+6974	sbiw	r30, 0
+6976	breq	4
+6978	lds	r24, 701
+6982	sbrs	r24, 0
+6984	rjmp	19
+6986	ldi	r24, 1
+6988	sts	278, r24
+6992	rjmp	3
+6994	ldi	r24, 25
+6996	call	300
+7000	and	r17, r17
+7002	brne	28
+7004	and	r16, r16
+7006	brne	3
+7008	call	138
+7012	rjmp	2
+7014	call	147
+7018	sts	426, r1
+7022	rjmp	18
+7024	ld	r18, Z
+7026	subi	r18, 13
+7028	eor	r19, r19
+7030	ldd	r22, Z+7
+7032	eor	r23, r23
+7034	mov	r23, r22
+7036	eor	r22, r22
+7038	ldd	r24, Z+6
+7040	eor	r25, r25
+7042	or	r22, r24
+7044	or	r23, r25
+7046	movw	r20, r30
+7048	ldd	r24, Z+11
+7050	call	2951
+7054	and	r24, r24
+7056	breq	-29
+7058	rjmp	-33
+7060	pop	r17
+7062	pop	r16
+7064	ret	
+7066	movw	r18, r22
+7068	lds	r24, 278
+7072	and	r24, r24
+7074	brne	9
+7076	lds	r22, 465
+7080	lds	r23, 466
+7084	cp	r22, r18
+7086	cpc	r23, r19
+7088	brne	2
+7090	call	3469
+7094	ret	
+7096	push	r12
+7098	push	r13
+7100	push	r14
+7102	push	r15
+7104	push	r16
+7106	push	r17
+7108	in	r12, 63
+7110	cli	
+7112	eor	r13, r13
+7114	call	1015
+7118	movw	r26, r24
+7120	movw	r24, r22
+7122	ldi	r22, 70
+7124	ldi	r23, 0
+7126	call	7428
+7130	ldi	r17, 11
+7132	mov	r14, r17
+7134	mov	r15, r1
+7136	add	r14, r24
+7138	adc	r15, r25
+7140	sts	710, r15
+7144	sts	709, r14
+7148	call	1143
+7152	eor	r16, r16
+7154	eor	r17, r17
+7156	movw	r20, r16
+7158	movw	r18, r14
+7160	call	1332
+7164	out	63, r12
+7166	pop	r17
+7168	pop	r16
+7170	pop	r15
+7172	pop	r14
+7174	pop	r13
+7176	pop	r12
+7178	ret	
+7180	push	r17
+7182	push	r28
+7184	push	r29
+7186	in	r24, 63
+7188	cli	
+7190	mov	r28, r24
+7192	eor	r29, r29
+7194	mov	r17, r28
+7196	lds	r24, 286
+7200	lds	r25, 287
+7204	sbiw	r24, 8
+7206	brne	25
+7208	ldi	r24, 9
+7210	call	2201
+7214	ldi	r24, 3
+7216	call	2473
+7220	sbi	24, 0
+7222	ldi	r24, 1
+7224	ldi	r25, 0
+7226	sts	287, r25
+7230	sts	286, r24
+7234	in	r24, 63
+7236	cli	
+7238	eor	r25, r25
+7240	ldi	r18, 3
+7242	sts	280, r18
+7246	out	63, r24
+7248	ldi	r24, 2
+7250	call	300
+7254	out	63, r28
+7256	rjmp	48
+7258	cbi	24, 0
+7260	lds	r24, 713
+7264	and	r24, r24
+7266	breq	2
+7268	ldi	r24, 5
+7270	rjmp	1
+7272	ldi	r24, 4
+7274	call	2201
+7278	sbrc	r24, 3
+7280	rjmp	9
+7282	ldi	r24, 0
+7284	call	2201
+7288	sbrs	r24, 3
+7290	rjmp	4
+7292	ldi	r24, 5
+7294	ldi	r25, 0
+7296	ldi	r18, 0
+7298	rjmp	3
+7300	ldi	r24, 3
+7302	ldi	r25, 0
+7304	ldi	r18, 1
+7306	sts	287, r25
+7310	sts	286, r24
+7314	sbi	24, 0
+7316	out	63, r17
+7318	and	r18, r18
+7320	breq	8
+7322	sts	308, r1
+7326	ldi	r24, 3
+7328	call	2473
+7332	call	3548
+7336	rjmp	8
+7338	call	1143
+7342	ldi	r18, 64
+7344	ldi	r19, 1
+7346	ldi	r20, 0
+7348	ldi	r21, 0
+7350	call	1332
+7354	pop	r29
+7356	pop	r28
+7358	pop	r17
+7360	ret	
+7362	push	r14
+7364	push	r15
+7366	push	r16
+7368	push	r17
+7370	push	r28
+7372	push	r29
+7374	movw	r16, r22
+7376	lds	r24, 452
+7380	lds	r25, 453
+7384	sbrs	r24, 6
+7386	rjmp	320
+7388	andi	r24, 191
+7390	cpi	r24, 63
+7392	breq	1
+7394	rjmp	398
+7396	lds	r28, 304
+7400	lds	r29, 305
+7404	ld	r21, Y
+7406	sts	363, r21
+7410	lds	r24, 360
+7414	lds	r25, 361
+7418	cpi	r24, 5
+7420	cpc	r25, r1
+7422	brne	1
+7424	rjmp	67
+7426	cpi	r24, 6
+7428	cpc	r25, r1
+7430	brne	1
+7432	rjmp	138
+7434	sbiw	r24, 2
+7436	breq	1
+7438	rjmp	287
+7440	ldi	r24, 5
+7442	ldi	r25, 0
+7444	sts	361, r25
+7448	sts	360, r24
+7452	lds	r20, 331
+7456	mov	r24, r21
+7458	eor	r25, r25
+7460	adiw	r24, 1
+7462	mov	r18, r20
+7464	eor	r19, r19
+7466	cp	r18, r24
+7468	cpc	r19, r25
+7470	brlt	41
+7472	sbic	22, 7
+7474	rjmp	6
+7476	sbic	1, 6
+7478	rjmp	4
+7480	sub	r20, r21
+7482	subi	r20, 1
+7484	sts	331, r20
+7488	lds	r20, 363
+7492	cpi	r20, 42
+7494	brcc	29
+7496	and	r20, r20
+7498	breq	20
+7500	movw	r22, r28
+7502	subi	r22, 255
+7504	sbci	r23, 255
+7506	cpi	r20, 8
+7508	brcs	3
+7510	ldi	r20, 7
+7512	ldi	r21, 0
+7514	rjmp	7
+7516	ldi	r24, 6
+7518	ldi	r25, 0
+7520	sts	361, r25
+7524	sts	360, r24
+7528	eor	r21, r21
+7530	ldi	r24, 0
+7532	ldi	r25, 0
+7534	call	461
+7538	rjmp	326
+7540	sts	425, r1
+7544	sbi	24, 0
+7546	ldi	r24, 4
+7548	call	2473
+7552	rjmp	227
+7554	call	2604
+7558	rjmp	316
+7560	ldi	r24, 6
+7562	ldi	r25, 0
+7564	sts	361, r25
+7568	sts	360, r24
+7572	lds	r24, 430
+7576	and	r24, r24
+7578	brne	1
+7580	rjmp	57
+7582	lds	r24, 593
+7586	and	r24, r24
+7588	brne	53
+7590	ldd	r24, Y+1
+7592	sbrs	r24, 5
+7594	rjmp	50
+7596	ldd	r24, Y+7
+7598	ldd	r20, Y+6
+7600	in	r18, 63
+7602	cli	
+7604	eor	r19, r19
+7606	lds	r22, 448
+7610	lds	r23, 449
+7614	out	63, r18
+7616	eor	r25, r25
+7618	mov	r25, r24
+7620	eor	r24, r24
+7622	eor	r21, r21
+7624	or	r24, r20
+7626	or	r25, r21
+7628	cp	r24, r22
+7630	cpc	r25, r23
+7632	breq	11
+7634	ldd	r24, Y+7
+7636	ldd	r18, Y+6
+7638	eor	r25, r25
+7640	mov	r25, r24
+7642	eor	r24, r24
+7644	eor	r19, r19
+7646	or	r24, r18
+7648	or	r25, r19
+7650	subi	r24, 255
+7652	sbci	r25, 255
+7654	brne	20
+7656	ldd	r24, Y+1
+7658	andi	r24, 7
+7660	cpi	r24, 1
+7662	brne	16
+7664	sbi	24, 0
+7666	cbi	24, 0
+7668	ldi	r24, 10
+7670	call	2201
+7674	sbi	24, 0
+7676	cbi	24, 0
+7678	lds	r20, 363
+7682	subi	r20, 7
+7684	adiw	r28, 8
+7686	movw	r22, r28
+7688	ldi	r24, 63
+7690	call	2228
+7694	rjmp	248
+7696	lds	r20, 363
+7700	subi	r20, 7
+7702	eor	r21, r21
+7704	adiw	r28, 8
+7706	movw	r22, r28
+7708	rjmp	-90
+7710	sbi	24, 0
+7712	lds	r24, 368
+7716	and	r24, r24
+7718	brne	7
+7720	ldi	r24, 4
+7722	call	2473
+7726	lds	r24, 368
+7730	and	r24, r24
+7732	breq	2
+7734	sbic	22, 7
+7736	rjmp	10
+7738	sbis	1, 6
+7740	rjmp	8
+7742	lds	r25, 695
+7746	and	r25, r25
+7748	breq	4
+7750	lds	r24, 363
+7754	cpi	r24, 11
+7756	brcc	7
+7758	lds	r24, 304
+7762	lds	r25, 305
+7766	call	1000
+7770	rjmp	61
+7772	cpi	r25, 1
+7774	brne	32
+7776	lds	r30, 700
+7780	eor	r31, r31
+7782	add	r30, r30
+7784	adc	r31, r31
+7786	add	r30, r30
+7788	adc	r31, r31
+7790	subi	r30, 157
+7792	sbci	r31, 253
+7794	ld	r18, Z
+7796	ldd	r19, Z+1
+7798	ldd	r20, Z+2
+7800	ldd	r21, Z+3
+7802	lds	r30, 304
+7806	lds	r31, 305
+7810	std	Z+49, r18
+7812	eor	r27, r27
+7814	mov	r26, r21
+7816	mov	r25, r20
+7818	mov	r24, r19
+7820	std	Z+48, r24
+7822	movw	r24, r20
+7824	eor	r26, r26
+7826	eor	r27, r27
+7828	std	Z+47, r24
+7830	mov	r18, r21
+7832	eor	r19, r19
+7834	eor	r20, r20
+7836	eor	r21, r21
+7838	std	Z+46, r18
+7840	lds	r24, 700
+7844	eor	r25, r25
+7846	adiw	r24, 1
+7848	ldi	r22, 8
+7850	ldi	r23, 0
+7852	call	7448
+7856	sts	700, r24
+7860	lds	r24, 695
+7864	subi	r24, 1
+7866	sts	695, r24
+7870	and	r24, r24
+7872	breq	10
+7874	lds	r24, 304
+7878	lds	r25, 305
+7882	call	1000
+7886	sts	700, r1
+7890	sts	695, r1
+7894	lds	r24, 363
+7898	movw	r30, r28
+7900	add	r30, r24
+7902	adc	r31, r1
+7904	ld	r24, Z
+7906	sbrs	r24, 7
+7908	rjmp	49
+7910	or	r16, r17
+7912	breq	47
+7914	ldd	r22, Y+1
+7916	andi	r22, 7
+7918	lds	r30, 304
+7922	lds	r31, 305
+7926	cpi	r22, 2
+7928	brne	35
+7930	lds	r26, 431
+7934	lds	r27, 432
+7938	sbiw	r26, 0
+7940	breq	33
+7942	lds	r24, 286
+7946	lds	r25, 287
+7950	sbiw	r24, 7
+7952	brne	27
+7954	movw	r28, r26
+7956	ldd	r25, Y+3
+7958	ldd	r24, Z+3
+7960	cp	r25, r24
+7962	brne	22
+7964	in	r24, 55
+7966	andi	r24, 239
+7968	out	55, r24
+7970	ld	r25, Z
+7972	ldi	r24, 1
+7974	std	Y+44, r24
+7976	add	r30, r25
+7978	adc	r31, r1
+7980	ldpd	r24, Z
+7982	adiw	r30, 1
+7984	std	Y+40, r24
+7986	ld	r24, Z
+7988	andi	r24, 127
+7990	std	Y+41, r24
+7992	ldi	r24, 0
+7994	call	3446
+7998	rjmp	4
+8000	cpi	r22, 1
+8002	brne	2
+8004	ldi	r24, 9
+8006	rjmp	42
+8008	call	2551
+8012	rjmp	89
+8014	sts	425, r1
+8018	sbi	24, 0
+8020	ldi	r24, 4
+8022	call	2473
+8026	rjmp	82
+8028	cpi	r24, 62
+8030	breq	1
+8032	rjmp	79
+8034	sbi	24, 0
+8036	lds	r24, 286
+8040	lds	r25, 287
+8044	sbiw	r24, 8
+8046	brne	25
+8048	cbi	24, 0
+8050	ldi	r24, 9
+8052	call	2201
+8056	sbi	24, 0
+8058	ldi	r24, 3
+8060	call	2473
+8064	ldi	r24, 1
+8066	ldi	r25, 0
+8068	sts	287, r25
+8072	sts	286, r24
+8076	in	r24, 63
+8078	cli	
+8080	eor	r25, r25
+8082	ldi	r18, 3
+8084	sts	280, r18
+8088	out	63, r24
+8090	ldi	r24, 2
+8092	call	300
+8096	rjmp	47
+8098	lds	r24, 713
+8102	and	r24, r24
+8104	brne	9
+8106	ldi	r24, 4
+8108	ldi	r25, 0
+8110	sts	287, r25
+8114	sts	286, r24
+8118	call	3590
+8122	rjmp	34
+8124	ldi	r24, 3
+8126	call	2473
+8130	ldi	r24, 3
+8132	ldi	r25, 0
+8134	sts	287, r25
+8138	sts	286, r24
+8142	call	1015
+8146	movw	r26, r24
+8148	movw	r24, r22
+8150	ldi	r22, 54
+8152	ldi	r23, 1
+8154	call	7428
+8158	ldi	r16, 11
+8160	mov	r14, r16
+8162	mov	r15, r1
+8164	add	r14, r24
+8166	adc	r15, r25
+8168	sts	326, r15
+8172	sts	325, r14
+8176	call	1143
+8180	eor	r16, r16
+8182	eor	r17, r17
+8184	movw	r20, r16
+8186	movw	r18, r14
+8188	call	1332
+8192	pop	r29
+8194	pop	r28
+8196	pop	r17
+8198	pop	r16
+8200	pop	r15
+8202	pop	r14
+8204	ret	
+8206	push	r1
+8208	push	r0
+8210	in	r0, 63
+8212	push	r0
+8214	eor	r1, r1
+8216	push	r18
+8218	push	r19
+8220	push	r20
+8222	push	r21
+8224	push	r22
+8226	push	r23
+8228	push	r24
+8230	push	r25
+8232	push	r26
+8234	push	r27
+8236	push	r30
+8238	push	r31
+8240	in	r18, 15
+8242	lds	r30, 499
+8246	lds	r31, 500
+8250	sbiw	r30, 0
+8252	breq	7
+8254	lds	r24, 463
+8258	lds	r25, 464
+8262	add	r30, r24
+8264	adc	r31, r25
+8266	st	Z, r18
+8268	lds	r24, 463
+8272	lds	r25, 464
+8276	adiw	r24, 1
+8278	sts	464, r25
+8282	sts	463, r24
+8286	ldi	r24, 0
+8288	call	273
+8292	lds	r20, 306
+8296	lds	r21, 307
+8300	lds	r24, 463
+8304	lds	r25, 464
+8308	cp	r24, r20
+8310	cpc	r25, r21
+8312	brcc	3
+8314	call	351
+8318	rjmp	28
+8320	lds	r22, 499
+8324	lds	r23, 500
+8328	lds	r24, 706
+8332	lds	r25, 707
+8336	sts	500, r1
+8340	sts	499, r1
+8344	sts	707, r1
+8348	sts	706, r1
+8352	sts	307, r1
+8356	sts	306, r1
+8360	sts	464, r1
+8364	sts	463, r1
+8368	in	r18, 15
+8370	ldi	r18, 0
+8372	call	3681
+8376	pop	r31
+8378	pop	r30
+8380	pop	r27
+8382	pop	r26
+8384	pop	r25
+8386	pop	r24
+8388	pop	r23
+8390	pop	r22
+8392	pop	r21
+8394	pop	r20
+8396	pop	r19
+8398	pop	r18
+8400	pop	r0
+8402	out	63, r0
+8404	pop	r0
+8406	pop	r1
+8408	reti	
+8410	push	r9
+8412	push	r10
+8414	push	r11
+8416	push	r12
+8418	push	r13
+8420	push	r14
+8422	push	r15
+8424	push	r16
+8426	push	r17
+8428	push	r28
+8430	push	r29
+8432	in	r28, 61
+8434	in	r29, 62
+8436	sbiw	r28, 40
+8438	in	r0, 63
+8440	cli	
+8442	out	62, r29
+8444	out	63, r0
+8446	out	61, r28
+8448	mov	r30, r24
+8450	eor	r31, r31
+8452	cpi	r30, 26
+8454	cpc	r31, r1
+8456	brcs	1
+8458	rjmp	1689
+8460	subi	r30, 186
+8462	sbci	r31, 255
+8464	add	r30, r30
+8466	adc	r31, r31
+8468	lpmpi	r0, Z
+8470	lpmd	r31, Z
+8472	mov	r30, r0
+8474	ijmp	
+8476	lds	r24, 701
+8480	and	r24, r24
+8482	brne	1
+8484	rjmp	1676
+8486	ldi	r18, 0
+8488	ldi	r17, 1
+8490	rjmp	1600
+8492	in	r16, 63
+8494	cli	
+8496	eor	r17, r17
+8498	ldi	r24, 1
+8500	call	1359
+8504	ldi	r23, 1
+8506	mov	r14, r23
+8508	mov	r15, r1
+8510	sts	287, r15
+8514	sts	286, r14
+8518	sts	288, r1
+8522	sts	333, r1
+8526	sts	365, r1
+8530	out	63, r16
+8532	in	r16, 63
+8534	cli	
+8536	eor	r17, r17
+8538	call	988
+8542	sts	361, r15
+8546	sts	360, r14
+8550	sts	425, r1
+8554	in	r24, 57
+8556	andi	r24, 191
+8558	out	57, r24
+8560	ldi	r24, 64
+8562	out	56, r24
+8564	in	r24, 58
+8566	ori	r24, 32
+8568	out	58, r24
+8570	in	r24, 58
+8572	andi	r24, 239
+8574	out	58, r24
+8576	in	r24, 57
+8578	ori	r24, 64
+8580	out	57, r24
+8582	out	63, r16
+8584	in	r24, 63
+8586	cli	
+8588	mov	r16, r24
+8590	eor	r17, r17
+8592	lds	r24, 281
+8596	lds	r25, 282
+8600	sbiw	r24, 4
+8602	brne	3
+8604	ldi	r24, 3
+8606	call	2201
+8610	out	63, r16
+8612	in	r16, 63
+8614	cli	
+8616	eor	r17, r17
+8618	sbi	24, 0
+8620	ldi	r24, 0
+8622	call	2473
+8626	out	63, r16
+8628	in	r24, 63
+8630	cli	
+8632	eor	r25, r25
+8634	ldi	r18, 2
+8636	sts	509, r18
+8640	out	63, r24
+8642	lds	r20, 567
+8646	eor	r21, r21
+8648	mov	r21, r20
+8650	eor	r20, r20
+8652	lds	r24, 568
+8656	eor	r25, r25
+8658	or	r20, r24
+8660	or	r21, r25
+8662	eor	r22, r22
+8664	eor	r23, r23
+8666	ldi	r24, 1
+8668	call	1840
+8672	sts	433, r1
+8676	rjmp	1580
+8678	in	r24, 63
+8680	cli	
+8682	eor	r25, r25
+8684	sts	509, r1
+8688	rjmp	113
+8690	in	r24, 63
+8692	cli	
+8694	eor	r25, r25
+8696	lds	r15, 280
+8700	out	63, r24
+8702	ldi	r22, 3
+8704	ldi	r24, 1
+8706	call	250
+8710	and	r24, r24
+8712	breq	43
+8714	in	r16, 63
+8716	cli	
+8718	eor	r17, r17
+8720	sts	287, r1
+8724	sts	286, r1
+8728	in	r24, 55
+8730	andi	r24, 239
+8732	out	55, r24
+8734	in	r24, 55
+8736	andi	r24, 223
+8738	out	55, r24
+8740	ldi	r24, 3
+8742	call	2473
+8746	sbi	24, 0
+8748	out	63, r16
+8750	in	r16, 63
+8752	cli	
+8754	eor	r17, r17
+8756	sts	361, r1
+8760	sts	360, r1
+8764	call	988
+8768	sbi	24, 0
+8770	in	r24, 57
+8772	andi	r24, 191
+8774	out	57, r24
+8776	out	63, r16
+8778	sts	282, r1
+8782	sts	281, r1
+8786	cbi	27, 6
+8788	cbi	27, 5
+8790	sbi	27, 6
+8792	ldi	r24, 1
+8794	call	300
+8798	rjmp	7
+8800	in	r24, 63
+8802	cli	
+8804	eor	r25, r25
+8806	ldi	r18, 2
+8808	sts	509, r18
+8812	out	63, r24
+8814	lds	r16, 460
+8818	lds	r17, 461
+8822	call	494
+8826	lds	r24, 702
+8830	lds	r25, 703
+8834	or	r24, r25
+8836	breq	1
+8838	rjmp	1499
+8840	ldi	r24, 255
+8842	sts	272, r24
+8846	mov	r20, r15
+8848	movw	r22, r16
+8850	rjmp	985
+8852	in	r24, 63
+8854	cli	
+8856	mov	r18, r24
+8858	eor	r19, r19
+8860	mov	r17, r18
+8862	lds	r24, 711
+8866	and	r24, r24
+8868	brne	33
+8870	ldi	r24, 1
+8872	sts	711, r24
+8876	lds	r24, 281
+8880	lds	r25, 282
+8884	sbiw	r24, 4
+8886	brne	4
+8888	ldi	r24, 1
+8890	call	1977
+8894	rjmp	3
+8896	ldi	r24, 4
+8898	call	300
+8902	out	63, r17
+8904	rjmp	1466
+8906	in	r24, 63
+8908	cli	
+8910	eor	r25, r25
+8912	sts	711, r1
+8916	out	63, r24
+8918	rjmp	1459
+8920	in	r24, 63
+8922	cli	
+8924	mov	r18, r24
+8926	eor	r19, r19
+8928	lds	r24, 283
+8932	and	r24, r24
+8934	breq	2
+8936	out	63, r18
+8938	rjmp	1449
+8940	out	63, r18
+8942	in	r24, 16
+8944	eor	r25, r25
+8946	ldi	r21, 6
+8948	lsr	r25
+8950	ror	r24
+8952	dec	r21
+8954	brne	-4
+8956	mov	r17, r24
+8958	andi	r17, 1
+8960	lds	r25, 450
+8964	lds	r24, 451
+8968	cp	r24, r25
+8970	breq	27
+8972	cp	r17, r25
+8974	brne	25
+8976	ldi	r24, 4
+8978	ldi	r25, 0
+8980	sts	282, r25
+8984	sts	281, r24
+8988	in	r24, 63
+8990	cli	
+8992	eor	r25, r25
+8994	ldi	r18, 1
+8996	sts	283, r18
+9000	out	63, r24
+9002	ldi	r22, 0
+9004	ldi	r23, 0
+9006	ldi	r24, 29
+9008	call	2621
+9012	call	2145
+9016	sbi	24, 0
+9018	cbi	24, 0
+9020	ldi	r24, 0
+9022	call	300
+9026	sts	451, r17
+9030	ldi	r24, 5
+9032	rjmp	109
+9034	in	r24, 63
+9036	cli	
+9038	eor	r25, r25
+9040	lds	r17, 265
+9044	out	63, r24
+9046	cpi	r17, 2
+9048	brne	1
+9050	rjmp	103
+9052	cpi	r17, 3
+9054	brcc	6
+9056	and	r17, r17
+9058	breq	11
+9060	cpi	r17, 1
+9062	breq	1
+9064	rjmp	1386
+9066	rjmp	72
+9068	cpi	r17, 3
+9070	brne	1
+9072	rjmp	118
+9074	cpi	r17, 4
+9076	breq	1
+9078	rjmp	1379
+9080	rjmp	162
+9082	cbi	24, 0
+9084	in	r24, 63
+9086	cli	
+9088	mov	r16, r24
+9090	eor	r17, r17
+9092	lds	r24, 281
+9096	lds	r25, 282
+9100	sbiw	r24, 2
+9102	brne	52
+9104	ldi	r24, 3
+9106	ldi	r25, 0
+9108	sts	282, r25
+9112	sts	281, r24
+9116	ldi	r22, 24
+9118	ldi	r23, 0
+9120	ldi	r24, 29
+9122	call	2621
+9126	ldi	r24, 1
+9128	sts	450, r24
+9132	sts	283, r1
+9136	in	r24, 16
+9138	eor	r25, r25
+9140	ldi	r20, 6
+9142	lsr	r25
+9144	ror	r24
+9146	dec	r20
+9148	brne	-4
+9150	andi	r24, 1
+9152	andi	r25, 0
+9154	sts	451, r24
+9158	ldi	r24, 5
+9160	call	300
+9164	ldi	r24, 1
+9166	call	2201
+9170	ldi	r22, 127
+9172	ldi	r23, 2
+9174	ldi	r24, 28
+9176	call	2621
+9180	call	2718
+9184	call	2660
+9188	ldi	r22, 86
+9190	ldi	r23, 42
+9192	ldi	r24, 23
+9194	call	2621
+9198	ldi	r22, 255
+9200	ldi	r23, 128
+9202	ldi	r24, 21
+9204	call	2621
+9208	out	63, r16
+9210	rjmp	1313
+9212	cbi	24, 0
+9214	ldi	r24, 6
+9216	call	2201
+9220	call	2718
+9224	call	2660
+9228	call	2145
+9232	sbi	24, 0
+9234	cbi	24, 0
+9236	ldi	r24, 3
+9238	call	2201
+9242	sbi	24, 0
+9244	ldi	r24, 1
+9246	call	2473
+9250	ldi	r24, 4
+9252	call	300
+9256	rjmp	1290
+9258	cbi	24, 0
+9260	in	r24, 63
+9262	cli	
+9264	mov	r16, r24
+9266	eor	r17, r17
+9268	ldi	r22, 0
+9270	ldi	r24, 0
+9272	call	250
+9276	and	r24, r24
+9278	breq	2
+9280	out	63, r16
+9282	rjmp	10
+9284	out	63, r16
+9286	ldi	r24, 83
+9288	call	339
+9292	ldi	r24, 0
+9294	call	339
+9298	ldi	r24, 0
+9300	call	339
+9304	sbi	24, 0
+9306	ldi	r24, 2
+9308	rjmp	45
+9310	in	r24, 63
+9312	cli	
+9314	eor	r25, r25
+9316	lds	r18, 286
+9320	out	63, r24
+9322	cpi	r18, 4
+9324	breq	7
+9326	cpi	r18, 8
+9328	breq	8
+9330	cpi	r18, 2
+9332	brne	32
+9334	call	2735
+9338	rjmp	1249
+9340	call	3590
+9344	rjmp	1246
+9346	cbi	24, 0
+9348	ldi	r24, 9
+9350	call	2201
+9354	sbi	24, 0
+9356	ldi	r24, 3
+9358	call	2473
+9362	in	r24, 63
+9364	cli	
+9366	eor	r25, r25
+9368	ldi	r18, 1
+9370	ldi	r19, 0
+9372	sts	287, r19
+9376	sts	286, r18
+9380	out	63, r24
+9382	in	r24, 63
+9384	cli	
+9386	eor	r25, r25
+9388	sts	280, r17
+9392	out	63, r24
+9394	ldi	r24, 2
+9396	rjmp	-73
+9398	ldi	r24, 3
+9400	call	2473
+9404	rjmp	1216
+9406	call	2278
+9410	rjmp	1213
+9412	in	r16, 63
+9414	cli	
+9416	eor	r17, r17
+9418	lds	r20, 306
+9422	lds	r21, 307
+9426	lds	r22, 499
+9430	lds	r23, 500
+9434	lds	r24, 706
+9438	lds	r25, 707
+9442	sts	500, r1
+9446	sts	499, r1
+9450	sts	707, r1
+9454	sts	706, r1
+9458	sts	307, r1
+9462	sts	306, r1
+9466	sts	464, r1
+9470	sts	463, r1
+9474	ldi	r18, 0
+9476	call	3681
+9480	rjmp	-137
+9482	in	r18, 63
+9484	cli	
+9486	eor	r19, r19
+9488	lds	r24, 369
+9492	sts	268, r24
+9496	ldi	r24, 2
+9498	sts	285, r24
+9502	out	63, r18
+9504	lds	r24, 268
+9508	and	r24, r24
+9510	breq	1
+9512	rjmp	1162
+9514	sbi	23, 0
+9516	cbi	24, 0
+9518	ldi	r24, 6
+9520	rjmp	-135
+9522	lds	r26, 304
+9526	lds	r27, 305
+9530	ld	r17, X
+9532	movw	r18, r26
+9534	add	r18, r17
+9536	adc	r19, r1
+9538	movw	r30, r18
+9540	ld	r24, Z
+9542	adc	r24, r24
+9544	eor	r24, r24
+9546	adc	r24, r24
+9548	movw	r30, r26
+9550	std	Z+43, r24
+9552	movw	r30, r18
+9554	ld	r24, Z
+9556	andi	r24, 127
+9558	movw	r30, r26
+9560	std	Z+41, r24
+9562	subi	r18, 1
+9564	sbci	r19, 0
+9566	movw	r30, r18
+9568	ld	r24, Z
+9570	movw	r30, r26
+9572	std	Z+40, r24
+9574	lds	r26, 304
+9578	lds	r27, 305
+9582	movw	r30, r26
+9584	ldd	r19, Z+2
+9586	in	r24, 63
+9588	cli	
+9590	eor	r25, r25
+9592	lds	r18, 367
+9596	out	63, r24
+9598	and	r18, r18
+9600	brne	1
+9602	rjmp	144
+9604	mov	r24, r19
+9606	eor	r25, r25
+9608	lsr	r25
+9610	ror	r24
+9612	lsr	r25
+9614	ror	r24
+9616	andi	r24, 3
+9618	andi	r25, 0
+9620	cpi	r24, 2
+9622	cpc	r25, r1
+9624	brne	40
+9626	ldd	r24, Z+7
+9628	ldd	r20, Z+6
+9630	in	r18, 63
+9632	cli	
+9634	eor	r19, r19
+9636	lds	r22, 448
+9640	lds	r23, 449
+9644	out	63, r18
+9646	eor	r25, r25
+9648	mov	r25, r24
+9650	eor	r24, r24
+9652	eor	r21, r21
+9654	or	r24, r20
+9656	or	r25, r21
+9658	cp	r24, r22
+9660	cpc	r25, r23
+9662	brne	3
+9664	ldi	r24, 1
+9666	ldi	r25, 0
+9668	rjmp	108
+9670	movw	r30, r26
+9672	ldd	r24, Z+7
+9674	ldd	r18, Z+6
+9676	ldi	r20, 0
+9678	ldi	r21, 0
+9680	eor	r25, r25
+9682	mov	r25, r24
+9684	eor	r24, r24
+9686	eor	r19, r19
+9688	or	r24, r18
+9690	or	r25, r19
+9692	subi	r24, 255
+9694	sbci	r25, 255
+9696	brne	2
+9698	ldi	r20, 1
+9700	ldi	r21, 0
+9702	movw	r24, r20
+9704	rjmp	90
+9706	sbiw	r24, 3
+9708	breq	1
+9710	rjmp	375
+9712	movw	r18, r28
+9714	subi	r18, 255
+9716	sbci	r19, 255
+9718	ldi	r20, 82
+9720	ldi	r21, 2
+9722	ldi	r24, 8
+9724	movw	r30, r20
+9726	ldpi	r0, Z
+9728	movw	r20, r30
+9730	movw	r30, r18
+9732	stpi	Z, r0
+9734	movw	r18, r30
+9736	subi	r24, 1
+9738	brne	-8
+9740	movw	r18, r28
+9742	subi	r18, 223
+9744	sbci	r19, 255
+9746	movw	r20, r28
+9748	subi	r20, 255
+9750	sbci	r21, 255
+9752	ldi	r24, 8
+9754	movw	r30, r20
+9756	ldpi	r0, Z
+9758	movw	r20, r30
+9760	movw	r30, r18
+9762	stpi	Z, r0
+9764	movw	r18, r30
+9766	subi	r24, 1
+9768	brne	-8
+9770	movw	r18, r28
+9772	subi	r18, 247
+9774	sbci	r19, 255
+9776	movw	r20, r28
+9778	subi	r20, 223
+9780	sbci	r21, 255
+9782	ldi	r24, 8
+9784	movw	r30, r20
+9786	ldpi	r0, Z
+9788	movw	r20, r30
+9790	movw	r30, r18
+9792	stpi	Z, r0
+9794	movw	r18, r30
+9796	subi	r24, 1
+9798	brne	-8
+9800	movw	r18, r28
+9802	subi	r18, 239
+9804	sbci	r19, 255
+9806	movw	r20, r28
+9808	subi	r20, 247
+9810	sbci	r21, 255
+9812	ldi	r24, 8
+9814	movw	r30, r20
+9816	ldpi	r0, Z
+9818	movw	r20, r30
+9820	movw	r30, r18
+9822	stpi	Z, r0
+9824	movw	r18, r30
+9826	subi	r24, 1
+9828	brne	-8
+9830	movw	r18, r28
+9832	subi	r18, 231
+9834	sbci	r19, 255
+9836	movw	r20, r28
+9838	subi	r20, 239
+9840	sbci	r21, 255
+9842	ldi	r24, 8
+9844	movw	r30, r20
+9846	ldpi	r0, Z
+9848	movw	r20, r30
+9850	movw	r30, r18
+9852	stpi	Z, r0
+9854	movw	r18, r30
+9856	subi	r24, 1
+9858	brne	-8
+9860	ldi	r20, 8
+9862	ldi	r21, 0
+9864	movw	r22, r28
+9866	subi	r22, 231
+9868	sbci	r23, 255
+9870	movw	r24, r26
+9872	adiw	r24, 6
+9874	call	7553
+9878	or	r24, r25
+9880	breq	1
+9882	rjmp	289
+9884	rjmp	3
+9886	and	r24, r24
+9888	brne	1
+9890	rjmp	285
+9892	cpi	r17, 13
+9894	brcc	1
+9896	rjmp	282
+9898	lds	r14, 304
+9902	lds	r15, 305
+9906	movw	r30, r14
+9908	ldd	r18, Z+2
+9910	mov	r24, r18
+9912	eor	r25, r25
+9914	ldi	r17, 6
+9916	lsr	r25
+9918	ror	r24
+9920	dec	r17
+9922	brne	-4
+9924	sbiw	r24, 3
+9926	brne	3
+9928	ldi	r22, 8
+9930	ldi	r23, 0
+9932	rjmp	2
+9934	ldi	r22, 2
+9936	ldi	r23, 0
+9938	mov	r24, r18
+9940	eor	r25, r25
+9942	lsr	r25
+9944	ror	r24
+9946	lsr	r25
+9948	ror	r24
+9950	andi	r24, 3
+9952	andi	r25, 0
+9954	sbiw	r24, 3
+9956	brne	3
+9958	ldi	r24, 8
+9960	ldi	r25, 0
+9962	rjmp	2
+9964	ldi	r24, 2
+9966	ldi	r25, 0
+9968	ldi	r18, 6
+9970	ldi	r19, 0
+9972	add	r14, r18
+9974	adc	r15, r19
+9976	ldi	r20, 0
+9978	ldi	r21, 0
+9980	ldi	r18, 0
+9982	ldi	r19, 0
+9984	movw	r30, r14
+9986	add	r30, r24
+9988	adc	r31, r25
+9990	ldi	r24, 250
+9992	ldi	r25, 255
+9994	add	r14, r24
+9996	adc	r15, r25
+9998	rjmp	5
+10000	ldpi	r24, Z
+10002	add	r20, r24
+10004	adc	r21, r1
+10006	subi	r18, 255
+10008	sbci	r19, 255
+10010	cp	r18, r22
+10012	cpc	r19, r23
+10014	brlt	-8
+10016	movw	r30, r14
+10018	ldd	r22, Z+3
+10020	ldi	r24, 255
+10022	sts	704, r24
+10026	in	r24, 63
+10028	cli	
+10030	mov	r23, r24
+10032	ldi	r18, 0
+10034	ldi	r19, 0
+10036	ldi	r30, 57
+10038	ldi	r31, 1
+10040	ld	r24, Z
+10042	ldd	r25, Z+1
+10044	cp	r24, r20
+10046	cpc	r25, r21
+10048	brne	5
+10050	ldd	r24, Z+2
+10052	cp	r24, r22
+10054	breq	38
+10056	sts	704, r18
+10060	subi	r18, 255
+10062	sbci	r19, 255
+10064	adiw	r30, 3
+10066	cpi	r18, 4
+10068	cpc	r19, r1
+10070	brne	-16
+10072	out	63, r23
+10074	lds	r25, 704
+10078	in	r19, 63
+10080	cli	
+10082	cpi	r25, 255
+10084	breq	4
+10086	lds	r24, 289
+10090	cp	r24, r25
+10092	brne	21
+10094	lds	r18, 289
+10098	mov	r24, r18
+10100	eor	r25, r25
+10102	movw	r30, r24
+10104	add	r30, r30
+10106	adc	r31, r31
+10108	add	r30, r24
+10110	adc	r31, r25
+10112	subi	r30, 199
+10114	sbci	r31, 254
+10116	std	Z+1, r21
+10118	st	Z, r20
+10120	std	Z+2, r22
+10122	subi	r18, 255
+10124	andi	r18, 3
+10126	sts	289, r18
+10130	rjmp	14
+10132	out	63, r23
+10134	rjmp	159
+10136	mov	r24, r25
+10138	eor	r25, r25
+10140	movw	r30, r24
+10142	add	r30, r30
+10144	adc	r31, r31
+10146	add	r30, r24
+10148	adc	r31, r25
+10150	subi	r30, 199
+10152	sbci	r31, 254
+10154	std	Z+1, r21
+10156	st	Z, r20
+10158	std	Z+2, r22
+10160	mov	r24, r19
+10162	eor	r25, r25
+10164	out	63, r24
+10166	in	r16, 63
+10168	cli	
+10170	eor	r17, r17
+10172	movw	r24, r14
+10174	call	156
+10178	movw	r30, r24
+10180	ld	r25, Z
+10182	out	63, r16
+10184	movw	r30, r14
+10186	ldd	r24, Z+43
+10188	and	r24, r24
+10190	brne	1
+10192	rjmp	130
+10194	cpi	r25, 63
+10196	breq	1
+10198	rjmp	127
+10200	ldd	r24, Z+7
+10202	ldd	r20, Z+6
+10204	in	r18, 63
+10206	cli	
+10208	eor	r19, r19
+10210	lds	r22, 269
+10214	lds	r23, 270
+10218	out	63, r18
+10220	eor	r25, r25
+10222	mov	r25, r24
+10224	eor	r24, r24
+10226	eor	r21, r21
+10228	or	r24, r20
+10230	or	r25, r21
+10232	cp	r24, r22
+10234	cpc	r25, r23
+10236	breq	12
+10238	ldd	r24, Z+7
+10240	ldd	r18, Z+6
+10242	eor	r25, r25
+10244	mov	r25, r24
+10246	eor	r24, r24
+10248	eor	r19, r19
+10250	or	r24, r18
+10252	or	r25, r19
+10254	subi	r24, 255
+10256	sbci	r25, 255
+10258	breq	1
+10260	rjmp	96
+10262	movw	r30, r14
+10264	ldd	r24, Z+11
+10266	cpi	r24, 147
+10268	breq	1
+10270	rjmp	91
+10272	in	r18, 63
+10274	cli	
+10276	eor	r19, r19
+10278	in	r24, 27
+10280	ldi	r17, 1
+10282	eor	r24, r17
+10284	out	27, r24
+10286	out	63, r18
+10288	ldd	r24, Z+12
+10290	ldd	r18, Z+13
+10292	eor	r25, r25
+10294	mov	r21, r24
+10296	eor	r20, r20
+10298	eor	r19, r19
+10300	or	r20, r18
+10302	or	r21, r19
+10304	lds	r24, 565
+10308	eor	r25, r25
+10310	mov	r25, r24
+10312	eor	r24, r24
+10314	lds	r18, 566
+10318	eor	r19, r19
+10320	or	r24, r18
+10322	or	r25, r19
+10324	cp	r24, r20
+10326	cpc	r25, r21
+10328	brcc	32
+10330	sts	566, r20
+10334	mov	r24, r21
+10336	eor	r25, r25
+10338	sts	565, r24
+10342	ldd	r24, Z+14
+10344	ldd	r18, Z+15
+10346	eor	r25, r25
+10348	mov	r25, r24
+10350	eor	r24, r24
+10352	eor	r19, r19
+10354	or	r24, r18
+10356	or	r25, r19
+10358	sts	568, r24
+10362	mov	r20, r25
+10364	eor	r21, r21
+10366	sts	567, r20
+10370	mov	r21, r20
+10372	eor	r20, r20
+10374	eor	r25, r25
+10376	or	r20, r24
+10378	or	r21, r25
+10380	eor	r22, r22
+10382	eor	r23, r23
+10384	ldi	r24, 1
+10386	call	1840
+10390	sts	433, r1
+10394	movw	r30, r14
+10396	ldd	r24, Z+18
+10398	ldd	r18, Z+19
+10400	eor	r25, r25
+10402	mov	r21, r24
+10404	eor	r20, r20
+10406	eor	r19, r19
+10408	or	r20, r18
+10410	or	r21, r19
+10412	lds	r24, 571
+10416	eor	r25, r25
+10418	mov	r25, r24
+10420	eor	r24, r24
+10422	lds	r18, 572
+10426	eor	r19, r19
+10428	or	r24, r18
+10430	or	r25, r19
+10432	cp	r24, r20
+10434	cpc	r25, r21
+10436	brcc	8
+10438	sts	572, r20
+10442	mov	r24, r21
+10444	eor	r25, r25
+10446	sts	571, r24
+10450	sts	708, r17
+10454	sts	305, r15
+10458	sts	304, r14
+10462	in	r24, 63
+10464	cli	
+10466	eor	r25, r25
+10468	sts	425, r1
+10472	out	63, r24
+10474	call	2551
+10478	rjmp	679
+10480	lds	r24, 364
+10484	and	r24, r24
+10486	brne	44
+10488	lds	r18, 607
+10492	lds	r19, 608
+10496	lds	r20, 609
+10500	lds	r21, 610
+10504	in	r30, 63
+10506	cli	
+10508	eor	r31, r31
+10510	lds	r22, 504
+10514	lds	r23, 505
+10518	lds	r24, 506
+10522	lds	r25, 507
+10526	lds	r14, 327
+10530	lds	r15, 328
+10534	lds	r16, 329
+10538	lds	r17, 330
+10542	add	r22, r14
+10544	adc	r23, r15
+10546	adc	r24, r16
+10548	adc	r25, r17
+10550	out	63, r30
+10552	sts	607, r18
+10556	sts	608, r19
+10560	sts	609, r20
+10564	sts	610, r21
+10568	sts	364, r1
+10572	call	962
+10576	call	792
+10580	rjmp	67
+10582	call	792
+10586	movw	r10, r22
+10588	movw	r12, r24
+10590	in	r24, 63
+10592	cli	
+10594	eor	r25, r25
+10596	sts	462, r1
+10600	out	63, r24
+10602	ldi	r25, 255
+10604	mov	r14, r25
+10606	ldi	r25, 255
+10608	mov	r15, r25
+10610	ldi	r25, 255
+10612	mov	r16, r25
+10614	ldi	r25, 127
+10616	mov	r17, r25
+10618	ldi	r22, 0
+10620	ldi	r30, 216
+10622	ldi	r31, 1
+10624	ldd	r24, Z+8
+10626	sbrs	r24, 1
+10628	rjmp	28
+10630	ld	r24, Z
+10632	ldd	r25, Z+1
+10634	ldd	r26, Z+2
+10636	ldd	r27, Z+3
+10638	movw	r20, r12
+10640	movw	r18, r10
+10642	sub	r18, r24
+10644	sbc	r19, r25
+10646	sbc	r20, r26
+10648	sbc	r21, r27
+10650	movw	r26, r20
+10652	movw	r24, r18
+10654	ldd	r18, Z+4
+10656	ldd	r19, Z+5
+10658	ldd	r20, Z+6
+10660	ldd	r21, Z+7
+10662	sub	r18, r24
+10664	sbc	r19, r25
+10666	sbc	r20, r26
+10668	sbc	r21, r27
+10670	cp	r18, r14
+10672	cpc	r19, r15
+10674	cpc	r20, r16
+10676	cpc	r21, r17
+10678	brge	3
+10680	movw	r14, r18
+10682	movw	r16, r20
+10684	ldi	r22, 1
+10686	adiw	r30, 9
+10688	ldi	r19, 1
+10690	cpi	r30, 243
+10692	cpc	r31, r19
+10694	brne	-36
+10696	and	r22, r22
+10698	brne	1
+10700	rjmp	568
+10702	cp	r1, r14
+10704	cpc	r1, r15
+10706	cpc	r1, r16
+10708	cpc	r1, r17
+10710	brlt	5
+10712	movw	r24, r12
+10714	movw	r22, r10
+10716	call	3124
+10720	rjmp	558
+10722	sts	607, r14
+10726	sts	608, r15
+10730	sts	609, r16
+10734	sts	610, r17
+10738	ldi	r24, 1
+10740	sts	364, r24
+10744	movw	r20, r16
+10746	movw	r18, r14
+10748	movw	r24, r12
+10750	movw	r22, r10
+10752	call	962
+10756	rjmp	540
+10758	lds	r25, 438
+10762	lds	r24, 272
+10766	cp	r25, r24
+10768	brne	1
+10770	rjmp	533
+10772	sts	272, r25
+10776	and	r25, r25
+10778	brne	26
+10780	lds	r16, 290
+10784	lds	r17, 291
+10788	lds	r22, 458
+10792	movw	r24, r16
+10794	call	2805
+10798	mov	r20, r24
+10800	eor	r21, r21
+10802	and	r20, r20
+10804	brne	1
+10806	rjmp	515
+10808	ldi	r24, 255
+10810	sts	272, r24
+10814	lds	r22, 290
+10818	lds	r23, 291
+10822	movw	r30, r16
+10824	ldd	r24, Z+11
+10826	call	3533
+10830	rjmp	503
+10832	ldi	r24, 255
+10834	sts	272, r24
+10838	rjmp	499
+10840	in	r24, 63
+10842	cli	
+10844	eor	r25, r25
+10846	lds	r18, 602
+10850	sts	275, r18
+10854	ldi	r18, 3
+10856	sts	293, r18
+10860	out	63, r24
+10862	lds	r24, 275
+10866	and	r24, r24
+10868	breq	4
+10870	cpi	r24, 1
+10872	breq	1
+10874	rjmp	481
+10876	rjmp	3
+10878	sbi	2, 5
+10880	sbi	3, 5
+10882	rjmp	2
+10884	sbi	2, 6
+10886	sbi	3, 6
+10888	call	792
+10892	movw	r20, r22
+10894	movw	r22, r24
+10896	ldi	r24, 1
+10898	mov	r14, r24
+10900	ldi	r16, 10
+10902	ldi	r17, 0
+10904	ldi	r18, 0
+10906	ldi	r19, 0
+10908	ldi	r24, 2
+10910	call	1809
+10914	rjmp	461
+10916	in	r18, 63
+10918	cli	
+10920	eor	r19, r19
+10922	lds	r24, 429
+10926	sts	276, r24
+10930	ldi	r20, 3
+10932	sts	295, r20
+10936	out	63, r18
+10938	lds	r24, 276
+10942	sts	606, r24
+10946	in	r24, 63
+10948	cli	
+10950	mov	r16, r24
+10952	eor	r17, r17
+10954	lds	r24, 303
+10958	and	r24, r24
+10960	brne	39
+10962	ldi	r24, 1
+10964	sts	303, r24
+10968	sts	470, r1
+10972	out	63, r16
+10974	in	r24, 63
+10976	cli	
+10978	eor	r25, r25
+10980	sbi	6, 7
+10982	out	63, r24
+10984	in	r24, 63
+10986	cli	
+10988	mov	r16, r24
+10990	eor	r17, r17
+10992	mov	r25, r16
+10994	lds	r24, 277
+10998	cpi	r24, 1
+11000	brne	17
+11002	lds	r24, 303
+11006	cpi	r24, 1
+11008	brne	4
+11010	ldi	r24, 22
+11012	call	300
+11016	rjmp	-905
+11018	cpi	r24, 2
+11020	brne	7
+11022	lds	r24, 470
+11026	sts	277, r24
+11030	sts	303, r20
+11034	rjmp	-914
+11036	out	63, r25
+11038	rjmp	399
+11040	lds	r24, 470
+11044	and	r24, r24
+11046	brne	1
+11048	rjmp	-921
+11050	ldi	r24, 0
+11052	call	501
+11056	and	r24, r24
+11058	breq	1
+11060	rjmp	-927
+11062	lds	r24, 469
+11066	ori	r24, 1
+11068	sts	469, r24
+11072	rjmp	-933
+11074	in	r24, 63
+11076	cli	
+11078	eor	r25, r25
+11080	lds	r18, 362
+11084	sts	297, r18
+11088	ldi	r18, 3
+11090	sts	296, r18
+11094	rjmp	-1090
+11096	ldi	r24, 0
+11098	rjmp	5
+11100	cbi	3, 5
+11102	cbi	2, 5
+11104	ldi	r24, 20
+11106	rjmp	-928
+11108	ldi	r24, 1
+11110	call	700
+11114	rjmp	361
+11116	cbi	3, 6
+11118	cbi	2, 6
+11120	ldi	r24, 21
+11122	rjmp	-936
+11124	ldi	r24, 0
+11126	call	1870
+11130	lds	r24, 299
+11134	cpi	r24, 1
+11136	brne	3
+11138	ldi	r24, 0
+11140	call	700
+11144	in	r24, 63
+11146	cli	
+11148	eor	r25, r25
+11150	sts	299, r1
+11154	sts	298, r1
+11158	rjmp	-1122
+11160	ldi	r24, 1
+11162	call	1870
+11166	lds	r24, 301
+11170	cpi	r24, 1
+11172	brne	2
+11174	call	700
+11178	in	r24, 63
+11180	cli	
+11182	eor	r25, r25
+11184	sts	301, r1
+11188	sts	300, r1
+11192	rjmp	-1139
+11194	in	r18, 63
+11196	cli	
+11198	eor	r19, r19
+11200	lds	r24, 470
+11204	sts	277, r24
+11208	ldi	r24, 3
+11210	sts	303, r24
+11214	out	63, r18
+11216	lds	r24, 277
+11220	and	r24, r24
+11222	breq	1
+11224	rjmp	306
+11226	ldi	r24, 1
+11228	sts	457, r24
+11232	sts	699, r1
+11236	call	562
+11240	rjmp	298
+11242	sts	457, r1
+11246	lds	r10, 501
+11250	lds	r11, 502
+11254	lds	r24, 699
+11258	and	r24, r24
+11260	breq	1
+11262	rjmp	287
+11264	in	r24, 63
+11266	cli	
+11268	mov	r12, r24
+11270	lds	r24, 303
+11274	cpi	r24, 3
+11276	breq	1
+11278	rjmp	65
+11280	lds	r24, 277
+11284	and	r24, r24
+11286	brne	61
+11288	lds	r24, 469
+11292	and	r24, r24
+11294	breq	1
+11296	rjmp	249
+11298	rjmp	241
+11300	mov	r30, r13
+11302	lsr	r30
+11304	lsr	r30
+11306	lsr	r30
+11308	eor	r31, r31
+11310	mov	r20, r13
+11312	eor	r21, r21
+11314	subi	r30, 43
+11316	sbci	r31, 254
+11318	movw	r18, r20
+11320	andi	r18, 7
+11322	andi	r19, 0
+11324	ldi	r24, 1
+11326	ldi	r25, 0
+11328	rjmp	2
+11330	add	r24, r24
+11332	adc	r25, r25
+11334	dec	r18
+11336	brpl	-4
+11338	com	r24
+11340	ld	r18, Z
+11342	and	r18, r24
+11344	st	Z, r18
+11346	sts	302, r16
+11350	rjmp	18
+11352	subi	r16, 255
+11354	sbci	r17, 255
+11356	cpi	r16, 1
+11358	cpc	r17, r1
+11360	brne	2
+11362	ldi	r16, 0
+11364	ldi	r17, 0
+11366	mov	r13, r16
+11368	mov	r24, r16
+11370	call	501
+11374	and	r24, r24
+11376	brne	-39
+11378	cp	r16, r14
+11380	cpc	r17, r15
+11382	brne	-16
+11384	ldi	r20, 255
+11386	ldi	r21, 0
+11388	sts	470, r20
+11392	ldi	r24, 255
+11394	sts	277, r24
+11398	ldi	r24, 1
+11400	sts	303, r24
+11404	ldi	r24, 22
+11406	call	300
+11410	out	63, r12
+11412	ldi	r24, 0
+11414	call	521
+11418	and	r24, r24
+11420	brne	1
+11422	rjmp	129
+11424	lds	r9, 606
+11428	in	r24, 63
+11430	cli	
+11432	mov	r12, r24
+11434	lds	r24, 295
+11438	cpi	r24, 3
+11440	breq	1
+11442	rjmp	65
+11444	lds	r24, 276
+11448	cp	r24, r9
+11450	brne	61
+11452	lds	r24, 332
+11456	and	r24, r24
+11458	breq	1
+11460	rjmp	182
+11462	rjmp	172
+11464	mov	r30, r13
+11466	lsr	r30
+11468	lsr	r30
+11470	lsr	r30
+11472	eor	r31, r31
+11474	mov	r20, r13
+11476	eor	r21, r21
+11478	subi	r30, 180
+11480	sbci	r31, 254
+11482	movw	r18, r20
+11484	andi	r18, 7
+11486	andi	r19, 0
+11488	ldi	r24, 1
+11490	ldi	r25, 0
+11492	rjmp	2
+11494	add	r24, r24
+11496	adc	r25, r25
+11498	dec	r18
+11500	brpl	-4
+11502	com	r24
+11504	ld	r18, Z
+11506	and	r18, r24
+11508	st	Z, r18
+11510	sts	294, r16
+11514	rjmp	18
+11516	subi	r16, 255
+11518	sbci	r17, 255
+11520	cpi	r16, 1
+11522	cpc	r17, r1
+11524	brne	2
+11526	ldi	r16, 0
+11528	ldi	r17, 0
+11530	mov	r13, r16
+11532	mov	r24, r16
+11534	call	542
+11538	and	r24, r24
+11540	brne	-39
+11542	cp	r16, r14
+11544	cpc	r17, r15
+11546	brne	-16
+11548	ldi	r20, 255
+11550	ldi	r21, 0
+11552	sts	429, r20
+11556	ldi	r24, 255
+11558	sts	276, r24
+11562	ldi	r24, 1
+11564	sts	295, r24
+11568	ldi	r24, 14
+11570	call	300
+11574	out	63, r12
+11576	and	r9, r9
+11578	brne	51
+11580	lds	r30, 433
+11584	cpi	r30, 10
+11586	brcc	13
+11588	subi	r30, 255
+11590	sts	433, r30
+11594	subi	r30, 1
+11596	eor	r31, r31
+11598	add	r30, r30
+11600	adc	r31, r31
+11602	subi	r30, 195
+11604	sbci	r31, 253
+11606	std	Z+1, r10
+11608	mov	r24, r11
+11610	eor	r25, r25
+11612	st	Z, r24
+11614	ldi	r31, 33
+11616	cp	r10, r31
+11618	ldi	r31, 3
+11620	cpc	r11, r31
+11622	brcs	29
+11624	lds	r24, 426
+11628	and	r24, r24
+11630	brne	25
+11632	ldi	r26, 13
+11634	ldi	r27, 2
+11636	ldi	r30, 0
+11638	ldi	r31, 1
+11640	ldi	r24, 7
+11642	ldpi	r0, Z
+11644	stpi	X, r0
+11646	subi	r24, 1
+11648	brne	-4
+11650	ldi	r20, 7
+11652	ldi	r22, 1
+11654	ldi	r23, 2
+11656	ldi	r24, 255
+11658	ldi	r25, 255
+11660	call	3057
+11664	and	r24, r24
+11666	brne	3
+11668	ldi	r24, 1
+11670	sts	426, r24
+11674	ldi	r24, 0
+11676	ldi	r25, 0
+11678	call	7573
+11682	ldi	r24, 1
+11684	call	521
+11688	rjmp	74
+11690	add	r17, r17
+11692	lds	r25, 701
+11696	mov	r24, r17
+11698	and	r24, r25
+11700	breq	22
+11702	mov	r30, r18
+11704	eor	r31, r31
+11706	add	r30, r30
+11708	adc	r31, r31
+11710	subi	r30, 47
+11712	sbci	r31, 254
+11714	std	Z+1, r1
+11716	st	Z, r1
+11718	mov	r24, r17
+11720	com	r24
+11722	and	r25, r24
+11724	sts	701, r25
+11728	and	r18, r18
+11730	brne	7
+11732	call	147
+11736	sts	426, r1
+11740	add	r17, r17
+11742	ldi	r18, 1
+11744	rjmp	-27
+11746	subi	r18, 255
+11748	cpi	r18, 8
+11750	brcs	-31
+11752	rjmp	42
+11754	lds	r24, 278
+11758	mov	r30, r24
+11760	eor	r31, r31
+11762	add	r30, r30
+11764	adc	r31, r31
+11766	subi	r30, 47
+11768	sbci	r31, 254
+11770	ld	r22, Z
+11772	ldd	r23, Z+1
+11774	ldi	r20, 1
+11776	call	3469
+11780	rjmp	28
+11782	ldi	r24, 1
+11784	sts	277, r24
+11788	sts	303, r1
+11792	cbi	6, 7
+11794	rjmp	-193
+11796	lds	r24, 302
+11800	mov	r14, r24
+11802	eor	r15, r15
+11804	movw	r16, r14
+11806	rjmp	-228
+11808	ldi	r24, 1
+11810	sts	276, r24
+11814	sts	295, r1
+11818	sts	298, r24
+11822	ldi	r24, 17
+11824	rjmp	-128
+11826	lds	r24, 294
+11830	mov	r14, r24
+11832	eor	r15, r15
+11834	movw	r16, r14
+11836	rjmp	-161
+11838	adiw	r28, 40
+11840	in	r0, 63
+11842	cli	
+11844	out	62, r29
+11846	out	63, r0
+11848	out	61, r28
+11850	pop	r29
+11852	pop	r28
+11854	pop	r17
+11856	pop	r16
+11858	pop	r15
+11860	pop	r14
+11862	pop	r13
+11864	pop	r12
+11866	pop	r11
+11868	pop	r10
+11870	pop	r9
+11872	ret	
+11874	lds	r24, 696
+11878	cpi	r24, 255
+11880	breq	22
+11882	mov	r18, r24
+11884	eor	r19, r19
+11886	movw	r30, r18
+11888	subi	r30, 178
+11890	sbci	r31, 254
+11892	ld	r24, Z
+11894	sts	696, r24
+11898	cpi	r24, 255
+11900	brne	2
+11902	sts	712, r24
+11906	ldi	r24, 255
+11908	st	Z, r24
+11910	cpi	r18, 255
+11912	breq	6
+11914	mov	r24, r18
+11916	call	4205
+11920	ldi	r24, 1
+11922	ldi	r25, 0
+11924	ret	
+11926	ldi	r24, 0
+11928	ldi	r25, 0
+11930	ret	
+11932	push	r17
+11934	push	r28
+11936	push	r29
+11938	in	r28, 61
+11940	in	r29, 62
+11942	sbiw	r28, 48
+11944	in	r0, 63
+11946	cli	
+11948	out	62, r29
+11950	out	63, r0
+11952	out	61, r28
+11954	in	r17, 63
+11956	cli	
+11958	ldi	r20, 26
+11960	ldi	r21, 0
+11962	ldi	r22, 255
+11964	ldi	r23, 0
+11966	ldi	r24, 78
+11968	ldi	r25, 1
+11970	call	7566
+11974	ldi	r24, 255
+11976	sts	696, r24
+11980	sts	712, r24
+11984	ldi	r24, 1
+11986	out	46, r24
+11988	ldi	r24, 8
+11990	out	48, r24
+11992	ldi	r24, 3
+11994	out	51, r24
+11996	in	r24, 44
+11998	in	r25, 45
+12000	ldi	r20, 122
+12002	in	r18, 44
+12004	in	r19, 45
+12006	cp	r18, r24
+12008	cpc	r19, r25
+12010	brcc	1
+12012	subi	r20, 1
+12014	and	r20, r20
+12016	breq	2
+12018	movw	r24, r18
+12020	rjmp	-10
+12022	in	r25, 50
+12024	in	r24, 50
+12026	cp	r24, r25
+12028	breq	-3
+12030	in	r18, 44
+12032	in	r19, 45
+12034	in	r25, 50
+12036	in	r24, 50
+12038	cp	r24, r25
+12040	breq	-3
+12042	in	r24, 44
+12044	in	r25, 45
+12046	sub	r24, r18
+12048	sbc	r25, r19
+12050	adiw	r24, 16
+12052	ldi	r31, 5
+12054	lsr	r25
+12056	ror	r24
+12058	dec	r31
+12060	brne	-4
+12062	sts	698, r25
+12066	sts	697, r24
+12070	out	51, r1
+12072	in	r24, 51
+12074	out	46, r24
+12076	in	r24, 46
+12078	out	48, r24
+12080	out	50, r1
+12082	out	45, r1
+12084	out	44, r1
+12086	ldi	r24, 255
+12088	out	54, r24
+12090	in	r24, 54
+12092	sts	124, r24
+12096	in	r24, 48
+12098	eor	r25, r25
+12100	andi	r24, 7
+12102	andi	r25, 0
+12104	or	r24, r25
+12106	brne	-6
+12108	sbi	26, 2
+12110	sbi	26, 1
+12112	sbi	26, 0
+12114	sbi	27, 2
+12116	sbi	27, 1
+12118	sbi	27, 0
+12120	out	21, r1
+12122	ldi	r24, 255
+12124	out	20, r24
+12126	cbi	26, 4
+12128	cbi	27, 4
+12130	out	6, r1
+12132	out	45, r1
+12134	out	44, r1
+12136	in	r24, 55
+12138	ori	r24, 4
+12140	out	55, r24
+12142	in	r24, 46
+12144	andi	r24, 248
+12146	ori	r24, 4
+12148	out	46, r24
+12150	call	5937
+12154	and	r24, r24
+12156	brne	-4
+12158	sts	469, r1
+12162	sts	332, r1
+12166	sts	471, r1
+12170	ldi	r24, 255
+12172	sts	370, r24
+12176	ldi	r30, 57
+12178	ldi	r31, 1
+12180	ldi	r24, 255
+12182	ldi	r25, 255
+12184	std	Z+1, r25
+12186	st	Z, r24
+12188	std	Z+2, r1
+12190	adiw	r30, 3
+12192	ldi	r18, 1
+12194	cpi	r30, 69
+12196	cpc	r31, r18
+12198	brne	-8
+12200	call	1015
+12204	sts	605, r22
+12208	lds	r24, 263
+12212	lds	r25, 264
+12216	adiw	r24, 1
+12218	eor	r26, r26
+12220	eor	r27, r27
+12222	sts	434, r24
+12226	sts	435, r25
+12230	sts	436, r26
+12234	sts	437, r27
+12238	in	r24, 48
+12240	ori	r24, 8
+12242	out	48, r24
+12244	ldi	r24, 11
+12246	out	51, r24
+12248	ldi	r24, 230
+12250	out	49, r24
+12252	in	r24, 55
+12254	ori	r24, 2
+12256	out	55, r24
+12258	call	831
+12262	ldi	r24, 131
+12264	ldi	r25, 2
+12266	sts	305, r25
+12270	sts	304, r24
+12274	cbi	17, 6
+12276	sbi	23, 0
+12278	cbi	17, 4
+12280	ldi	r24, 255
+12282	sts	443, r24
+12286	sts	508, r1
+12290	sts	509, r1
+12294	sts	510, r1
+12298	sts	511, r1
+12302	sbi	23, 0
+12304	sbi	26, 6
+12306	sbi	26, 5
+12308	in	r24, 63
+12310	cli	
+12312	eor	r25, r25
+12314	lds	r18, 269
+12318	lds	r19, 270
+12322	out	63, r24
+12324	sts	449, r19
+12328	sts	448, r18
+12332	call	1378
+12336	std	Y+41, r18
+12338	std	Y+42, r19
+12340	std	Y+43, r20
+12342	std	Y+44, r21
+12344	std	Y+45, r22
+12346	std	Y+46, r23
+12348	std	Y+47, r24
+12350	std	Y+48, r25
+12352	movw	r26, r28
+12354	adiw	r26, 33
+12356	movw	r30, r28
+12358	adiw	r30, 41
+12360	ldi	r24, 8
+12362	ldpi	r0, Z
+12364	stpi	X, r0
+12366	subi	r24, 1
+12368	brne	-4
+12370	movw	r26, r28
+12372	adiw	r26, 17
+12374	movw	r30, r28
+12376	adiw	r30, 33
+12378	ldi	r24, 8
+12380	ldpi	r0, Z
+12382	stpi	X, r0
+12384	subi	r24, 1
+12386	brne	-4
+12388	movw	r26, r28
+12390	adiw	r26, 25
+12392	movw	r30, r28
+12394	adiw	r30, 17
+12396	ldi	r24, 8
+12398	ldpi	r0, Z
+12400	stpi	X, r0
+12402	subi	r24, 1
+12404	brne	-4
+12406	ldi	r26, 82
+12408	ldi	r27, 2
+12410	movw	r30, r28
+12412	adiw	r30, 25
+12414	ldi	r24, 8
+12416	ldpi	r0, Z
+12418	stpi	X, r0
+12420	subi	r24, 1
+12422	brne	-4
+12424	lds	r24, 271
+12428	eor	r25, r25
+12430	sts	428, r25
+12434	sts	427, r24
+12438	ldi	r24, 31
+12440	sts	503, r24
+12444	ldi	r24, 26
+12446	sts	603, r24
+12450	call	1378
+12454	std	Y+41, r18
+12456	std	Y+42, r19
+12458	std	Y+43, r20
+12460	std	Y+44, r21
+12462	std	Y+45, r22
+12464	std	Y+46, r23
+12466	std	Y+47, r24
+12468	std	Y+48, r25
+12470	movw	r26, r28
+12472	adiw	r26, 33
+12474	movw	r30, r28
+12476	adiw	r30, 41
+12478	ldi	r24, 8
+12480	ldpi	r0, Z
+12482	stpi	X, r0
+12484	subi	r24, 1
+12486	brne	-4
+12488	movw	r26, r28
+12490	adiw	r26, 1
+12492	movw	r30, r28
+12494	adiw	r30, 33
+12496	ldi	r24, 8
+12498	ldpi	r0, Z
+12500	stpi	X, r0
+12502	subi	r24, 1
+12504	brne	-4
+12506	movw	r26, r28
+12508	adiw	r26, 9
+12510	movw	r30, r28
+12512	adiw	r30, 1
+12514	ldi	r24, 8
+12516	ldpi	r0, Z
+12518	stpi	X, r0
+12520	subi	r24, 1
+12522	brne	-4
+12524	ldi	r26, 82
+12526	ldi	r27, 2
+12528	movw	r30, r28
+12530	adiw	r30, 9
+12532	ldi	r24, 8
+12534	ldpi	r0, Z
+12536	stpi	X, r0
+12538	subi	r24, 1
+12540	brne	-4
+12542	ldi	r26, 82
+12544	ldi	r27, 2
+12546	movw	r30, r26
+12548	adiw	r30, 7
+12550	ld	r25, X
+12552	ld	r24, Z
+12554	stpi	X, r24
+12556	st	Z, r25
+12558	sbiw	r30, 1
+12560	ldi	r24, 2
+12562	cpi	r30, 85
+12564	cpc	r31, r24
+12566	brne	-9
+12568	ldi	r24, 1
+12570	sts	367, r24
+12574	sts	705, r1
+12578	sts	430, r24
+12582	sts	593, r1
+12586	call	5937
+12590	and	r24, r24
+12592	brne	-4
+12594	mov	r24, r17
+12596	eor	r25, r25
+12598	out	63, r24
+12600	sei	
+12602	sts	568, r1
+12606	ldi	r24, 1
+12608	sts	567, r24
+12612	lds	r24, 263
+12616	lds	r25, 264
+12620	sts	570, r24
+12624	mov	r24, r25
+12626	eor	r25, r25
+12628	sts	569, r24
+12632	ldi	r22, 1
+12634	ldi	r24, 1
+12636	call	224
+12640	and	r24, r24
+12642	brne	29
+12644	in	r24, 63
+12646	cli	
+12648	mov	r18, r24
+12650	eor	r19, r19
+12652	lds	r24, 281
+12656	lds	r25, 282
+12660	or	r24, r25
+12662	breq	2
+12664	out	63, r18
+12666	rjmp	31
+12668	ldi	r24, 1
+12670	ldi	r25, 0
+12672	sts	282, r25
+12676	sts	281, r24
+12680	out	63, r18
+12682	sbi	27, 5
+12684	call	1143
+12688	ldi	r18, 20
+12690	ldi	r19, 0
+12692	ldi	r20, 0
+12694	ldi	r21, 0
+12696	call	1332
+12700	rjmp	14
+12702	ldi	r22, 2
+12704	ldi	r24, 1
+12706	call	250
+12710	and	r24, r24
+12712	breq	1
+12714	rjmp	114
+12716	ldi	r22, 1
+12718	ldi	r24, 1
+12720	call	250
+12724	and	r24, r24
+12726	brne	1
+12728	rjmp	107
+12730	in	r24, 63
+12732	cli	
+12734	mov	r20, r24
+12736	eor	r21, r21
+12738	rjmp	75
+12740	in	r24, 55
+12742	eor	r25, r25
+12744	andi	r24, 3
+12746	andi	r25, 0
+12748	or	r24, r25
+12750	brne	3
+12752	ldi	r30, 5
+12754	ldi	r31, 0
+12756	rjmp	19
+12758	in	r24, 48
+12760	eor	r25, r25
+12762	andi	r24, 7
+12764	andi	r25, 0
+12766	or	r24, r25
+12768	brne	-6
+12770	in	r24, 49
+12772	in	r25, 50
+12774	sub	r24, r25
+12776	cpi	r24, 12
+12778	brcs	6
+12780	in	r24, 50
+12782	cpi	r24, 245
+12784	brcc	3
+12786	ldi	r30, 3
+12788	ldi	r31, 0
+12790	rjmp	2
+12792	ldi	r30, 2
+12794	ldi	r31, 0
+12796	in	r24, 55
+12798	andi	r24, 184
+12800	brne	24
+12802	lds	r24, 125
+12806	andi	r24, 251
+12808	brne	20
+12810	sbic	13, 6
+12812	rjmp	18
+12814	in	r24, 10
+12816	lds	r25, 154
+12820	or	r24, r25
+12822	andi	r24, 24
+12824	brne	12
+12826	lds	r24, 116
+12830	sbrc	r24, 2
+12832	rjmp	8
+12834	sbis	6, 7
+12836	rjmp	3
+12838	ldi	r24, 1
+12840	ldi	r25, 0
+12842	rjmp	5
+12844	ldi	r24, 5
+12846	ldi	r25, 0
+12848	rjmp	2
+12850	ldi	r24, 0
+12852	ldi	r25, 0
+12854	in	r18, 53
+12856	cp	r24, r30
+12858	brcc	1
+12860	mov	r30, r24
+12862	eor	r31, r31
+12864	subi	r30, 64
+12866	sbci	r31, 255
+12868	lpmd	r30, Z
+12870	andi	r18, 227
+12872	ori	r18, 32
+12874	or	r30, r18
+12876	out	53, r30
+12878	sei	
+12880	sleep	
+12882	cli	
+12884	in	r24, 53
+12886	andi	r24, 223
+12888	out	53, r24
+12890	lds	r24, 696
+12894	cpi	r24, 255
+12896	brne	1
+12898	rjmp	-80
+12900	mov	r18, r24
+12902	eor	r19, r19
+12904	movw	r30, r18
+12906	subi	r30, 178
+12908	sbci	r31, 254
+12910	ld	r24, Z
+12912	sts	696, r24
+12916	cpi	r24, 255
+12918	brne	2
+12920	sts	712, r24
+12924	ldi	r24, 255
+12926	st	Z, r24
+12928	cpi	r18, 255
+12930	brne	1
+12932	rjmp	-97
+12934	out	63, r20
+12936	mov	r24, r18
+12938	call	4205
+12942	rjmp	-107
+12944	call	147
+12948	rjmp	-110
+12950	sei	
+12952	push	r1
+12954	push	r0
+12956	in	r0, 63
+12958	push	r0
+12960	eor	r1, r1
+12962	push	r2
+12964	push	r3
+12966	push	r4
+12968	push	r5
+12970	push	r6
+12972	push	r7
+12974	push	r8
+12976	push	r9
+12978	push	r10
+12980	push	r11
+12982	push	r12
+12984	push	r13
+12986	push	r14
+12988	push	r15
+12990	push	r16
+12992	push	r17
+12994	push	r18
+12996	push	r19
+12998	push	r20
+13000	push	r21
+13002	push	r22
+13004	push	r23
+13006	push	r24
+13008	push	r25
+13010	push	r26
+13012	push	r27
+13014	push	r28
+13016	push	r29
+13018	push	r30
+13020	push	r31
+13022	in	r28, 38
+13024	in	r29, 39
+13026	in	r24, 63
+13028	cli	
+13030	mov	r2, r24
+13032	call	1143
+13036	movw	r18, r22
+13038	sub	r18, r28
+13040	sbc	r19, r29
+13042	eor	r20, r20
+13044	eor	r21, r21
+13046	movw	r4, r22
+13048	movw	r6, r24
+13050	sub	r4, r18
+13052	sbc	r5, r19
+13054	sbc	r6, r20
+13056	sbc	r7, r21
+13058	lds	r24, 286
+13062	lds	r25, 287
+13066	cpi	r24, 5
+13068	cpc	r25, r1
+13070	breq	4
+13072	sbiw	r24, 6
+13074	breq	1
+13076	rjmp	224
+13078	rjmp	191
+13080	ldi	r24, 6
+13082	ldi	r25, 0
+13084	sts	287, r25
+13088	sts	286, r24
+13092	ldi	r19, 1
+13094	mov	r3, r19
+13096	sts	371, r3
+13100	sts	288, r1
+13104	ldi	r24, 0
+13106	call	1359
+13110	lds	r30, 431
+13114	lds	r31, 432
+13118	std	Z+49, r4
+13120	eor	r27, r27
+13122	mov	r26, r7
+13124	mov	r25, r6
+13126	mov	r24, r5
+13128	std	Z+48, r24
+13130	movw	r24, r6
+13132	eor	r26, r26
+13134	eor	r27, r27
+13136	std	Z+47, r24
+13138	mov	r24, r7
+13140	eor	r25, r25
+13142	eor	r26, r26
+13144	eor	r27, r27
+13146	std	Z+46, r24
+13148	lds	r30, 431
+13152	lds	r31, 432
+13156	ldd	r24, Z+45
+13158	and	r24, r24
+13160	brne	1
+13162	rjmp	132
+13164	ld	r22, Z
+13166	subi	r22, 5
+13168	eor	r23, r23
+13170	movw	r8, r30
+13172	add	r8, r22
+13174	adc	r9, r23
+13176	movw	r30, r8
+13178	ld	r18, Z
+13180	ldd	r14, Z+1
+13182	ldd	r24, Z+2
+13184	ldd	r10, Z+3
+13186	eor	r25, r25
+13188	eor	r26, r26
+13190	eor	r27, r27
+13192	mov	r27, r26
+13194	mov	r26, r25
+13196	mov	r25, r24
+13198	eor	r24, r24
+13200	eor	r19, r19
+13202	eor	r20, r20
+13204	eor	r21, r21
+13206	mov	r21, r18
+13208	eor	r20, r20
+13210	eor	r19, r19
+13212	eor	r18, r18
+13214	eor	r15, r15
+13216	eor	r16, r16
+13218	eor	r17, r17
+13220	movw	r16, r14
+13222	eor	r15, r15
+13224	eor	r14, r14
+13226	or	r18, r14
+13228	or	r19, r15
+13230	or	r20, r16
+13232	or	r21, r17
+13234	eor	r11, r11
+13236	eor	r12, r12
+13238	eor	r13, r13
+13240	or	r18, r10
+13242	or	r19, r11
+13244	or	r20, r12
+13246	or	r21, r13
+13248	or	r24, r18
+13250	or	r25, r19
+13252	or	r26, r20
+13254	or	r27, r21
+13256	sub	r24, r4
+13258	sbc	r25, r5
+13260	sbc	r26, r6
+13262	sbc	r27, r7
+13264	std	Z+3, r24
+13266	mov	r18, r25
+13268	mov	r19, r26
+13270	mov	r20, r27
+13272	eor	r21, r21
+13274	std	Z+2, r18
+13276	movw	r18, r26
+13278	eor	r20, r20
+13280	eor	r21, r21
+13282	std	Z+1, r18
+13284	mov	r24, r27
+13286	eor	r25, r25
+13288	eor	r26, r26
+13290	eor	r27, r27
+13292	st	Z, r24
+13294	cbi	24, 0
+13296	ldi	r18, 4
+13298	movw	r20, r8
+13300	ldi	r24, 0
+13302	ldi	r25, 0
+13304	call	2080
+13308	sbi	24, 0
+13310	movw	r30, r8
+13312	ld	r18, Z
+13314	ldd	r14, Z+1
+13316	ldd	r24, Z+2
+13318	ldd	r10, Z+3
+13320	eor	r25, r25
+13322	eor	r26, r26
+13324	eor	r27, r27
+13326	mov	r27, r26
+13328	mov	r26, r25
+13330	mov	r25, r24
+13332	eor	r24, r24
+13334	eor	r19, r19
+13336	eor	r20, r20
+13338	eor	r21, r21
+13340	mov	r21, r18
+13342	eor	r20, r20
+13344	eor	r19, r19
+13346	eor	r18, r18
+13348	eor	r15, r15
+13350	eor	r16, r16
+13352	eor	r17, r17
+13354	movw	r16, r14
+13356	eor	r15, r15
+13358	eor	r14, r14
+13360	or	r18, r14
+13362	or	r19, r15
+13364	or	r20, r16
+13366	or	r21, r17
+13368	eor	r11, r11
+13370	eor	r12, r12
+13372	eor	r13, r13
+13374	or	r18, r10
+13376	or	r19, r11
+13378	or	r20, r12
+13380	or	r21, r13
+13382	or	r24, r18
+13384	or	r25, r19
+13386	or	r26, r20
+13388	or	r27, r21
+13390	add	r24, r4
+13392	adc	r25, r5
+13394	adc	r26, r6
+13396	adc	r27, r7
+13398	std	Z+3, r24
+13400	mov	r18, r25
+13402	mov	r19, r26
+13404	mov	r20, r27
+13406	eor	r21, r21
+13408	std	Z+2, r18
+13410	movw	r18, r26
+13412	eor	r20, r20
+13414	eor	r21, r21
+13416	std	Z+1, r18
+13418	mov	r24, r27
+13420	eor	r25, r25
+13422	eor	r26, r26
+13424	eor	r27, r27
+13426	st	Z, r24
+13428	lds	r30, 431
+13432	lds	r31, 432
+13436	ldd	r24, Z+1
+13438	sbrs	r24, 5
+13440	rjmp	2
+13442	sts	333, r3
+13446	ldi	r24, 3
+13448	call	2473
+13452	in	r24, 55
+13454	andi	r24, 239
+13456	out	55, r24
+13458	sbic	16, 4
+13460	rjmp	122
+13462	sts	371, r1
+13466	ldi	r24, 1
+13468	call	1359
+13472	lds	r30, 431
+13476	lds	r31, 432
+13480	ldd	r24, Z+1
+13482	sbrs	r24, 5
+13484	rjmp	15
+13486	ldi	r24, 7
+13488	ldi	r25, 0
+13490	sts	287, r25
+13494	sts	286, r24
+13498	call	1143
+13502	ldi	r18, 0
+13504	ldi	r19, 1
+13506	ldi	r20, 0
+13508	ldi	r21, 0
+13510	call	1332
+13514	rjmp	3
+13516	ldi	r24, 0
+13518	call	3446
+13522	sbis	16, 4
+13524	rjmp	90
+13526	lds	r24, 288
+13530	and	r24, r24
+13532	brne	50
+13534	lds	r24, 371
+13538	and	r24, r24
+13540	brne	46
+13542	ldi	r17, 1
+13544	sts	371, r17
+13548	call	1359
+13552	in	r24, 16
+13554	lds	r18, 695
+13558	cpi	r18, 8
+13560	brcc	19
+13562	lds	r30, 700
+13566	add	r30, r18
+13568	eor	r31, r31
+13570	andi	r30, 7
+13572	andi	r31, 0
+13574	add	r30, r30
+13576	adc	r31, r31
+13578	add	r30, r30
+13580	adc	r31, r31
+13582	subi	r30, 157
+13584	sbci	r31, 253
+13586	st	Z, r4
+13588	std	Z+1, r5
+13590	std	Z+2, r6
+13592	std	Z+3, r7
+13594	subi	r18, 255
+13596	sts	695, r18
+13600	sts	288, r17
+13604	sts	455, r29
+13608	sts	454, r28
+13612	sbic	16, 4
+13614	rjmp	45
+13616	eor	r25, r25
+13618	ldi	r26, 4
+13620	lsr	r25
+13622	ror	r24
+13624	dec	r26
+13626	brne	-4
+13628	mov	r17, r24
+13630	andi	r17, 1
+13632	rjmp	1
+13634	ldi	r17, 0
+13636	lds	r24, 371
+13640	cpi	r24, 1
+13642	brne	31
+13644	sts	371, r1
+13648	call	1359
+13652	sts	288, r1
+13656	and	r17, r17
+13658	brne	23
+13660	lds	r24, 454
+13664	lds	r25, 455
+13668	sub	r28, r24
+13670	sbc	r29, r25
+13672	sbiw	r28, 10
+13674	brcc	15
+13676	lds	r24, 695
+13680	and	r24, r24
+13682	breq	3
+13684	subi	r24, 1
+13686	sts	695, r24
+13690	lds	r24, 431
+13694	lds	r25, 432
+13698	sbiw	r24, 0
+13700	breq	2
+13702	call	1000
+13706	out	63, r2
+13708	pop	r31
+13710	pop	r30
+13712	pop	r29
+13714	pop	r28
+13716	pop	r27
+13718	pop	r26
+13720	pop	r25
+13722	pop	r24
+13724	pop	r23
+13726	pop	r22
+13728	pop	r21
+13730	pop	r20
+13732	pop	r19
+13734	pop	r18
+13736	pop	r17
+13738	pop	r16
+13740	pop	r15
+13742	pop	r14
+13744	pop	r13
+13746	pop	r12
+13748	pop	r11
+13750	pop	r10
+13752	pop	r9
+13754	pop	r8
+13756	pop	r7
+13758	pop	r6
+13760	pop	r5
+13762	pop	r4
+13764	pop	r3
+13766	pop	r2
+13768	pop	r0
+13770	out	63, r0
+13772	pop	r0
+13774	pop	r1
+13776	reti	
+13778	sei	
+13780	push	r1
+13782	push	r0
+13784	in	r0, 63
+13786	push	r0
+13788	eor	r1, r1
+13790	push	r17
+13792	push	r18
+13794	push	r19
+13796	push	r20
+13798	push	r21
+13800	push	r22
+13802	push	r23
+13804	push	r24
+13806	push	r25
+13808	push	r26
+13810	push	r27
+13812	push	r30
+13814	push	r31
+13816	in	r24, 55
+13818	andi	r24, 239
+13820	out	55, r24
+13822	sei	
+13824	in	r17, 63
+13826	cli	
+13828	lds	r24, 439
+13832	lds	r25, 440
+13836	lds	r26, 441
+13840	lds	r27, 442
+13844	sbiw	r24, 0
+13846	cpc	r26, r1
+13848	cpc	r27, r1
+13850	breq	1
+13852	rjmp	81
+13854	lds	r24, 286
+13858	lds	r25, 287
+13862	cpi	r24, 5
+13864	cpc	r25, r1
+13866	breq	44
+13868	cpi	r24, 6
+13870	cpc	r25, r1
+13872	brcc	6
+13874	cpi	r24, 3
+13876	cpc	r25, r1
+13878	breq	9
+13880	sbiw	r24, 4
+13882	brne	48
+13884	rjmp	26
+13886	cpi	r24, 7
+13888	cpc	r25, r1
+13890	breq	30
+13892	sbiw	r24, 8
+13894	brne	42
+13896	rjmp	20
+13898	sbis	16, 6
+13900	rjmp	15
+13902	ldi	r24, 4
+13904	ldi	r25, 0
+13906	sts	287, r25
+13910	sts	286, r24
+13914	call	1143
+13918	ldi	r18, 7
+13920	ldi	r19, 0
+13922	ldi	r20, 0
+13924	ldi	r21, 0
+13926	call	1332
+13930	rjmp	24
+13932	call	3548
+13936	rjmp	21
+13938	call	2065
+13942	and	r24, r24
+13944	brne	17
+13946	call	3590
+13950	rjmp	14
+13952	ldi	r24, 0
+13954	rjmp	10
+13956	ldi	r24, 9
+13958	call	2201
+13962	ldi	r24, 1
+13964	call	1359
+13968	ldi	r24, 3
+13970	call	2473
+13974	ldi	r24, 7
+13976	call	3446
+13980	lds	r24, 281
+13984	lds	r25, 282
+13988	sbiw	r24, 1
+13990	brne	14
+13992	ldi	r24, 2
+13994	ldi	r25, 0
+13996	sts	282, r25
+14000	sts	281, r24
+14004	cbi	27, 6
+14006	sbi	27, 6
+14008	ldi	r24, 0
+14010	call	1977
+14014	rjmp	2
+14016	call	1172
+14020	mov	r24, r17
+14022	eor	r25, r25
+14024	out	63, r24
+14026	pop	r31
+14028	pop	r30
+14030	pop	r27
+14032	pop	r26
+14034	pop	r25
+14036	pop	r24
+14038	pop	r23
+14040	pop	r22
+14042	pop	r21
+14044	pop	r20
+14046	pop	r19
+14048	pop	r18
+14050	pop	r17
+14052	pop	r0
+14054	out	63, r0
+14056	pop	r0
+14058	pop	r1
+14060	reti	
+14062	ldi	r26, 44
+14064	ldi	r27, 0
+14066	ldi	r30, 125
+14068	ldi	r31, 27
+14070	jmp	7498
+14074	mov	r2, r18
+14076	mov	r3, r19
+14078	mov	r4, r20
+14080	mov	r5, r21
+14082	mov	r6, r22
+14084	mov	r7, r23
+14086	mov	r8, r24
+14088	mov	r9, r25
+14090	movw	r30, r28
+14092	adiw	r30, 1
+14094	ldi	r26, 8
+14096	stpi	Z, r1
+14098	dec	r26
+14100	brne	-3
+14102	std	Y+1, r2
+14104	std	Y+2, r3
+14106	std	Y+3, r4
+14108	std	Y+4, r5
+14110	std	Y+5, r6
+14112	std	Y+6, r7
+14114	std	Y+7, r8
+14116	std	Y+8, r9
+14118	movw	r30, r28
+14120	adiw	r30, 9
+14122	ldi	r27, 8
+14124	stpi	Z, r1
+14126	dec	r27
+14128	brne	-3
+14130	std	Y+9, r10
+14132	std	Y+10, r11
+14134	std	Y+11, r12
+14136	std	Y+12, r13
+14138	std	Y+13, r14
+14140	std	Y+14, r15
+14142	std	Y+15, r16
+14144	std	Y+16, r17
+14146	ldd	r24, Y+1
+14148	ldd	r25, Y+2
+14150	ldd	r26, Y+3
+14152	ldd	r27, Y+4
+14154	std	Y+41, r24
+14156	std	Y+42, r25
+14158	std	Y+43, r26
+14160	std	Y+44, r27
+14162	movw	r14, r24
+14164	movw	r16, r26
+14166	ldi	r24, 255
+14168	ldi	r25, 255
+14170	ldi	r26, 0
+14172	ldi	r27, 0
+14174	and	r14, r24
+14176	and	r15, r25
+14178	and	r16, r26
+14180	and	r17, r27
+14182	ldd	r24, Y+41
+14184	ldd	r25, Y+42
+14186	ldd	r26, Y+43
+14188	ldd	r27, Y+44
+14190	movw	r2, r26
+14192	eor	r4, r4
+14194	eor	r5, r5
+14196	ldd	r24, Y+9
+14198	ldd	r25, Y+10
+14200	ldd	r26, Y+11
+14202	ldd	r27, Y+12
+14204	std	Y+37, r24
+14206	std	Y+38, r25
+14208	std	Y+39, r26
+14210	std	Y+40, r27
+14212	movw	r10, r24
+14214	movw	r12, r26
+14216	ldi	r24, 255
+14218	ldi	r25, 255
+14220	ldi	r26, 0
+14222	ldi	r27, 0
+14224	and	r10, r24
+14226	and	r11, r25
+14228	and	r12, r26
+14230	and	r13, r27
+14232	ldd	r24, Y+37
+14234	ldd	r25, Y+38
+14236	ldd	r26, Y+39
+14238	ldd	r27, Y+40
+14240	movw	r6, r26
+14242	eor	r8, r8
+14244	eor	r9, r9
+14246	movw	r24, r16
+14248	movw	r22, r14
+14250	movw	r20, r12
+14252	movw	r18, r10
+14254	call	7467
+14258	std	Y+33, r22
+14260	std	Y+34, r23
+14262	std	Y+35, r24
+14264	std	Y+36, r25
+14266	movw	r24, r16
+14268	movw	r22, r14
+14270	movw	r20, r8
+14272	movw	r18, r6
+14274	call	7467
+14278	movw	r14, r22
+14280	movw	r16, r24
+14282	movw	r24, r4
+14284	movw	r22, r2
+14286	movw	r20, r12
+14288	movw	r18, r10
+14290	call	7467
+14294	movw	r10, r22
+14296	movw	r12, r24
+14298	movw	r24, r4
+14300	movw	r22, r2
+14302	movw	r20, r8
+14304	movw	r18, r6
+14306	call	7467
+14310	movw	r6, r22
+14312	movw	r8, r24
+14314	add	r14, r10
+14316	adc	r15, r11
+14318	adc	r16, r12
+14320	adc	r17, r13
+14322	ldd	r24, Y+33
+14324	ldd	r25, Y+34
+14326	ldd	r26, Y+35
+14328	ldd	r27, Y+36
+14330	movw	r18, r26
+14332	eor	r20, r20
+14334	eor	r21, r21
+14336	add	r18, r14
+14338	adc	r19, r15
+14340	adc	r20, r16
+14342	adc	r21, r17
+14344	cp	r18, r10
+14346	cpc	r19, r11
+14348	cpc	r20, r12
+14350	cpc	r21, r13
+14352	brcc	8
+14354	ldi	r24, 0
+14356	ldi	r25, 0
+14358	ldi	r26, 1
+14360	ldi	r27, 0
+14362	add	r6, r24
+14364	adc	r7, r25
+14366	adc	r8, r26
+14368	adc	r9, r27
+14370	movw	r24, r20
+14372	eor	r26, r26
+14374	eor	r27, r27
+14376	add	r24, r6
+14378	adc	r25, r7
+14380	adc	r26, r8
+14382	adc	r27, r9
+14384	std	Y+29, r24
+14386	std	Y+30, r25
+14388	std	Y+31, r26
+14390	std	Y+32, r27
+14392	movw	r20, r18
+14394	eor	r19, r19
+14396	eor	r18, r18
+14398	ldd	r24, Y+33
+14400	ldd	r25, Y+34
+14402	ldd	r26, Y+35
+14404	ldd	r27, Y+36
+14406	andi	r26, 0
+14408	andi	r27, 0
+14410	add	r18, r24
+14412	adc	r19, r25
+14414	adc	r20, r26
+14416	adc	r21, r27
+14418	std	Y+25, r18
+14420	std	Y+26, r19
+14422	std	Y+27, r20
+14424	std	Y+28, r21
+14426	ldd	r10, Y+25
+14428	ldd	r11, Y+26
+14430	ldd	r12, Y+27
+14432	ldd	r13, Y+28
+14434	ldd	r14, Y+29
+14436	ldd	r15, Y+30
+14438	ldd	r16, Y+31
+14440	ldd	r17, Y+32
+14442	movw	r30, r28
+14444	adiw	r30, 17
+14446	ldi	r25, 8
+14448	stpi	Z, r1
+14450	dec	r25
+14452	brne	-3
+14454	std	Y+21, r14
+14456	std	Y+22, r15
+14458	std	Y+23, r16
+14460	std	Y+24, r17
+14462	ldd	r18, Y+5
+14464	ldd	r19, Y+6
+14466	ldd	r20, Y+7
+14468	ldd	r21, Y+8
+14470	ldd	r22, Y+37
+14472	ldd	r23, Y+38
+14474	ldd	r24, Y+39
+14476	ldd	r25, Y+40
+14478	call	7467
+14482	movw	r6, r22
+14484	movw	r8, r24
+14486	ldd	r18, Y+13
+14488	ldd	r19, Y+14
+14490	ldd	r20, Y+15
+14492	ldd	r21, Y+16
+14494	ldd	r22, Y+41
+14496	ldd	r23, Y+42
+14498	ldd	r24, Y+43
+14500	ldd	r25, Y+44
+14502	call	7467
+14506	ldd	r18, Y+21
+14508	ldd	r19, Y+22
+14510	ldd	r20, Y+23
+14512	ldd	r21, Y+24
+14514	add	r18, r22
+14516	adc	r19, r23
+14518	adc	r20, r24
+14520	adc	r21, r25
+14522	add	r18, r6
+14524	adc	r19, r7
+14526	adc	r20, r8
+14528	adc	r21, r9
+14530	std	Y+21, r18
+14532	std	Y+22, r19
+14534	std	Y+23, r20
+14536	std	Y+24, r21
+14538	ldd	r6, Y+21
+14540	ldd	r7, Y+22
+14542	ldd	r8, Y+23
+14544	ldd	r9, Y+24
+14546	mov	r18, r10
+14548	mov	r19, r11
+14550	mov	r20, r12
+14552	mov	r21, r13
+14554	mov	r22, r6
+14556	mov	r23, r7
+14558	mov	r24, r8
+14560	mov	r25, r9
+14562	ldi	r30, 18
+14564	adiw	r28, 44
+14566	jmp	7526
+14570	ldi	r26, 16
+14572	ldi	r27, 0
+14574	ldi	r30, 123
+14576	ldi	r31, 28
+14578	jmp	7498
+14582	mov	r2, r18
+14584	mov	r3, r19
+14586	mov	r4, r20
+14588	mov	r5, r21
+14590	mov	r6, r22
+14592	mov	r7, r23
+14594	mov	r8, r24
+14596	mov	r9, r25
+14598	and	r16, r16
+14600	brne	1
+14602	rjmp	102
+14604	ldi	r24, 8
+14606	movw	r30, r28
+14608	adiw	r30, 1
+14610	stpi	Z, r1
+14612	dec	r24
+14614	brne	-3
+14616	std	Y+1, r18
+14618	std	Y+2, r19
+14620	std	Y+3, r20
+14622	std	Y+4, r21
+14624	std	Y+5, r22
+14626	std	Y+6, r23
+14628	std	Y+7, r8
+14630	std	Y+8, r25
+14632	ldi	r30, 32
+14634	sub	r30, r16
+14636	cp	r1, r30
+14638	brge	57
+14640	ldd	r18, Y+5
+14642	ldd	r19, Y+6
+14644	ldd	r20, Y+7
+14646	ldd	r21, Y+8
+14648	mov	r22, r16
+14650	eor	r23, r23
+14652	sbrc	r22, 7
+14654	com	r23
+14656	movw	r26, r20
+14658	movw	r24, r18
+14660	mov	r0, r22
+14662	rjmp	4
+14664	lsr	r27
+14666	ror	r26
+14668	ror	r25
+14670	ror	r24
+14672	dec	r0
+14674	brpl	-6
+14676	std	Y+13, r24
+14678	std	Y+14, r25
+14680	std	Y+15, r26
+14682	std	Y+16, r27
+14684	rjmp	4
+14686	add	r18, r18
+14688	adc	r19, r19
+14690	adc	r20, r20
+14692	adc	r21, r21
+14694	dec	r30
+14696	brpl	-6
+14698	ldd	r24, Y+1
+14700	ldd	r25, Y+2
+14702	ldd	r26, Y+3
+14704	ldd	r27, Y+4
+14706	rjmp	4
+14708	lsr	r27
+14710	ror	r26
+14712	ror	r25
+14714	ror	r24
+14716	dec	r22
+14718	brpl	-6
+14720	or	r18, r24
+14722	or	r19, r25
+14724	or	r20, r26
+14726	or	r21, r27
+14728	std	Y+9, r18
+14730	std	Y+10, r19
+14732	std	Y+11, r20
+14734	std	Y+12, r21
+14736	ldd	r2, Y+9
+14738	ldd	r3, Y+10
+14740	ldd	r4, Y+11
+14742	ldd	r5, Y+12
+14744	ldd	r6, Y+13
+14746	ldd	r7, Y+14
+14748	ldd	r8, Y+15
+14750	ldd	r9, Y+16
+14752	rjmp	27
+14754	std	Y+13, r1
+14756	std	Y+14, r1
+14758	std	Y+15, r1
+14760	std	Y+16, r1
+14762	mov	r18, r30
+14764	eor	r19, r19
+14766	sbrc	r18, 7
+14768	com	r19
+14770	com	r19
+14772	neg	r18
+14774	sbci	r19, 255
+14776	ldd	r24, Y+5
+14778	ldd	r25, Y+6
+14780	ldd	r26, Y+7
+14782	ldd	r27, Y+8
+14784	rjmp	4
+14786	lsr	r27
+14788	ror	r26
+14790	ror	r25
+14792	ror	r24
+14794	dec	r18
+14796	brpl	-6
+14798	std	Y+9, r24
+14800	std	Y+10, r25
+14802	std	Y+11, r26
+14804	std	Y+12, r27
+14806	rjmp	-36
+14808	mov	r18, r2
+14810	mov	r19, r3
+14812	mov	r20, r4
+14814	mov	r21, r5
+14816	mov	r22, r6
+14818	mov	r23, r7
+14820	mov	r24, r8
+14822	mov	r25, r9
+14824	ldi	r30, 18
+14826	adiw	r28, 16
+14828	jmp	7526
+14832	sub	r25, r25
+14834	ldi	r23, 9
+14836	rjmp	4
+14838	adc	r25, r25
+14840	cp	r25, r22
+14842	brcs	1
+14844	sub	r25, r22
+14846	adc	r24, r24
+14848	dec	r23
+14850	brne	-7
+14852	com	r24
+14854	ret	
+14856	sub	r26, r26
+14858	sub	r27, r27
+14860	ldi	r21, 17
+14862	rjmp	7
+14864	adc	r26, r26
+14866	adc	r27, r27
+14868	cp	r26, r22
+14870	cpc	r27, r23
+14872	brcs	2
+14874	sub	r26, r22
+14876	sbc	r27, r23
+14878	adc	r24, r24
+14880	adc	r25, r25
+14882	dec	r21
+14884	brne	-11
+14886	com	r24
+14888	com	r25
+14890	movw	r22, r24
+14892	movw	r24, r26
+14894	ret	
+14896	bst	r25, 7
+14898	mov	r0, r25
+14900	eor	r0, r23
+14902	rcall	10
+14904	sbrc	r23, 7
+14906	rcall	4
+14908	rcall	-27
+14910	rcall	6
+14912	and	r0, r0
+14914	brpl	3
+14916	com	r23
+14918	neg	r22
+14920	sbci	r23, 255
+14922	ret	
+14924	brtc	-2
+14926	com	r25
+14928	neg	r24
+14930	sbci	r25, 255
+14932	ret	
+14934	mul	r22, r18
+14936	movw	r26, r0
+14938	mul	r23, r19
+14940	movw	r30, r0
+14942	mul	r24, r18
+14944	add	r30, r0
+14946	adc	r31, r1
+14948	mul	r22, r20
+14950	add	r30, r0
+14952	adc	r31, r1
+14954	mul	r25, r18
+14956	add	r31, r0
+14958	mul	r24, r19
+14960	add	r31, r0
+14962	mul	r23, r20
+14964	add	r31, r0
+14966	mul	r22, r21
+14968	add	r31, r0
+14970	eor	r25, r25
+14972	mul	r23, r18
+14974	add	r27, r0
+14976	adc	r30, r1
+14978	adc	r31, r25
+14980	mul	r22, r19
+14982	add	r27, r0
+14984	adc	r30, r1
+14986	adc	r31, r25
+14988	movw	r22, r26
+14990	movw	r24, r30
+14992	eor	r1, r1
+14994	ret	
+14996	push	r2
+14998	push	r3
+15000	push	r4
+15002	push	r5
+15004	push	r6
+15006	push	r7
+15008	push	r8
+15010	push	r9
+15012	push	r10
+15014	push	r11
+15016	push	r12
+15018	push	r13
+15020	push	r14
+15022	push	r15
+15024	push	r16
+15026	push	r17
+15028	push	r28
+15030	push	r29
+15032	in	r28, 61
+15034	in	r29, 62
+15036	sub	r28, r26
+15038	sbc	r29, r27
+15040	in	r0, 63
+15042	cli	
+15044	out	62, r29
+15046	out	63, r0
+15048	out	61, r28
+15050	ijmp	
+15052	ldd	r2, Y+18
+15054	ldd	r3, Y+17
+15056	ldd	r4, Y+16
+15058	ldd	r5, Y+15
+15060	ldd	r6, Y+14
+15062	ldd	r7, Y+13
+15064	ldd	r8, Y+12
+15066	ldd	r9, Y+11
+15068	ldd	r10, Y+10
+15070	ldd	r11, Y+9
+15072	ldd	r12, Y+8
+15074	ldd	r13, Y+7
+15076	ldd	r14, Y+6
+15078	ldd	r15, Y+5
+15080	ldd	r16, Y+4
+15082	ldd	r17, Y+3
+15084	ldd	r26, Y+2
+15086	ldd	r27, Y+1
+15088	add	r28, r30
+15090	adc	r29, r1
+15092	in	r0, 63
+15094	cli	
+15096	out	62, r29
+15098	out	63, r0
+15100	out	61, r28
+15102	movw	r28, r26
+15104	ret	
+15106	movw	r30, r22
+15108	movw	r26, r24
+15110	rjmp	4
+15112	ldpi	r24, X
+15114	ldpi	r0, Z
+15116	sub	r24, r0
+15118	brne	4
+15120	subi	r20, 1
+15122	sbci	r21, 0
+15124	brcc	-7
+15126	sub	r24, r24
+15128	sbc	r25, r25
+15130	ret	
+15132	movw	r26, r24
+15134	rjmp	1
+15136	stpi	X, r22
+15138	subi	r20, 1
+15140	sbci	r21, 0
+15142	brcc	-4
+15144	ret	
+15146	rjmp	-1

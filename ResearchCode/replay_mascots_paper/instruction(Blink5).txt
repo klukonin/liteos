@@ -1,0 +1,93 @@
+0	jmp	70
+4	jmp	80
+8	jmp	80
+12	jmp	80
+16	jmp	80
+20	jmp	80
+24	jmp	80
+28	jmp	80
+32	jmp	80
+36	jmp	80
+40	jmp	80
+44	jmp	80
+48	jmp	80
+52	jmp	80
+56	jmp	80
+60	jmp	80
+64	jmp	80
+68	jmp	80
+72	jmp	80
+76	jmp	80
+80	jmp	80
+84	jmp	80
+88	jmp	80
+92	jmp	80
+96	jmp	80
+100	jmp	80
+104	jmp	80
+108	jmp	80
+112	jmp	80
+116	jmp	80
+120	jmp	80
+124	jmp	80
+128	jmp	80
+132	jmp	80
+136	jmp	80
+140	eor	r1, r1
+142	out	63, r1
+144	ldi	r28, 255
+146	ldi	r29, 16
+148	out	62, r29
+150	out	61, r28
+152	call	104
+156	jmp	131
+160	jmp	0
+164	push	r29
+166	push	r28
+168	rcall	0
+170	in	r28, 61
+172	in	r29, 62
+174	std	Y+2, r25
+176	std	Y+1, r24
+178	rjmp	5
+180	ldd	r24, Y+1
+182	ldd	r25, Y+2
+184	sbiw	r24, 1
+186	std	Y+2, r25
+188	std	Y+1, r24
+190	ldd	r24, Y+1
+192	ldd	r25, Y+2
+194	sbiw	r24, 0
+196	brne	-9
+198	pop	r0
+200	pop	r0
+202	pop	r28
+204	pop	r29
+206	ret	
+208	push	r29
+210	push	r28
+212	in	r28, 61
+214	in	r29, 62
+216	ldi	r24, 58
+218	ldi	r25, 0
+220	ldi	r18, 255
+222	movw	r30, r24
+224	st	Z, r18
+226	ldi	r24, 59
+228	ldi	r25, 0
+230	ldi	r18, 255
+232	movw	r30, r24
+234	st	Z, r18
+236	ldi	r24, 80
+238	ldi	r25, 195
+240	call	82
+244	ldi	r24, 59
+246	ldi	r25, 0
+248	movw	r30, r24
+250	st	Z, r1
+252	ldi	r24, 80
+254	ldi	r25, 195
+256	call	82
+260	rjmp	-18
+262	cli	
+264	rjmp	-1

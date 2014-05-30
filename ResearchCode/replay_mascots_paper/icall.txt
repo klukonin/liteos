@@ -1,0 +1,250 @@
+276	ldi	r30, 0
+278	ldi	r31, 0
+280	icall
+
+1648	ldi	r30, 136
+1650	ldi	r31, 236
+1652	icall
+
+1656	ldi	r30, 128
+1658	ldi	r31, 236
+1660	icall
+
+1664	ldi	r30, 132
+1666	ldi	r31, 236
+1668	icall
+
+1672	ldi	r30, 140
+1674	ldi	r31, 236
+1676	icall
+
+1680	ldi	r30, 144
+1682	ldi	r31, 236
+1684	icall
+
+1688	ldi	r30, 156
+1690	ldi	r31, 236
+1692	icall
+
+1696	ldi	r30, 160
+1698	ldi	r31, 236
+1700	icall
+
+1704	ldi	r30, 148
+1706	ldi	r31, 236
+1708	icall
+
+1712	ldi	r30, 152
+1714	ldi	r31, 236
+1716	icall
+
+12096	movw	r30, r28
+12098	icall
+
+12108	movw	r30, r24
+12110	icall
+
+13282	ldd	r30, Y+27
+13284	ldd	r31, Y+28
+13286	sbiw	r30, 0
+13288	breq	3
+13290	icall
+
+26456	ld	r31, Z
+26458	mov	r30, r0
+26460	sbiw	r30, 0
+26462	breq	1
+26464	icall
+
+32620	ldd	r30, Y+27
+32622	ldd	r31, Y+28
+32624	sbiw	r30, 0
+32626	breq	3
+32628	icall	
+
+36696	ldi	r30, 0
+36698	ldi	r31, 237
+36700	icall
+
+36728	ldi	r30, 4
+36730	ldi	r31, 237
+36732	icall
+
+36768	ldi	r30, 8
+36770	ldi	r31, 237
+36772	icall
+
+36816	ldi	r30, 12
+36818	ldi	r31, 237
+36820	icall
+
+36856	ldi	r30, 16
+36858	ldi	r31, 237
+36860	icall
+
+36888	ldi	r30, 20
+36890	ldi	r31, 237
+36892	icall
+
+36914	ldi	r30, 128
+36916	ldi	r31, 237
+36918	icall
+
+36976	ldi	r30, 132
+36978	ldi	r31, 237
+36980	icall
+
+37048	ldi	r30, 136
+37050	ldi	r31, 237
+37052	icall
+
+37080	ldi	r30, 0
+37082	ldi	r31, 238
+37084	icall
+
+37102	ldi	r30, 4
+37104	ldi	r31, 238
+37106	icall
+
+37120	ldi	r30, 8
+37122	ldi	r31, 238
+37124	icall
+
+37128	ldi	r30, 12
+37130	ldi	r31, 238
+37132	icall
+
+37136	ldi	r30, 16
+37138	ldi	r31, 238
+37140	icall
+
+37144	ldi	r30, 20
+37146	ldi	r31, 238
+37148	icall	
+
+37152	ldi	r30, 24
+37154	ldi	r31, 238
+37156	icall
+
+37222	ldi	r30, 8
+37224	ldi	r31, 238
+37226	icall
+
+37300	ldi	r30, 12
+37302	ldi	r31, 238
+37304	icall
+
+37410	ldi	r30, 16
+37412	ldi	r31, 238
+37414	icall
+
+37532	ldi	r30, 20
+37534	ldi	r31, 238
+37536	icall
+
+37670	ldi	r30, 24
+37672	ldi	r31, 238
+37674	icall
+
+37712	ldi	r30, 16
+37714	ldi	r31, 236
+37716	icall
+
+37724	ldi	r30, 20
+37726	ldi	r31, 236
+37728	icall
+
+37750	ldi	r30, 0
+37752	ldi	r31, 236
+37754	icall
+
+37772	ldi	r30, 4
+37774	ldi	r31, 236
+37776	icall
+
+37794	ldi	r30, 8
+37796	ldi	r31, 236
+37798	icall
+
+37810	ldi	r30, 12
+37812	ldi	r31, 236
+37814	icall	
+
+37884	ldi	r30, 16
+37886	ldi	r31, 236
+37888	icall
+
+38084	ldi	r30, 24
+38086	ldi	r31, 236
+38088	icall
+
+38236	movw	r30, r16
+38238	icall
+
+38272	ldi	r30, 32
+38274	ldi	r31, 236
+38276	icall
+
+38312	ldi	r30, 36
+38314	ldi	r31, 236
+38316	icall
+
+39166	ldi	r30, 24
+39168	ldi	r31, 237
+39170	icall
+
+39174	ldi	r30, 28
+39176	ldi	r31, 237
+39178	icall
+
+39602	ldi	r30, 8
+39604	ldi	r31, 234
+39606	icall
+
+39624	ldi	r30, 0
+39626	ldi	r31, 234
+39628	icall
+
+39650	ldi	r30, 4
+39652	ldi	r31, 234
+39654	icall
+
+39670	ldi	r30, 128
+39672	ldi	r31, 238
+39674	icall
+
+39708	ldi	r30, 128
+39710	ldi	r31, 234
+39712	icall
+
+39730	ldi	r30, 128
+39732	ldi	r31, 235
+39734	icall
+
+39752	ldi	r30, 132
+39754	ldi	r31, 234
+39756	icall
+
+39772	ldi	r30, 136
+39774	ldi	r31, 234
+39776	icall	
+
+39822	ldi	r30, 140
+39824	ldi	r31, 234
+39826	icall
+
+39848	ldi	r30, 140
+39850	ldi	r31, 234
+39852	icall
+
+39856	ldi	r30, 140
+39858	ldi	r31, 234
+39860	icall
+
+39864	ldi	r30, 144
+39866	ldi	r31, 234
+39868	icall
+
+39888	ldi	r30, 0
+39890	ldi	r31, 235
+39892	icall
